@@ -64,6 +64,35 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/center"
+                android:layout_marginTop="-95dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/grid_shape"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:src="@drawable/student"
+                        app:border_width="@dimen/_2sdp"
+                        app:border_color="@color/light_blue"
+                        android:layout_marginTop="-10dp"/>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/logo"
@@ -80,34 +109,6 @@
                 android:src="@drawable/logo" />
 
 
-                <LinearLayout
-                    android:id="@+id/image_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="41dp"
-                    android:layout_margin="@dimen/_10sdp"
-                    android:background="@drawable/grid_shape"
-                    android:orientation="vertical"
-                    android:layout_below="@+id/logo"
-                    android:layout_centerHorizontal="true">
-
-                    <RelativeLayout
-                        android:layout_width="@dimen/_90sdp"
-                        android:layout_height="@dimen/_90sdp"
-                        android:layout_marginTop="-50dp"
-                        android:layout_marginLeft="-16dp"
-                        android:layout_margin="@dimen/_5sdp"
-                        android:background="@drawable/grid_shape">
-                   <ImageView
-                        android:layout_width="@dimen/_60sdp"
-                        android:layout_height="@dimen/_60sdp"
-                        android:src="@drawable/student"
-                       android:layout_marginTop="-10dp"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
-                       android:background="@drawable/ciclre_shape"/>
-                    </RelativeLayout>
-                </LinearLayout>
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -238,8 +238,8 @@ public class DashboardActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-//            displayView(0);
-        Intent i =new Intent(DashboardActivity.this,SplashScreen.class);
-        startActivity(i);
+            displayView(0);
+//        Intent i =new Intent(DashboardActivity.this,SplashScreen.class);
+//        startActivity(i);
     }
 }
