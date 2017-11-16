@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Shilaj(Admin)</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_example">Example action</string>
+    <!--use for menu-->
+    <string-array name="menuoption1">
+        <item>Home</item>
+    </string-array>
+
+    <string name="Dashboard">DASHBOARD</string>
+    <string name="student">STUDENT</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

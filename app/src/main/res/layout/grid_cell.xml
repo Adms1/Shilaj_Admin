@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grid_shape"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imgGridOptions"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/student"/>
+
+    <TextView
+        android:id="@+id/txtGridOptionsName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="false"
+        android:gravity="center"
+        android:textSize="@dimen/_10sdp"
+        android:textColor="@color/light_blue"
+        android:textStyle="bold"
+        android:text="Consistent Absent"
+        android:layout_weight="0.03" />
+
+</LinearLayout>
