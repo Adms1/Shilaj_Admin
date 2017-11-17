@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
 
@@ -39,13 +40,19 @@ public class StudentFragment extends Fragment {
     }
 
     public void initViews() {
+          fragmentStudentBinding.studentSubmenuGridView.setAdapter(new StudentSubMenuAdapter(mContext));
+
     }
 
     public void setListners() {
-        fragmentStudentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+        fragmentStudentBinding.btnBackAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Fragment fragment = new HomeFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(0, 0)
+                        .replace(R.id.frame_container, fragment).commit();
             }
         });
 
