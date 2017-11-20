@@ -10,6 +10,30 @@
 
     <string name="Dashboard">DASHBOARD</string>
     <string name="student">STUDENT</string>
+    <string name="staff">STAFF</string>
+    <string name="account">ACCOUNT</string>
+    <string name="transport">TRANSPORT</string>
+    <string name="hr">HR</string>
+    <string name="other">OTHER</string>
+    <string name="attendace">Attendace</string>
+    <string name="standardwiseattendace">Standard Wise Attendace</string>
+    <string name="alert_msg">Alert Msg</string>
+    <string name="ok">OK</string>
+    <string name="internet_error">Internet Connection !</string>
+    <string name="internet_connection_error">Admin requires an internet connection.Make sure Wi-Fi or mobile networks are turned on, then try again.</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="false_msg">Record not found</string>
+    <string name="student_txt"><u>Student</u></string>
+    <string name="staff_txt"><u>Staff</u></string>
+    <string name="absent">Absent</string>
+    <string name="present">Present</string>
+    <string name="leave">Leave</string>
+    <string name="total">Total</string>
+    <string name="standardname">Standarname</string>
+    <string name="standardstatus">status</string>
+
+
+    <string name="viewsummary"><u>View Summar</u>y<u> Details >></u></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
