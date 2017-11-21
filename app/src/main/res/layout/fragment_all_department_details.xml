@@ -84,34 +84,31 @@
                 android:layout_below="@+id/header"
                 android:orientation="vertical">
 
-                <RelativeLayout
+                <Button
+                    android:id="@+id/student_details_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp">
-
-                    <Button
-                        android:id="@+id/student_details_btn"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/darkblue"
-                        android:text="@string/studentdetail"
-                        android:textAllCaps="false"
-                        android:textColor="@color/app_bg"
-                        android:textSize="@dimen/_12sdp" />
-                </RelativeLayout>
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/darkblue"
+                    android:text="@string/studentdetail"
+                    android:textAllCaps="false"
+                    android:textColor="@color/app_bg"
+                    android:textSize="@dimen/_12sdp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/linearlayout_border"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="heeeeeeeeee"/>
+                        android:text="heeeeeeeeee" />
                 </LinearLayout>
             </LinearLayout>
 
