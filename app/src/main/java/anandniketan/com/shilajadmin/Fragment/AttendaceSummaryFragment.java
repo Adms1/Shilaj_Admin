@@ -15,10 +15,14 @@ import android.view.ViewGroup;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Adapter.ConsistentAbsentTeacherAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseStudentAttendaceAdapter;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
@@ -42,6 +46,7 @@ public class AttendaceSummaryFragment extends Fragment {
     Calendar calendar;
     private String Datestr;
     private StandardwiseStudentAttendaceAdapter standardwiseStudentAttendaceAdapter;
+    private ConsistentAbsentTeacherAdapter consistentAbsentTeacherAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +57,7 @@ public class AttendaceSummaryFragment extends Fragment {
         rootView = fragmentAttendaceSummaryBinding.getRoot();
         mContext = getActivity().getApplicationContext();
         initViews();
-
+        setListner();
 
         return rootView;
     }
@@ -68,6 +73,19 @@ public class AttendaceSummaryFragment extends Fragment {
 
         callStudentApi();
         callStaffApi();
+    }
+
+    public void setListner() {
+        fragmentAttendaceSummaryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new StudentFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(0, 0)
+                        .replace(R.id.frame_container, fragment).commit();
+            }
+        });
     }
 
     // CALL Staff Attendace API HERE
@@ -97,13 +115,26 @@ public class AttendaceSummaryFragment extends Fragment {
                     return;
                 }
                 if (staffUser.getSuccess().equalsIgnoreCase("True")) {
-                    for (int i = 0; i < staffUser.getFinalArray().size(); i++) {
-                        fragmentAttendaceSummaryBinding.absentstaffCountTxt.setText(staffUser.getFinalArray().get(i).getStaffAbsent());
-                        fragmentAttendaceSummaryBinding.leavestaffCountTxt.setText(staffUser.getFinalArray().get(i).getStaffLeave());
-                        fragmentAttendaceSummaryBinding.presentstaffCountTxt.setText(staffUser.getFinalArray().get(i).getStaffPresent());
-                        fragmentAttendaceSummaryBinding.totalstaffCountTxt.setText(staffUser.getFinalArray().get(i).getTotalStaff());
+                    List<FinalArrayStaffModel> staffArray = staffUser.getFinalArray();
+                    for (int i = 0; i < staffArray.size(); i++) {
+                        FinalArrayStaffModel studentObj = staffArray.get(i);
+                        if (studentObj != null) {
+                            fragmentAttendaceSummaryBinding.absentstudentCountTxt.setText(studentObj.getStaffAbsent());
+                            fragmentAttendaceSummaryBinding.leavestudentCountTxt.setText(studentObj.getStaffLeave());
+                            fragmentAttendaceSummaryBinding.presentstudentCountTxt.setText(studentObj.getStaffPresent());
+                            fragmentAttendaceSummaryBinding.totalstudentCountTxt.setText(studentObj.getTotalStaff());
+                        }
                     }
-
+                    if (staffUser.getFinalArray().size() > 0) {
+                        fragmentAttendaceSummaryBinding.txtNoRecords.setVisibility(View.GONE);
+                        consistentAbsentTeacherAdapter = new ConsistentAbsentTeacherAdapter(mContext, staffUser);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                        fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setLayoutManager(mLayoutManager);
+                        fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setItemAnimator(new DefaultItemAnimator());
+                        fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setAdapter(consistentAbsentTeacherAdapter);
+                    } else {
+                        fragmentAttendaceSummaryBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    }
                 }
             }
 
@@ -150,11 +181,16 @@ public class AttendaceSummaryFragment extends Fragment {
                     return;
                 }
                 if (studentUser.getSuccess().equalsIgnoreCase("True")) {
-                    for (int i = 0; i < studentUser.getFinalArray().size(); i++) {
-                        fragmentAttendaceSummaryBinding.absentstudentCountTxt.setText(studentUser.getFinalArray().get(i).getStudentAbsent());
-                        fragmentAttendaceSummaryBinding.leavestudentCountTxt.setText(studentUser.getFinalArray().get(i).getStudentLeave());
-                        fragmentAttendaceSummaryBinding.presentstudentCountTxt.setText(studentUser.getFinalArray().get(i).getStudentPresent());
-                        fragmentAttendaceSummaryBinding.totalstudentCountTxt.setText(studentUser.getFinalArray().get(i).getTotalStudent());
+
+                    List<FinalArrayStudentModel> studentArray = studentUser.getFinalArray();
+                    for (int i = 0; i < studentArray.size(); i++) {
+                        FinalArrayStudentModel studentObj = studentArray.get(i);
+                        if (studentObj != null) {
+                            fragmentAttendaceSummaryBinding.absentstudentCountTxt.setText(studentObj.getStudentAbsent());
+                            fragmentAttendaceSummaryBinding.leavestudentCountTxt.setText(studentObj.getStudentLeave());
+                            fragmentAttendaceSummaryBinding.presentstudentCountTxt.setText(studentObj.getStudentPresent());
+                            fragmentAttendaceSummaryBinding.totalstudentCountTxt.setText(studentObj.getTotalStudent());
+                        }
                     }
                     if (studentUser.getFinalArray().size() > 0) {
                         fragmentAttendaceSummaryBinding.txtNoRecords.setVisibility(View.GONE);

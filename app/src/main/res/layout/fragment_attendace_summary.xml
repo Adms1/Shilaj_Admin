@@ -8,6 +8,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -29,7 +30,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btnBacktest_homework"
+                    android:id="@+id/btnBack"
                     android:layout_width="@dimen/_13sdp"
                     android:layout_height="@dimen/_13sdp"
                     android:layout_alignParentBottom="true"
@@ -77,293 +78,380 @@
                 android:layout_marginTop="@dimen/_37sdp"
                 android:background="@drawable/menu" />
 
-            <LinearLayout
-                android:id="@+id/main_linear"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/header"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/linearlayout_border"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/Attendace_txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginLeft="@dimen/_2sdp"
-                        android:layout_marginRight="@dimen/_2sdp"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:background="@drawable/box"
-                        android:gravity="center_vertical"
-                        android:text="@string/attendace"
-                        android:textAlignment="center"
-                        android:textColor="@color/scheduleheadertextcolor"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/student_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_7sdp"
-                        android:text="@string/student_txt"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/staff_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_195sdp"
-                        android:text="@string/staff_txt"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/absentstudent_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/absent"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/student_absent_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_70sdp"
-                        android:text="@string/absent"
-                        android:textColor="@color/absent"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/absentstaff_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_58sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/absent"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/leavestudent_Count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/leave"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/student_leave_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_70sdp"
-                        android:text="@string/leave"
-                        android:textColor="@color/leave"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/leavestaff_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_58sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/leave"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/presentstudent_Count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/present"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/present_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_70sdp"
-                        android:text="@string/present"
-                        android:textColor="@color/present"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/presentstaff_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_58sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/present"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/edit_line" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <TextView
-                        android:id="@+id/totalstudent_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_3sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/scheduleheadertextcolor"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/total_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_70sdp"
-                        android:text="@string/total"
-                        android:textColor="@color/scheduleheadertextcolor"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/totalstaff_count_txt"
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_58sdp"
-                        android:text="0"
-                        android:textAlignment="center"
-                        android:textColor="@color/scheduleheadertextcolor"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/standardwise_linear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/main_linear"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:background="@drawable/linearlayout_border"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/standardwiseAttendace_txt"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginLeft="@dimen/_2sdp"
-                        android:layout_marginRight="@dimen/_2sdp"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:background="@drawable/box"
-                        android:gravity="center_vertical"
-                        android:text="@string/standardwiseattendace"
-                        android:textAlignment="center"
-                        android:textColor="@color/scheduleheadertextcolor"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_below="@+id/header"
+                android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:orientation="vertical"
-                    android:background="@drawable/linear_border">
+                    android:layout_below="@id/header"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical">
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/standardwise_student_attendacelist"
+                    <LinearLayout
+                        android:id="@+id/main_linear"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scrollbars="none" />
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/header"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/linearlayout_border"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/Attendace_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_marginRight="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@drawable/box"
+                                android:gravity="center_vertical"
+                                android:text="@string/attendace"
+                                android:textAlignment="center"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/student_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_7sdp"
+                                android:text="@string/student_txt"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/staff_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_195sdp"
+                                android:text="@string/staff_txt"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/absentstudent_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/absent"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/student_absent_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_70sdp"
+                                android:text="@string/absent"
+                                android:textColor="@color/absent"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/absentstaff_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_58sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/absent"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/leavestudent_Count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/leave"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/student_leave_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_70sdp"
+                                android:text="@string/leave"
+                                android:textColor="@color/leave"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/leavestaff_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_58sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/leave"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/presentstudent_Count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/present"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/present_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_70sdp"
+                                android:text="@string/present"
+                                android:textColor="@color/present"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/presentstaff_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_58sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/present"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:background="@drawable/edit_line" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal"
+                            android:weightSum="3">
+
+                            <TextView
+                                android:id="@+id/totalstudent_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_3sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/total_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_70sdp"
+                                android:text="@string/total"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <TextView
+                                android:id="@+id/totalstaff_count_txt"
+                                android:layout_width="@dimen/_50sdp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/_58sdp"
+                                android:text="0"
+                                android:textAlignment="center"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/standardwise_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/main_linear"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:background="@drawable/linearlayout_border"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/standardwiseAttendace_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_marginRight="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@drawable/box"
+                                android:gravity="center_vertical"
+                                android:text="@string/standardwiseattendace"
+                                android:textAlignment="center"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/student_attendace_header" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:background="@drawable/linear_border"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/standardwise_student_attendacelist"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scrollbars="none" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/consistent_absent_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/standardwise_linear"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:background="@drawable/linearlayout_border"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/consistent_absent_teacher_txt"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_30sdp"
+                                android:layout_marginLeft="@dimen/_2sdp"
+                                android:layout_marginRight="@dimen/_2sdp"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:background="@drawable/box"
+                                android:gravity="center_vertical"
+                                android:text="@string/consistent_absent"
+                                android:textAlignment="center"
+                                android:textColor="@color/scheduleheadertextcolor"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:orientation="horizontal">
+
+                            <include layout="@layout/consistent_absent_header" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:background="@drawable/linear_border"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/consistent_absent_teacher_list"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scrollbars="none" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtNoRecords"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/header"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:gravity="center"
+                        android:text="No Records Found..."
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="@dimen/_11sdp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
                 </LinearLayout>
-            </LinearLayout>
-
-
-            <TextView
-                android:id="@+id/txtNoRecords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/header"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:gravity="center"
-                android:text="No Records Found..."
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="@dimen/_11sdp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
+            </ScrollView>
         </RelativeLayout>
+
     </LinearLayout>
 </layout>

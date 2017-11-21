@@ -10,12 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
@@ -68,8 +71,8 @@ public class StudentFragment extends Fragment {
         fragmentStudentBinding.btnBackAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new HomeFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+                fragment = new HomeFragment();
+                fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
@@ -78,11 +81,23 @@ public class StudentFragment extends Fragment {
         fragmentStudentBinding.viewSummayTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new AttendaceSummaryFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+                fragment = new AttendaceSummaryFragment();
+                fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+        fragmentStudentBinding.studentSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    fragment = new SearchStudentFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
             }
         });
     }
@@ -114,11 +129,15 @@ public class StudentFragment extends Fragment {
                     return;
                 }
                 if (studentUser.getSuccess().equalsIgnoreCase("True")) {
-                    for (int i = 0; i < studentUser.getFinalArray().size(); i++) {
-                        fragmentStudentBinding.totalStudentCount.setText(studentUser.getFinalArray().get(i).getTotalStudent());
-                        fragmentStudentBinding.totalPresentstudentCount.setText(studentUser.getFinalArray().get(i).getStudentPresent());
-                        fragmentStudentBinding.totalAbsentstudentCount.setText(studentUser.getFinalArray().get(i).getStudentAbsent());
-                        fragmentStudentBinding.totalLeavestudentCount.setText(studentUser.getFinalArray().get(i).getStudentLeave());
+                    List<FinalArrayStudentModel> studentArray = studentUser.getFinalArray();
+                    for (int i = 0; i < studentArray.size(); i++) {
+                        FinalArrayStudentModel studentObj = studentArray.get(i);
+                        if (studentObj != null) {
+                            fragmentStudentBinding.totalStudentCount.setText(studentObj.getTotalStudent());
+                            fragmentStudentBinding.totalPresentstudentCount.setText(studentObj.getStudentPresent());
+                            fragmentStudentBinding.totalAbsentstudentCount.setText(studentObj.getStudentAbsent());
+                            fragmentStudentBinding.totalLeavestudentCount.setText(studentObj.getStudentLeave());
+                        }
                     }
 
                 }

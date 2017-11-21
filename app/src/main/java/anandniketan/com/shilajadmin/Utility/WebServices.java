@@ -3,7 +3,10 @@ package anandniketan.com.shilajadmin.Utility;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
+import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
 import retrofit.Callback;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
@@ -22,4 +25,18 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/Admin_StaffAttendence")
     public void getStaffAttendace(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
+
+    @FormUrlEncoded
+    @POST("/Admin_StudentSearchByParentName")
+    public void getParentName(@FieldMap Map<String, String> map, Callback<ParentsNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/Admin_StudentSearchByStuName")
+    public void getStudentName(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/Admin_StudentShowFilteredData")
+    public void getStudentFilterData(@FieldMap Map<String, String> map, Callback<StudentShowFilteredDataModel> callback);
+
+
 }
