@@ -5,6 +5,7 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
 import retrofit.Callback;
@@ -38,5 +39,7 @@ public interface WebServices {
     @POST("/Admin_StudentShowFilteredData")
     public void getStudentFilterData(@FieldMap Map<String, String> map, Callback<StudentShowFilteredDataModel> callback);
 
-
+    @FormUrlEncoded
+    @POST("/Admin_StudentFullDetail")
+    public void getStudentFullDetail(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
 }

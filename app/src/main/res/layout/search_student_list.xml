@@ -63,7 +63,7 @@
             android:paddingTop="@dimen/_7sdp"
             android:textAlignment="textStart"
             android:paddingRight="@dimen/_4sdp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:paddingLeft="@dimen/_2sdp"
             android:textColor="@color/absent"
             android:textSize="@dimen/_10sdp" />

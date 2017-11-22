@@ -18,4 +18,8 @@
     <color name="dividercolor">#801791d8</color>
     <color name="lightgray">#AAAAAA</color>
     <color name="darkblue">#3597D3</color>
+    <color name="green">#FF6BAE18</color>
+    <color name="yellow">#FFE6B12E</color>
+    <color name="lightblue">#FF48ADDE</color>
+    <color name="cgray">#FF607D8B</color>
 </resources>

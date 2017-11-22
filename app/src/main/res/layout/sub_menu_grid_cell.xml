@@ -9,8 +9,9 @@
 
     <ImageView
         android:id="@+id/imgGridOptions"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
         android:src="@drawable/student_1"
         android:layout_weight="0.07" />
 
@@ -18,7 +19,8 @@
         android:id="@+id/txtGridOptionsName"
         android:layout_width="@dimen/_60sdp"
         android:layout_height="@dimen/_25sdp"
-        android:layout_marginLeft="@dimen/_23sdp"
+
+        android:layout_gravity="center"
         android:gravity="center"
         android:singleLine="false"
         android:text="Consistent Absent"
