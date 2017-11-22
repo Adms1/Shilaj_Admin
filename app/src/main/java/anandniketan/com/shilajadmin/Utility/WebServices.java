@@ -8,6 +8,8 @@ import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import retrofit.Callback;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
@@ -42,4 +44,16 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/Admin_StudentFullDetail")
     public void getStudentFullDetail(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetTerm")
+    public void getTerm(@FieldMap Map<String, String> map, Callback<TermModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetRoutePickUpPointDetail")
+    public void getRouteDetail(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+
+    @FormUrlEncoded
+    @POST("/StudentTransportDetail")
+    public void getStudentTransportDetail(@FieldMap Map<String, String> map, Callback<StudentTransportDetailModel> callback);
 }

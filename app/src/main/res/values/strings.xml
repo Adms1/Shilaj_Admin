@@ -55,6 +55,7 @@
     <string name="section">Section</string>
     <string name="lastschool">Last School</string>
     <string name="doa">Date Of Admission</string>
+    <string name="doataken">Addmission Taken</string>
     <string name="bloodgroup">Blood Group</string>
     <string name="house">House</string>
     <string name="oldgr">Old GRNO</string>
@@ -84,8 +85,10 @@
     <string name="fatherdetail">Father Detail</string>
     <string name="motherdetail">Mother Detail</string>
     <string name="communication">Communication Detail</string>
-
     <string name="viewsummary"><u>View Summar</u>y<u> Details >></u></string>
+    <string name="term">Term</string>
+    <string name="route">Route</string>
+    <string name="pick">Pickup Ponit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -98,7 +101,4 @@
         <item>Passout</item>
     </string-array>
 
-    <string-array name="stuarray">
-        <item>Student Detail</item>
-    </string-array>
 </resources>

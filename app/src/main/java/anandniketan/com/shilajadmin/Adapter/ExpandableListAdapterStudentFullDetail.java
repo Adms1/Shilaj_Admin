@@ -2,12 +2,15 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -25,6 +28,9 @@ import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailMod
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentFullDetailBinding;
+import anandniketan.com.shilajadmin.databinding.StudentListItemCommunicationDetailBinding;
+import anandniketan.com.shilajadmin.databinding.StudentListItemFatherDetailBinding;
+import anandniketan.com.shilajadmin.databinding.StudentListItemMotherDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemStudentFullDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudetnListItemTransportDetailBinding;
 
@@ -60,61 +66,104 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
         StudentListItemStudentFullDetailBinding binding;
         if (convertView == null) {
             Log.d("groupposition", "" + groupPosition);
-            if (groupPosition == 0) {
-                binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_student_full_detail, parent, false);
-                convertView = binding.getRoot();
-                imageLoader = ImageLoader.getInstance();
-                DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                        .cacheInMemory(true)
-                        .cacheOnDisk(true)
-                        .imageScaleType(ImageScaleType.EXACTLY)
-                        .displayer(new FadeInBitmapDisplayer(300))
-                        .build();
-                ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
-                        _context)
-                        .threadPriority(Thread.MAX_PRIORITY)
-                        .defaultDisplayImageOptions(defaultOptions)
-                        .memoryCache(new WeakMemoryCache())
-                        .denyCacheImageMultipleSizesInMemory()
-                        .tasksProcessingOrder(QueueProcessingType.LIFO)// .enableLogging()
-                        .build();
-                imageLoader.init(config.createDefault(_context));
-                imageLoader.displayImage(childData.get(childPosition).getStudentImage(), binding.profileImage);
-                String[] name = childData.get(childPosition).getName().split("\\ ");
-                binding.tagTxt.setText(childData.get(childPosition).getTag());
-                binding.firstnameTxt.setText(name[0]);
-                binding.middleTxt.setText(name[1]);
-                binding.lastnameTxt.setText(name[2]);
-                binding.dobTxt.setText(childData.get(childPosition).getDateOfBirth());
-                binding.birthplaceTxt.setText(childData.get(childPosition).getBirthPlace());
-                binding.ageTxt.setText(childData.get(childPosition).getAge());
-                binding.genderTxt.setText(childData.get(childPosition).getGender());
-                binding.aadharTxt.setText(childData.get(childPosition).getAadhaarCardNo());
-                binding.acedamicTxt.setText(childData.get(childPosition).getAcedamicYear());
-                binding.gradeTxt.setText(childData.get(childPosition).getGrade());
-                binding.sectionTxt.setText(childData.get(childPosition).getSection());
-                binding.lastschoolTxt.setText(childData.get(childPosition).getLastSchool());
-                binding.doaTxt.setText(childData.get(childPosition).getDateOfAdmission());
-                binding.bloodgroupTxt.setText(childData.get(childPosition).getBloodGroup());
-                binding.houseTxt.setText(childData.get(childPosition).getHouse());
-                binding.oldgrTxt.setText(childData.get(childPosition).getOldGRNO());
-                binding.religionTxt.setText(childData.get(childPosition).getReligion());
-                binding.usernameTxt.setText(childData.get(childPosition).getUserName());
-                binding.passwordTxt.setText(childData.get(childPosition).getPassword());
-                binding.grnoTxt.setText(childData.get(childPosition).getGRNO());
-                binding.registrationTxt.setText(childData.get(childPosition).getRegistrationDate());
-            } else if (groupPosition == 1) {
-                StudetnListItemTransportDetailBinding transportDetailBinding;
-                transportDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.studetn_list_item_transport_detail, parent, false);
-                convertView = transportDetailBinding.getRoot();
+        }
+        String headerTitle = (String) getGroup(groupPosition);
+        if (headerTitle.equalsIgnoreCase("Student Detail")) {
+            binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_student_full_detail, parent, false);
+            convertView = binding.getRoot();
+            imageLoader = ImageLoader.getInstance();
+            DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                    .cacheInMemory(true)
+                    .cacheOnDisk(true)
+                    .imageScaleType(ImageScaleType.EXACTLY)
+                    .displayer(new FadeInBitmapDisplayer(300))
+                    .build();
+            ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                    _context)
+                    .threadPriority(Thread.MAX_PRIORITY)
+                    .defaultDisplayImageOptions(defaultOptions)
+                    .memoryCache(new WeakMemoryCache())
+                    .denyCacheImageMultipleSizesInMemory()
+                    .tasksProcessingOrder(QueueProcessingType.LIFO)// .enableLogging()
+                    .build();
+            imageLoader.init(config.createDefault(_context));
+            imageLoader.displayImage(childData.get(childPosition).getStudentImage(), binding.profileImage);
+            String[] name = childData.get(childPosition).getName().split("\\ ");
+            binding.tagTxt.setText(childData.get(childPosition).getTag());
+            binding.firstnameTxt.setText(name[0]);
+            binding.middleTxt.setText(name[1]);
+            binding.lastnameTxt.setText(name[2]);
+            binding.dobTxt.setText(childData.get(childPosition).getDateOfBirth());
+            binding.birthplaceTxt.setText(childData.get(childPosition).getBirthPlace());
+            binding.ageTxt.setText(childData.get(childPosition).getAge());
+            binding.genderTxt.setText(childData.get(childPosition).getGender());
+            binding.aadharTxt.setText(childData.get(childPosition).getAadhaarCardNo());
+            binding.acedamicTxt.setText(childData.get(childPosition).getAcedamicYear());
+            binding.gradeTxt.setText(childData.get(childPosition).getGrade());
+            binding.sectionTxt.setText(childData.get(childPosition).getSection());
+            binding.lastschoolTxt.setText(childData.get(childPosition).getLastSchool());
+            binding.doaTxt.setText(childData.get(childPosition).getDateOfAdmission());
+            binding.doatakenTxt.setText(childData.get(childPosition).getAddmissionTaken());
+            binding.bloodgroupTxt.setText(childData.get(childPosition).getBloodGroup());
+            binding.houseTxt.setText(childData.get(childPosition).getHouse());
+            binding.oldgrTxt.setText(childData.get(childPosition).getOldGRNO());
+            binding.religionTxt.setText(childData.get(childPosition).getReligion());
+            binding.usernameTxt.setText(childData.get(childPosition).getUserName());
+            binding.passwordTxt.setText(childData.get(childPosition).getPassword());
+            binding.grnoTxt.setText(childData.get(childPosition).getGRNO());
+            binding.registrationTxt.setText(childData.get(childPosition).getRegistrationDate());
 
-                transportDetailBinding.pickupTxt.setText(childData.get(childPosition).getPickupBus());
-                transportDetailBinding.pickuppointTxt.setText(childData.get(childPosition).getPickupPoint());
-                transportDetailBinding.pickuptimeTxt.setText(childData.get(childPosition).getPickupPointTime());
-                transportDetailBinding.dropbusTxt.setText(childData.get(childPosition).getDropBus());
-                transportDetailBinding.droppointTxt.setText(childData.get(childPosition).getDropPoint());
-                transportDetailBinding.droptimeTxt.setText(childData.get(childPosition).getDropPointTime());
-            }
+        } else if (headerTitle.equalsIgnoreCase("Transport Detail")) {
+            StudetnListItemTransportDetailBinding transportDetailBinding;
+            transportDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.studetn_list_item_transport_detail, parent, false);
+            convertView = transportDetailBinding.getRoot();
+
+            transportDetailBinding.pickupTxt.setText(childData.get(childPosition).getPickupBus());
+            transportDetailBinding.pickuppointTxt.setText(childData.get(childPosition).getPickupPoint());
+            transportDetailBinding.pickuptimeTxt.setText(childData.get(childPosition).getPickupPointTime());
+            transportDetailBinding.dropbusTxt.setText(childData.get(childPosition).getDropBus());
+            transportDetailBinding.droppointTxt.setText(childData.get(childPosition).getDropPoint());
+            transportDetailBinding.droptimeTxt.setText(childData.get(childPosition).getDropPointTime());
+
+        } else if (headerTitle.equalsIgnoreCase("Father Detail")) {
+            StudentListItemFatherDetailBinding fatherDetailBinding;
+            fatherDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_father_detail, parent, false);
+            convertView = fatherDetailBinding.getRoot();
+            String fname[] = childData.get(childPosition).getFatherName().split("\\ ");
+            fatherDetailBinding.fatherfirstnameTxt.setText(fname[0]);
+            fatherDetailBinding.fatherlastnameTxt.setText(fname[1]);
+            fatherDetailBinding.fphoneTxt.setText(childData.get(childPosition).getFatherPhoneNo());
+            fatherDetailBinding.fmobileTxt.setText(childData.get(childPosition).getFatherMobileNo());
+            fatherDetailBinding.femailTxt.setText(childData.get(childPosition).getFatherEmailAddress());
+            fatherDetailBinding.fqualificationTxt.setText(childData.get(childPosition).getFatherQualification());
+            fatherDetailBinding.foccupationTxt.setText(childData.get(childPosition).getFatherOccupation());
+            fatherDetailBinding.forganisationTxt.setText(childData.get(childPosition).getFatherOrganisation());
+            fatherDetailBinding.fdesignationTxt.setText(childData.get(childPosition).getFatherDesignation());
+
+        } else if (headerTitle.equalsIgnoreCase("Mother Detail")) {
+            StudentListItemMotherDetailBinding motherDetailBinding;
+            motherDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_mother_detail, parent, false);
+            convertView = motherDetailBinding.getRoot();
+
+            String Mname[] = childData.get(childPosition).getMotherName().split("\\ ");
+            motherDetailBinding.motherfirstnameTxt.setText(Mname[0]);
+            motherDetailBinding.motherlastnameTxt.setText(Mname[1]);
+            motherDetailBinding.mphoneTxt.setText(childData.get(childPosition).getMotherPhoneNo());
+            motherDetailBinding.mmobileTxt.setText(childData.get(childPosition).getMotherMobileNo());
+            motherDetailBinding.memailTxt.setText(childData.get(childPosition).getMotherEmailAddress());
+            motherDetailBinding.mqualificationTxt.setText(childData.get(childPosition).getMotherQualification());
+            motherDetailBinding.moccupationTxt.setText(childData.get(childPosition).getMotherOccupation());
+            motherDetailBinding.morganisationTxt.setText(childData.get(childPosition).getMotherOrganisation());
+            motherDetailBinding.mdesignationTxt.setText(childData.get(childPosition).getMotherDesignation());
+        } else if (headerTitle.equalsIgnoreCase("Communication Detail")) {
+            StudentListItemCommunicationDetailBinding communicationDetailBinding;
+            communicationDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_communication_detail, parent, false);
+            convertView = communicationDetailBinding.getRoot();
+
+            communicationDetailBinding.smsTxt.setText(childData.get(childPosition).getSMSCommunicationNo());
+            communicationDetailBinding.cityTxt.setText(childData.get(childPosition).getCity());
+            communicationDetailBinding.addressTxt.setText(childData.get(childPosition).getAddress());
+            communicationDetailBinding.zipTxt.setText(childData.get(childPosition).getZipCode());
         }
 
 
@@ -150,16 +199,50 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-
-        ListGroupStudentFullDetailBinding groupbinding;
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
-            groupbinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.list_group_student_full_detail, parent, false);
-            convertView = groupbinding.getRoot();
-
-            groupbinding.lblListHeader.setTypeface(null, Typeface.BOLD);
-            groupbinding.lblListHeader.setText(headerTitle);
+            LayoutInflater infalInflater = (LayoutInflater) this._context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.list_group_student_full_detail, null);
         }
+        TextView lblListHeader=(TextView)convertView.findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(null,Typeface.BOLD);
+        lblListHeader.setText(headerTitle);
+        LinearLayout linear_group=(LinearLayout)convertView.findViewById(R.id.linear_group);
+        if (headerTitle.equalsIgnoreCase("Student Detail")) {
+            linear_group.setBackgroundColor(Color.parseColor("#3597D3"));
+        } else if (headerTitle.equalsIgnoreCase("Transport Detail")) {
+            linear_group.setBackgroundColor(Color.parseColor("#FF6BAE18"));
+        } else if (headerTitle.equalsIgnoreCase("Father Detail")) {
+            linear_group.setBackgroundColor(Color.parseColor("#FFE6B12E"));
+        } else if (headerTitle.equalsIgnoreCase("Mother Detail")) {
+            linear_group.setBackgroundColor(Color.parseColor("#FF48ADDE"));
+        } else if (headerTitle.equalsIgnoreCase("Communication Detail")) {
+            linear_group.setBackgroundColor(Color.parseColor("#FF607D8B"));
+        }
+
+
+
+//        ListGroupStudentFullDetailBinding groupbinding;
+//        if (convertView == null) {
+//            groupbinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.list_group_student_full_detail, parent, false);
+//            convertView = groupbinding.getRoot();
+//        }
+//        groupbinding.lblListHeader.setTypeface(null, Typeface.BOLD);
+//        groupbinding.lblListHeader.setText(headerTitle);
+//
+//        if (headerTitle.equalsIgnoreCase("Student Detail")) {
+//            groupbinding.linearGroup.setBackgroundColor(Color.parseColor("#3597D3"));
+//        } else if (headerTitle.equalsIgnoreCase("Transport Detail")) {
+//            groupbinding.linearGroup.setBackgroundColor(Color.parseColor("#FF6BAE18"));
+//        } else if (headerTitle.equalsIgnoreCase("Father Detail")) {
+//            groupbinding.linearGroup.setBackgroundColor(Color.parseColor("#FFE6B12E"));
+//        } else if (headerTitle.equalsIgnoreCase("Mother Detail")) {
+//            groupbinding.linearGroup.setBackgroundColor(Color.parseColor("#FF48ADDE"));
+//        } else if (headerTitle.equalsIgnoreCase("Communication Detail")) {
+//            groupbinding.linearGroup.setBackgroundColor(Color.parseColor("#FF607D8B"));
+//        }
+
         return convertView;
     }
 

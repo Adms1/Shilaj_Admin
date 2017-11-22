@@ -13,6 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,9 +45,13 @@ public class AllDepartmentDetailsFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
+    List<FinalArrayStudentFullDetailModel> studentFullDetailArray;
     List<String> listDataHeader;
+
     HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>> listDataChild;
+
     ExpandableListAdapterStudentFullDetail listAdapterStudentFullDetail;
+
     private int lastExpandedPosition = -1;
 
     public AllDepartmentDetailsFragment() {
@@ -74,10 +86,11 @@ public class AllDepartmentDetailsFragment extends Fragment {
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
-
         fragmentAllDepartmentDetailsBinding.lvExpStudentDetail.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
 
+
             @Override
+
             public void onGroupExpand(int groupPosition) {
                 if (lastExpandedPosition != -1
                         && groupPosition != lastExpandedPosition) {
@@ -85,7 +98,9 @@ public class AllDepartmentDetailsFragment extends Fragment {
                 }
                 lastExpandedPosition = groupPosition;
             }
+
         });
+
 
     }
 
@@ -116,32 +131,34 @@ public class AllDepartmentDetailsFragment extends Fragment {
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {
-                    List<FinalArrayStudentFullDetailModel> studentFullDetailArray = studentFullDetailModel.getFinalArray();
-                    ArrayList<String> arraystu = new ArrayList<String>();
-                    arraystu.add("Student Detail");
-                    arraystu.add("Transport Detail");
-                    arraystu.add("Father Detail");
-                    arraystu.add("Mother Detail");
-                    arraystu.add("Communication Detail");
-                    Log.d("array", "" + arraystu);
+                    studentFullDetailArray = studentFullDetailModel.getFinalArray();
+                    if (studentFullDetailArray != null) {
+                        ArrayList<String> arraystu = new ArrayList<String>();
+                        arraystu.add("Student Detail");
+                        arraystu.add("Transport Detail");
+                        arraystu.add("Father Detail");
+                        arraystu.add("Mother Detail");
+                        arraystu.add("Communication Detail");
+                        Log.d("array", "" + arraystu);
 
-                    listDataHeader = new ArrayList<>();
-                    listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
-                    for (int i = 0; i < arraystu.size(); i++) {
-                        Log.d("arraystu", "" + arraystu);
-                        listDataHeader.add(arraystu.get(i));
-                        Log.d("header", "" + listDataHeader);
-                        ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
-                        for (int j = 0; j < studentFullDetailArray.size(); j++) {
-                            row.add(studentFullDetailArray.get(j));
+                        listDataHeader = new ArrayList<>();
+                        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
+
+                        for (int i = 0; i < arraystu.size(); i++) {
+                            Log.d("arraystu", "" + arraystu);
+                            listDataHeader.add(arraystu.get(i));
+                            Log.d("header", "" + listDataHeader);
+                            ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
+                            for (int j = 0; j < studentFullDetailArray.size(); j++) {
+                                row.add(studentFullDetailArray.get(j));
+                            }
+                            Log.d("row", "" + row);
+                            listDataChild.put(listDataHeader.get(i), row);
+                            Log.d("child", "" + listDataChild);
                         }
-                        Log.d("row", "" + row);
-                        listDataChild.put(listDataHeader.get(i), row);
-                        Log.d("child", "" + listDataChild);
+                        listAdapterStudentFullDetail = new ExpandableListAdapterStudentFullDetail(getActivity(), listDataHeader, listDataChild);
+                        fragmentAllDepartmentDetailsBinding.lvExpStudentDetail.setAdapter(listAdapterStudentFullDetail);
                     }
-                    listAdapterStudentFullDetail = new ExpandableListAdapterStudentFullDetail(getActivity(), listDataHeader, listDataChild);
-                    fragmentAllDepartmentDetailsBinding.lvExpStudentDetail.setAdapter(listAdapterStudentFullDetail);
-
                 }
 
             }
