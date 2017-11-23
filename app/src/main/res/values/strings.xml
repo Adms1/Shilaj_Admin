@@ -37,6 +37,7 @@
     <string name="employeename">Employee</string>
     <string name="days">Days</string>
     <string name="searchtype">Search Type</string>
+    <string name="index">Index</string>
     <string name="searchparents">Parents Name</string>
     <string name="searchstudent">Student Name</string>
     <string name="grno">GRNO</string>
@@ -89,6 +90,21 @@
     <string name="term">Term</string>
     <string name="route">Route</string>
     <string name="pick">Pickup Ponit</string>
+    <string name="routename">Route Name</string>
+    <string name="pickuppointname">Pickup Point Name</string>
+    <string name="km">KM</string>
+    <string name="studenttransport">Student Transport</string>
+    <string name="transportcharge">TRANSPORT CHARHES</string>
+    <string name="term1">Term 1</string>
+    <string name="term2">Term 2</string>
+    <string name="vehiclename">Vehicle Name</string>
+    <string name="registrationno">Registration No.</string>
+    <string name="passengercapacity">Passenger Capacity</string>
+    <string name="vehicledetail">Vehicle Detail</string>
+    <string name="Routepick">ROUTE PICK UP POINT DETAIL</string>
+    <string name="status">Status</string>
+    <string name="vehicleroute">Vehicle Route</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -100,51 +100,9 @@ public class SearchStudentFragment extends Fragment {
 
             }
         });
-        fragmentSearchStudentBinding.parentsnameTxt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                parentNameStr = fragmentSearchStudentBinding.parentsnameTxt.getText().toString();
-//                if (s.length() > 4) {
-//                    callParentNameApi();
-//                }
-            }
-        });
-        fragmentSearchStudentBinding.studentnameTxt.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                studentNameStr = fragmentSearchStudentBinding.studentnameTxt.getText().toString();
-//                if (s.length() > 6) {
-//                    callStudentNameApi();
-//                }
-            }
-        });
-
         fragmentSearchStudentBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                grnoStr = fragmentSearchStudentBinding.grnoTxt.getText().toString();
                 callStudentShowFilteredDataApi();
             }
         });
@@ -292,12 +250,13 @@ public class SearchStudentFragment extends Fragment {
 
     // CALL StudentShowFilteredData API HERE
     private void callStudentShowFilteredDataApi() {
-
+        parentNameStr = fragmentSearchStudentBinding.parentsnameTxt.getText().toString();
+        studentNameStr = fragmentSearchStudentBinding.studentnameTxt.getText().toString();
+        grnoStr = fragmentSearchStudentBinding.grnoTxt.getText().toString();
         if (!Utils.checkNetwork(mContext)) {
             Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
             return;
         }
-
 //        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getStudentFilterData(getStudentShowFilteredDataDetail(), new retrofit.Callback<StudentShowFilteredDataModel>() {
             @Override

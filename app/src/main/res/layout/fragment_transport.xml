@@ -74,7 +74,7 @@
                 <RelativeLayout
                     android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_300sdp"
                     android:layout_margin="@dimen/_15sdp"
                     android:background="@drawable/grid_shape"
                     android:orientation="vertical">
@@ -92,7 +92,7 @@
                         <GridView
                             android:id="@+id/transport_submenu_grid_view"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="@dimen/_150sdp"
                             android:layout_margin="@dimen/_5sdp"
                             android:columnWidth="0dp"
                             android:background="@color/gray"
