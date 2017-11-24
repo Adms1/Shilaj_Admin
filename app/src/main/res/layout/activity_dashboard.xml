@@ -21,11 +21,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="right" >
 
-        <!--<ImageView
-            android:id="@+id/image_view"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/drawer_title" />-->
+
 
         <ListView
             android:id="@+id/list_slidermenu"

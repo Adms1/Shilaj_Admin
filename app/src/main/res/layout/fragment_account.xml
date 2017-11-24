@@ -134,7 +134,7 @@
                             android:layout_height="@dimen/_25sdp"
                             android:background="@color/orange"
                             android:gravity="center_vertical|center"
-                            android:text="5100"
+                            android:text="0"
                             android:textAlignment="textStart"
                             android:paddingLeft="@dimen/_5sdp"
                             android:textColor="@color/app_bg"

@@ -104,7 +104,26 @@
     <string name="Routepick">ROUTE PICK UP POINT DETAIL</string>
     <string name="status">Status</string>
     <string name="vehicleroute">Vehicle Route</string>
-
+    <string name="feesstructure">FEES  STRUCTURE</string>
+    <string name="studentdiscount">STUDENT DISCOUNT</string>
+    <string name="discount">Waive Off Type</string>
+    <string name="standard">Standard</string>
+    <string name="totalamount">Total Amount</string>
+    <string name="WaveOffamount">W.Off Amount</string>
+    <string name="discountamount">Dis. Amount</string>
+    <string name="totalpayamount">Pay Amount</string>
+    <string name="imprest">Imprest</string>
+    <string name="totalimprest">Total Imprest</string>
+    <string name="imprestdeduct">Imprest Deduct</string>
+    <string name="remainimprest">Remain Imprest</string>
+    <string name="dailyfeescollection">DAILY FEES COLLECTION</string>
+    <string name="termdetail">Term Detail</string>
+    <string name="date">Date</string>
+    <string name="paymentmode">Payment Mode</string>
+    <string name="totalfees">Total Fees</string>
+    <string name="totalrecfees">Total Rev.Fee</string>
+    <string name="pendingfees">Pending Fees</string>
+    <string name="timetable">TIME TABLE</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

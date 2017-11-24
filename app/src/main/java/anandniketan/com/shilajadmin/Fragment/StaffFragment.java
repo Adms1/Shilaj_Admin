@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import anandniketan.com.shilajadmin.Adapter.StaffSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
@@ -50,14 +51,25 @@ public class StaffFragment extends Fragment {
         fragmentStaffBinding.btnBackstaffAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new HomeFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+              fragment = new HomeFragment();
+                fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
-
+        fragmentStaffBinding.staffSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 5) {
+                    fragment = new TimeTableFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
+            }
+        });
     }
 }
 

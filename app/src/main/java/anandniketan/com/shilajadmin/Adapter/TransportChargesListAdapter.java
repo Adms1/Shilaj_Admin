@@ -59,8 +59,8 @@ public class TransportChargesListAdapter extends BaseAdapter {
 
         try {
             binding.kmTxt.setText(transportChargesModelsList.get(position).getKm());
-            binding.term1Txt.setText(String.valueOf(transportChargesModelsList.get(position).getTerm1()));
-            binding.term2Txt.setText(String.valueOf(transportChargesModelsList.get(position).getTerm2()));
+            binding.term1Txt.setText("₹" + " " +String.valueOf(transportChargesModelsList.get(position).getTerm1()));
+            binding.term2Txt.setText("₹" + " " +String.valueOf(transportChargesModelsList.get(position).getTerm2()));
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import anandniketan.com.shilajadmin.Adapter.AccountSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
@@ -50,8 +51,8 @@ public class AccountFragment extends Fragment {
         fragmentAccountBinding.btnBackAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new HomeFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+                fragment = new HomeFragment();
+                fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
@@ -61,6 +62,42 @@ public class AccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+        fragmentAccountBinding.accountSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 2) {
+                    fragment = new FeeStructureFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 3) {
+                    fragment = new StudentDiscountFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 4) {
+                    fragment = new DailyFeesCollectionFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 5) {
+                    fragment = new ImprestFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 6) {
+                    fragment = new StudentLedgerFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
             }
         });
 
