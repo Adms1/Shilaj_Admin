@@ -10,14 +10,7 @@ import android.view.ViewGroup;
 
 import anandniketan.com.shilajadmin.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TimeTableFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TimeTableFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class TimeTableFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
