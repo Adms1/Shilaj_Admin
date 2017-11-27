@@ -12,4 +12,6 @@ public class AppConfiguration {
 
 
     public static String StudentId;
+    public static String TermId;
+    public static String TermName;
 }

@@ -102,6 +102,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:text="Term 1"
+                                android:tag="1"
                                 android:checked="true"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
@@ -112,6 +113,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:text="Term 2"
+                                android:tag="2"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_10sdp"
                                 android:layout_weight="0.22" />

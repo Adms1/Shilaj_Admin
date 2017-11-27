@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by admsandroid on 11/24/2017.
+ * Created by admsandroid on 11/27/2017.
  */
 
-public class AccountFeesStatusModel {
+public class GetAllPaymentLedgerModel {
     @SerializedName("Success")
     @Expose
     private String success;
     @SerializedName("FinalArray")
     @Expose
-    private List<FinalArrayAccountFeesModel> finalArray = new ArrayList<FinalArrayAccountFeesModel>();
+    private List<FinalArrayAllPaymentLedgerModel> finalArray = new ArrayList<FinalArrayAllPaymentLedgerModel>();
 
     public String getSuccess() {
         return success;
@@ -26,11 +26,11 @@ public class AccountFeesStatusModel {
         this.success = success;
     }
 
-    public List<FinalArrayAccountFeesModel> getFinalArray() {
+    public List<FinalArrayAllPaymentLedgerModel> getFinalArray() {
         return finalArray;
     }
 
-    public void setFinalArray(List<FinalArrayAccountFeesModel> finalArray) {
+    public void setFinalArray(List<FinalArrayAllPaymentLedgerModel> finalArray) {
         this.finalArray = finalArray;
     }
 

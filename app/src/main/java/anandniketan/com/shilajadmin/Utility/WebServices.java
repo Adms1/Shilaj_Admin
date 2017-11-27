@@ -5,8 +5,10 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStructureModel;
 import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
+import anandniketan.com.shilajadmin.Model.Account.GetAllPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
 import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
+import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
@@ -106,4 +108,12 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/TeacherGetTimetable")
     public void getTimeTable(@FieldMap Map<String, String> map, Callback<TimeTableModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetPaymentLedger")
+    public void getPaymentLedger(@FieldMap Map<String, String> map, Callback<GetPaymentLedgerModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetAllPaymentLedger")
+    public void getAllPaymentLedger(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
 }

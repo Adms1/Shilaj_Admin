@@ -55,7 +55,7 @@
                             android:layout_height="@dimen/_27sdp"
                             android:background="@color/orange"
                             android:gravity="center_vertical|center"
-                            android:text="5100"
+                            android:text="0"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />

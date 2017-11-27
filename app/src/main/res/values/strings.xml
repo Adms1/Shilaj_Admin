@@ -124,6 +124,23 @@
     <string name="totalrecfees">Total Rev.Fee</string>
     <string name="pendingfees">Pending Fees</string>
     <string name="timetable">TIME TABLE</string>
+    <string name="lecture">Lecuture</string>
+    <string name="subject">Subject</string>
+    <string name="classes">Class</string>
+    <string name="studentledger">STUDENT LEDGER</string>
+    <string name="student_type">Student</string>
+    <string name="receipt">Receipt Detail</string>
+    <string name="previousbal">Previous Balance</string>
+    <string name="tutionfees">Tution Fees</string>
+    <string name="admissionfees">Admission Fees</string>
+    <string name="cautionfees">Caution Fees</string>
+    <string name="transportfees">Transport Fees</string>
+    <string name="imprestfees">Imprest Fees</string>
+    <string name="latefees">Late Fees</string>
+    <string name="discountfees">Discount Fees</string>
+    <string name="totalpayfees">Total Payable Fees</string>
+    <string name="paidfees">Paid Fees</string>
+    <string name="balance">Balance</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

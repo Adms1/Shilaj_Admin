@@ -187,7 +187,7 @@ public class SearchStudentFragment extends Fragment {
     }
 
 
-    // CALL Parent Name API HERE
+    // CALL Student Name API HERE
     private void callStudentNameApi() {
 
         if (!Utils.checkNetwork(mContext)) {

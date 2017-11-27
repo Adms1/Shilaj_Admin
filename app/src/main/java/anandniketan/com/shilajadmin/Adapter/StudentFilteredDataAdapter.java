@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import anandniketan.com.shilajadmin.Interface.onViewClick;
-import anandniketan.com.shilajadmin.Model.Staff.ConsistenceAbsentStaffModel;
-import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFilteredData;
 import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
 import anandniketan.com.shilajadmin.R;

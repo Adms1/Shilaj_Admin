@@ -2,21 +2,35 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.AccountSubMenuAdapter;
-import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
+import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentAccountBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class AccountFragment extends Fragment {
 
@@ -25,6 +39,8 @@ public class AccountFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
+    List<AccountFeesCollectionModel> collectionModelList;
+    String FinalTermtermdetailId = "1";
 
     public AccountFragment() {
     }
@@ -39,6 +55,7 @@ public class AccountFragment extends Fragment {
 
         initViews();
         setListners();
+        callAccountFeesStatusApi();
         return rootView;
     }
 
@@ -79,19 +96,19 @@ public class AccountFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 4) {
+                } else if (position == 4) {
                     fragment = new DailyFeesCollectionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 5) {
+                } else if (position == 5) {
                     fragment = new ImprestFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 6) {
+                } else if (position == 6) {
                     fragment = new StudentLedgerFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -100,8 +117,90 @@ public class AccountFragment extends Fragment {
                 }
             }
         });
+        fragmentAccountBinding.termRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                RadioButton rb = (RadioButton) group.findViewById(checkedId);
+                {
+                    if (null != rb && checkedId > -1) {
+                        switch (checkedId) {
+                            case R.id.term1_radio_button:
+                                FinalTermtermdetailId = fragmentAccountBinding.term1RadioButton.getTag().toString();
+                                break;
+                            case R.id.term2_radio_button:
+                                FinalTermtermdetailId = fragmentAccountBinding.term2RadioButton.getTag().toString();
+                                break;
+                        }
+                    }
+                    callAccountFeesStatusApi();
+                }
+            }
+        });
 
+    }
 
+    // CALL AccountFeesStatus API HERE
+    private void callAccountFeesStatusApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getAccountFeesStatusDetail(getAccountDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
+
+            @Override
+            public void success(AccountFeesStatusModel accountFeesStatusModel, Response response) {
+                Utils.dismissDialog();
+                if (accountFeesStatusModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (accountFeesStatusModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("False")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("True")) {
+                    for (int i = 0; i < accountFeesStatusModel.getFinalArray().size(); i++) {
+                        collectionModelList = accountFeesStatusModel.getFinalArray().get(i).getCollection();
+                    }
+                    if (collectionModelList != null) {
+                        fillData();
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getAccountDetail() {
+        Map<String, String> map = new HashMap<>();
+        map.put("Term_ID", "");
+        map.put("TermDetailID", FinalTermtermdetailId);
+        return map;
+    }
+
+    public void fillData() {
+        for (int i = 0; i < collectionModelList.size(); i++) {
+            AppConfiguration.TermId = String.valueOf(collectionModelList.get(i).getTermID());
+            fragmentAccountBinding.totalAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalAmt()));
+            fragmentAccountBinding.totalReceiveAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalRcv()));
+            fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalDue()));
+        }
+        Log.d("termid",AppConfiguration.TermId);
     }
 }
 

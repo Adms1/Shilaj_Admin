@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/linear_border"
+        android:layout_margin="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tag_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/previousbal"
+                android:textAlignment="textStart"
+                android:gravity="center"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:textAlignment="textStart"
+                android:gravity="center"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/previous_bal_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/firstname_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/tutionfees"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tutionfees_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/middle_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/admissionfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/admission_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/lastname_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/cautionfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/caution_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dob_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/transportfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/transport_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/birthplace_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/imprestfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/imprest_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/age_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/latefees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/late_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/gender_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/discountfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/discount_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/aadhar_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/totalpayfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/total_pay_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/acedamic_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/paidfees"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/paidfees_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/grade_txt_View"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/balance"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="@dimen/_10sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:text=":"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/balnce_txt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:text="@string/studenttag"
+                android:gravity="center"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="normal" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

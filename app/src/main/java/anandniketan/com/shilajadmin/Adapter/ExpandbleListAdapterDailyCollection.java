@@ -13,12 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayImprestDetailModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentDiscountDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemDailyCollectionBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemImprestDetailBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemRouteDetailsBinding;
 
 /**
  * Created by admsandroid on 11/24/2017.

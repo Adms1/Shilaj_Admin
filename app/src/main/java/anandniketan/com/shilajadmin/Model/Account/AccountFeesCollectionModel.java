@@ -4,10 +4,10 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by admsandroid on 11/24/2017.
+ * Created by admsandroid on 11/27/2017.
  */
 
-public class FinalArrayAccountFeesCollectionModel {
+public class AccountFeesCollectionModel {
     @SerializedName("TermID")
     @Expose
     private Integer termID;
