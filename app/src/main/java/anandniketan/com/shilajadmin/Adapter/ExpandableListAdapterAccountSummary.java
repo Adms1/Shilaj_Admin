@@ -12,12 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayFeesStructureModel;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayPaymentLedgerModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupFeesStructureDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemAccountSummaryBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemFeeStructureDetailBinding;
 
 /**
  * Created by admsandroid on 11/27/2017.

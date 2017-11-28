@@ -61,7 +61,7 @@ public class AccountFragment extends Fragment {
 
     public void initViews() {
         fragmentAccountBinding.accountSubmenuGridView.setAdapter(new AccountSubMenuAdapter(mContext));
-
+        AppConfiguration.TermDetailName="Term 1";
     }
 
     public void setListners() {
@@ -84,7 +84,13 @@ public class AccountFragment extends Fragment {
         fragmentAccountBinding.accountSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 2) {
+                if (position == 0) {
+                    fragment = new AccountSummaryFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 2) {
                     fragment = new FeeStructureFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -126,9 +132,11 @@ public class AccountFragment extends Fragment {
                         switch (checkedId) {
                             case R.id.term1_radio_button:
                                 FinalTermtermdetailId = fragmentAccountBinding.term1RadioButton.getTag().toString();
+                                AppConfiguration.TermDetailName=fragmentAccountBinding.term1RadioButton.getText().toString();
                                 break;
                             case R.id.term2_radio_button:
                                 FinalTermtermdetailId = fragmentAccountBinding.term2RadioButton.getTag().toString();
+                                AppConfiguration.TermDetailName=fragmentAccountBinding.term2RadioButton.getText().toString();
                                 break;
                         }
                     }
@@ -201,6 +209,10 @@ public class AccountFragment extends Fragment {
             fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalDue()));
         }
         Log.d("termid",AppConfiguration.TermId);
+        AppConfiguration.TermDetailId=FinalTermtermdetailId;
+
+
     }
+
 }
 

@@ -1,10 +1,9 @@
 package anandniketan.com.shilajadmin.Fragment;
 
-import android.app.DatePickerDialog;
+
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ import anandniketan.com.shilajadmin.databinding.FragmentImprestBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class DailyFeesCollectionFragment extends Fragment{
+public class DailyFeesCollectionFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
 
     private FragmentDailyFeesCollectionBinding fragmentDailyFeesCollectionBinding;
     private View rootView;
@@ -66,7 +67,8 @@ public class DailyFeesCollectionFragment extends Fragment{
     int Year, Month, Day;
     int mYear, mMonth, mDay;
     Calendar calendar;
-
+    private static String dateFinal;
+    private DatePickerDialog datePickerDialog;
     public DailyFeesCollectionFragment() {
     }
 
@@ -184,7 +186,13 @@ public class DailyFeesCollectionFragment extends Fragment{
         fragmentDailyFeesCollectionBinding.dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                datePickerDialog = DatePickerDialog.newInstance(DailyFeesCollectionFragment.this, Year, Month, Day);
+                datePickerDialog.setThemeDark(false);
+                datePickerDialog.setOkText("Done");
+                datePickerDialog.showYearPickerFirst(false);
+                datePickerDialog.setAccentColor(Color.parseColor("#1B88C8"));
+                datePickerDialog.setTitle("Select Date From DatePickerDialog");
+                datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
             }
         });
     }
@@ -517,5 +525,24 @@ public class DailyFeesCollectionFragment extends Fragment{
 
     }
 
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String d, m, y;
+        d = Integer.toString(dayOfMonth);
+        m = Integer.toString(monthOfYear);
+        y = Integer.toString(year);
+        if (dayOfMonth < 10) {
+            d = "0" + d;
+        }
+        if (monthOfYear < 10) {
+            m = "0" + m;
+        }
+
+        dateFinal = d + "/" + m + "/" + y;
+
+            fragmentDailyFeesCollectionBinding.dateButton.setText(dateFinal);
+
+    }
 }
 

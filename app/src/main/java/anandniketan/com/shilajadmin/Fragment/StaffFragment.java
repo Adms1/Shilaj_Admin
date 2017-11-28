@@ -44,6 +44,7 @@ public class StaffFragment extends Fragment {
     private String Datestr;
     int Year, Month, Day;
     Calendar calendar;
+
     public StaffFragment() {
     }
 
@@ -76,7 +77,7 @@ public class StaffFragment extends Fragment {
         fragmentStaffBinding.btnBackstaffAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              fragment = new HomeFragment();
+                fragment = new HomeFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
@@ -86,7 +87,13 @@ public class StaffFragment extends Fragment {
         fragmentStaffBinding.staffSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 5) {
+                if (position == 4) {
+                    fragment = new ExamsFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 5) {
                     fragment = new TimeTableFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()

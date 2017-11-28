@@ -10,6 +10,7 @@ import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
 import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
 import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
@@ -116,4 +117,8 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetAllPaymentLedger")
     public void getAllPaymentLedger(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetExams")
+    public void getExams(@FieldMap Map<String, String> map, Callback<GetExamsModel> callback);
 }
