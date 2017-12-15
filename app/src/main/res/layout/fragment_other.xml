@@ -16,11 +16,11 @@
             <LinearLayout
                 android:id="@+id/center"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_height="@dimen/_140sdp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="@dimen/_32sdp"
-                android:background="@drawable/curv"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:background="@drawable/curv_logo1_white"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -30,10 +30,10 @@
 
                     <Button
                         android:id="@+id/btnBackother"
-                        android:layout_width="@dimen/_13sdp"
-                        android:layout_height="@dimen/_13sdp"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
                         android:background="@drawable/back_btn"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_12sdp"
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="@dimen/_50sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
                         android:text="@string/other"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_12sdp"
@@ -58,7 +58,7 @@
                         android:layout_marginBottom="@dimen/_3sdp"
                         android:layout_marginLeft="@dimen/_260sdp"
                         android:layout_marginRight="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_50sdp"
                         android:background="@drawable/menu" />
 
                 </RelativeLayout>
@@ -69,13 +69,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/center"
-                android:layout_marginTop="-89dp">
+                android:layout_marginTop="-73dp">
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_15sdp"
+                    android:layout_margin="@dimen/_13sdp"
                     android:background="@drawable/grid_shape"
                     android:orientation="vertical">
 
@@ -114,8 +114,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="@dimen/_4sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/ciclre_shape">
 
                     <ImageView
@@ -124,27 +124,12 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/other" />
+                        android:src="@drawable/other_inside" />
 
                 </RelativeLayout>
 
 
             </RelativeLayout>
-
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_9sdp"
-                android:layout_weight="1"
-                android:paddingBottom="@dimen/_34sdp"
-                android:scaleType="fitStart"
-                android:src="@drawable/logo" />
-
 
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
