@@ -78,11 +78,11 @@
     <string name="occupation">Occupation</string>
     <string name="organization">Organization</string>
     <string name="designation">Designation</string>
-    <string name="sms">SMS Communication No.</string>
+    <string name="sms">SMS No.</string>
     <string name="city">City</string>
     <string name="zipcode">Zip Code</string>
     <string name="address">Address</string>
-    <string name="studentdetail">Student Detail</string>
+    <string name="studentdetail">STUDENT DETAILS</string>
     <string name="transportdetail">Transport Detail</string>
     <string name="fatherdetail">Father Detail</string>
     <string name="motherdetail">Mother Detail</string>
@@ -101,7 +101,7 @@
     <string name="vehiclename">Vehicle Name</string>
     <string name="registrationno">Registration No.</string>
     <string name="passengercapacity">Passenger Capacity</string>
-    <string name="vehicledetail">Vehicle Detail</string>
+    <string name="vehicledetail">VEHICLE DETAIL</string>
     <string name="Routepick">ROUTE PICK UP POINT DETAIL</string>
     <string name="status">Status</string>
     <string name="vehicleroute">VEHICLE ROUTE</string>
@@ -113,7 +113,7 @@
     <string name="WaveOffamount">W.Off Amount</string>
     <string name="discountamount">Dis. Amount</string>
     <string name="totalpayamount">Pay Amount</string>
-    <string name="imprest">Imprest</string>
+    <string name="imprest">IMPREST</string>
     <string name="totalimprest">Total Imprest</string>
     <string name="imprestdeduct">Imprest Deduct</string>
     <string name="remainimprest">Remain Imprest</string>

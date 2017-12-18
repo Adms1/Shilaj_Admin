@@ -69,13 +69,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/center"
-                android:layout_marginTop="-73dp">
+                android:layout_marginTop="-78dp">
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="@dimen/_13sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_11sdp"
                     android:background="@drawable/grid_shape"
                     android:orientation="vertical">
 
@@ -248,7 +251,6 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="@dimen/_3sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/ciclre_shape">
 
                     <ImageView

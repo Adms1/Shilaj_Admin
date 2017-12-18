@@ -291,13 +291,21 @@ public class StudentDiscountFragment extends Fragment {
 
                     finalArrayDiscountModelList = discountDetailsModel.getFinalArray();
                     if (finalArrayDiscountModelList != null) {
-                        fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.GONE);
-                        fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.VISIBLE);
-                        fragmentStudentDiscountBinding.lvExpstudentdiscount.setVisibility(View.VISIBLE);
-                        fillExpLV();
-                        expandableListAdapterStudentDiscount = new ExpandableListAdapterStudentDiscount(getActivity(), listDataHeader, listDataChild);
-                        fragmentStudentDiscountBinding.lvExpstudentdiscount.setAdapter(expandableListAdapterStudentDiscount);
-                        Utils.dismissDialog();
+                        if(finalArrayDiscountModelList.size()>0) {
+                            fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.GONE);
+                            fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.VISIBLE);
+                            fragmentStudentDiscountBinding.lvExpstudentdiscount.setVisibility(View.VISIBLE);
+
+                            fillExpLV();
+                            expandableListAdapterStudentDiscount = new ExpandableListAdapterStudentDiscount(getActivity(), listDataHeader, listDataChild);
+                            fragmentStudentDiscountBinding.lvExpstudentdiscount.setAdapter(expandableListAdapterStudentDiscount);
+                            Utils.dismissDialog();
+                        }else {
+                            Utils.dismissDialog();
+                            fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                            fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.GONE);
+                            fragmentStudentDiscountBinding.lvExpstudentdiscount.setVisibility(View.GONE);
+                        }
                     } else {
                         fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.VISIBLE);
                         fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.GONE);

@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 
 import java.lang.reflect.Field;
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import anandniketan.com.shilajadmin.Activity.Helper;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterAccountSummary;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterReceipt;
 import anandniketan.com.shilajadmin.Model.Account.DatumPaymentLedgerModel;
@@ -185,6 +188,42 @@ public class StudentLedgerFragment extends Fragment {
         });
     }
 
+    // For the use of scroll the All Listview And Screen
+    public void scolling() {
+
+        fragmentStudentLedgerBinding.scrollView.setFillViewport(true);
+
+        Helper.getListViewSize(fragmentStudentLedgerBinding.lvExpaccountsummary);
+        Helper.getListViewSize(fragmentStudentLedgerBinding.lvExpreceipt);
+
+
+        fragmentStudentLedgerBinding.scrollView.setVerticalScrollBarEnabled(true);
+
+        fragmentStudentLedgerBinding.scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                fragmentStudentLedgerBinding.lvExpaccountsummary.getParent().requestDisallowInterceptTouchEvent(false);
+                fragmentStudentLedgerBinding.lvExpreceipt.getParent().requestDisallowInterceptTouchEvent(false);
+
+                return false;
+            }
+        });
+        fragmentStudentLedgerBinding.lvExpaccountsummary.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                fragmentStudentLedgerBinding.lvExpaccountsummary.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+        fragmentStudentLedgerBinding.lvExpreceipt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                fragmentStudentLedgerBinding.lvExpreceipt.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+    }
 
     // CALL PaymentLedger API HERE
     private void callPaymentLedgerApi() {

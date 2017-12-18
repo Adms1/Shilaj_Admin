@@ -247,7 +247,7 @@ public class AccountSummaryFragment extends Fragment {
 
     }
 
-    
+
     private Map<String, String> getAccountDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Term_ID", FinalTermIdStr);

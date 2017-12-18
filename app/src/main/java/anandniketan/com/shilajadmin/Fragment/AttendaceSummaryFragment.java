@@ -213,7 +213,6 @@ public class AttendaceSummaryFragment extends Fragment {
                 Utils.ping(mContext, getString(R.string.something_wrong));
             }
         });
-
     }
 
     private Map<String, String> getStudentDetail() {

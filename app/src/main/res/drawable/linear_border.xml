@@ -4,7 +4,7 @@
     <stroke
         android:width="0.5dp"
         android:color="@color/dividercolor" />
-
+<solid android:color="@color/app_bg"></solid>
     <corners
         android:bottomLeftRadius="1dp"
         android:bottomRightRadius="1dp"
