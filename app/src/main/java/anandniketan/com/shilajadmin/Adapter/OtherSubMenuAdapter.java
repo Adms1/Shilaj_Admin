@@ -21,11 +21,11 @@ public class OtherSubMenuAdapter extends BaseAdapter {
     public Integer[] mThumbIds = {
             R.drawable.other_1, R.drawable.other_2, R.drawable.other_3,
             R.drawable.other_4, R.drawable.other_5, R.drawable.other_6,
-            R.drawable.other_7
+            R.drawable.other_7,R.drawable.bulk_sms
     };
 
     public String[] mThumbNames = {"SMS", "Summary", "Holiday",
-            "PTM", "Activity Logging", "Announcement","Quick Email"};
+            "PTM", "Activity Logging", "Announcement","Quick Email","Bulk SMS"};
 
     // Constructor
     public OtherSubMenuAdapter(Context c) {
