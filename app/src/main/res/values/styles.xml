@@ -12,6 +12,7 @@
         <item name="android:textSize">20sp</item>
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
     </style>
+
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
 
@@ -32,5 +33,9 @@
         <item name="android:dividerHeight">0.5dp</item>
         <item name="android:background">@color/app_bg</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
