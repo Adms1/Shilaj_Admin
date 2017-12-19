@@ -55,19 +55,21 @@ public class AccountFragment extends Fragment {
 
         initViews();
         setListners();
+        SelectTerm();
         callAccountFeesStatusApi();
         return rootView;
     }
 
     public void initViews() {
         fragmentAccountBinding.accountSubmenuGridView.setAdapter(new AccountSubMenuAdapter(mContext));
-        AppConfiguration.TermDetailName="Term 1";
+        AppConfiguration.TermDetailName = "Term 1";
     }
 
     public void setListners() {
         fragmentAccountBinding.btnBackAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppConfiguration.ReverseTermDetailId="";
                 fragment = new HomeFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
@@ -90,7 +92,7 @@ public class AccountFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 2) {
+                } else if (position == 2) {
                     fragment = new FeeStructureFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -132,11 +134,11 @@ public class AccountFragment extends Fragment {
                         switch (checkedId) {
                             case R.id.term1_radio_button:
                                 FinalTermtermdetailId = fragmentAccountBinding.term1RadioButton.getTag().toString();
-                                AppConfiguration.TermDetailName=fragmentAccountBinding.term1RadioButton.getText().toString();
+                                AppConfiguration.TermDetailName = fragmentAccountBinding.term1RadioButton.getText().toString();
                                 break;
                             case R.id.term2_radio_button:
                                 FinalTermtermdetailId = fragmentAccountBinding.term2RadioButton.getTag().toString();
-                                AppConfiguration.TermDetailName=fragmentAccountBinding.term2RadioButton.getText().toString();
+                                AppConfiguration.TermDetailName = fragmentAccountBinding.term2RadioButton.getText().toString();
                                 break;
                         }
                     }
@@ -155,7 +157,7 @@ public class AccountFragment extends Fragment {
             return;
         }
 
-        Utils.showDialog(getActivity());
+//        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getAccountFeesStatusDetail(getAccountDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
 
             @Override
@@ -204,15 +206,22 @@ public class AccountFragment extends Fragment {
     public void fillData() {
         for (int i = 0; i < collectionModelList.size(); i++) {
             AppConfiguration.TermId = String.valueOf(collectionModelList.get(i).getTermID());
-            fragmentAccountBinding.totalAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalAmt()));
-            fragmentAccountBinding.totalReceiveAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalRcv()));
-            fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " +String.valueOf(collectionModelList.get(i).getTotalDue()));
+            fragmentAccountBinding.totalAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalAmt()));
+            fragmentAccountBinding.totalReceiveAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalRcv()));
+            fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalDue()));
         }
-        Log.d("termid",AppConfiguration.TermId);
-        AppConfiguration.TermDetailId=FinalTermtermdetailId;
-
-
+        Log.d("termid", AppConfiguration.TermId);
+        AppConfiguration.TermDetailId = FinalTermtermdetailId;
     }
 
+    public void SelectTerm() {
+        if(!AppConfiguration.ReverseTermDetailId.equalsIgnoreCase("")) {
+            if (AppConfiguration.ReverseTermDetailId.equalsIgnoreCase(fragmentAccountBinding.term1RadioButton.getTag().toString())) {
+                fragmentAccountBinding.term1RadioButton.setChecked(true);
+            } else if (AppConfiguration.ReverseTermDetailId.equalsIgnoreCase(fragmentAccountBinding.term2RadioButton.getTag().toString())) {
+                fragmentAccountBinding.term2RadioButton.setChecked(true);
+            }
+        }
+    }
 }
 

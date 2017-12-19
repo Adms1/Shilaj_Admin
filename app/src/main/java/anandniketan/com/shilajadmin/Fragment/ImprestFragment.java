@@ -109,6 +109,7 @@ public class ImprestFragment extends Fragment {
                 FinalTermIdStr = getid.toString();
                 Log.d("FinalTermIdStr", FinalTermIdStr);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -336,6 +337,7 @@ public class ImprestFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentImprestBinding.termSpinner.setAdapter(adapterTerm);
 
+        FinalTermIdStr = spinnerTermMap.get(0);
     }
 
     public void fillStandardSpinner() {
@@ -369,6 +371,9 @@ public class ImprestFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
         fragmentImprestBinding.standardSpinner.setAdapter(adapterTerm);
+
+        FinalstandardIdStr = spinnerStandardMap.get(0);
+        callStudentDiscountDetailApi();
     }
 
     public void fillExpLV() {

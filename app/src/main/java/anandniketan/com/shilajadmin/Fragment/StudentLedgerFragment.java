@@ -89,6 +89,7 @@ public class StudentLedgerFragment extends Fragment {
 
 
         setListner();
+        scolling();
         callTermApi();
         callStudentNameApi();
         return rootView;
@@ -306,7 +307,7 @@ public class StudentLedgerFragment extends Fragment {
                     return;
                 }
                 if (allPaymentLedgerModel.getSuccess().equalsIgnoreCase("false")) {
-                    Utils.ping(mContext, getString(R.string.false_msg));
+//                    Utils.ping(mContext, getString(R.string.false_msg));
 //                    fragmentStudentLedgerBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     fragmentStudentLedgerBinding.linearRecipt.setVisibility(View.GONE);
                     return;
@@ -333,7 +334,6 @@ public class StudentLedgerFragment extends Fragment {
         });
 
     }
-
     private Map<String, String> getPaymentLedgerDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("studentid", FinalStudentIdStr);
@@ -373,6 +373,9 @@ public class StudentLedgerFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentLedgerBinding.termSpinner.setAdapter(adapterTerm);
 
+        FinalTermIdStr = spinnerTermMap.get(0);
+//        callPaymentLedgerApi();
+//        callAllPaymentLedgerApi();
     }
 
     // CALL Student Name API HERE
@@ -459,6 +462,7 @@ public class StudentLedgerFragment extends Fragment {
             fragmentStudentLedgerBinding.studentnameTxt.setAdapter(adb);
         }
 
+        FinalStudentIdStr = spinnerStudentMap.get(0);
     }
 
     private Map<String, String> getStudentDetail() {

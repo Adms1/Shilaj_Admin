@@ -123,6 +123,7 @@ public class AccountSummaryFragment extends Fragment {
                 Log.d("TermDetailValue", name + "" + getid);
                 FinalTermDetailIdStr = getid.toString();
                 Log.d("FInalTermDetailId", FinalTermDetailIdStr);
+                AppConfiguration.ReverseTermDetailId = FinalTermDetailIdStr;
                 callAccountFeesStatusApi();
             }
 
@@ -290,8 +291,8 @@ public class AccountSummaryFragment extends Fragment {
         Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
         for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
             if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
-                Log.d("spinnerValue",spinnertermdetailIdArray[m]);
-                int index=m;
+                Log.d("spinnerValue", spinnertermdetailIdArray[m]);
+                int index = m;
                 Log.d("indexOf", String.valueOf(index));
                 fragmentAccountSummaryBinding.termDetailSpinner.setSelection(index);
             }
@@ -332,15 +333,15 @@ public class AccountSummaryFragment extends Fragment {
 
         Log.d("termspinner", String.valueOf(spinnertermIdArray));
         String TermName = "";
-        for (int z=0;z<finalArrayGetTermModels.size();z++){
-            if(AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())){
-                TermName=finalArrayGetTermModels.get(z).getTerm();
+        for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
+            if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
+                TermName = finalArrayGetTermModels.get(z).getTerm();
             }
         }
         for (int m = 0; m < spinnertermIdArray.length; m++) {
             if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
-                Log.d("spinnerValue",spinnertermIdArray[m]);
-                int index=m;
+                Log.d("spinnerValue", spinnertermIdArray[m]);
+                int index = m;
                 Log.d("indexOf", String.valueOf(index));
                 fragmentAccountSummaryBinding.termSpinner.setSelection(m);
             }

@@ -41,7 +41,7 @@ public class ConsistentAbsentTeacherAdapter extends RecyclerView.Adapter<Consist
     public void onBindViewHolder(ConsistentAbsentTeacherAdapter.ViewHolder holder, int position) {
         ConsistenceAbsentStaffModel details = staffAttendaceModel.getFinalArray().get(0).getConsistenceAbsent().get(position);
 
-        holder.employee_txt.setText(String.valueOf(details.getEmpName()));
+        holder.employee_txt.setText(String.valueOf(details.getEmpName().trim()));
         holder.days_txt.setText(String.valueOf(details.getDays()));
     }
 

@@ -16,4 +16,5 @@ public class AppConfiguration {
     public static String TermName;
     public static String TermDetailId;
     public static String TermDetailName;
+    public static String ReverseTermDetailId="";
 }

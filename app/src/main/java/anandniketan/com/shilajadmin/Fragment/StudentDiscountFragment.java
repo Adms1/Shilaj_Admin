@@ -291,7 +291,7 @@ public class StudentDiscountFragment extends Fragment {
 
                     finalArrayDiscountModelList = discountDetailsModel.getFinalArray();
                     if (finalArrayDiscountModelList != null) {
-                        if(finalArrayDiscountModelList.size()>0) {
+                        if (finalArrayDiscountModelList.size() > 0) {
                             fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.GONE);
                             fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.VISIBLE);
                             fragmentStudentDiscountBinding.lvExpstudentdiscount.setVisibility(View.VISIBLE);
@@ -300,7 +300,7 @@ public class StudentDiscountFragment extends Fragment {
                             expandableListAdapterStudentDiscount = new ExpandableListAdapterStudentDiscount(getActivity(), listDataHeader, listDataChild);
                             fragmentStudentDiscountBinding.lvExpstudentdiscount.setAdapter(expandableListAdapterStudentDiscount);
                             Utils.dismissDialog();
-                        }else {
+                        } else {
                             Utils.dismissDialog();
                             fragmentStudentDiscountBinding.txtNoRecords.setVisibility(View.VISIBLE);
                             fragmentStudentDiscountBinding.lvExpHeader.setVisibility(View.GONE);
@@ -367,6 +367,7 @@ public class StudentDiscountFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentDiscountBinding.termSpinner.setAdapter(adapterTerm);
 
+        FinalTermIdStr=spinnerTermMap.get(0);
     }
 
     public void fillDiscountSpinner() {
@@ -401,6 +402,8 @@ public class StudentDiscountFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerdiscounttypeIdArray);
         fragmentStudentDiscountBinding.discountSpinner.setAdapter(adapterTerm);
+
+        FinaldiscountypeIdStr = spinnerdiscountTypeMap.get(0) ;
     }
 
     public void fillStandardSpinner() {
@@ -434,6 +437,12 @@ public class StudentDiscountFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
         fragmentStudentDiscountBinding.standardSpinner.setAdapter(adapterTerm);
+
+
+
+
+        FinalstandardIdStr = spinnerStandardMap.get(0);
+        callStudentDiscountDetailApi();
     }
 
     public void fillExpLV() {

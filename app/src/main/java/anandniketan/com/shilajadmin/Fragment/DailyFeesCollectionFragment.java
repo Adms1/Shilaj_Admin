@@ -402,6 +402,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentDailyFeesCollectionBinding.termSpinner.setAdapter(adapterTerm);
 
+        FinalTermIdStr=spinnerTermMap.get(0);
     }
 
     public void fillStandardSpinner() {
@@ -435,6 +436,8 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
         fragmentDailyFeesCollectionBinding.standardSpinner.setAdapter(adapterTerm);
+
+        FinalstandardIdStr =spinnerStandardMap.get(0);
     }
 
     public void fillTermDetailSpinner() {
@@ -469,6 +472,8 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
         fragmentDailyFeesCollectionBinding.termDetailSpinner.setAdapter(adapterTerm);
+
+        FinalTermDetailIdStr=spinnerTermDetailIdMap.get(0);
     }
 
     public void fillPaymentModeDetailSpinner() {
@@ -506,6 +511,9 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerpaymentIdArray);
         fragmentDailyFeesCollectionBinding.paymentModeSpinner.setAdapter(adapterTerm);
+
+        FinalPaymentmodeStr=spinnerPaymentModeMap.get(0);
+        callDailyCollectionApi();
     }
 
     public void fillExpLV() {

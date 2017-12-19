@@ -119,17 +119,17 @@ public class AttendaceSummaryFragment extends Fragment {
                     for (int i = 0; i < staffArray.size(); i++) {
                         FinalArrayStaffModel studentObj = staffArray.get(i);
                         if (studentObj != null) {
-                            fragmentAttendaceSummaryBinding.absentstudentCountTxt.setText(studentObj.getStaffAbsent());
-                            fragmentAttendaceSummaryBinding.leavestudentCountTxt.setText(studentObj.getStaffLeave());
-                            fragmentAttendaceSummaryBinding.presentstudentCountTxt.setText(studentObj.getStaffPresent());
-                            fragmentAttendaceSummaryBinding.totalstudentCountTxt.setText(studentObj.getTotalStaff());
+                            fragmentAttendaceSummaryBinding.absentstaffCountTxt.setText(studentObj.getStaffAbsent());
+                            fragmentAttendaceSummaryBinding.leavestaffCountTxt.setText(studentObj.getStaffLeave());
+                            fragmentAttendaceSummaryBinding.presentstaffCountTxt.setText(studentObj.getStaffPresent());
+                            fragmentAttendaceSummaryBinding.totalstaffCountTxt.setText(studentObj.getTotalStaff());
                         }
                     }
                     if (staffUser.getFinalArray().size() > 0) {
                         fragmentAttendaceSummaryBinding.txtNoRecords.setVisibility(View.GONE);
                         consistentAbsentTeacherAdapter = new ConsistentAbsentTeacherAdapter(mContext, staffUser);
-                        RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(getActivity());
-                        fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setLayoutManager(mLayoutManager1);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                        fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setLayoutManager(mLayoutManager);
                         fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setItemAnimator(new DefaultItemAnimator());
                         fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setAdapter(consistentAbsentTeacherAdapter);
                     } else {

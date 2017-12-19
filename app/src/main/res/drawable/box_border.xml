@@ -4,7 +4,8 @@
     <stroke
         android:width="@dimen/_1sdp"
         android:color="@color/gray" />
-
+<solid
+    android:color="@color/app_bg"></solid>
     <corners
         android:bottomLeftRadius="@dimen/_5sdp"
         android:bottomRightRadius="@dimen/_5sdp"
