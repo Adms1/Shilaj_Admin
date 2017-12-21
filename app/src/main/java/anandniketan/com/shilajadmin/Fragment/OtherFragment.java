@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import anandniketan.com.shilajadmin.Adapter.OtherSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
@@ -56,6 +57,74 @@ public class OtherFragment extends Fragment {
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+
+        fragmentOtherBinding.otherSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0){
+                    fragment = new StudentAbsentFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if(position==1){
+                    fragment = new BullkSmsFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if(position==2){
+                    fragment = new SingleSmsFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if(position==3){
+                    fragment = new EmployeeSmsFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
+//                else if(position==4){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }else if(position==5){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }else if(position==6){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }else if(position==7){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }else if(position==8){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }else if(position==9){
+//                    fragment = new MenuPermissionFragment();
+//                    fragmentManager = getFragmentManager();
+//                    fragmentManager.beginTransaction()
+//                            .setCustomAnimations(0, 0)
+//                            .replace(R.id.frame_container, fragment).commit();
+//                }
             }
         });
 

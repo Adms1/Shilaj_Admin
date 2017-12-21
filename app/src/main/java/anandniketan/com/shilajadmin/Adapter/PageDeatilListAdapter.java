@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
@@ -22,6 +24,8 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
     private Context context;
     List<FinalArrayPageListModel> pageListmodel;
     String addAllStr, updateStr, deleteStr;
+    private ArrayList<String> dataCheck = new ArrayList<String>();
+
 
     public PageDeatilListAdapter(Context mContext, List<FinalArrayPageListModel> pageListmodel) {
         this.context = mContext;
@@ -37,7 +41,7 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
     }
 
     @Override
-    public void onBindViewHolder(PageDeatilListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(PageDeatilListAdapter.MyViewHolder holder, final int position) {
         String sr = String.valueOf(position + 1);
 
         holder.index_txt.setText(sr);
@@ -55,14 +59,46 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
         if (updateStr.equalsIgnoreCase("true")) {
             holder.update_chk.setChecked(true);
         } else {
-            holder.update_chk.setChecked(true);
+            holder.update_chk.setChecked(false);
         }
 
         if (deleteStr.equalsIgnoreCase("true")) {
             holder.delete_chk.setChecked(true);
         } else {
-            holder.delete_chk.setChecked(true);
+            holder.delete_chk.setChecked(false);
         }
+
+        holder.addall_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setStatus(true);
+                } else {
+                    pageListmodel.get(position).setStatus(false);
+                }
+            }
+        });
+        holder.update_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setIsUserUpdate(true);
+                } else {
+                    pageListmodel.get(position).setIsUserUpdate(false);
+                }
+            }
+        });
+        holder.delete_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setIsUserDelete(true);
+                } else {
+                    pageListmodel.get(position).setIsUserDelete(false);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -84,5 +120,12 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
         }
     }
 
+    public List<FinalArrayPageListModel> getDatas() {
+        return pageListmodel;
+    }
+
+    public ArrayList<String> getData(){
+        return dataCheck;
+    }
 }
 

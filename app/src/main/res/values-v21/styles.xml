@@ -31,5 +31,9 @@
         <item name="android:dividerHeight">0.5dp</item>
         <item name="android:background">@color/app_bg</item>
     </style>
+    <style name="myDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
 
+        <item name="colorAccent">@color/app_bg</item>
+    </style>
 </resources>

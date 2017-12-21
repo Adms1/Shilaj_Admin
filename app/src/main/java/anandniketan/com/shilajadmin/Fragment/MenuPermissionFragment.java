@@ -27,22 +27,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import anandniketan.com.shilajadmin.Adapter.ClassTeacherDetailListAdapter;
+import anandniketan.com.shilajadmin.Adapter.OtherPageDeatilListAdapter;
 import anandniketan.com.shilajadmin.Adapter.PageDeatilListAdapter;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayInsertClassTeachersModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
+import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentClassTeacherBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentMenuPermissionBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -59,10 +54,12 @@ public class MenuPermissionFragment extends Fragment {
 
     List<FinalArrayTeachersModel> finalArrayTeachersModelList;
     HashMap<Integer, String> spinnerTeacherMap;
-    String FinalTeacherIdStr, Finalflag;
+    String FinalTeacherIdStr, Finalflag, FinalPageStr;
 
     List<FinalArrayPageListModel> finalArrayPageListModelList;
     PageDeatilListAdapter pageDeatilListAdapter;
+    OtherPageDeatilListAdapter otherPageDeatilListAdapter;
+
 
     public MenuPermissionFragment() {
     }
@@ -121,17 +118,25 @@ public class MenuPermissionFragment extends Fragment {
                         case R.id.teacher_radiobutton:
                             Finalflag = rb.getText().toString();
                             Log.d("FInalflag", Finalflag);
+                            callPageListApi();
                             break;
 
                         case R.id.other_radiobutton:
                             Finalflag = rb.getText().toString();
                             Log.d("FInalflag", Finalflag);
+                            callPageListApi();
                             break;
                         default:
                             break;
                     }
 
                 }
+            }
+        });
+        fragmentMenuPermissionBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callInsertMenuPermissionApi();
             }
         });
     }
@@ -287,12 +292,97 @@ public class MenuPermissionFragment extends Fragment {
         fragmentMenuPermissionBinding.recyclerLinear.setVisibility(View.VISIBLE);
         fragmentMenuPermissionBinding.listHeader.setVisibility(View.VISIBLE);
 
-        pageDeatilListAdapter = new PageDeatilListAdapter(mContext, finalArrayPageListModelList);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-        fragmentMenuPermissionBinding.pageListDetailList.setLayoutManager(mLayoutManager);
-        fragmentMenuPermissionBinding.pageListDetailList.setItemAnimator(new DefaultItemAnimator());
-        fragmentMenuPermissionBinding.pageListDetailList.setAdapter(pageDeatilListAdapter);
+        if (Finalflag.equalsIgnoreCase("Teacher")) {
+            fragmentMenuPermissionBinding.pageListDetailList.setVisibility(View.VISIBLE);
+            fragmentMenuPermissionBinding.recyclerLinear.setVisibility(View.VISIBLE);
+            fragmentMenuPermissionBinding.listHeader.setVisibility(View.VISIBLE);
+
+            fragmentMenuPermissionBinding.pageListDetailList1.setVisibility(View.GONE);
+            fragmentMenuPermissionBinding.listHeader1.setVisibility(View.GONE);
+            fragmentMenuPermissionBinding.recyclerLinear1.setVisibility(View.GONE);
+
+            pageDeatilListAdapter = new PageDeatilListAdapter(mContext, finalArrayPageListModelList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            fragmentMenuPermissionBinding.pageListDetailList.setLayoutManager(mLayoutManager);
+            fragmentMenuPermissionBinding.pageListDetailList.setItemAnimator(new DefaultItemAnimator());
+            fragmentMenuPermissionBinding.pageListDetailList.setAdapter(pageDeatilListAdapter);
+        } else if (Finalflag.equalsIgnoreCase("Other")) {
+            fragmentMenuPermissionBinding.pageListDetailList.setVisibility(View.GONE);
+            fragmentMenuPermissionBinding.recyclerLinear.setVisibility(View.GONE);
+            fragmentMenuPermissionBinding.listHeader.setVisibility(View.GONE);
+
+            fragmentMenuPermissionBinding.pageListDetailList1.setVisibility(View.VISIBLE);
+            fragmentMenuPermissionBinding.listHeader1.setVisibility(View.VISIBLE);
+            fragmentMenuPermissionBinding.recyclerLinear1.setVisibility(View.VISIBLE);
+
+            otherPageDeatilListAdapter = new OtherPageDeatilListAdapter(mContext, finalArrayPageListModelList);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+            fragmentMenuPermissionBinding.pageListDetailList1.setLayoutManager(mLayoutManager);
+            fragmentMenuPermissionBinding.pageListDetailList1.setItemAnimator(new DefaultItemAnimator());
+            fragmentMenuPermissionBinding.pageListDetailList1.setAdapter(otherPageDeatilListAdapter);
+        }
     }
 
+    // CALL InsertMenuPermission API HERE
+    private void callInsertMenuPermissionApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().InsertMenuPermission(getInsertMenuPermissionDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
+            @Override
+            public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
+                Utils.dismissDialog();
+                if (insertMenuPermissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    if (insertMenuPermissionModel.getFinalArray().size() == 0) {
+                        Utils.ping(mContext, getString(R.string.false_msg));
+                    }
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                    callPageListApi();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getInsertMenuPermissionDetail() {
+        Map<String, String> map = new HashMap<>();
+        map.put("Pk_EmployeID", FinalTeacherIdStr);
+        map.put("Pages", FinalPageStr);
+        return map;
+    }
+
+
+    public void FatchInsertPermissionData() {
+        if (Finalflag.equalsIgnoreCase("Teacher")) {
+
+
+
+
+        } else if (Finalflag.equalsIgnoreCase("Other")) {
+        }
+    }
 }
 

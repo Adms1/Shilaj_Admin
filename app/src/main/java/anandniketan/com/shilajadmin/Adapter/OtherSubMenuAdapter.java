@@ -19,13 +19,16 @@ public class OtherSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
     public Integer[] mThumbIds = {
-            R.drawable.other_1, R.drawable.other_2, R.drawable.other_3,
-            R.drawable.other_4, R.drawable.other_5, R.drawable.other_6,
-            R.drawable.other_7,R.drawable.bulk_sms
+            R.drawable.student_absent, R.drawable.bulk_sms,
+            R.drawable.single_sms, R.drawable.employee_sms,
+            R.drawable.summary, R.drawable.other_3,
+            R.drawable.other_4, R.drawable.other_5,
+            R.drawable.other_6, R.drawable.other_7
+
     };
 
-    public String[] mThumbNames = {"SMS", "Summary", "Holiday",
-            "PTM", "Activity Logging", "Announcement","Quick Email","Bulk SMS"};
+    public String[] mThumbNames = {"Student Absent", "Bulk SMS", "Single SMS", "Employee SMS", "Summary", "Holiday",
+            "PTM", "Activity Logging", "Announcement", "Quick Email",};
 
     // Constructor
     public OtherSubMenuAdapter(Context c) {

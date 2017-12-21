@@ -47,7 +47,7 @@
                 android:layout_alignTop="@+id/header"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_45sdp"
-                android:text="@string/menupermission"
+                android:text="@string/singlesms"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="normal" />
@@ -81,73 +81,33 @@
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:orientation="horizontal"
-                        android:weightSum="1">
-
-                        <RadioGroup
-                            android:id="@+id/usertype_radioGroup"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:weightSum="2">
-
-                            <RadioButton
-                                android:id="@+id/teacher_radiobutton"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_marginLeft="@dimen/_95sdp"
-                                android:layout_weight=".8"
-                                android:checked="true"
-                                android:text="Teacher"
-                                android:textSize="@dimen/_11sdp" />
-
-                            <RadioButton
-                                android:id="@+id/other_radiobutton"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight=".8"
-                                android:text="Other"
-                                android:textSize="@dimen/_11sdp" />
-                        </RadioGroup>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/user_linear"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:orientation="horizontal"
                         android:weightSum="3">
 
-
                         <TextView
-                            android:id="@+id/teacher_txt"
+                            android:id="@+id/mobileno_txt_view"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal|center"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_weight="0.65"
-                            android:text="@string/user"
+                            android:layout_weight="0.77"
+                            android:text="@string/mobileno"
                             android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_11sdp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal|center"
                             android:layout_marginLeft="@dimen/_5sdp"
-                            android:layout_weight="0.13"
+                            android:layout_weight="0.14"
                             android:text=":"
                             android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_11sdp"
                             android:textStyle="bold" />
 
-                        <Spinner
-                            android:id="@+id/teacher_spinner"
+                        <EditText
+                            android:id="@+id/mobileno_edt"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_30sdp"
                             android:layout_gravity="center_vertical"
@@ -155,9 +115,60 @@
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_weight="1.8"
-                            android:background="@drawable/dropdown_button"
-                            android:forceHasOverlappingRendering="false"
-                            android:gravity="center|center_vertical"
+                            android:background="@drawable/box_border"
+                            android:hint="@string/mobileno"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:id="@+id/message_txt_view"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_weight="0.77"
+                            android:text="@string/message"
+                            android:textColor="@color/scheduleheadertextcolor"
+                            android:textSize="@dimen/_11sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|top"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_weight="0.14"
+                            android:text=":"
+                            android:textColor="@color/scheduleheadertextcolor"
+                            android:textSize="@dimen/_11sdp"
+                            android:textStyle="bold" />
+
+                        <EditText
+                            android:id="@+id/message_edt"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_120sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="@dimen/_3sdp"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_weight="1.8"
+                            android:background="@drawable/box_border"
+                            android:gravity="top"
+                            android:hint="@string/message"
                             android:paddingBottom="1dp"
                             android:paddingLeft="@dimen/_5sdp"
                             android:paddingTop="@dimen/_5sdp"
@@ -169,7 +180,7 @@
                         android:id="@+id/txtNoRecords"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/user_linear"
+                        android:layout_below="@+id/header"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:gravity="center"
                         android:text="No Records Found..."
@@ -180,83 +191,40 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/list_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/main_linear_add"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <include layout="@layout/menu_permission_header" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/recycler_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_220sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/linear_border"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/page_list_detail_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:scrollbars="none" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/list_header1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/main_linear_add"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <include layout="@layout/other_menu_permission_header" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/recycler_linear1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_220sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/linear_border"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/page_list_detail_list1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingBottom="@dimen/_5sdp"
-                        android:scrollbars="none" />
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/save_btn"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/_3sdp"
-                    android:layout_marginLeft="@dimen/_7sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/round_button"
-                    android:text="Submit"
-                    android:textColor="@color/app_bg"
-                    android:textSize="@dimen/_11sdp" />
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
+                    <Button
+                        android:id="@+id/send_btn"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:layout_marginLeft="@dimen/_70sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/round_button"
+                        android:text="Send"
+                        android:textColor="@color/app_bg"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <Button
+                        android:id="@+id/clear_btn"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/round_button"
+                        android:text="Clear"
+                        android:textColor="@color/app_bg"
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
             </LinearLayout>
-
 
         </RelativeLayout>
 

@@ -11,6 +11,9 @@ import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
 import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
+import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
@@ -159,5 +162,26 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/InsertMenuPermission")
-    public void InsertMenuPermission(@FieldMap Map<String, String> map, Callback<InsertClassTeachersModel> callback);
+    public void InsertMenuPermission(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertSingleSMSData")
+    public void InsertSingleSMSData(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetStaffSMSData")
+    public void getStaffSMSData(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertStaffSMSData")
+    public void InsertStaffSMSData(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetBulkSMSData")
+    public void getBulkSMSData(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertBulkSMSData")
+    public void InsertBulkSMSData(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
 }
