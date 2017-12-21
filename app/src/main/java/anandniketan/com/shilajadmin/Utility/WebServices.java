@@ -10,7 +10,14 @@ import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
 import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
 import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
+import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
+import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
+import anandniketan.com.shilajadmin.Model.Staff.GetSubjectModel;
+import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
+import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
+import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
@@ -121,4 +128,36 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetExams")
     public void getExams(@FieldMap Map<String, String> map, Callback<GetExamsModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetTeachers")
+    public void getTeachers(@FieldMap Map<String, String> map, Callback<GetTeachersModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetSubject")
+    public void getSubject(@FieldMap Map<String, String> map, Callback<GetSubjectModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetSubjectAssgin")
+    public void getSubjectAssgin(@FieldMap Map<String, String> map, Callback<GetSubjectAssginModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertAssignSubject")
+    public void InsertAssignSubject(@FieldMap Map<String, String> map, Callback<InsertAssignSubjectModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetClassTeacherDetail")
+    public void getClassTeacherDetail(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertClassTeachers")
+    public void InsertClassTeachers(@FieldMap Map<String, String> map, Callback<InsertClassTeachersModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetPageList")
+    public void getPageList(@FieldMap Map<String, String> map, Callback<GetPageListModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertMenuPermission")
+    public void InsertMenuPermission(@FieldMap Map<String, String> map, Callback<InsertClassTeachersModel> callback);
 }

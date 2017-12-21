@@ -87,7 +87,19 @@ public class StaffFragment extends Fragment {
         fragmentStaffBinding.staffSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 4) {
+                if (position == 0) {
+                    fragment = new ClassTeacherFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 1) {
+                    fragment = new AssignSubjectFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 4) {
                     fragment = new ExamsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()

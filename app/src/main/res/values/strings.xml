@@ -43,6 +43,7 @@
     <string name="searchstudent">Student Name</string>
     <string name="grno">GRNO</string>
     <string name="grade">Grade</string>
+    <string name="pagename">Page Name</string>
     <string name="view"><u>View</u></string>
     <string name="studenttag">Tag</string>
     <string name="firstname">First Name</string>
@@ -90,12 +91,18 @@
     <string name="viewsummary"><u>View Summar</u>y<u> Details >></u></string>
     <string name="term">Term</string>
     <string name="route">Route</string>
+    <string name="teacher">Teacher</string>
+    <string name="user">User\'s</string>
+    <string name="classTeacher">Class Teacher</string>
     <string name="pick">Pickup Ponit</string>
     <string name="routename">Route Name</string>
     <string name="pickuppointname">Pickup Point</string>
     <string name="km">KM</string>
     <string name="studenttransport">STUDENT TRANSPORT</string>
     <string name="transportcharge">TRANSPORT CHARHES</string>
+    <string name="assignsubject">ASSIGN SUBJECT</string>
+    <string name="classteacher">CLASS TEACHER</string>
+    <string name="menupermission">MENU PERMISSION</string>
     <string name="term1">Term 1</string>
     <string name="term2">Term 2</string>
     <string name="vehiclename">Vehicle Name</string>

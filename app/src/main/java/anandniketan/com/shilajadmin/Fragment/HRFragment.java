@@ -10,8 +10,11 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
+import anandniketan.com.shilajadmin.Adapter.HrSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
+import anandniketan.com.shilajadmin.Adapter.TransportSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.FragmentHrBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentTransportBinding;
@@ -41,7 +44,7 @@ public class HRFragment extends Fragment {
     }
 
     public void initViews() {
-
+        fragmentHrBinding.hrSubmenuGridView.setAdapter(new HrSubMenuAdapter(mContext));
     }
 
     public void setListners() {
@@ -55,7 +58,18 @@ public class HRFragment extends Fragment {
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
-
+        fragmentHrBinding.hrSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    fragment = new MenuPermissionFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
+            }
+        });
     }
 }
 
