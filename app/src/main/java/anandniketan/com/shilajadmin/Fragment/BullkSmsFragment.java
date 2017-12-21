@@ -456,7 +456,7 @@ public class BullkSmsFragment extends Fragment {
         FinalClassIdStr = spinnerSectionMap.get(0);
         callGetBulkSMSDataApi();
     }
-    
+
     public void fillDataList() {
         fragmentBullkSmsBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentBullkSmsBinding.bulkSmsDetailList.setVisibility(View.VISIBLE);

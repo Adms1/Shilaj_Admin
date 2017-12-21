@@ -75,7 +75,6 @@ public class BulkSMSDetailListAdapter extends RecyclerView.Adapter<BulkSMSDetail
                 }
             }
         });
-
         if (finalArrayBulkSMSModelList.get(position).getCheck().equalsIgnoreCase("1")) {
             holder.sms_chk.setChecked(true);
         } else {
