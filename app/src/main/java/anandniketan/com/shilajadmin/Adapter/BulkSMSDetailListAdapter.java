@@ -31,9 +31,10 @@ public class BulkSMSDetailListAdapter extends RecyclerView.Adapter<BulkSMSDetail
     getEmployeeCheck listner;
 
 
-    public BulkSMSDetailListAdapter(Context mContext, List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList) {
+    public BulkSMSDetailListAdapter(Context mContext, List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList, getEmployeeCheck listner) {
         this.context = mContext;
         this.finalArrayBulkSMSModelList = finalArrayBulkSMSModelList;
+        this.listner=listner;
     }
 
 

@@ -3,7 +3,6 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -101,22 +99,35 @@ public class EmployeeSmsFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
-                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
-                        if (v != null) {
-                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
-                            ch.setChecked(true);
-                        }
+                    for (int i = 0; i < finalArraySMSDataModelList.size(); i++) {
+                        finalArraySMSDataModelList.get(i).setCheck("1");
                     }
+                    employeeSMSDeatilListAdapter.notifyDataSetChanged();
                 } else {
-                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
-                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
-                        if (v != null) {
-                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
-                            ch.setChecked(false);
-                        }
+                    for (int i = 0; i < finalArraySMSDataModelList.size(); i++) {
+                        finalArraySMSDataModelList.get(i).setCheck("0");
                     }
+//                    employeeSMSDeatilListAdapter.notifyDataSetChanged();
                 }
+
+
+//                if (isChecked) {
+//                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
+//                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
+//                        if (v != null) {
+//                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
+//                            ch.setChecked(true);
+//                        }
+//                    }
+//                } else {
+//                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
+//                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
+//                        if (v != null) {
+//                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
+//                            ch.setChecked(false);
+//                        }
+//                    }
+//                }
             }
         });
     }
@@ -195,7 +206,11 @@ public class EmployeeSmsFragment extends Fragment {
                 for (int i = 0; i < updatedData.size(); i++) {
                     if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
                         data = true;
+                        fragmentEmployeeSmsBinding.smsCheckbox.setChecked(true);
                         Log.d("Position , Checked or not", "" + i + " : " + updatedData.get(i).getCheck());
+                    }else if(updatedData.get(i).getCheck().equalsIgnoreCase("0")){
+//                        data=false;
+                        fragmentEmployeeSmsBinding.smsCheckbox.setChecked(false);
                     }
                 }
                 if (data) {
@@ -250,9 +265,16 @@ public class EmployeeSmsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<String> id = new ArrayList<>();
-                ArrayList<String> array = employeeSMSDeatilListAdapter.getData();
-                for (int j = 0; j < array.size(); j++) {
-                    id.add(array.get(j).toString());
+                List<FinalArraySMSDataModel> array = employeeSMSDeatilListAdapter.getDatas();
+                int j;
+                for ( j = 0; j < array.size(); j++) {
+                    if (array.get(j).getCheck().equalsIgnoreCase("1")) {
+                        id.add(array.get(j).getPKEmployeeID() + "|" + array.get(j).getEmpMobileNo());
+                        Log.d("checkid", "" + id.size());
+                    } else {
+                        id.remove(array.get(j).getPKEmployeeID() + "|" + array.get(j).getEmpMobileNo());
+                        Log.d("Uncheckid", "" + id.size());
+                    }
                 }
                 Log.d("id", "" + id);
                 finalEmployeeIdArray = String.valueOf(id);

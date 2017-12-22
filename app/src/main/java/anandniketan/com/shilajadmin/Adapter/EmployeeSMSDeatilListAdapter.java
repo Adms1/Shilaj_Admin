@@ -2,10 +2,14 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -44,12 +48,30 @@ public class EmployeeSMSDeatilListAdapter extends RecyclerView.Adapter<EmployeeS
     }
 
     @Override
-    public void onBindViewHolder(EmployeeSMSDeatilListAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(final EmployeeSMSDeatilListAdapter.MyViewHolder holder, final int position) {
         String sr = String.valueOf(position + 1);
 
         holder.index_txt.setText(sr);
         holder.employee_name_txt.setText(finalArraySMSDataModelList.get(position).getEmpName());
         holder.mobileno_txt.setText(String.valueOf(finalArraySMSDataModelList.get(position).getEmpMobileNo()));
+
+        holder.mobileno_txt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                finalArraySMSDataModelList.get(position).setEmpMobileNo(holder.mobileno_txt.getText().toString());
+
+            }
+        });
 
         holder.sms_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,17 +108,19 @@ public class EmployeeSMSDeatilListAdapter extends RecyclerView.Adapter<EmployeeS
 // return specific item's id here
         return position;
     }
+
     @Override
     public int getItemViewType(int position) {
         return position;
     }
+
     @Override
     public int getItemCount() {
         return finalArraySMSDataModelList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView index_txt, employee_name_txt ;
+        TextView index_txt, employee_name_txt;
         EditText mobileno_txt;
         CheckBox sms_chk;
 

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
+import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
@@ -466,7 +467,12 @@ public class BullkSmsFragment extends Fragment {
         for (int k = 0; k < finalArrayBulkSMSModelList.size(); k++) {
             finalArrayBulkSMSModelList.get(k).setCheck("0");
         }
-        bulkSMSDetailListAdapter = new BulkSMSDetailListAdapter(mContext, finalArrayBulkSMSModelList);
+        bulkSMSDetailListAdapter = new BulkSMSDetailListAdapter(mContext, finalArrayBulkSMSModelList, new getEmployeeCheck() {
+            @Override
+            public void getEmployeeSMSCheck() {
+
+            }
+        });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         fragmentBullkSmsBinding.bulkSmsDetailList.setLayoutManager(mLayoutManager);
         fragmentBullkSmsBinding.bulkSmsDetailList.setItemAnimator(new DefaultItemAnimator());
