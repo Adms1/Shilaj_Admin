@@ -124,6 +124,7 @@
                             android:textAlignment="textStart"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_11sdp" />
+
                         <CheckBox
                             android:id="@+id/sms_checkbox"
                             android:layout_width="0dp"

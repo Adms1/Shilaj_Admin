@@ -184,4 +184,12 @@ public interface WebServices {
     @POST("/InsertBulkSMSData")
     public void InsertBulkSMSData(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
 
+    @FormUrlEncoded
+    @POST("/GetAbsentToday")
+    public void getAbsentToday(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertAbsentTodaySMS")
+    public void InsertAbsentTodaySMS(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
 }

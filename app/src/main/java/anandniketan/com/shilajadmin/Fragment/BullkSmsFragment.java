@@ -7,16 +7,24 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -27,7 +35,9 @@ import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -53,8 +63,12 @@ public class BullkSmsFragment extends Fragment {
     HashMap<Integer, String> spinnerSectionMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr;
     List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList;
-
+    private boolean temp = false;
     BulkSMSDetailListAdapter bulkSMSDetailListAdapter;
+    String finalBulkIdArray, finalmessageMessageLine, finalDateStr;
+    private TextView date_txt, message_edt;
+    private Button send_btn, close_btn;
+    private AlertDialog alertDialogAndroid = null;
 
     public BullkSmsFragment() {
     }
@@ -146,7 +160,33 @@ public class BullkSmsFragment extends Fragment {
         fragmentBullkSmsBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                callGetBulkSMSDataApi();
+            }
+        });
+        fragmentBullkSmsBinding.smsCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    for (int i = 0; i < finalArrayBulkSMSModelList.size(); i++) {
+                        finalArrayBulkSMSModelList.get(i).setCheck("1");
+                    }
+                    bulkSMSDetailListAdapter.notifyDataSetChanged();
+                    temp=false;
+                } else {
+                    if (!temp) {
+                        for (int i = 0; i < finalArrayBulkSMSModelList.size(); i++) {
+                            finalArrayBulkSMSModelList.get(i).setCheck("0");
+                        }
+                        bulkSMSDetailListAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
 
+        fragmentBullkSmsBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendMessage();
             }
         });
     }
@@ -257,7 +297,7 @@ public class BullkSmsFragment extends Fragment {
             return;
         }
 
-//        Utils.showDialog(getActivity());
+        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getBulkSMSData(getGetBulkSMSDataDetail(), new retrofit.Callback<GetBulkSMSDataModel>() {
             @Override
             public void success(GetBulkSMSDataModel getBulkSMSDataModel, Response response) {
@@ -277,6 +317,7 @@ public class BullkSmsFragment extends Fragment {
                         fragmentBullkSmsBinding.bulkSmsDetailList.setVisibility(View.GONE);
                         fragmentBullkSmsBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentBullkSmsBinding.listHeader.setVisibility(View.GONE);
+                        fragmentBullkSmsBinding.submitBtn.setVisibility(View.GONE);
                     }
                     return;
                 }
@@ -463,6 +504,7 @@ public class BullkSmsFragment extends Fragment {
         fragmentBullkSmsBinding.bulkSmsDetailList.setVisibility(View.VISIBLE);
         fragmentBullkSmsBinding.recyclerLinear.setVisibility(View.VISIBLE);
         fragmentBullkSmsBinding.listHeader.setVisibility(View.VISIBLE);
+        fragmentBullkSmsBinding.submitBtn.setVisibility(View.VISIBLE);
 
         for (int k = 0; k < finalArrayBulkSMSModelList.size(); k++) {
             finalArrayBulkSMSModelList.get(k).setCheck("0");
@@ -470,7 +512,32 @@ public class BullkSmsFragment extends Fragment {
         bulkSMSDetailListAdapter = new BulkSMSDetailListAdapter(mContext, finalArrayBulkSMSModelList, new getEmployeeCheck() {
             @Override
             public void getEmployeeSMSCheck() {
+                List<FinalArrayBulkSMSModel> updatedData = bulkSMSDetailListAdapter.getDatas();
+                Boolean data = false;
+                int count = 0;
 
+                for (int i = 0; i < updatedData.size(); i++) {
+                    if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
+                        data = true;
+                        count++;
+                    } else {
+                        count--;
+                    }
+                }
+
+                if (count == updatedData.size()) {
+                    fragmentBullkSmsBinding.smsCheckbox.setChecked(true);
+                } else {
+                    temp = true;
+                    fragmentBullkSmsBinding.smsCheckbox.setChecked(false);
+                }
+                if (data) {
+                    fragmentBullkSmsBinding.submitBtn.setEnabled(true);
+                    fragmentBullkSmsBinding.submitBtn.setAlpha(1);
+                } else {
+                    fragmentBullkSmsBinding.submitBtn.setEnabled(false);
+                    fragmentBullkSmsBinding.submitBtn.setAlpha((float) 0.5);
+                }
             }
         });
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -478,5 +545,115 @@ public class BullkSmsFragment extends Fragment {
         fragmentBullkSmsBinding.bulkSmsDetailList.setItemAnimator(new DefaultItemAnimator());
         fragmentBullkSmsBinding.bulkSmsDetailList.setAdapter(bulkSMSDetailListAdapter);
     }
+
+    public void SendMessage() {
+        LayoutInflater lInflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View layout = lInflater.inflate(R.layout.insert_message_item, null);
+
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(getActivity());
+        alertDialogBuilderUserInput.setView(layout);
+
+        alertDialogAndroid = alertDialogBuilderUserInput.create();
+        alertDialogAndroid.setCancelable(false);
+        alertDialogAndroid.show();
+        Window window = alertDialogAndroid.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.CENTER_HORIZONTAL;
+        wlp.flags = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+        window.setAttributes(wlp);
+        alertDialogAndroid.show();
+
+        date_txt = (TextView) layout.findViewById(R.id.date_txt);
+        message_edt = (TextView) layout.findViewById(R.id.message_edt);
+        send_btn = (Button) layout.findViewById(R.id.send_btn);
+        close_btn = (Button) layout.findViewById(R.id.close_btn);
+
+        date_txt.setText(Utils.getTodaysDate());
+        close_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogAndroid.dismiss();
+            }
+        });
+
+        send_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> id = new ArrayList<>();
+                List<FinalArrayBulkSMSModel> array = bulkSMSDetailListAdapter.getDatas();
+                int j;
+                for (j = 0; j < array.size(); j++) {
+                    if (array.get(j).getCheck().equalsIgnoreCase("1")) {
+                        id.add(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
+                        Log.d("checkid", "" + id.size());
+                    } else {
+                        id.remove(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
+                        Log.d("Uncheckid", "" + id.size());
+                    }
+                }
+                Log.d("id", "" + id);
+                finalBulkIdArray = String.valueOf(id);
+                finalBulkIdArray = finalBulkIdArray.substring(1, finalBulkIdArray.length() - 1);
+
+                finalmessageMessageLine = message_edt.getText().toString();
+                finalDateStr = date_txt.getText().toString();
+                Log.d("finalBulkIdArray", "" + finalBulkIdArray);
+
+                if (!Utils.checkNetwork(mContext)) {
+                    Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+                    return;
+                }
+                if (!finalBulkIdArray.equalsIgnoreCase("")&&!finalmessageMessageLine.equalsIgnoreCase("")&&!finalDateStr.equalsIgnoreCase("")){
+                    Utils.showDialog(getActivity());
+                    ApiHandler.getApiService().InsertBulkSMSData(InsertBulkSMSData(), new retrofit.Callback<InsertMenuPermissionModel>() {
+                        @Override
+                        public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
+                            Utils.dismissDialog();
+                            if (insertMenuPermissionModel == null) {
+                                Utils.ping(mContext, getString(R.string.something_wrong));
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess() == null) {
+                                Utils.ping(mContext, getString(R.string.something_wrong));
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
+                                Utils.ping(mContext, getString(R.string.false_msg));
+
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                                Utils.ping(mContext, getString(R.string.true_msg));
+                                alertDialogAndroid.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Utils.dismissDialog();
+                            error.printStackTrace();
+                            error.getMessage();
+                            Utils.ping(mContext, getString(R.string.something_wrong));
+                        }
+                    });
+                }else{
+                    Utils.ping(mContext, getString(R.string.blank));
+                }
+            }
+        });
+
+    }
+
+    private Map<String, String> InsertBulkSMSData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("SMS", finalmessageMessageLine);
+        map.put("Date", finalDateStr);
+        map.put("MobileNo", finalBulkIdArray);//finalBulkIdArray  "1|8672952197"
+        return map;
+    }
+
 }
 

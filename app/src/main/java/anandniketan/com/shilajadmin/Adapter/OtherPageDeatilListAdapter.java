@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
 
+import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
 import anandniketan.com.shilajadmin.R;
 
@@ -21,10 +23,12 @@ public class OtherPageDeatilListAdapter extends RecyclerView.Adapter<OtherPageDe
     private Context context;
     List<FinalArrayPageListModel> pageListmodel;
     String addAllStr, updateStr, deleteStr;
+    private getEmployeeCheck listner;
 
-    public OtherPageDeatilListAdapter(Context mContext, List<FinalArrayPageListModel> pageListmodel) {
+    public OtherPageDeatilListAdapter(Context mContext, List<FinalArrayPageListModel> pageListmodel, getEmployeeCheck listner) {
         this.context = mContext;
         this.pageListmodel = pageListmodel;
+        this.listner = listner;
     }
 
 
@@ -36,7 +40,7 @@ public class OtherPageDeatilListAdapter extends RecyclerView.Adapter<OtherPageDe
     }
 
     @Override
-    public void onBindViewHolder(OtherPageDeatilListAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(OtherPageDeatilListAdapter.MyViewHolder holder, final int position) {
         String sr = String.valueOf(position + 1);
 
         holder.other_index_txt.setText(sr);
@@ -63,6 +67,55 @@ public class OtherPageDeatilListAdapter extends RecyclerView.Adapter<OtherPageDe
         } else {
             holder.other_delete_chk.setChecked(false);
         }
+
+        holder.other_addall_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setStatus(true);
+                    listner.getEmployeeSMSCheck();
+                } else {
+                    pageListmodel.get(position).setStatus(false);
+                    listner.getEmployeeSMSCheck();
+                }
+            }
+        });
+        holder.other_update_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setIsUserUpdate(true);
+                    listner.getEmployeeSMSCheck();
+                } else {
+                    pageListmodel.get(position).setIsUserUpdate(false);
+                    listner.getEmployeeSMSCheck();
+                }
+            }
+        });
+        holder.other_delete_chk.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    pageListmodel.get(position).setIsUserDelete(true);
+                    listner.getEmployeeSMSCheck();
+                } else {
+                    pageListmodel.get(position).setIsUserDelete(false);
+                    listner.getEmployeeSMSCheck();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public long getItemId(int position) {
+// return specific item's id here
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -85,6 +138,9 @@ public class OtherPageDeatilListAdapter extends RecyclerView.Adapter<OtherPageDe
         }
     }
 
+    public List<FinalArrayPageListModel> getDatas() {
+        return pageListmodel;
+    }
 }
 
 

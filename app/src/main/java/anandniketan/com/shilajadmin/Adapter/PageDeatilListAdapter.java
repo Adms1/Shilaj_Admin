@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.R;
@@ -24,12 +25,12 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
     private Context context;
     List<FinalArrayPageListModel> pageListmodel;
     String addAllStr, updateStr, deleteStr;
-    private ArrayList<String> dataCheck = new ArrayList<String>();
+    private getEmployeeCheck listner;
 
-
-    public PageDeatilListAdapter(Context mContext, List<FinalArrayPageListModel> pageListmodel) {
+    public PageDeatilListAdapter(Context mContext, List<FinalArrayPageListModel> pageListmodel, getEmployeeCheck listner) {
         this.context = mContext;
         this.pageListmodel = pageListmodel;
+        this.listner = listner;
     }
 
 
@@ -73,8 +74,10 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     pageListmodel.get(position).setStatus(true);
+                    listner.getEmployeeSMSCheck();
                 } else {
                     pageListmodel.get(position).setStatus(false);
+                    listner.getEmployeeSMSCheck();
                 }
             }
         });
@@ -83,8 +86,10 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     pageListmodel.get(position).setIsUserUpdate(true);
+                    listner.getEmployeeSMSCheck();
                 } else {
                     pageListmodel.get(position).setIsUserUpdate(false);
+                    listner.getEmployeeSMSCheck();
                 }
             }
         });
@@ -93,12 +98,24 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     pageListmodel.get(position).setIsUserDelete(true);
+                    listner.getEmployeeSMSCheck();
                 } else {
                     pageListmodel.get(position).setIsUserDelete(false);
+                    listner.getEmployeeSMSCheck();
                 }
             }
         });
 
+    }
+    @Override
+    public long getItemId(int position) {
+// return specific item's id here
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     @Override
@@ -124,8 +141,5 @@ public class PageDeatilListAdapter extends RecyclerView.Adapter<PageDeatilListAd
         return pageListmodel;
     }
 
-    public ArrayList<String> getData(){
-        return dataCheck;
-    }
 }
 

@@ -29,6 +29,7 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.EmployeeSMSDeatilListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.R;
@@ -54,7 +55,7 @@ public class EmployeeSmsFragment extends Fragment {
     private TextView date_txt, message_edt;
     private Button send_btn, close_btn;
     String finalEmployeeIdArray, finalmessageMessageLine, finalDateStr;
-
+    private boolean temp = false;
 
     public EmployeeSmsFragment() {
     }
@@ -103,31 +104,15 @@ public class EmployeeSmsFragment extends Fragment {
                         finalArraySMSDataModelList.get(i).setCheck("1");
                     }
                     employeeSMSDeatilListAdapter.notifyDataSetChanged();
+                    temp=false;
                 } else {
-                    for (int i = 0; i < finalArraySMSDataModelList.size(); i++) {
-                        finalArraySMSDataModelList.get(i).setCheck("0");
+                    if (!temp) {
+                        for (int i = 0; i < finalArraySMSDataModelList.size(); i++) {
+                            finalArraySMSDataModelList.get(i).setCheck("0");
+                        }
+                        employeeSMSDeatilListAdapter.notifyDataSetChanged();
                     }
-//                    employeeSMSDeatilListAdapter.notifyDataSetChanged();
                 }
-
-
-//                if (isChecked) {
-//                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
-//                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
-//                        if (v != null) {
-//                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
-//                            ch.setChecked(true);
-//                        }
-//                    }
-//                } else {
-//                    for (int i = 0; i < fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildCount(); i++) {
-//                        View v = fragmentEmployeeSmsBinding.employeeSmsDetailList.getChildAt(i);
-//                        if (v != null) {
-//                            CheckBox ch = (CheckBox) v.findViewById(R.id.sms_chk);
-//                            ch.setChecked(false);
-//                        }
-//                    }
-//                }
             }
         });
     }
@@ -203,15 +188,22 @@ public class EmployeeSmsFragment extends Fragment {
             public void getEmployeeSMSCheck() {
                 List<FinalArraySMSDataModel> updatedData = employeeSMSDeatilListAdapter.getDatas();
                 Boolean data = false;
+                int count = 0;
+
                 for (int i = 0; i < updatedData.size(); i++) {
                     if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
                         data = true;
-                        fragmentEmployeeSmsBinding.smsCheckbox.setChecked(true);
-                        Log.d("Position , Checked or not", "" + i + " : " + updatedData.get(i).getCheck());
-                    }else if(updatedData.get(i).getCheck().equalsIgnoreCase("0")){
-//                        data=false;
-                        fragmentEmployeeSmsBinding.smsCheckbox.setChecked(false);
+                        count++;
+                    } else {
+                        count--;
                     }
+                }
+
+                if (count == updatedData.size()) {
+                    fragmentEmployeeSmsBinding.smsCheckbox.setChecked(true);
+                } else {
+                    temp = true;
+                    fragmentEmployeeSmsBinding.smsCheckbox.setChecked(false);
                 }
                 if (data) {
                     fragmentEmployeeSmsBinding.saveBtn.setEnabled(true);
@@ -267,7 +259,7 @@ public class EmployeeSmsFragment extends Fragment {
                 ArrayList<String> id = new ArrayList<>();
                 List<FinalArraySMSDataModel> array = employeeSMSDeatilListAdapter.getDatas();
                 int j;
-                for ( j = 0; j < array.size(); j++) {
+                for (j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {
                         id.add(array.get(j).getPKEmployeeID() + "|" + array.get(j).getEmpMobileNo());
                         Log.d("checkid", "" + id.size());
@@ -284,46 +276,46 @@ public class EmployeeSmsFragment extends Fragment {
                 finalDateStr = date_txt.getText().toString();
                 Log.d("finalEmployeeIdArray", "" + finalEmployeeIdArray);
 
-//                if (!Utils.checkNetwork(mContext)) {
-//                    Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
-//                    return;
-//                }
-//                if (!finalEmployeeIdArray.equalsIgnoreCase("")&&!finalmessageMessageLine.equalsIgnoreCase("")&&!finalDateStr.equalsIgnoreCase("")){
-//                    Utils.showDialog(getActivity());
-//                    ApiHandler.getApiService().InsertStaffSMSData(InsertSingleSMSDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
-//                        @Override
-//                        public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
-//                            Utils.dismissDialog();
-//                            if (insertMenuPermissionModel == null) {
-//                                Utils.ping(mContext, getString(R.string.something_wrong));
-//                                return;
-//                            }
-//                            if (insertMenuPermissionModel.getSuccess() == null) {
-//                                Utils.ping(mContext, getString(R.string.something_wrong));
-//                                return;
-//                            }
-//                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
-//                                Utils.ping(mContext, getString(R.string.false_msg));
-//
-//                                return;
-//                            }
-//                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
-//                                Utils.ping(mContext, getString(R.string.true_msg));
-//                                alertDialogAndroid.dismiss();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void failure(RetrofitError error) {
-//                            Utils.dismissDialog();
-//                            error.printStackTrace();
-//                            error.getMessage();
-//                            Utils.ping(mContext, getString(R.string.something_wrong));
-//                        }
-//                    });
-//                }else{
-//                    Utils.ping(mContext, getString(R.string.blank));
-//                }
+                if (!Utils.checkNetwork(mContext)) {
+                    Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+                    return;
+                }
+                if (!finalEmployeeIdArray.equalsIgnoreCase("")&&!finalmessageMessageLine.equalsIgnoreCase("")&&!finalDateStr.equalsIgnoreCase("")){
+                    Utils.showDialog(getActivity());
+                    ApiHandler.getApiService().InsertStaffSMSData(InsertSingleSMSDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
+                        @Override
+                        public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
+                            Utils.dismissDialog();
+                            if (insertMenuPermissionModel == null) {
+                                Utils.ping(mContext, getString(R.string.something_wrong));
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess() == null) {
+                                Utils.ping(mContext, getString(R.string.something_wrong));
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
+                                Utils.ping(mContext, getString(R.string.false_msg));
+
+                                return;
+                            }
+                            if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                                Utils.ping(mContext, getString(R.string.true_msg));
+                                alertDialogAndroid.dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Utils.dismissDialog();
+                            error.printStackTrace();
+                            error.getMessage();
+                            Utils.ping(mContext, getString(R.string.something_wrong));
+                        }
+                    });
+                }else{
+                    Utils.ping(mContext, getString(R.string.blank));
+                }
             }
         });
 
@@ -337,8 +329,5 @@ public class EmployeeSmsFragment extends Fragment {
         return map;
     }
 
-    public void CheckAll() {
-
-    }
 }
 

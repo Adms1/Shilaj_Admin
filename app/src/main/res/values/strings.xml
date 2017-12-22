@@ -115,6 +115,7 @@
     <string name="menupermission">MENU PERMISSION</string>
     <string name="employeesms">EMPLOYEE SMS</string>
     <string name="bulksms">BULK SMS</string>
+    <string name="studentabsent">STUDENT ABSENT</string>
     <string name="term1">Term 1</string>
     <string name="term2">Term 2</string>
     <string name="vehiclename">Vehicle Name</string>
