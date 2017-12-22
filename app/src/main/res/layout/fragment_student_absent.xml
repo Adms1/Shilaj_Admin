@@ -438,11 +438,8 @@
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp"
                         android:visibility="gone" />
-
                 </LinearLayout>
             </ScrollView>
-
         </RelativeLayout>
-
     </LinearLayout>
 </layout>
