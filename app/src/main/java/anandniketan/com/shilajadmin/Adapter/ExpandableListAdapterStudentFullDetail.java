@@ -25,9 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.databinding.ListGroupStudentFullDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemCommunicationDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemFatherDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemMotherDetailBinding;

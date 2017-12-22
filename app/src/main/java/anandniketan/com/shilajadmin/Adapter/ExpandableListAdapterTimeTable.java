@@ -15,14 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
 import anandniketan.com.shilajadmin.Model.Staff.Datum;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTimeTable;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupTimetableBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemDailyCollectionBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemTimeTableBinding;
-import anandniketan.com.shilajadmin.databinding.TimeTableHeaderBinding;
 
 /**
  * Created by admsandroid on 11/27/2017.

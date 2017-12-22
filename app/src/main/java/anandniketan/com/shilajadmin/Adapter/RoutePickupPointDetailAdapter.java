@@ -12,8 +12,6 @@ import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Transport.PickupPointDetailModel;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.databinding.ListItemRouteDetailsBinding;
-
 /**
  * Created by admsandroid on 11/23/2017.
  */

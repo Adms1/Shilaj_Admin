@@ -10,11 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleDetail;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleRouteModel;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.databinding.VehicleDetailListItemBinding;
-import anandniketan.com.shilajadmin.databinding.VehicleRouteDetailItemBinding;
 
 /**
  * Created by admsandroid on 11/23/2017.

@@ -12,7 +12,6 @@ import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleDetail;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.databinding.VehicleDetailListItemBinding;
 
 /**
  * Created by admsandroid on 11/23/2017.

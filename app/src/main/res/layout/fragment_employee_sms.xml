@@ -76,7 +76,7 @@
                     android:layout_below="@+id/mainstudent_linear"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -145,7 +145,7 @@
                 <LinearLayout
                     android:id="@+id/recycler_linear"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_320sdp"
+                    android:layout_height="@dimen/_310sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/linear_border"
