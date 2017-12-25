@@ -394,7 +394,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentDailyFeesCollectionBinding.termSpinner);
 
-            popupWindow.setHeight(spinnertermIdArray.length > 5 ? 500 : spinnertermIdArray.length * 100);
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -429,7 +429,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentDailyFeesCollectionBinding.standardSpinner);
 
-            popupWindow.setHeight(spinnerstandardIdArray.length > 5 ? 500 : spinnerstandardIdArray.length * 100);
+            popupWindow.setHeight(spinnerstandardIdArray.length > 4 ? 500 : spinnerstandardIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -465,7 +465,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentDailyFeesCollectionBinding.termDetailSpinner);
 
-            popupWindow.setHeight(spinnertermdetailIdArray.length > 5 ? 500 : spinnertermdetailIdArray.length * 100);
+            popupWindow.setHeight(spinnertermdetailIdArray.length > 4 ? 500 : spinnertermdetailIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -504,7 +504,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentDailyFeesCollectionBinding.paymentModeSpinner);
 
-            popupWindow.setHeight(spinnerpaymentIdArray.length > 5 ? 500 : spinnerpaymentIdArray.length * 100);
+            popupWindow.setHeight(spinnerpaymentIdArray.length > 4 ? 500 : spinnerpaymentIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }

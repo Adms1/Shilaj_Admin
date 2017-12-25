@@ -455,7 +455,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentAbsentBinding.gradeSpinner);
 
-            popupWindow.setHeight(spinnerstandardIdArray.length > 5 ? 500 : spinnerstandardIdArray.length * 100);
+            popupWindow.setHeight(spinnerstandardIdArray.length > 4 ? 500 : spinnerstandardIdArray.length * 100);
 //            popupWindow1.setHeght(200);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
@@ -516,7 +516,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentAbsentBinding.sectionSpinner);
 
-            popupWindow.setHeight(spinnersectionIdArray.length > 5 ? 500 : spinnersectionIdArray.length * 100);
+            popupWindow.setHeight(spinnersectionIdArray.length > 4 ? 500 : spinnersectionIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -680,7 +680,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         Map<String, String> map = new HashMap<>();
         map.put("SMS", finalmessageMessageLine);
         map.put("Date", finalDateStr);
-        map.put("MobileNo", "1|8672952197");//finalstudentAbsentIdArray  "1|8672952197"
+        map.put("MobileNo", finalstudentAbsentIdArray);//finalstudentAbsentIdArray  "1|8672952197"
         return map;
     }
 

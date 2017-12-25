@@ -437,7 +437,7 @@ public class AssignSubjectFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAssignSubjectBinding.termSpinner);
 
-            popupWindow.setHeight(spinnertermIdArray.length > 5 ? 500 : spinnertermIdArray.length * 100);
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -472,7 +472,7 @@ public class AssignSubjectFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAssignSubjectBinding.teacherSpinner);
 
-            popupWindow.setHeight(spinnerteacherIdArray.length > 5 ? 500 : spinnerteacherIdArray.length * 100);
+            popupWindow.setHeight(spinnerteacherIdArray.length > 4 ? 500 : spinnerteacherIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -506,7 +506,7 @@ public class AssignSubjectFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAssignSubjectBinding.subjectSpinner);
 
-            popupWindow.setHeight(spinnersubjectIdArray.length > 5 ? 500 : spinnersubjectIdArray.length * 100);
+            popupWindow.setHeight(spinnersubjectIdArray.length > 4 ? 500 : spinnersubjectIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }

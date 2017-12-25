@@ -369,7 +369,7 @@ public class StudentTranspotFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentTranspotBinding.termSpinner);
 
-            popupWindow.setHeight(spinnertermIdArray.length > 5 ? 500 : spinnertermIdArray.length * 100);
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -412,7 +412,7 @@ public class StudentTranspotFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentTranspotBinding.routeSpinner);
 
-            popupWindow.setHeight(spinnerrouteIdArray.length > 5 ? 500 : spinnerrouteIdArray.length * 100);
+            popupWindow.setHeight(spinnerrouteIdArray.length > 4 ? 500 : spinnerrouteIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
@@ -471,7 +471,7 @@ public class StudentTranspotFragment extends Fragment {
                 // Get private mPopup member variable and try cast to ListPopupWindow
                 android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentTranspotBinding.pickupPointSpinner);
 
-                popupWindow.setHeight(spinnerpickupIdArray.length > 5 ? 500 : spinnerpickupIdArray.length * 100);
+                popupWindow.setHeight(spinnerpickupIdArray.length > 4 ? 500 : spinnerpickupIdArray.length * 100);
             } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
                 // silently fail...
             }

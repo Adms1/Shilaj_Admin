@@ -116,7 +116,7 @@ public class SearchStudentFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentSearchStudentBinding.searchTypeSpinner);
 
-            popupWindow.setHeight(getResources().getStringArray(R.array.SearchStudent).length > 5 ? 500 : getResources().getStringArray(R.array.SearchStudent).length * 100);
+            popupWindow.setHeight(getResources().getStringArray(R.array.SearchStudent).length > 4 ? 500 : getResources().getStringArray(R.array.SearchStudent).length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }

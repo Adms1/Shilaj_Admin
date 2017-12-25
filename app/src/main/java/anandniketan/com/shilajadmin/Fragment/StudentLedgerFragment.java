@@ -188,6 +188,7 @@ public class StudentLedgerFragment extends Fragment {
             }
         });
     }
+
     // For the use of scroll the All Listview And Screen
     public void scolling() {
 
@@ -364,7 +365,7 @@ public class StudentLedgerFragment extends Fragment {
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentLedgerBinding.termSpinner);
 
-            popupWindow.setHeight(spinnertermIdArray.length > 5 ? 500 : spinnertermIdArray.length * 100);
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
