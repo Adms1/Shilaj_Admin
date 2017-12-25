@@ -19,9 +19,11 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import anandniketan.com.shilajadmin.Adapter.ListAdapter;
 import anandniketan.com.shilajadmin.Fragment.AccountFragment;
 import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
@@ -29,6 +31,9 @@ import anandniketan.com.shilajadmin.Fragment.StaffFragment;
 import anandniketan.com.shilajadmin.Fragment.StudentFragment;
 import anandniketan.com.shilajadmin.Model.MenuoptionItemModel;
 import anandniketan.com.shilajadmin.R;
+import pl.openrnd.multilevellistview.ItemInfo;
+import pl.openrnd.multilevellistview.MultiLevelListView;
+import pl.openrnd.multilevellistview.OnItemClickListener;
 
 public class DashboardActivity extends FragmentActivity {
     static DrawerLayout mDrawerLayout;
@@ -45,6 +50,11 @@ public class DashboardActivity extends FragmentActivity {
     public static String filename = "Valustoringfile";
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     private String putData = "0";
+
+    //
+    private MultiLevelListView multiLevelListView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +124,38 @@ public class DashboardActivity extends FragmentActivity {
 //        }
         mDrawerList.setAdapter(new MenuoptionItemAdapter(mContext));
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-    }
 
+
+//        multiLevelListView = (MultiLevelListView) findViewById(R.id.multiLevelMenu);
+//
+//        // custom ListAdapter
+//        ListAdapter listAdapter = new ListAdapter(mContext);
+//
+//        multiLevelListView.setAdapter(listAdapter);
+//        multiLevelListView.setOnItemClickListener(mOnItemClickListener);
+//
+//        listAdapter.setDataItems(CustomDataProvider.getInitialItems());
+    }
+    private OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
+
+        private void showItemDescription(Object object, ItemInfo itemInfo) {
+            StringBuilder builder = new StringBuilder("\"");
+            builder.append(((BaseItem) object).getName());
+            builder.append("\" clicked!\n");
+
+            Toast.makeText(DashboardActivity.this, builder.toString(), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onItemClicked(MultiLevelListView parent, View view, Object item, ItemInfo itemInfo) {
+            showItemDescription(item, itemInfo);
+        }
+
+        @Override
+        public void onGroupItemClicked(MultiLevelListView parent, View view, Object item, ItemInfo itemInfo) {
+            showItemDescription(item, itemInfo);
+        }
+    };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

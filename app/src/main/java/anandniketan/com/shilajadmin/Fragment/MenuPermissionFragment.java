@@ -74,6 +74,8 @@ public class MenuPermissionFragment extends Fragment {
     private boolean temp1All = false;
     private boolean temp2All = false;
 
+    boolean check = false;
+
     public MenuPermissionFragment() {
     }
 
@@ -155,9 +157,9 @@ public class MenuPermissionFragment extends Fragment {
         fragmentMenuPermissionBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FatchInsertPermissionData();
+//                FatchInsertPermissionData();
 
-//                callInsertMenuPermissionApi();
+                callInsertMenuPermissionApi();
             }
         });
 
@@ -397,8 +399,10 @@ public class MenuPermissionFragment extends Fragment {
                 if (getPageListModel.getSuccess().equalsIgnoreCase("True")) {
                     finalArrayPageListModelList = getPageListModel.getFinalArray();
                     if (finalArrayPageListModelList != null) {
+
                         fillDataList();
                         Utils.dismissDialog();
+//
                     } else {
                         fragmentMenuPermissionBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     }
@@ -498,6 +502,59 @@ public class MenuPermissionFragment extends Fragment {
             fragmentMenuPermissionBinding.pageListDetailList.setLayoutManager(mLayoutManager);
             fragmentMenuPermissionBinding.pageListDetailList.setItemAnimator(new DefaultItemAnimator());
             fragmentMenuPermissionBinding.pageListDetailList.setAdapter(pageDeatilListAdapter);
+
+            ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> list1 = new ArrayList<>();
+            ArrayList<String> list2 = new ArrayList<>();
+
+            int checkAll = 0, checkAll1 = 0, checkAll2 = 0;
+            for (int i = 0; i < finalArrayPageListModelList.size(); i++) {
+                if (finalArrayPageListModelList.get(i).getStatus().equals(true)) {
+                    list.add(finalArrayPageListModelList.get(i).getStatus().toString());
+                    checkAll++;
+                } else {
+                    checkAll--;
+                }
+                if (finalArrayPageListModelList.get(i).getIsUserUpdate().equals(true)) {
+                    list1.add(finalArrayPageListModelList.get(i).getIsUserUpdate().toString());
+                    checkAll1++;
+                } else {
+                    checkAll1--;
+                }
+                if (finalArrayPageListModelList.get(i).getIsUserDelete().equals(true)) {
+                    list2.add(finalArrayPageListModelList.get(i).getIsUserDelete().toString());
+                    checkAll2++;
+                } else {
+                    checkAll2--;
+                }
+            }
+            if (checkAll == list.size()) {
+                if (list.size() > 0 && checkAll > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.addallChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.addallChk.setChecked(false);
+                }
+            } if (checkAll1 == list1.size()) {
+                if (list1.size() > 0 && checkAll1 > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.updateChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.updateChk.setChecked(false);
+                }
+            }
+            if (checkAll2 == list2.size()) {
+                if (list2.size() > 0 && checkAll2 > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.deleteChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.deleteChk.setChecked(false);
+                }
+            }
+
+
+
+
         } else if (Finalflag.equalsIgnoreCase("Other")) {
             fragmentMenuPermissionBinding.pageListDetailList.setVisibility(View.GONE);
             fragmentMenuPermissionBinding.recyclerLinear.setVisibility(View.GONE);
@@ -507,19 +564,7 @@ public class MenuPermissionFragment extends Fragment {
             fragmentMenuPermissionBinding.listHeader1.setVisibility(View.VISIBLE);
             fragmentMenuPermissionBinding.recyclerLinear1.setVisibility(View.VISIBLE);
 
-            ArrayList<String> list = new ArrayList<>();
-            int checkAll = 0;
-            for (int i = 0; i < finalArrayPageListModelList.size(); i++) {
-                if (finalArrayPageListModelList.get(i).getStatus().equals(true)) {
-                    list.add(finalArrayPageListModelList.get(i).getStatus().toString());
-                    checkAll++;
-                }
-            }
-            if (checkAll == list.size()) {
-                if (list.size() > 0 && checkAll > 0) {
-                    fragmentMenuPermissionBinding.addallChk.setChecked(true);
-                }
-            }
+
             otherPageDeatilListAdapter = new OtherPageDeatilListAdapter(mContext, finalArrayPageListModelList, new getEmployeeCheck() {
                 @Override
                 public void getEmployeeSMSCheck() {
@@ -579,6 +624,54 @@ public class MenuPermissionFragment extends Fragment {
             fragmentMenuPermissionBinding.pageListDetailList1.setLayoutManager(mLayoutManager);
             fragmentMenuPermissionBinding.pageListDetailList1.setItemAnimator(new DefaultItemAnimator());
             fragmentMenuPermissionBinding.pageListDetailList1.setAdapter(otherPageDeatilListAdapter);
+            ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> list1 = new ArrayList<>();
+            ArrayList<String> list2 = new ArrayList<>();
+
+            int checkAll = 0, checkAll1 = 0, checkAll2 = 0;
+            for (int i = 0; i < finalArrayPageListModelList.size(); i++) {
+                if (finalArrayPageListModelList.get(i).getStatus().equals(true)) {
+                    list.add(finalArrayPageListModelList.get(i).getStatus().toString());
+                    checkAll++;
+                } else {
+                    checkAll--;
+                }
+                if (finalArrayPageListModelList.get(i).getIsUserUpdate().equals(true)) {
+                    list1.add(finalArrayPageListModelList.get(i).getIsUserUpdate().toString());
+                    checkAll1++;
+                } else {
+                    checkAll1--;
+                }
+                if (finalArrayPageListModelList.get(i).getIsUserDelete().equals(true)) {
+                    list2.add(finalArrayPageListModelList.get(i).getIsUserDelete().toString());
+                    checkAll2++;
+                } else {
+                    checkAll2--;
+                }
+            }
+            if (checkAll == list.size()) {
+                if (list.size() > 0 && checkAll > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.otherAddallChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.otherAddallChk.setChecked(false);
+                }
+            } if (checkAll1 == list1.size()) {
+                if (list1.size() > 0 && checkAll1 > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.otherUpdateChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.otherUpdateChk.setChecked(false);
+                }
+            }
+            if (checkAll2 == list2.size()) {
+                if (list2.size() > 0 && checkAll2 > 0) {
+                    check = true;
+                    fragmentMenuPermissionBinding.otherDeleteChk.setChecked(true);
+                } else {
+                    fragmentMenuPermissionBinding.otherDeleteChk.setChecked(false);
+                }
+            }
 
 
         }

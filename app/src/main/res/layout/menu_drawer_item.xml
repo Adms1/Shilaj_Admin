@@ -28,5 +28,11 @@
             android:text="Inbox"
             android:textColor="@color/scheduleheadertextcolor"
             android:textSize="@dimen/_12sdp" />
+        <ImageView
+            android:id="@+id/image_arrow"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:src="@drawable/arrow_1_42"
+            android:layout_marginLeft="@dimen/_185sdp"/>
     </LinearLayout>
 </RelativeLayout>
