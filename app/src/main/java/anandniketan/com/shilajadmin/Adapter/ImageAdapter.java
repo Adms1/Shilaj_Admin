@@ -20,7 +20,7 @@ public class ImageAdapter extends BaseAdapter {
 
     public Integer[] mThumbIds = {
             R.drawable.student, R.drawable.staff, R.drawable.account,
-            R.drawable.transport, R.drawable.hr, R.drawable.other,
+            R.drawable.transport, R.drawable.hr, R.drawable.other
     };
 
     public String[] mThumbNames = {"Student", "Staff", "Account", "Transport", "HR", "Other"};

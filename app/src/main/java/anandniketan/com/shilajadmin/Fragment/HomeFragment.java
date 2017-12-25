@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ImageAdapter;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.FragmentHomeBinding;
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
         fragmentHomeBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DashboardActivity.onLeft();
             }
         });
         fragmentHomeBinding.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

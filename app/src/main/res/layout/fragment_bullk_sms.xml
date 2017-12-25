@@ -272,6 +272,7 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -281,7 +282,6 @@
                         android:background="@drawable/box_blue"
                         android:orientation="horizontal"
                         android:paddingBottom="1dp"
-                        android:visibility="visible"
                         android:weightSum="6">
 
                         <TextView
@@ -365,7 +365,8 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
                     android:background="@drawable/linear_border"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/bulk_sms_detail_list"

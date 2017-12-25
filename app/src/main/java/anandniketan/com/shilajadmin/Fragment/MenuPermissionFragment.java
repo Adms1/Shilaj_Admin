@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,8 +25,11 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.OtherPageDeatilListAdapter;
@@ -151,9 +155,9 @@ public class MenuPermissionFragment extends Fragment {
         fragmentMenuPermissionBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FatchInsertPermissionData();
+                FatchInsertPermissionData();
 
-                callInsertMenuPermissionApi();
+//                callInsertMenuPermissionApi();
             }
         });
 
@@ -503,10 +507,19 @@ public class MenuPermissionFragment extends Fragment {
             fragmentMenuPermissionBinding.listHeader1.setVisibility(View.VISIBLE);
             fragmentMenuPermissionBinding.recyclerLinear1.setVisibility(View.VISIBLE);
 
-            for (int i=0;i<finalArrayPageListModelList.size();i++){
-                finalArrayPageListModelList.get(i).setStatus(true);
+            ArrayList<String> list = new ArrayList<>();
+            int checkAll = 0;
+            for (int i = 0; i < finalArrayPageListModelList.size(); i++) {
+                if (finalArrayPageListModelList.get(i).getStatus().equals(true)) {
+                    list.add(finalArrayPageListModelList.get(i).getStatus().toString());
+                    checkAll++;
+                }
             }
-
+            if (checkAll == list.size()) {
+                if (list.size() > 0 && checkAll > 0) {
+                    fragmentMenuPermissionBinding.addallChk.setChecked(true);
+                }
+            }
             otherPageDeatilListAdapter = new OtherPageDeatilListAdapter(mContext, finalArrayPageListModelList, new getEmployeeCheck() {
                 @Override
                 public void getEmployeeSMSCheck() {
@@ -566,10 +579,13 @@ public class MenuPermissionFragment extends Fragment {
             fragmentMenuPermissionBinding.pageListDetailList1.setLayoutManager(mLayoutManager);
             fragmentMenuPermissionBinding.pageListDetailList1.setItemAnimator(new DefaultItemAnimator());
             fragmentMenuPermissionBinding.pageListDetailList1.setAdapter(otherPageDeatilListAdapter);
+
+
         }
     }
 
     // CALL InsertMenuPermission API HERE
+
     private void callInsertMenuPermissionApi() {
         FatchInsertPermissionData();
         if (!Utils.checkNetwork(mContext)) {
@@ -616,7 +632,7 @@ public class MenuPermissionFragment extends Fragment {
     private Map<String, String> getInsertMenuPermissionDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Pk_EmployeID", FinalTeacherIdStr);
-        map.put("Pages",FinalPageStr );//FinalPageStr
+        map.put("Pages", FinalPageStr);//FinalPageStr
         return map;
     }
 

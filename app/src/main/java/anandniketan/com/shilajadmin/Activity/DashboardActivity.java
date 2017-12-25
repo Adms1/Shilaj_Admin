@@ -22,8 +22,11 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import anandniketan.com.shilajadmin.Fragment.AccountFragment;
 import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
+import anandniketan.com.shilajadmin.Fragment.StaffFragment;
+import anandniketan.com.shilajadmin.Fragment.StudentFragment;
 import anandniketan.com.shilajadmin.Model.MenuoptionItemModel;
 import anandniketan.com.shilajadmin.R;
 
@@ -50,7 +53,7 @@ public class DashboardActivity extends FragmentActivity {
         setContentView(R.layout.activity_dashboard);
         mContext = this;
         Initialize();
-            displayView(0);
+        displayView(0);
 
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
@@ -105,11 +108,11 @@ public class DashboardActivity extends FragmentActivity {
         leftRl = (RelativeLayout) findViewById(R.id.whatYouWantInLeftDrawer);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         navDrawerItems_main = new ArrayList<MenuoptionItemModel>();
-        adapter_menu_item = new MenuoptionItemAdapter(DashboardActivity.this, navDrawerItems_main);
-        for (int i = 0; i < MenuName.length; i++) {
-            navDrawerItems_main.add(new MenuoptionItemModel(MenuName[i]));
-        }
-        mDrawerList.setAdapter(adapter_menu_item);
+//        adapter_menu_item = new MenuoptionItemAdapter();
+//        for (int i = 0; i < MenuName.length; i++) {
+//            navDrawerItems_main.add(new MenuoptionItemModel(MenuName[i]));
+//        }
+        mDrawerList.setAdapter(new MenuoptionItemAdapter(mContext));
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
     }
 
@@ -185,6 +188,21 @@ public class DashboardActivity extends FragmentActivity {
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
+//            case 1:
+//                fragment = new StudentFragment();
+//                myid = fragment.getId();
+//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//                break;
+//            case 2:
+//                fragment = new StaffFragment();
+//                myid = fragment.getId();
+//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//                break;
+//            case 3:
+//                fragment = new AccountFragment();
+//                myid = fragment.getId();
+//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//                break;
         }
         if (fragment != null) {
 
@@ -238,7 +256,7 @@ public class DashboardActivity extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-            displayView(0);
+        displayView(0);
 //        Intent i =new Intent(DashboardActivity.this,SplashScreen.class);
 //        startActivity(i);
     }
