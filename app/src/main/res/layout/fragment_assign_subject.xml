@@ -240,6 +240,7 @@
                             android:layout_weight="0.22"
                             android:background="@drawable/round_button"
                             android:text="Save"
+                            android:textAllCaps="true"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_11sdp" />
 

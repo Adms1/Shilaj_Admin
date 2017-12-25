@@ -51,7 +51,7 @@ public class ListAdapter extends MultiLevelListAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.menu_list_header, null);
             //viewHolder.infoView = (TextView) convertView.findViewById(R.id.dataItemInfo);
             viewHolder.nameView = (TextView) convertView.findViewById(R.id.title);
-            viewHolder.arrowView = (ImageView) convertView.findViewById(R.id.image_arrow);
+//            viewHolder.arrowView = (ImageView) convertView.findViewById(R.id.image_arrow);
             viewHolder.image_menu = (ImageView) convertView.findViewById(R.id.image_menu);
             convertView.setTag(viewHolder);
         } else {
@@ -61,13 +61,13 @@ public class ListAdapter extends MultiLevelListAdapter {
         viewHolder.nameView.setText(((BaseItem) object).getName());
 
 
-        if (itemInfo.isExpandable()) {
-            viewHolder.arrowView.setVisibility(View.VISIBLE);
-            viewHolder.arrowView.setImageResource(itemInfo.isExpanded() ?
-                    R.drawable.arrow_1_42 : R.drawable.arrow_1_42_down);
-        } else {
-            viewHolder.arrowView.setVisibility(View.GONE);
-        }
+//        if (itemInfo.isExpandable()) {
+//            viewHolder.arrowView.setVisibility(View.VISIBLE);
+//            viewHolder.arrowView.setImageResource(itemInfo.isExpanded() ?
+//                    R.drawable.arrow_1_42 : R.drawable.arrow_1_42_down);
+//        } else {
+//            viewHolder.arrowView.setVisibility(View.GONE);
+//        }
 
 
         return convertView;

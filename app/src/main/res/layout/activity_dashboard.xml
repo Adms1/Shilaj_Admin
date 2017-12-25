@@ -18,7 +18,7 @@
          the container. -->
     <RelativeLayout
         android:id="@+id/whatYouWantInLeftDrawer"
-        android:layout_width="@dimen/_220sdp"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="match_parent"
         android:layout_gravity="right" >
 
@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="@dimen/_8sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Teacher Name"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_11sdp" />
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Designation"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_11sdp" />

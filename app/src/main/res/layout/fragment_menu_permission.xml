@@ -582,6 +582,7 @@
                         android:background="@drawable/round_button"
                         android:enabled="false"
                         android:text="Submit"
+                        android:textAllCaps="true"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp" />
 

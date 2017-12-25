@@ -188,7 +188,6 @@ public class StudentLedgerFragment extends Fragment {
             }
         });
     }
-
     // For the use of scroll the All Listview And Screen
     public void scolling() {
 

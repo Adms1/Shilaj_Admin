@@ -127,6 +127,7 @@ public class AttendaceSummaryFragment extends Fragment {
                     }
                     if (staffUser.getFinalArray().size() > 0) {
                         fragmentAttendaceSummaryBinding.txtNoRecords.setVisibility(View.GONE);
+
                         consistentAbsentTeacherAdapter = new ConsistentAbsentTeacherAdapter(mContext, staffUser);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         fragmentAttendaceSummaryBinding.consistentAbsentTeacherList.setLayoutManager(mLayoutManager);

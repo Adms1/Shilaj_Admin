@@ -25,10 +25,13 @@ import java.util.ArrayList;
 
 import anandniketan.com.shilajadmin.Adapter.ListAdapter;
 import anandniketan.com.shilajadmin.Fragment.AccountFragment;
+import anandniketan.com.shilajadmin.Fragment.HRFragment;
 import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
+import anandniketan.com.shilajadmin.Fragment.OtherFragment;
 import anandniketan.com.shilajadmin.Fragment.StaffFragment;
 import anandniketan.com.shilajadmin.Fragment.StudentFragment;
+import anandniketan.com.shilajadmin.Fragment.TransportFragment;
 import anandniketan.com.shilajadmin.Model.MenuoptionItemModel;
 import anandniketan.com.shilajadmin.R;
 import pl.openrnd.multilevellistview.ItemInfo;
@@ -228,17 +231,37 @@ public class DashboardActivity extends FragmentActivity {
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-//            case 1:
-//                fragment = new StudentFragment();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
-//            case 2:
-//                fragment = new StaffFragment();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
-//            case 3:
+            case 1:
+                fragment = new StudentFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 2:
+                fragment = new StaffFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 3:
+                fragment = new AccountFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 4:
+                fragment = new TransportFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 5:
+                fragment = new HRFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case 6:
+                fragment = new OtherFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+//            case 7:
 //                fragment = new AccountFragment();
 //                myid = fragment.getId();
 //                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);

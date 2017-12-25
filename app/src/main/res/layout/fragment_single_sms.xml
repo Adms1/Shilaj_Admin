@@ -208,6 +208,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/round_button"
                         android:text="Send"
+                        android:textAllCaps="true"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp" />
 
@@ -221,6 +222,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/round_button"
                         android:text="Clear"
+                        android:textAllCaps="true"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp" />
                 </LinearLayout>

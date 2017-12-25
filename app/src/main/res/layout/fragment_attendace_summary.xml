@@ -61,11 +61,11 @@
                 android:layout_marginTop="@dimen/_45sdp"
                 android:background="@drawable/menu" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/header"
-                android:scrollbars="none">
+            <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_below="@+id/header"-->
+                <!--android:scrollbars="none">-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,7 +73,6 @@
                     android:layout_below="@id/header"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -83,7 +82,7 @@
                         android:layout_below="@id/header"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:background="@drawable/linearlayout_border"
                         android:orientation="vertical">
 
@@ -95,7 +94,7 @@
                             <TextView
                                 android:id="@+id/Attendace_txt"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_30sdp"
+                                android:layout_height="@dimen/_23sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:layout_marginRight="@dimen/_2sdp"
                                 android:layout_marginTop="@dimen/_2sdp"
@@ -104,7 +103,7 @@
                                 android:text="@string/attendace"
                                 android:textAlignment="center"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -124,7 +123,7 @@
                                 android:text="@string/student_txt"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/staff_txt"
@@ -133,7 +132,7 @@
                                 android:layout_marginLeft="@dimen/_190sdp"
                                 android:text="@string/staff_txt"
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -141,7 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:orientation="horizontal"
                             android:weightSum="3">
 
@@ -153,7 +152,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/absent"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/student_absent_txt"
@@ -162,7 +161,7 @@
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:text="@string/absent"
                                 android:textColor="@color/absent"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/absentstaff_count_txt"
@@ -172,7 +171,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/absent"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -192,7 +191,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/leave"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/student_leave_txt"
@@ -201,7 +200,7 @@
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:text="@string/leave"
                                 android:textColor="@color/leave"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/leavestaff_count_txt"
@@ -211,7 +210,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/leave"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -231,7 +230,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/present"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/present_txt"
@@ -240,7 +239,7 @@
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:text="@string/present"
                                 android:textColor="@color/present"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/presentstaff_count_txt"
@@ -250,7 +249,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/present"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
 
                         <TextView
@@ -279,7 +278,7 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/total_txt"
@@ -288,7 +287,7 @@
                                 android:layout_marginLeft="@dimen/_70sdp"
                                 android:text="@string/total"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
 
                             <TextView
                                 android:id="@+id/totalstaff_count_txt"
@@ -298,18 +297,18 @@
                                 android:text="0"
                                 android:textAlignment="center"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_12sdp" />
+                                android:textSize="@dimen/_11sdp" />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/standardwise_linear"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_150sdp"
                         android:layout_below="@id/main_linear"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/linearlayout_border"
                         android:orientation="vertical">
 
@@ -321,7 +320,7 @@
                             <TextView
                                 android:id="@+id/standardwiseAttendace_txt"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_30sdp"
+                                android:layout_height="@dimen/_23sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:layout_marginRight="@dimen/_2sdp"
                                 android:layout_marginTop="@dimen/_2sdp"
@@ -330,7 +329,7 @@
                                 android:text="@string/standardwiseattendace"
                                 android:textAlignment="center"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -339,7 +338,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:orientation="horizontal">
 
                             <include layout="@layout/student_attendace_header" />
@@ -369,8 +368,8 @@
                         android:layout_below="@id/standardwise_linear"
                         android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_marginRight="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_25sdp"
-                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+
                         android:background="@drawable/linearlayout_border"
                         android:orientation="vertical">
 
@@ -382,7 +381,7 @@
                             <TextView
                                 android:id="@+id/consistent_absent_teacher_txt"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_30sdp"
+                                android:layout_height="@dimen/_23sdp"
                                 android:layout_marginLeft="@dimen/_2sdp"
                                 android:layout_marginRight="@dimen/_2sdp"
                                 android:layout_marginTop="@dimen/_2sdp"
@@ -391,7 +390,7 @@
                                 android:text="@string/consistent_absent"
                                 android:textAlignment="center"
                                 android:textColor="@color/scheduleheadertextcolor"
-                                android:textSize="@dimen/_14sdp"
+                                android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -400,7 +399,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:orientation="horizontal">
 
                             <include layout="@layout/consistent_absent_header" />
@@ -436,7 +435,7 @@
                         android:textStyle="bold"
                         android:visibility="gone" />
                 </LinearLayout>
-            </ScrollView>
+            <!--</ScrollView>-->
         </RelativeLayout>
 
     </LinearLayout>
