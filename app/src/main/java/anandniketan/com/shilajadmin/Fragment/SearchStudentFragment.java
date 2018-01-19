@@ -31,6 +31,7 @@ import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentSearchStudentBinding;
 import retrofit.RetrofitError;
@@ -90,6 +91,8 @@ public class SearchStudentFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 searchtypeStr = parent.getItemAtPosition(position).toString();
                 Log.d("searchtypestr", searchtypeStr);
+                AppConfiguration.StudentStatus=searchtypeStr;
+
                 callParentNameApi();
                 callStudentNameApi();
                 callStudentShowFilteredDataApi();

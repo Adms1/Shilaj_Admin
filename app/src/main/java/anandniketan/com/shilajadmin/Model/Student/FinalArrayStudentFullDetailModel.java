@@ -149,9 +149,13 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Address")
     @Expose
     private String address;
+    @SerializedName("Student Type")
+    @Expose
+    private String studentType;
     @SerializedName("Zip Code")
     @Expose
     private String zipCode;
+
 
     public String getTag() {
         return tag;
@@ -537,4 +541,11 @@ public class FinalArrayStudentFullDetailModel {
         this.zipCode = zipCode;
     }
 
+    public String getStudentType() {
+        return studentType;
+    }
+
+    public void setStudentType(String studentType) {
+        this.studentType = studentType;
+    }
 }

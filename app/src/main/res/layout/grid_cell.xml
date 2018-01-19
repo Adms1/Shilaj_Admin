@@ -11,8 +11,7 @@
         android:id="@+id/imgGridOptions"
         android:layout_width="@dimen/_95sdp"
         android:layout_height="@dimen/_95sdp"
-        android:layout_gravity="center"
-        android:src="@drawable/student" />
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/txtGridOptionsName"

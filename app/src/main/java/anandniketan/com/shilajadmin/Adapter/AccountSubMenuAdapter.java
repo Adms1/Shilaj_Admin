@@ -2,6 +2,7 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/17/2017.
@@ -18,10 +22,15 @@ import anandniketan.com.shilajadmin.R;
 public class AccountSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.account_summery, R.drawable.collection, R.drawable.account_3,
-            R.drawable.account_4, R.drawable.account_5, R.drawable.account_6,
-            R.drawable.account_7,R.drawable.account_8
+    public String[] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Account%20Summary.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Collection.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Fees%20Structure.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Student%20Discount.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Daily%20Fees%20Collection.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Imprest.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Student%20Ledger.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Fees%20SMS.png",
     };
 
     public String[] mThumbNames = {"Account Summary", "Collection", "Fee Structure",
@@ -57,8 +66,13 @@ public class AccountSubMenuAdapter extends BaseAdapter {
 
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
-
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+//        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

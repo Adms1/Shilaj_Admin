@@ -134,11 +134,11 @@ public class AllDepartmentDetailsFragment extends Fragment {
                     studentFullDetailArray = studentFullDetailModel.getFinalArray();
                     if (studentFullDetailArray != null) {
                         ArrayList<String> arraystu = new ArrayList<String>();
-                        arraystu.add("Student Detail");
-                        arraystu.add("Transport Detail");
-                        arraystu.add("Father Detail");
-                        arraystu.add("Mother Detail");
-                        arraystu.add("Communication Detail");
+                        arraystu.add("Student Details");
+                        arraystu.add("Transport Details");
+                        arraystu.add("Father Details");
+                        arraystu.add("Mother Details");
+                        arraystu.add("Communication Details");
                         Log.d("array", "" + arraystu);
 
                         listDataHeader = new ArrayList<>();

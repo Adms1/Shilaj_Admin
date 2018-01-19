@@ -9,7 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/17/2017.
@@ -18,9 +21,11 @@ import anandniketan.com.shilajadmin.R;
 public class TransportSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.transportcharges, R.drawable.transport_2, R.drawable.transport_3,
-            R.drawable.transport_4
+    public String [] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Transport/" + "Transport%20Charges.png",
+            AppConfiguration.BASEURL_IMAGES + "Transport/" + "Route%20Pick%20Up%20Point%20Detail.png",
+            AppConfiguration.BASEURL_IMAGES + "Transport/" + "Vehicle%20Detail.png",
+            AppConfiguration.BASEURL_IMAGES + "Transport/" + "Vehicle%20Route's.png",
     };
 
     public String[] mThumbNames = {"Transport Charges", "Route Pick Up Point Detail", "Vehicle Detail",
@@ -57,7 +62,13 @@ public class TransportSubMenuAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+//        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

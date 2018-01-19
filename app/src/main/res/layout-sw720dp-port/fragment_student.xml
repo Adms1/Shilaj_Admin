@@ -16,7 +16,7 @@
             <LinearLayout
                 android:id="@+id/center"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_140sdp"
+                android:layout_height="@dimen/_123sdp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="@dimen/_2sdp"
@@ -33,7 +33,7 @@
                         android:layout_width="@dimen/_15sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_46sdp"
                         android:background="@drawable/back_btn"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_12sdp"
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="@dimen/_50sdp"
-                        android:layout_marginTop="@dimen/_50sdp"
+                        android:layout_marginTop="@dimen/_46sdp"
                         android:text="@string/student"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_12sdp"
@@ -58,8 +58,8 @@
                         android:layout_marginBottom="@dimen/_3sdp"
                         android:layout_marginLeft="@dimen/_260sdp"
                         android:layout_marginRight="@dimen/_8sdp"
-                        android:layout_marginTop="@dimen/_50sdp"
-                        android:background="@drawable/menu" />
+                        android:layout_marginTop="@dimen/_46sdp"
+                        android:background="@drawable/menu"  />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/center"
-                android:layout_marginTop="-125dp">
+                android:layout_marginTop="-145dp">
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout3"
@@ -245,8 +245,8 @@
 
                 <RelativeLayout
                     android:id="@+id/relativeLayout2"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
+                    android:layout_width="@dimen/_75sdp"
+                    android:layout_height="@dimen/_75sdp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
@@ -258,8 +258,7 @@
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/student_inside" />
+                        android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
 

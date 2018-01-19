@@ -2,6 +2,7 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/17/2017.
@@ -18,9 +22,13 @@ import anandniketan.com.shilajadmin.R;
 public class StaffSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.staff_1, R.drawable.staff_2, R.drawable.staff_3,
-            R.drawable.staff_4, R.drawable.staff_5, R.drawable.staff_6
+    public String[] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "Class%20Teacher.png",
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "Assign%20Subject.png",
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "View%20Lesson%20Plan.png",
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "View%20Lesson%20Plan%20Schedule.png",
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "Exam.png",
+            AppConfiguration.BASEURL_IMAGES + "Staff/" + "Time%20Table.png",
     };
 
     public String[] mThumbNames = {"Class Teacher", "Assign Subject", "View Lesson Plan",
@@ -57,7 +65,14 @@ public class StaffSubMenuAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+//        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
+
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

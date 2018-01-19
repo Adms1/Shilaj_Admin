@@ -14,8 +14,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.DashboardActivity"></activity>
-        <activity android:name=".Activity.SplashScreen">
+        <activity
+            android:name=".Activity.DashboardActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Activity.SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

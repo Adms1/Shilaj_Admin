@@ -17,7 +17,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/pickup"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -54,7 +54,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/pickuppoint"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -91,7 +91,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_23sdp"
                 android:text="@string/pickuptime"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -128,7 +128,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/dropbus"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -165,7 +165,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/droppoint"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -203,7 +203,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/droptime"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />

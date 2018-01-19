@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.TransportSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentTransportBinding;
 
@@ -44,6 +47,10 @@ public class TransportFragment extends Fragment {
     }
 
     public void initViews() {
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "Transport/" + "transport_inside.png")
+                .fitCenter()
+                .into(fragmentTransportBinding.circleImageView);
         fragmentTransportBinding.transportSubmenuGridView.setAdapter(new TransportSubMenuAdapter(mContext));
     }
 

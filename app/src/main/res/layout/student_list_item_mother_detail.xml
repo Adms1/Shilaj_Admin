@@ -18,7 +18,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/firstname"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -55,7 +55,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/lastname"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -92,7 +92,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/phone"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -129,7 +129,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/mobile"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -166,7 +166,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/email"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -203,7 +203,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/qualification"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -239,7 +239,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/occupation"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -276,7 +276,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/organization"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />
@@ -313,7 +313,7 @@
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:text="@string/designation"
-                android:textAlignment="textEnd"
+                android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold" />

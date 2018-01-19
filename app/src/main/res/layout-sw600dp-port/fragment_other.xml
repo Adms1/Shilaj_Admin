@@ -124,7 +124,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/other_inside" />
+                        />
 
                 </RelativeLayout>
 

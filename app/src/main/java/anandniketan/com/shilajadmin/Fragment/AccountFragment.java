@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +63,10 @@ public class AccountFragment extends Fragment {
     }
 
     public void initViews() {
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "Account/" + "account_inside.png")
+                .fitCenter()
+                .into(fragmentAccountBinding.circleImageView);
         fragmentAccountBinding.accountSubmenuGridView.setAdapter(new AccountSubMenuAdapter(mContext));
         AppConfiguration.TermDetailName = "Term 1";
     }

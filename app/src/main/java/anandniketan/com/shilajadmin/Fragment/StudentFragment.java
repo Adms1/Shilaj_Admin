@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -22,6 +24,7 @@ import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
 import retrofit.RetrofitError;
@@ -63,6 +66,10 @@ public class StudentFragment extends Fragment {
 
         Datestr = Utils.getTodaysDate();
         Log.d("TodayDate", Datestr);
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "Student/" + "student_inside.png")
+                .fitCenter()
+                .into(fragmentStudentBinding.circleImageView);
         fragmentStudentBinding.studentSubmenuGridView.setAdapter(new StudentSubMenuAdapter(mContext));
         callStudentApi();
     }

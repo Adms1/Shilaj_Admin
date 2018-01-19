@@ -2,6 +2,7 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/17/2017.
@@ -18,14 +22,19 @@ import anandniketan.com.shilajadmin.R;
 public class StudentSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.student_1, R.drawable.student_2, R.drawable.student_3,
-            R.drawable.student_4, R.drawable.student_5, R.drawable.student_6,
-            R.drawable.student_7,R.drawable.student_8
+    public String[] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Search%20Student.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "View%20Inquiry.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Student%20Transport.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Permission.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Attendence.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Left_Detail.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "GR%20Register.png",
+            AppConfiguration.BASEURL_IMAGES + "Student/" + "Student%20Marks.png",
     };
 
     public String[] mThumbNames = {"Search Student", "View Inquiry", "Student Transport",
-            "Permission", "Attendance", "Left/Detail","GR Register", "Student Marks"};
+            "Permission", "Attendance", "Left/Detail", "GR Register", "Student Marks"};
 
     // Constructor
     public StudentSubMenuAdapter(Context c) {
@@ -57,8 +66,14 @@ public class StudentSubMenuAdapter extends BaseAdapter {
 
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
+        String url = mThumbIds[position];
+        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

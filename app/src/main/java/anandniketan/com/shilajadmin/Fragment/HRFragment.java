@@ -12,10 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.Adapter.HrSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.TransportSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.FragmentHrBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentTransportBinding;
 
@@ -44,7 +47,12 @@ public class HRFragment extends Fragment {
     }
 
     public void initViews() {
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "HR/" + "hr_inside.png")
+                .fitCenter()
+                .into(fragmentHrBinding.circleImageView);
         fragmentHrBinding.hrSubmenuGridView.setAdapter(new HrSubMenuAdapter(mContext));
+
     }
 
     public void setListners() {

@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,7 @@ import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentStaffBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
@@ -63,6 +66,10 @@ public class StaffFragment extends Fragment {
 
     public void initViews() {
         fragmentStaffBinding.staffSubmenuGridView.setAdapter(new StaffSubMenuAdapter(mContext));
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "Staff/" + "staff_inside.png")
+                .fitCenter()
+                .into(fragmentStaffBinding.circleImageView);
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);

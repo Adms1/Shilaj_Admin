@@ -2,6 +2,7 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/16/2017.
@@ -18,9 +23,13 @@ import anandniketan.com.shilajadmin.R;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.student, R.drawable.staff, R.drawable.account,
-            R.drawable.transport, R.drawable.hr, R.drawable.other
+    public String[] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "Student.png",
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "Staff.png",
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "Account.png",
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "Transport.png",
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "HR.png",
+            AppConfiguration.BASEURL_IMAGES + "Main/" + "Other.png",
     };
 
     public String[] mThumbNames = {"Student", "Staff", "Account", "Transport", "HR", "Other"};
@@ -56,7 +65,13 @@ public class ImageAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

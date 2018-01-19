@@ -198,8 +198,7 @@
                         android:layout_width="@dimen/_50sdp"
                         android:layout_height="@dimen/_50sdp"
                         android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/staff_inside" />
+                        android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
 

@@ -9,7 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 /**
  * Created by admsandroid on 11/17/2017.
@@ -18,13 +21,17 @@ import anandniketan.com.shilajadmin.R;
 public class OtherSubMenuAdapter extends BaseAdapter {
     private Context mContext;
 
-    public Integer[] mThumbIds = {
-            R.drawable.student_absent, R.drawable.bulk_sms,
-            R.drawable.single_sms, R.drawable.employee_sms,
-            R.drawable.summary, R.drawable.other_3,
-            R.drawable.other_4, R.drawable.other_5,
-            R.drawable.other_6, R.drawable.other_7
-
+    public String[] mThumbIds = {
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Student%20Absent.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Bulk%20SMS.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Single%20SMS.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Employee%20SMS.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Summary.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Holiday.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "PTM.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Activity%20Logging.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Announcement.png",
+            AppConfiguration.BASEURL_IMAGES + "Other/" + "Quick%20Email.png",
     };
 
     public String[] mThumbNames = {"Student Absent", "Bulk SMS", "Single SMS", "Employee SMS", "Summary", "Holiday",
@@ -61,7 +68,13 @@ public class OtherSubMenuAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
-        imgGridOptions.setImageResource(mThumbIds[position]);
+        String url = mThumbIds[position];
+//        Log.d("url", url);
+        Glide.with(mContext)
+                .load(url)
+                .fitCenter()
+                .into(imgGridOptions);
+//        imgGridOptions.setImageResource(mThumbIds[position]);
         txtGridOptionsName.setText(mThumbNames[position]);
         return convertView;
     }

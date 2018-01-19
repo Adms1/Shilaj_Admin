@@ -12,11 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
+import com.bumptech.glide.Glide;
+
 import anandniketan.com.shilajadmin.Adapter.OtherSubMenuAdapter;
-import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.FragmentOtherBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
 
 
 public class OtherFragment extends Fragment {
@@ -44,6 +45,10 @@ public class OtherFragment extends Fragment {
     }
 
     public void initViews() {
+        Glide.with(mContext)
+                .load( AppConfiguration.BASEURL_IMAGES + "Other/" + "other_inside.png")
+                .fitCenter()
+                .into(fragmentOtherBinding.circleImageView);
         fragmentOtherBinding.otherSubmenuGridView.setAdapter(new OtherSubMenuAdapter(mContext));
 
     }
