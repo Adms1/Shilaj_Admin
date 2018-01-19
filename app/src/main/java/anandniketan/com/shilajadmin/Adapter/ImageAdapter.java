@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.squareup.picasso.Picasso;
 
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;

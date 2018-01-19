@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Account.DatumPaymentLedgerModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.ListGroupReceiptDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemReceiptBinding;
 
@@ -51,6 +54,10 @@ public class ExpandableListAdapterReceipt extends BaseExpandableListAdapter {
         itembinding=DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),R.layout.list_item_receipt,parent,false);
         convertView=itembinding.getRoot();
 
+        Glide.with(_context)
+                .load(AppConfiguration.BASEURL_ICONS+"CanteenIcon.png")
+                .fitCenter()
+                .into(itembinding.imgBulletPayment);
         itembinding.receipeNoValueTxt.setText("₹" + " " +detail.get(childPosition).getReceiptNo());
         itembinding.modeOfPaymentValueTxt.setText("₹" + " " +detail.get(childPosition).getPayMode());
         itembinding.admissionFeeValueTxt.setText("₹" + " " +detail.get(childPosition).getAdmissionFee());

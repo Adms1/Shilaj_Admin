@@ -13,6 +13,10 @@ public class AppConfiguration {
     public static final String BASEURL_IMAGES ="http://192.168.1.13:8085/skool360-Category-Images/Admin/";// use for office
 //  public static final String BASEURL_IMAGES ="http://103.8.216.132/skool360-Category-Images/Admin/";// use for client
 
+    //URL From Icons
+    public static final String BASEURL_ICONS ="http://192.168.1.13:8085/skool360-Design-Icons/Admin/";// use for office
+//  public static final String BASEURL_ICONS ="http://103.8.216.132/skool360-Design-Icons/Admin/";// use for client
+
     public static String StudentId;
     public static String TermId;
     public static String TermName;
