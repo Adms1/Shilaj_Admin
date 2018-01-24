@@ -67,7 +67,7 @@ public class StudentFragment extends Fragment {
         Datestr = Utils.getTodaysDate();
         Log.d("TodayDate", Datestr);
         Glide.with(mContext)
-                .load( AppConfiguration.BASEURL_IMAGES + "Student/" + "student_inside.png")
+                .load(AppConfiguration.BASEURL_IMAGES + "Student/" + "student_inside.png")
                 .fitCenter()
                 .into(fragmentStudentBinding.circleImageView);
         fragmentStudentBinding.studentSubmenuGridView.setAdapter(new StudentSubMenuAdapter(mContext));
@@ -106,6 +106,12 @@ public class StudentFragment extends Fragment {
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new StudentTranspotFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 3) {
+                    fragment = new StudentPermissionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)

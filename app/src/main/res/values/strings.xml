@@ -15,6 +15,8 @@
     <string name="transport">TRANSPORT</string>
     <string name="hr">HR</string>
     <string name="other">OTHER</string>
+    <string name="student_permission">PERMISSION</string>
+    <string name="resultpermission">RESULT PERMISSION</string>
     <string name="attendace">ATTENDACE</string>
     <string name="student_title">STUDENT</string>
     <string name="allDetails">STUDENT DETAILS</string>
@@ -35,6 +37,7 @@
     <string name="present">Present</string>
     <string name="leave">Leave</string>
     <string name="total">Total</string>
+    <string name="resultstatus">Result Status</string>
     <string name="standardname">Standarname</string>
     <string name="standardstatus">Status</string>
     <string name="employeename">Employee</string>
@@ -169,6 +172,8 @@
     <string name="Studentcoll"><u>Student</u></string>
     <string name="standardwisecoll">Standard Wise Collection</string>
     <string name="exam">EXAMS</string>
+    <string name="academicyear">Academic Year</string>
+    <string name="edit">Edit</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

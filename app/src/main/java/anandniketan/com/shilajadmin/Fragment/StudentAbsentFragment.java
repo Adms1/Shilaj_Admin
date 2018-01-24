@@ -219,54 +219,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         });
     }
 
-//    // CALL Term API HERE
-//    private void callTermApi() {
-//
-//        if (!Utils.checkNetwork(mContext)) {
-//            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
-//            return;
-//        }
-//
-//        Utils.showDialog(getActivity());
-//        ApiHandler.getApiService().getTerm(getTermDetail(), new retrofit.Callback<TermModel>() {
-//            @Override
-//            public void success(TermModel termModel, Response response) {
-//                Utils.dismissDialog();
-//                if (termModel == null) {
-//                    Utils.ping(mContext, getString(R.string.something_wrong));
-//                    return;
-//                }
-//                if (termModel.getSuccess() == null) {
-//                    Utils.ping(mContext, getString(R.string.something_wrong));
-//                    return;
-//                }
-//                if (termModel.getSuccess().equalsIgnoreCase("false")) {
-//                    Utils.ping(mContext, getString(R.string.false_msg));
-//                    return;
-//                }
-//                if (termModel.getSuccess().equalsIgnoreCase("True")) {
-//                    finalArrayGetTermModels = termModel.getFinalArray();
-//                    if (finalArrayGetTermModels != null) {
-//                        fillTermSpinner();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void failure(RetrofitError error) {
-//                Utils.dismissDialog();
-//                error.printStackTrace();
-//                error.getMessage();
-//                Utils.ping(mContext, getString(R.string.something_wrong));
-//            }
-//        });
-//
-//    }
-//
-//    private Map<String, String> getTermDetail() {
-//        Map<String, String> map = new HashMap<>();
-//        return map;
-//    }
+
 
     // CALL Standard API HERE
     private void callStandardApi() {
@@ -385,40 +338,6 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         map.put("section", FinalClassIdStr);
         return map;
     }
-
-//    public void fillTermSpinner() {
-//        ArrayList<Integer> TermId = new ArrayList<Integer>();
-//        for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
-//            TermId.add(finalArrayGetTermModels.get(i).getTermId());
-//        }
-//        ArrayList<String> Term = new ArrayList<String>();
-//        for (int j = 0; j < finalArrayGetTermModels.size(); j++) {
-//            Term.add(finalArrayGetTermModels.get(j).getTerm());
-//        }
-//
-//        String[] spinnertermIdArray = new String[TermId.size()];
-//
-//        spinnerTermMap = new HashMap<Integer, String>();
-//        for (int i = 0; i < TermId.size(); i++) {
-//            spinnerTermMap.put(i, String.valueOf(TermId.get(i)));
-//            spinnertermIdArray[i] = Term.get(i).trim();
-//        }
-//        try {
-//            Field popup = Spinner.class.getDeclaredField("mPopup");
-//            popup.setAccessible(true);
-//
-//            // Get private mPopup member variable and try cast to ListPopupWindow
-//            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentStudentAbsentBinding.termSpinner);
-//
-//            popupWindow.setHeight(spinnertermIdArray.length > 5 ? 500 : spinnertermIdArray.length * 100);
-//        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-//            // silently fail...
-//        }
-//
-//        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
-//        fragmentStudentAbsentBinding.termSpinner.setAdapter(adapterTerm);
-//        FinalTermIdStr = spinnerTermMap.get(0);
-//    }
 
     public void fillGradeSpinner() {
         ArrayList<String> firstValue = new ArrayList<>();

@@ -23,6 +23,7 @@ import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
 import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
+import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
@@ -191,5 +192,9 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/InsertAbsentTodaySMS")
     public void InsertAbsentTodaySMS(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetResultPermission")
+    public void getResultPermission(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
 
 }

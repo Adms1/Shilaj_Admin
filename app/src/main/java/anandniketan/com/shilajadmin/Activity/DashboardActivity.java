@@ -85,31 +85,6 @@ public class DashboardActivity extends FragmentActivity {
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-//        Log.d("Dashboard : fromNotification", fromWhere);
-//        onNewIntent(getIntent());
-//        if (getIntent().getStringExtra("message") != null) {
-//            putData = getIntent().getStringExtra("message").toString();
-//            Log.d("notificationData",putData);
-//        }
-//        if (getIntent().getStringExtra("fromNotification") != null) {
-//            String key = getIntent().getStringExtra("fromNotification").toString();
-//            Log.d("key", key);
-//            if (key.equalsIgnoreCase("HW")) {
-//                displayView(3);
-//            } else if (key.equalsIgnoreCase("CW")) {
-//                displayView(4);
-//            } else if (key.equalsIgnoreCase("Attendance")) {
-//                displayView(2);
-//            } else if (key.equalsIgnoreCase("Announcement")) {
-//                Intent is = new Intent(DashBoardActivity.this, NotificationFragment.class);
-//                is.putExtra("message", putData);
-//                startActivity(is);
-//            }
-//        } else {
-//            displayView(0);
-//        }
-//        System.out.println("Dashboard Message :" + getIntent().getStringExtra("message"));
-//        System.out.println("Dashboard Extra : " + getIntent().getStringExtra("fromNotification"));
 
     }
 
@@ -121,23 +96,9 @@ public class DashboardActivity extends FragmentActivity {
         leftRl = (RelativeLayout) findViewById(R.id.whatYouWantInLeftDrawer);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         navDrawerItems_main = new ArrayList<MenuoptionItemModel>();
-//        adapter_menu_item = new MenuoptionItemAdapter();
-//        for (int i = 0; i < MenuName.length; i++) {
-//            navDrawerItems_main.add(new MenuoptionItemModel(MenuName[i]));
-//        }
         mDrawerList.setAdapter(new MenuoptionItemAdapter(mContext));
         mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
-
-//        multiLevelListView = (MultiLevelListView) findViewById(R.id.multiLevelMenu);
-//
-//        // custom ListAdapter
-//        ListAdapter listAdapter = new ListAdapter(mContext);
-//
-//        multiLevelListView.setAdapter(listAdapter);
-//        multiLevelListView.setOnItemClickListener(mOnItemClickListener);
-//
-//        listAdapter.setDataItems(CustomDataProvider.getInitialItems());
     }
     private OnItemClickListener mOnItemClickListener = new OnItemClickListener() {
 
@@ -261,11 +222,6 @@ public class DashboardActivity extends FragmentActivity {
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-//            case 7:
-//                fragment = new AccountFragment();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
         }
         if (fragment != null) {
 
