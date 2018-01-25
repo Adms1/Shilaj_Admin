@@ -16,8 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.ExpandableListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+
+import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,8 +34,10 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentTransportDetail;
 import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
+import anandniketan.com.shilajadmin.Interface.getEditpermission;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentTransportModel;
 import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
@@ -60,12 +68,12 @@ public class ResultPermisssionFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     //Use for fill List
     List<FinalArrayResultPermissionModel> finalArrayResultPermissionList;
-    String FinalTermIdStr;
     ResultPermissionAdapter resultPermissionAdapter;
+
     //Use for fill section
     List<FinalArrayStandard> finalArrayStandardsList;
     StandardAdapter standardAdapter;
-
+    String FinalTermIdStr, FinalGradeIsStr, FinalStatusStr = "1";
     public ResultPermisssionFragment() {
     }
 
@@ -110,11 +118,37 @@ public class ResultPermisssionFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+            }
+        });
+        fragmentResultPermisssionBinding.addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getFinalIdStr();
+                if (!FinalGradeIsStr.equalsIgnoreCase("")) {
+                    callInsertResultPermission();
+                } else {
+                    Utils.ping(mContext, "Please Select Grade.");
+                }
+            }
+        });
+        fragmentResultPermisssionBinding.statusGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
+                if (null != rb && checkedId > -1) {
+                    // checkedId is the RadioButton selected
+                    switch (checkedId) {
+                        case R.id.done_chk:
+                            FinalStatusStr = fragmentResultPermisssionBinding.doneChk.getTag().toString();
+                            break;
+                        case R.id.pendding_chk:
+                            FinalStatusStr = fragmentResultPermisssionBinding.penddingChk.getTag().toString();
+                            break;
+                    }
+                }
             }
         });
     }
-
 
     // CALL Term API HERE
     private void callTermApi() {
@@ -232,7 +266,12 @@ public class ResultPermisssionFragment extends Fragment {
                         fragmentResultPermisssionBinding.txtNoRecords.setVisibility(View.GONE);
                         fragmentResultPermisssionBinding.lvHeader.setVisibility(View.VISIBLE);
                         fragmentResultPermisssionBinding.recyclerLinear.setVisibility(View.VISIBLE);
-                        resultPermissionAdapter = new ResultPermissionAdapter(mContext, resultPermissionModel);
+                        resultPermissionAdapter = new ResultPermissionAdapter(mContext, resultPermissionModel, new getEditpermission() {
+                            @Override
+                            public void getEditpermission() {
+                                UpdatePermission();
+                            }
+                        });
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
                         fragmentResultPermisssionBinding.studentResultPermissionList.setLayoutManager(mLayoutManager);
                         fragmentResultPermisssionBinding.studentResultPermissionList.setItemAnimator(new DefaultItemAnimator());
@@ -286,7 +325,11 @@ public class ResultPermisssionFragment extends Fragment {
                 if (standardModel.getSuccess().equalsIgnoreCase("True")) {
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
-                        
+                        for (int i = 0; i < finalArrayStandardsList.size(); i++) {
+                            finalArrayStandardsList.get(i).setCheckedStatus("0");
+                        }
+                        standardAdapter = new StandardAdapter(mContext, finalArrayStandardsList);
+                        fragmentResultPermisssionBinding.gradeGridView.setAdapter(standardAdapter);
                     }
                 }
             }
@@ -307,5 +350,100 @@ public class ResultPermisssionFragment extends Fragment {
         return map;
     }
 
+    // CALL InsertResultPermission
+    public void callInsertResultPermission() {
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().InsertResultPermission(getInsertResultPermission(), new retrofit.Callback<InsertMenuPermissionModel>() {
+            @Override
+            public void success(InsertMenuPermissionModel permissionModel, Response response) {
+                Utils.dismissDialog();
+                if (permissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
+//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    callResultPermission();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getInsertResultPermission() {
+        Map<String, String> map = new HashMap<>();
+        map.put("TermID", FinalTermIdStr);
+        map.put("GradeID", FinalGradeIsStr);
+        map.put("Status", FinalStatusStr);
+        return map;
+    }
+
+    // Use for get the AllFinalValue for InsertPermission
+    public void getFinalIdStr() {
+        ArrayList<String> gradeArray = new ArrayList<String>();
+        List<FinalArrayStandard> standardArray = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray.size(); i++) {
+            if (standardArray.get(i).getCheckedStatus().equalsIgnoreCase("1")) {
+                gradeArray.add(standardArray.get(i).getStandardID().toString());
+            }
+        }
+        FinalGradeIsStr = String.valueOf(gradeArray);
+        FinalGradeIsStr = FinalGradeIsStr.substring(1, FinalGradeIsStr.length() - 1);
+        Log.d("FinalGradeIsStr", FinalGradeIsStr);
+    }
+
+    // Use For UpdatePermission
+    public void UpdatePermission() {
+        fragmentResultPermisssionBinding.addBtn.setText("Update");
+        ArrayList<String> academicYearArray = new ArrayList<String>();
+        String statusArray = "", gradeArray = "";
+
+        for (int k = 0; k < resultPermissionAdapter.getRowValue().size(); k++) {
+            String rowValueStr = resultPermissionAdapter.getRowValue().get(k);
+            Log.d("rowValueStr", rowValueStr);
+            String[] spiltString = rowValueStr.split("\\|");
+            academicYearArray.add(spiltString[0]);
+            gradeArray = spiltString[1];
+            statusArray = spiltString[2];
+//            statusArray = statusArray.substring(0, statusArray.length() - 1);
+
+            Log.d("statusArray", statusArray);
+        }
+        if (statusArray.equalsIgnoreCase(fragmentResultPermisssionBinding.doneChk.getText().toString())) {
+            fragmentResultPermisssionBinding.doneChk.setChecked(true);
+        } else if (statusArray.equalsIgnoreCase(fragmentResultPermisssionBinding.penddingChk.getText().toString())) {
+            fragmentResultPermisssionBinding.penddingChk.setChecked(true);
+
+        }
+        List<FinalArrayStandard> standardArray = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray.size(); i++) {
+            if (gradeArray.equalsIgnoreCase(standardArray.get(i).getStandard())) {
+                standardArray.get(i).setCheckedStatus("1");
+                standardAdapter.notifyDataSetChanged();
+            }
+        }
+
+    }
 }
 

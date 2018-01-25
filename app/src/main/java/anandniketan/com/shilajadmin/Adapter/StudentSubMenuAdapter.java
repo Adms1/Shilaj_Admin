@@ -67,7 +67,7 @@ public class StudentSubMenuAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
         String url = mThumbIds[position];
-        Log.d("url", url);
+//        Log.d("url", url);
         Glide.with(mContext)
                 .load(url)
                 .fitCenter()

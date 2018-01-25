@@ -17,6 +17,10 @@ public class GetResultPermissionModel {
     @SerializedName("Year")
     @Expose
     private String year;
+    @SerializedName("Term")
+    @Expose
+    private String term;
+
     @SerializedName("FinalArray")
     @Expose
     private List<FinalArrayResultPermissionModel> finalArray = new ArrayList<FinalArrayResultPermissionModel>();
@@ -35,6 +39,14 @@ public class GetResultPermissionModel {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 
     public List<FinalArrayResultPermissionModel> getFinalArray() {

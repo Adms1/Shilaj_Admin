@@ -16,16 +16,16 @@ import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
- * Created by admsandroid on 1/24/2018.
+ * Created by admsandroid on 1/25/2018.
  */
 
-public class ResultPermissionAdapter extends RecyclerView.Adapter<ResultPermissionAdapter.MyViewHolder> {
+public class OnlinePaymentPermissionAdapter extends RecyclerView.Adapter<OnlinePaymentPermissionAdapter.MyViewHolder> {
     private Context context;
     private GetResultPermissionModel resultPermissionModel;
     private ArrayList<String> rowvalue = new ArrayList<String>();
     getEditpermission listner;
 
-    public ResultPermissionAdapter(Context mContext, GetResultPermissionModel resultPermissionModel, getEditpermission listner) {
+    public OnlinePaymentPermissionAdapter(Context mContext, GetResultPermissionModel resultPermissionModel, getEditpermission listner) {
         this.context = mContext;
         this.resultPermissionModel = resultPermissionModel;
         this.listner = listner;
@@ -33,24 +33,25 @@ public class ResultPermissionAdapter extends RecyclerView.Adapter<ResultPermissi
 
 
     @Override
-    public ResultPermissionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_permission_list, parent, false);
-        return new ResultPermissionAdapter.MyViewHolder(itemView);
+    public OnlinePaymentPermissionAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.online_payment_permission_list, parent, false);
+        return new OnlinePaymentPermissionAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ResultPermissionAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(OnlinePaymentPermissionAdapter.MyViewHolder holder, int position) {
         String sr = String.valueOf(position + 1);
         final FinalArrayResultPermissionModel result = resultPermissionModel.getFinalArray().get(position);
         holder.index_txt.setText(sr);
         holder.academicyear_txt.setText(resultPermissionModel.getYear());
         holder.grade_txt.setText(String.valueOf(result.getStandard()));
         holder.resultstatus_txt.setText(result.getStatus());
+        holder.termdetail_txt.setText(resultPermissionModel.getTerm());
 
         holder.edit_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rowvalue.add(resultPermissionModel.getYear() + "|" + result.getStandard() + "|" + result.getStatus());
+                rowvalue.add(resultPermissionModel.getYear() + "|" + result.getStandard() + "|" + result.getStatus()+"|"+resultPermissionModel.getTerm());
                 listner.getEditpermission();
             }
         });
@@ -63,13 +64,14 @@ public class ResultPermissionAdapter extends RecyclerView.Adapter<ResultPermissi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView index_txt, academicyear_txt, grade_txt, resultstatus_txt;
+        TextView index_txt, academicyear_txt, grade_txt, resultstatus_txt, termdetail_txt;
         ImageView edit_img;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             index_txt = (TextView) itemView.findViewById(R.id.index_txt);
             academicyear_txt = (TextView) itemView.findViewById(R.id.academicyear_txt);
+            termdetail_txt = (TextView) itemView.findViewById(R.id.termdetail_txt);
             grade_txt = (TextView) itemView.findViewById(R.id.grade_txt);
             resultstatus_txt = (TextView) itemView.findViewById(R.id.resultstatus_txt);
             edit_img = (ImageView) itemView.findViewById(R.id.edit_img);
@@ -81,3 +83,4 @@ public class ResultPermissionAdapter extends RecyclerView.Adapter<ResultPermissi
         return rowvalue;
     }
 }
+

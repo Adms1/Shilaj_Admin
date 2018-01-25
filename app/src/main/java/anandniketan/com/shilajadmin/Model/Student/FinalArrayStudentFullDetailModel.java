@@ -11,9 +11,21 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Tag")
     @Expose
     private String tag;
+    @SerializedName("Student ID")
+    @Expose
+    private String studentId;
     @SerializedName("StudentImage")
     @Expose
     private String studentImage;
+    @SerializedName("First Name")
+    @Expose
+    private String firstName;
+    @SerializedName("Last Name")
+    @Expose
+    private String lastName;
+    @SerializedName("Standard")
+    @Expose
+    private String standard;
     @SerializedName("Name")
     @Expose
     private String name;
@@ -156,6 +168,13 @@ public class FinalArrayStudentFullDetailModel {
     @Expose
     private String zipCode;
 
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
 
     public String getTag() {
         return tag;
@@ -171,6 +190,30 @@ public class FinalArrayStudentFullDetailModel {
 
     public void setStudentImage(String studentImage) {
         this.studentImage = studentImage;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getStandard() {
+        return standard;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getName() {

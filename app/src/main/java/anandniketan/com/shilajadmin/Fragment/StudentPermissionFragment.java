@@ -63,7 +63,7 @@ public class StudentPermissionFragment extends Fragment {
     public void initViews() {
 
         Glide.with(mContext)
-                .load(AppConfiguration.BASEURL_IMAGES + "Student/" + "Permission.png")
+                .load(AppConfiguration.BASEURL_IMAGES + "Main/" + "permission_inside.png")
                 .fitCenter()
                 .into(fragmentStudentPermissionBinding.circleImageView);
         fragmentStudentPermissionBinding.studentPermissionSubmenuGridView.setAdapter(new StudentPermissionSubmenuAdapter(mContext));

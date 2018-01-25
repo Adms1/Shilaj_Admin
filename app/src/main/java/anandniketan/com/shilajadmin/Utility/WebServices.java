@@ -24,6 +24,7 @@ import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
 import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.GetStudentProfilePermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
@@ -196,5 +197,29 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetResultPermission")
     public void getResultPermission(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertResultPermission")
+    public void InsertResultPermission(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetStudentProfilePermission")
+    public void getStudentProfilePermission(@FieldMap Map<String, String> map, Callback<GetStudentProfilePermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertProfilePermission")
+    public void InsertProfilePermission(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetOnlinePaymentPermission")
+    public void getOnlinePaymentPermission(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertOnlinePaymentPermission")
+    public void InsertOnlinePaymentPermission(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetGRRegister")
+    public void getGRRegister(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
 
 }

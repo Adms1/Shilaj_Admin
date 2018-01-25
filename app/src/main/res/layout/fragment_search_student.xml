@@ -58,7 +58,7 @@
                 android:layout_height="@dimen/_17sdp"
                 android:layout_marginLeft="@dimen/_270sdp"
                 android:layout_marginRight="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_38sdp"
+                android:layout_marginTop="@dimen/_39sdp"
                 android:background="@drawable/menu" />
 
 
@@ -116,9 +116,9 @@
                             android:layout_weight="1.8"
                             android:background="@drawable/dropdown_button"
                             android:forceHasOverlappingRendering="false"
+                            android:overlapAnchor="false"
                             android:gravity="left|center_vertical"
                             android:paddingBottom="1dp"
-                            android:paddingLeft="@dimen/_5sdp"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp" />

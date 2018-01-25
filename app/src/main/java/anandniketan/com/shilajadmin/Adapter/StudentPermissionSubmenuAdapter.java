@@ -23,9 +23,9 @@ public class StudentPermissionSubmenuAdapter extends BaseAdapter {
     private Context mContext;
 
     public String[] mThumbIds = {
-            AppConfiguration.BASEURL_IMAGES + "Student/" + "Permission.png",
-            AppConfiguration.BASEURL_IMAGES + "Student/" + "Permission.png",
-            AppConfiguration.BASEURL_IMAGES + "Student/" + "Permission.png",
+            AppConfiguration.BASEURL_IMAGES + "Permission/" + "Result.png",
+            AppConfiguration.BASEURL_IMAGES + "Permission/" + "Online%20Payment.png",
+            AppConfiguration.BASEURL_IMAGES + "Permission/" + "Profile.png",
     };
 
     public String[] mThumbNames = {"Result", "Online Payment", "Profile Permission"};
@@ -61,7 +61,7 @@ public class StudentPermissionSubmenuAdapter extends BaseAdapter {
         imgGridOptions = (ImageView) convertView.findViewById(R.id.imgGridOptions);
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
         String url = mThumbIds[position];
-        Log.d("url", url);
+//        Log.d("url", url);
         Glide.with(mContext)
                 .load(url)
                 .fitCenter()

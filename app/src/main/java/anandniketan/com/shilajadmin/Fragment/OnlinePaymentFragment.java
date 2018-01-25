@@ -1,109 +1,518 @@
 package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
+import anandniketan.com.shilajadmin.Adapter.OnlinePaymentPermissionAdapter;
+import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
+import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
+import anandniketan.com.shilajadmin.Interface.getEditpermission;
+import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
+import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
+import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.Utils;
+import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBinding;
+import anandniketan.com.shilajadmin.databinding.FragmentOnlinePaymentBinding;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OnlinePaymentFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link OnlinePaymentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class OnlinePaymentFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FragmentOnlinePaymentBinding fragmentOnlinePaymentBinding;
+    private View rootView;
+    private Context mContext;
+    private Fragment fragment = null;
+    private FragmentManager fragmentManager = null;
+    //Use for fill AcademicYear spinner
+    List<FinalArrayGetTermModel> finalArrayGetTermModels;
+    HashMap<Integer, String> spinnerTermMap;
+    HashMap<Integer, String> spinnerTermDetailIdMap;
 
-    private OnFragmentInteractionListener mListener;
+    //Use for fill Standard
+    List<FinalArrayStandard> finalArrayStandardsList;
+    StandardAdapter standardAdapter;
+
+    //Use for fill List
+    List<FinalArrayResultPermissionModel> finalArrayResultPermissionList;
+    OnlinePaymentPermissionAdapter onlinePaymentPermissionAdapter;
+
+    String FinalTermIdStr, FinalGradeIsStr = "", FinalTermDetailIdStr = "",  FinalStatusStr = "1";
+
 
     public OnlinePaymentFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment OnlinePaymentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static OnlinePaymentFragment newInstance(String param1, String param2) {
-        OnlinePaymentFragment fragment = new OnlinePaymentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fragmentOnlinePaymentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_online_payment, container, false);
+
+        rootView = fragmentOnlinePaymentBinding.getRoot();
+        mContext = getActivity().getApplicationContext();
+
+        setListners();
+        callTermApi();
+        callStandardApi();
+
+        return rootView;
+    }
+
+
+    public void setListners() {
+
+
+        fragmentOnlinePaymentBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new StudentPermissionFragment();
+                fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(0, 0)
+                        .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+
+        fragmentOnlinePaymentBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String name = fragmentOnlinePaymentBinding.termSpinner.getSelectedItem().toString();
+                String getid = spinnerTermMap.get(fragmentOnlinePaymentBinding.termSpinner.getSelectedItemPosition());
+
+                Log.d("value", name + " " + getid);
+                FinalTermIdStr = getid.toString();
+                Log.d("FinalTermIdStr", FinalTermIdStr);
+                callOnlinePaymentPermission();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        fragmentOnlinePaymentBinding.termDetailSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String name = fragmentOnlinePaymentBinding.termDetailSpinner.getSelectedItem().toString();
+                String getid = spinnerTermDetailIdMap.get(fragmentOnlinePaymentBinding.termDetailSpinner.getSelectedItemPosition());
+
+                Log.d("value", name + " " + getid);
+                FinalTermDetailIdStr = getid.toString();
+                Log.d("FinalTermDetailIdStr", FinalTermDetailIdStr);
+                callOnlinePaymentPermission();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        fragmentOnlinePaymentBinding.statusGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
+                if (null != rb && checkedId > -1) {
+                    // checkedId is the RadioButton selected
+                    switch (checkedId) {
+                        case R.id.done_chk:
+                            FinalStatusStr = fragmentOnlinePaymentBinding.doneChk.getTag().toString();
+                            break;
+                        case R.id.pendding_chk:
+                            FinalStatusStr = fragmentOnlinePaymentBinding.penddingChk.getTag().toString();
+                            break;
+                    }
+                }
+            }
+        });
+        fragmentOnlinePaymentBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFinalIdStr();
+                if (!FinalGradeIsStr.equalsIgnoreCase("")) {
+                    callInsertOnlinePaymentPermission();
+                } else {
+                    Utils.ping(mContext, "Please Select Grade.");
+                }
+
+            }
+        });
+
+    }
+
+    // CALL Term API HERE
+    private void callTermApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getTerm(getTermDetail(), new retrofit.Callback<TermModel>() {
+            @Override
+            public void success(TermModel termModel, Response response) {
+                Utils.dismissDialog();
+                if (termModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (termModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (termModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    finalArrayGetTermModels = termModel.getFinalArray();
+                    if (finalArrayGetTermModels != null) {
+                        fillTermSpinner();
+                        fillTermDetailSpinner();
+
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_online_payment, container, false);
+    private Map<String, String> getTermDetail() {
+        Map<String, String> map = new HashMap<>();
+        return map;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    // CALL Standard API HERE
+    private void callStandardApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+//        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getStandardDetail(getStandardDetail(), new retrofit.Callback<GetStandardModel>() {
+            @Override
+            public void success(GetStandardModel standardModel, Response response) {
+                Utils.dismissDialog();
+                if (standardModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (standardModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (standardModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (standardModel.getSuccess().equalsIgnoreCase("True")) {
+                    finalArrayStandardsList = standardModel.getFinalArray();
+                    if (finalArrayStandardsList != null) {
+                        for (int i = 0; i < finalArrayStandardsList.size(); i++) {
+                            finalArrayStandardsList.get(i).setCheckedStatus("0");
+                        }
+                        standardAdapter = new StandardAdapter(mContext, finalArrayStandardsList);
+                        fragmentOnlinePaymentBinding.gradeGridView.setAdapter(standardAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    private Map<String, String> getStandardDetail() {
+        Map<String, String> map = new HashMap<>();
+        return map;
+    }
+
+    // CALL OnlinePaymentPermission API HERE
+    private void callOnlinePaymentPermission() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+//        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getOnlinePaymentPermission(getOnlinePaymentPermission(), new retrofit.Callback<GetResultPermissionModel>() {
+            @Override
+            public void success(GetResultPermissionModel resultPermissionModel, Response response) {
+                Utils.dismissDialog();
+                if (resultPermissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (resultPermissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (resultPermissionModel.getSuccess().equalsIgnoreCase("false")) {
+//                    Utils.ping(mContext, getString(R.string.false_msg));
+                    fragmentOnlinePaymentBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    fragmentOnlinePaymentBinding.lvHeader.setVisibility(View.GONE);
+                    fragmentOnlinePaymentBinding.recyclerLinear.setVisibility(View.GONE);
+                    return;
+                }
+                if (resultPermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                    finalArrayResultPermissionList = resultPermissionModel.getFinalArray();
+                    if (resultPermissionModel.getFinalArray().size() > 0) {
+                        fragmentOnlinePaymentBinding.txtNoRecords.setVisibility(View.GONE);
+                        fragmentOnlinePaymentBinding.lvHeader.setVisibility(View.VISIBLE);
+                        fragmentOnlinePaymentBinding.recyclerLinear.setVisibility(View.VISIBLE);
+                        onlinePaymentPermissionAdapter = new OnlinePaymentPermissionAdapter(mContext, resultPermissionModel, new getEditpermission() {
+                            @Override
+                            public void getEditpermission() {
+                                UpdatePermission();
+                            }
+                        });
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                        fragmentOnlinePaymentBinding.onlinePermissionList.setLayoutManager(mLayoutManager);
+                        fragmentOnlinePaymentBinding.onlinePermissionList.setItemAnimator(new DefaultItemAnimator());
+                        fragmentOnlinePaymentBinding.onlinePermissionList.setAdapter(onlinePaymentPermissionAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private Map<String, String> getOnlinePaymentPermission() {
+        Map<String, String> map = new HashMap<>();
+        map.put("TermId", FinalTermIdStr);
+        map.put("TermDetailId", FinalTermDetailIdStr);
+        return map;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    // CALL InsertOnlinePaymentPermission
+    public void callInsertOnlinePaymentPermission() {
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().InsertOnlinePaymentPermission(getInsertOnlinePaymentPermission(), new retrofit.Callback<InsertMenuPermissionModel>() {
+            @Override
+            public void success(InsertMenuPermissionModel permissionModel, Response response) {
+                Utils.dismissDialog();
+                if (permissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
+//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    callOnlinePaymentPermission();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getInsertOnlinePaymentPermission() {
+        Map<String, String> map = new HashMap<>();
+        map.put("TermID", FinalTermIdStr);
+        map.put("TermDetailID", FinalTermDetailIdStr);
+        map.put("GradeID", FinalGradeIsStr);
+        map.put("Status", FinalStatusStr);
+        return map;
+    }
+
+    public void fillTermSpinner() {
+        ArrayList<Integer> TermId = new ArrayList<Integer>();
+        for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
+            TermId.add(finalArrayGetTermModels.get(i).getTermId());
+        }
+        ArrayList<String> Term = new ArrayList<String>();
+        for (int j = 0; j < finalArrayGetTermModels.size(); j++) {
+            Term.add(finalArrayGetTermModels.get(j).getTerm());
+        }
+
+        String[] spinnertermIdArray = new String[TermId.size()];
+
+        spinnerTermMap = new HashMap<Integer, String>();
+        for (int i = 0; i < TermId.size(); i++) {
+            spinnerTermMap.put(i, String.valueOf(TermId.get(i)));
+            spinnertermIdArray[i] = Term.get(i).trim();
+        }
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentOnlinePaymentBinding.termSpinner);
+
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
+        fragmentOnlinePaymentBinding.termSpinner.setAdapter(adapterTerm);
+
+        FinalTermIdStr = spinnerTermMap.get(0);
+    }
+
+    public void fillTermDetailSpinner() {
+        ArrayList<Integer> termdetailId = new ArrayList<>();
+        termdetailId.add(1);
+        termdetailId.add(2);
+
+
+        ArrayList<String> termdetail = new ArrayList<>();
+        termdetail.add("Term 1");
+        termdetail.add("Term 2");
+
+
+        String[] spinnertermdetailIdArray = new String[termdetailId.size()];
+
+        spinnerTermDetailIdMap = new HashMap<Integer, String>();
+        for (int i = 0; i < termdetailId.size(); i++) {
+            spinnerTermDetailIdMap.put(i, String.valueOf(termdetailId.get(i)));
+            spinnertermdetailIdArray[i] = termdetail.get(i).trim();
+        }
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentOnlinePaymentBinding.termDetailSpinner);
+
+            popupWindow.setHeight(spinnertermdetailIdArray.length > 4 ? 500 : spinnertermdetailIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
+        fragmentOnlinePaymentBinding.termDetailSpinner.setAdapter(adapterTerm);
+
+        FinalTermDetailIdStr = spinnerTermDetailIdMap.get(0);
+    }
+
+    // Use for get the AllFinalValue for InsertPermission
+    public void getFinalIdStr() {
+        ArrayList<String> gradeArray = new ArrayList<String>();
+        List<FinalArrayStandard> standardArray = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray.size(); i++) {
+            if (standardArray.get(i).getCheckedStatus().equalsIgnoreCase("1")) {
+                gradeArray.add(standardArray.get(i).getStandardID().toString());
+            }
+        }
+        FinalGradeIsStr = String.valueOf(gradeArray);
+        FinalGradeIsStr = FinalGradeIsStr.substring(1, FinalGradeIsStr.length() - 1);
+        Log.d("FinalGradeIsStr", FinalGradeIsStr);
+    }
+
+    // Use For UpdatePermission
+    public void UpdatePermission() {
+        fragmentOnlinePaymentBinding.searchBtn.setText("Update");
+        ArrayList<String> academicYearArray = new ArrayList<String>();
+        String statusArray = "", gradeArray = "";
+
+        for (int k = 0; k < onlinePaymentPermissionAdapter.getRowValue().size(); k++) {
+            String rowValueStr = onlinePaymentPermissionAdapter.getRowValue().get(k);
+            Log.d("rowValueStr", rowValueStr);
+            String[] spiltString = rowValueStr.split("\\|");
+            academicYearArray.add(spiltString[0]);
+            gradeArray = spiltString[1];
+            statusArray = spiltString[2];
+//            statusArray = statusArray.substring(0, statusArray.length() - 1);
+
+            Log.d("statusArray", statusArray);
+        }
+        if (statusArray.equalsIgnoreCase(fragmentOnlinePaymentBinding.doneChk.getText().toString())) {
+            fragmentOnlinePaymentBinding.doneChk.setChecked(true);
+        } else if (statusArray.equalsIgnoreCase(fragmentOnlinePaymentBinding.penddingChk.getText().toString())) {
+            fragmentOnlinePaymentBinding.penddingChk.setChecked(true);
+
+        }
+        List<FinalArrayStandard> standardArray = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray.size(); i++) {
+            if (gradeArray.equalsIgnoreCase(standardArray.get(i).getStandard())) {
+                standardArray.get(i).setCheckedStatus("1");
+                standardAdapter.notifyDataSetChanged();
+            }
+        }
+
     }
 }
+

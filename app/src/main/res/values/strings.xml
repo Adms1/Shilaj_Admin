@@ -119,6 +119,8 @@
     <string name="menupermission">MENU PERMISSION</string>
     <string name="employeesms">EMPLOYEE SMS</string>
     <string name="bulksms">BULK SMS</string>
+    <string name="grregister">GR REGISTER</string>
+    <string name="profilepermission">PROFILE PERMISSION</string>
     <string name="studentabsent">STUDENT ABSENT</string>
     <string name="term1">Term 1</string>
     <string name="term2">Term 2</string>
@@ -142,6 +144,7 @@
     <string name="imprestdeduct">Imprest Deduct</string>
     <string name="remainimprest">Remain Imprest</string>
     <string name="dailyfeescollection">DAILY FEES COLLECTION</string>
+    <string name="onlinepayment">ONLINE PAYMENT</string>
     <string name="termdetail">Term Detail</string>
     <string name="date">Date</string>
     <string name="paymentmode">Payment Mode</string>
@@ -174,6 +177,7 @@
     <string name="exam">EXAMS</string>
     <string name="academicyear">Academic Year</string>
     <string name="edit">Edit</string>
+    <string name="studentstatus">Student Status</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

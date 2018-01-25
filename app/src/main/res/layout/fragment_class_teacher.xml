@@ -114,9 +114,9 @@
                             android:layout_weight="1.8"
                             android:background="@drawable/dropdown_button"
                             android:forceHasOverlappingRendering="false"
+                            android:overlapAnchor="false"
                             android:gravity="center|center_vertical"
                             android:paddingBottom="1dp"
-                            android:paddingLeft="@dimen/_5sdp"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp" />
@@ -167,9 +167,9 @@
                             android:layout_weight="1.8"
                             android:background="@drawable/dropdown_button"
                             android:forceHasOverlappingRendering="false"
+                            android:overlapAnchor="false"
                             android:gravity="center|center_vertical"
                             android:paddingBottom="1dp"
-                            android:paddingLeft="@dimen/_5sdp"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp" />

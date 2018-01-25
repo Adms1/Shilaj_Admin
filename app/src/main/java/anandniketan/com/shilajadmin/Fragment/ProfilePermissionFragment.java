@@ -1,109 +1,437 @@
 package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
+import anandniketan.com.shilajadmin.Adapter.ProfilePermissionAdapter;
+import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
+import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
+import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
+import anandniketan.com.shilajadmin.Model.Student.GetStudentProfilePermissionModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
+import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.Utils;
+import anandniketan.com.shilajadmin.databinding.FragmentBullkSmsBinding;
+import anandniketan.com.shilajadmin.databinding.FragmentProfilePermissionBinding;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProfilePermissionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ProfilePermissionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfilePermissionFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FragmentProfilePermissionBinding fragmentProfilePermissionBinding;
+    private View rootView;
+    private Context mContext;
+    private Fragment fragment = null;
+    private FragmentManager fragmentManager = null;
+    //Use for standard-section spinner
+    List<FinalArrayStandard> finalArrayStandardsList;
+    HashMap<Integer, String> spinnerStandardMap;
+    HashMap<Integer, String> spinnerSectionMap;
 
-    private OnFragmentInteractionListener mListener;
+    //Use for fill ProfilePermission List
+    ProfilePermissionAdapter profilePermissionAdapter;
+    String FinalStandardIdStr, FinalSectionIdStr, StandardName, FinalStandardStr, FinalSectionStr, FinalStatusStr = "1";
+
 
     public ProfilePermissionFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfilePermissionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfilePermissionFragment newInstance(String param1, String param2) {
-        ProfilePermissionFragment fragment = new ProfilePermissionFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        fragmentProfilePermissionBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile_permission, container, false);
+
+        rootView = fragmentProfilePermissionBinding.getRoot();
+        mContext = getActivity().getApplicationContext();
+
+        setListners();
+        callStandardApi();
+        callProfilePermissionApi();
+        return rootView;
+    }
+
+
+    public void setListners() {
+        fragmentProfilePermissionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment = new StudentPermissionFragment();
+                fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(0, 0)
+                        .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+
+        fragmentProfilePermissionBinding.gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String name = fragmentProfilePermissionBinding.gradeSpinner.getSelectedItem().toString();
+                String getid = spinnerStandardMap.get(fragmentProfilePermissionBinding.gradeSpinner.getSelectedItemPosition());
+
+                Log.d("value", name + " " + getid);
+                FinalStandardIdStr = getid.toString();
+                Log.d("FinalStandardIdStr", FinalStandardIdStr);
+                StandardName = name;
+                FinalStandardStr = name;
+                Log.d("StandardName", StandardName);
+                fillSection();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        fragmentProfilePermissionBinding.sectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedsectionstr = fragmentProfilePermissionBinding.sectionSpinner.getSelectedItem().toString();
+                String getid = spinnerSectionMap.get(fragmentProfilePermissionBinding.sectionSpinner.getSelectedItemPosition());
+
+                Log.d("value", selectedsectionstr + " " + getid);
+                FinalSectionIdStr = getid.toString();
+                FinalSectionStr = selectedsectionstr;
+                Log.d("FinalSectionIdStr", FinalSectionIdStr);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        fragmentProfilePermissionBinding.statusGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                RadioButton rb = (RadioButton) radioGroup.findViewById(checkedId);
+                if (null != rb && checkedId > -1) {
+                    // checkedId is the RadioButton selected
+                    switch (checkedId) {
+                        case R.id.done_chk:
+                            FinalStatusStr = fragmentProfilePermissionBinding.doneChk.getTag().toString();
+                            break;
+                        case R.id.pendding_chk:
+                            FinalStatusStr = fragmentProfilePermissionBinding.penddingChk.getTag().toString();
+                            break;
+                    }
+                }
+            }
+        });
+
+        fragmentProfilePermissionBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!FinalSectionStr.equalsIgnoreCase("All") && !FinalStandardStr.equalsIgnoreCase("All")) {
+                    callInsertProfilePermission();
+                } else {
+                    Utils.ping(mContext, "Please Select All Filed");
+                }
+            }
+        });
+    }
+
+    // CALL Standard API HERE
+    private void callStandardApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+//        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getStandardDetail(getStandardDetail(), new retrofit.Callback<GetStandardModel>() {
+            @Override
+            public void success(GetStandardModel standardModel, Response response) {
+                Utils.dismissDialog();
+                if (standardModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (standardModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (standardModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (standardModel.getSuccess().equalsIgnoreCase("True")) {
+                    finalArrayStandardsList = standardModel.getFinalArray();
+                    if (finalArrayStandardsList != null) {
+                        fillGradeSpinner();
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_permission, container, false);
+    private Map<String, String> getStandardDetail() {
+        Map<String, String> map = new HashMap<>();
+        return map;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    // CALL ProfilePermission API HERE
+    private void callProfilePermissionApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getStudentProfilePermission(getProfilePermissionDetail(), new retrofit.Callback<GetStudentProfilePermissionModel>() {
+            @Override
+            public void success(GetStudentProfilePermissionModel profilePermissionModel, Response response) {
+                Utils.dismissDialog();
+                if (profilePermissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (profilePermissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (profilePermissionModel.getSuccess().equalsIgnoreCase("false")) {
+//                    Utils.ping(mContext, getString(R.string.false_msg));
+                    fragmentProfilePermissionBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    fragmentProfilePermissionBinding.lvHeader.setVisibility(View.GONE);
+                    fragmentProfilePermissionBinding.recyclerLinear.setVisibility(View.GONE);
+                    return;
+                }
+                if (profilePermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                    if (profilePermissionModel.getFinalArray().size() > 0) {
+                        fragmentProfilePermissionBinding.txtNoRecords.setVisibility(View.GONE);
+                        fragmentProfilePermissionBinding.lvHeader.setVisibility(View.VISIBLE);
+                        fragmentProfilePermissionBinding.recyclerLinear.setVisibility(View.VISIBLE);
+                        profilePermissionAdapter = new ProfilePermissionAdapter(mContext, profilePermissionModel);
+                        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                        fragmentProfilePermissionBinding.profileList.setLayoutManager(mLayoutManager);
+                        fragmentProfilePermissionBinding.profileList.setItemAnimator(new DefaultItemAnimator());
+                        fragmentProfilePermissionBinding.profileList.setAdapter(profilePermissionAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    private Map<String, String> getProfilePermissionDetail() {
+        Map<String, String> map = new HashMap<>();
+        return map;
+    }
+
+
+    // CALL InsertProfilePermission
+    public void callInsertProfilePermission() {
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
         }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().InsertProfilePermission(getInsertProfilePermission(), new retrofit.Callback<InsertMenuPermissionModel>() {
+            @Override
+            public void success(InsertMenuPermissionModel permissionModel, Response response) {
+                Utils.dismissDialog();
+                if (permissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    return;
+                }
+                if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
+//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    callProfilePermissionApi();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private Map<String, String> getInsertProfilePermission() {
+        Map<String, String> map = new HashMap<>();
+        map.put("GradeID", FinalStandardIdStr);
+        map.put("SectionID", FinalSectionIdStr);
+        map.put("Status", FinalStatusStr);
+        return map;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
+    //use for fill Standard spinner
+    public void fillGradeSpinner() {
+        ArrayList<String> firstValue = new ArrayList<>();
+        firstValue.add("All");
+
+        ArrayList<String> standardname = new ArrayList<>();
+        for (int z = 0; z < firstValue.size(); z++) {
+            standardname.add(firstValue.get(z));
+            for (int i = 0; i < finalArrayStandardsList.size(); i++) {
+                standardname.add(finalArrayStandardsList.get(i).getStandard());
+            }
+        }
+        ArrayList<Integer> firstValueId = new ArrayList<>();
+        firstValueId.add(0);
+        ArrayList<Integer> standardId = new ArrayList<>();
+        for (int m = 0; m < firstValueId.size(); m++) {
+            standardId.add(firstValueId.get(m));
+            for (int j = 0; j < finalArrayStandardsList.size(); j++) {
+                standardId.add(finalArrayStandardsList.get(j).getStandardID());
+            }
+        }
+        String[] spinnerstandardIdArray = new String[standardId.size()];
+
+        spinnerStandardMap = new HashMap<Integer, String>();
+        for (int i = 0; i < standardId.size(); i++) {
+            spinnerStandardMap.put(i, String.valueOf(standardId.get(i)));
+            spinnerstandardIdArray[i] = standardname.get(i).trim();
+        }
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentProfilePermissionBinding.gradeSpinner);
+
+            popupWindow.setHeight(spinnerstandardIdArray.length > 4 ? 500 : spinnerstandardIdArray.length * 100);
+//            popupWindow1.setHeght(200);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+
+        ArrayAdapter<String> adapterstandard = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
+        fragmentProfilePermissionBinding.gradeSpinner.setAdapter(adapterstandard);
+
+        FinalStandardIdStr = spinnerStandardMap.get(0);
     }
+
+    //use for fill Section spinner
+    public void fillSection() {
+        ArrayList<String> sectionname = new ArrayList<>();
+        ArrayList<Integer> sectionId = new ArrayList<>();
+        ArrayList<String> firstSectionValue = new ArrayList<String>();
+        firstSectionValue.add("All");
+        ArrayList<Integer> firstSectionId = new ArrayList<>();
+        firstSectionId.add(0);
+
+        if (StandardName.equalsIgnoreCase("All")) {
+            for (int j = 0; j < firstSectionValue.size(); j++) {
+                sectionname.add(firstSectionValue.get(j));
+            }
+            for (int i = 0; i < firstSectionId.size(); i++) {
+                sectionId.add(firstSectionId.get(i));
+            }
+
+        }
+        for (int z = 0; z < finalArrayStandardsList.size(); z++) {
+            if (StandardName.equalsIgnoreCase(finalArrayStandardsList.get(z).getStandard())) {
+                for (int j = 0; j < firstSectionValue.size(); j++) {
+                    sectionname.add(firstSectionValue.get(j));
+                    for (int i = 0; i < finalArrayStandardsList.get(z).getSectionDetail().size(); i++) {
+                        sectionname.add(finalArrayStandardsList.get(z).getSectionDetail().get(i).getSection());
+                    }
+                }
+                for (int j = 0; j < firstSectionId.size(); j++) {
+                    sectionId.add(firstSectionId.get(j));
+                    for (int m = 0; m < finalArrayStandardsList.get(z).getSectionDetail().size(); m++) {
+                        sectionId.add(finalArrayStandardsList.get(z).getSectionDetail().get(m).getSectionID());
+                    }
+                }
+            }
+        }
+
+        String[] spinnersectionIdArray = new String[sectionId.size()];
+
+        spinnerSectionMap = new HashMap<Integer, String>();
+        for (int i = 0; i < sectionId.size(); i++) {
+            spinnerSectionMap.put(i, String.valueOf(sectionId.get(i)));
+            spinnersectionIdArray[i] = sectionname.get(i).trim();
+        }
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentProfilePermissionBinding.sectionSpinner);
+
+            popupWindow.setHeight(spinnersectionIdArray.length > 4 ? 500 : spinnersectionIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+        ArrayAdapter<String> adapterstandard = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnersectionIdArray);
+        fragmentProfilePermissionBinding.sectionSpinner.setAdapter(adapterstandard);
+    }
+
+
 }
+

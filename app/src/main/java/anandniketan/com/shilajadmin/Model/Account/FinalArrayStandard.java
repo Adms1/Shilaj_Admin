@@ -20,6 +20,10 @@ public class FinalArrayStandard {
     @SerializedName("SectionDetail")
     @Expose
     private List<SectionDetailModel> sectionDetail = new ArrayList<SectionDetailModel>();
+    @SerializedName("CheckedStatus")
+    @Expose
+    private String checkedStatus;
+
 
     public String getStandard() {
         return standard;
@@ -45,4 +49,11 @@ public class FinalArrayStandard {
         this.sectionDetail = sectionDetail;
     }
 
+    public String getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(String checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
 }
