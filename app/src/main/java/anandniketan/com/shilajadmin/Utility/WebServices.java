@@ -222,4 +222,8 @@ public interface WebServices {
     @POST("/GetGRRegister")
     public void getGRRegister(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
 
+    @FormUrlEncoded
+    @POST("/GetLeftDetainStudent")
+    public void getLeftDetainStudent(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+
 }

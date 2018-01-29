@@ -2,6 +2,7 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,8 @@ public class GRRegisterAdapter extends RecyclerView.Adapter<GRRegisterAdapter.My
         holder.view_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppConfiguration.StudentId = filter.getStudentId().toString();
+                AppConfiguration.CheckStudentId = filter.getStudentId().toString();
+                Log.d("CheckStudentId",AppConfiguration.CheckStudentId);
                 onViewClick.getViewClick();
             }
         });

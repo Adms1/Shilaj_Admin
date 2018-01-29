@@ -1,5 +1,9 @@
 package anandniketan.com.shilajadmin.Utility;
 
+import java.util.ArrayList;
+
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
+
 /**
  * Created by admsandroid on 11/20/2017.
  */
@@ -24,4 +28,11 @@ public class AppConfiguration {
     public static String TermDetailName;
     public static String ReverseTermDetailId = "";
     public static String StudentStatus;
+
+    public static String FinalTermIdStr="";
+    public static String FinalStandardIdStr="";
+    public static String FinalClassIdStr="";
+    public static String FinalStatusStr="";
+    public static String CheckStudentId="";
+
 }

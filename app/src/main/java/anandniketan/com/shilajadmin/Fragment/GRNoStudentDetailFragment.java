@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterGRstudentdetail;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentFullDetail;
+import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
+import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
 import anandniketan.com.shilajadmin.R;
@@ -40,10 +46,10 @@ public class GRNoStudentDetailFragment extends Fragment {
     private FragmentManager fragmentManager = null;
     List<FinalArrayStudentFullDetailModel> studentFullDetailArray;
     List<String> listDataHeader;
-
+    String flag;
     HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>> listDataChild;
 
-    ExpandableListAdapterStudentFullDetail listAdapterStudentFullDetail;
+    ExpandableListAdapterGRstudentdetail listAdapterGRstudentdetail;
 
     private int lastExpandedPosition = -1;
 
@@ -58,6 +64,7 @@ public class GRNoStudentDetailFragment extends Fragment {
         rootView = fragmentGrnoStudentDetailBinding.getRoot();
         mContext = getActivity().getApplicationContext();
 
+        flag = getArguments().getString("flag");
         initViews();
         setListners();
         callStaffApi();
@@ -72,11 +79,19 @@ public class GRNoStudentDetailFragment extends Fragment {
         fragmentGrnoStudentDetailBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment = new SearchStudentFragment();
-                fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
-                        .replace(R.id.frame_container, fragment).commit();
+                if (flag.equalsIgnoreCase("1")) {
+                    fragment = new LeftDetailFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                } else {
+                    fragment = new GRRegisterFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
             }
         });
         fragmentGrnoStudentDetailBinding.lvExpStudentDetail.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
@@ -105,8 +120,8 @@ public class GRNoStudentDetailFragment extends Fragment {
             return;
         }
 
-//        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentFullDetail(getStudentFullDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
 
             @Override
             public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
@@ -121,36 +136,48 @@ public class GRNoStudentDetailFragment extends Fragment {
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
+                    if (studentFullDetailModel.getFinalArray().size() == 0) {
+                        fragmentGrnoStudentDetailBinding.lvExpStudentDetail.setVisibility(View.GONE);
+                        fragmentGrnoStudentDetailBinding.recyclerLinear.setVisibility(View.GONE);
+                        fragmentGrnoStudentDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    }
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {
-                    studentFullDetailArray = studentFullDetailModel.getFinalArray();
-                    if (studentFullDetailArray != null) {
-                        ArrayList<String> arraystu = new ArrayList<String>();
-                        arraystu.add("Student Details");
-                        arraystu.add("Transport Details");
-                        arraystu.add("Father Details");
-                        arraystu.add("Mother Details");
-                        arraystu.add("Communication Details");
-                        Log.d("array", "" + arraystu);
+                    if (studentFullDetailModel.getFinalArray().size() > 0) {
+                        studentFullDetailArray = studentFullDetailModel.getFinalArray();
+                        if (studentFullDetailArray != null) {
+                            ArrayList<String> arraystu = new ArrayList<String>();
+                            arraystu.add("Student Details");
+                            arraystu.add("Transport Details");
+                            arraystu.add("Father Details");
+                            arraystu.add("Mother Details");
+                            arraystu.add("Communication Details");
+                            Log.d("array", "" + arraystu);
 
-                        listDataHeader = new ArrayList<>();
-                        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
+                            listDataHeader = new ArrayList<>();
+                            listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
 
-                        for (int i = 0; i < arraystu.size(); i++) {
-                            Log.d("arraystu", "" + arraystu);
-                            listDataHeader.add(arraystu.get(i));
-                            Log.d("header", "" + listDataHeader);
-                            ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
-                            for (int j = 0; j < studentFullDetailArray.size(); j++) {
-                                row.add(studentFullDetailArray.get(j));
+                            for (int i = 0; i < arraystu.size(); i++) {
+                                Log.d("arraystu", "" + arraystu);
+                                listDataHeader.add(arraystu.get(i));
+                                Log.d("header", "" + listDataHeader);
+                                ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
+                                for (int j = 0; j < studentFullDetailArray.size(); j++) {
+                                    if (studentFullDetailArray.get(j).getStudentId().equalsIgnoreCase(AppConfiguration.CheckStudentId)) {
+                                        row.add(studentFullDetailArray.get(j));
+                                    }
+                                }
+                                Log.d("row", "" + row);
+                                listDataChild.put(listDataHeader.get(i), row);
+                                Log.d("child", "" + listDataChild);
                             }
-                            Log.d("row", "" + row);
-                            listDataChild.put(listDataHeader.get(i), row);
-                            Log.d("child", "" + listDataChild);
+                            listAdapterGRstudentdetail = new ExpandableListAdapterGRstudentdetail(getActivity(), listDataHeader, listDataChild);
+                            fragmentGrnoStudentDetailBinding.lvExpStudentDetail.setAdapter(listAdapterGRstudentdetail);
+                            Utils.dismissDialog();
                         }
-                        listAdapterStudentFullDetail = new ExpandableListAdapterStudentFullDetail(getActivity(), listDataHeader, listDataChild);
-                        fragmentGrnoStudentDetailBinding.lvExpStudentDetail.setAdapter(listAdapterStudentFullDetail);
+                    } else {
+                        fragmentGrnoStudentDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -167,9 +194,12 @@ public class GRNoStudentDetailFragment extends Fragment {
 
     }
 
-    private Map<String, String> getStudentFullDetail() {
+    private Map<String, String> getGRRegisterDetail() {
         Map<String, String> map = new HashMap<>();
-        map.put("StudentID", AppConfiguration.StudentId);
+        map.put("Year", AppConfiguration.FinalTermIdStr);
+        map.put("Grade", AppConfiguration.FinalStandardIdStr);
+        map.put("Section", AppConfiguration.FinalClassIdStr);
+        map.put("Status", AppConfiguration.FinalStatusStr);
         return map;
     }
 }

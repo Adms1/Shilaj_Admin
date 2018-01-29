@@ -7,24 +7,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,33 +24,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
-import anandniketan.com.shilajadmin.Adapter.StudentFilteredDataAdapter;
-import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
-import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentBullkSmsBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentGrregisterBinding;
+import anandniketan.com.shilajadmin.databinding.FragmentLeftDetailBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class GRRegisterFragment extends Fragment {
+public class LeftDetailFragment extends Fragment {
 
-    private FragmentGrregisterBinding fragmentGrregisterBinding;
+    private FragmentLeftDetailBinding fragmentLeftDetailBinding;
     private View rootView;
     private Context mContext;
     private Fragment fragment = null;
@@ -72,15 +56,15 @@ public class GRRegisterFragment extends Fragment {
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalStatusStr, FinalStatusIdStr;
     GRRegisterAdapter grRegisterAdapter;
 
-    public GRRegisterFragment() {
+    public LeftDetailFragment() {
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        fragmentGrregisterBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_grregister, container, false);
+        fragmentLeftDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_left_detail, container, false);
 
-        rootView = fragmentGrregisterBinding.getRoot();
+        rootView = fragmentLeftDetailBinding.getRoot();
         mContext = getActivity().getApplicationContext();
 
         setListners();
@@ -92,7 +76,7 @@ public class GRRegisterFragment extends Fragment {
 
 
     public void setListners() {
-        fragmentGrregisterBinding.btnBack.setOnClickListener(new View.OnClickListener() {
+        fragmentLeftDetailBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fragment = new StudentFragment();
@@ -103,11 +87,11 @@ public class GRRegisterFragment extends Fragment {
             }
         });
 
-        fragmentGrregisterBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragmentLeftDetailBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String name = fragmentGrregisterBinding.termSpinner.getSelectedItem().toString();
-                String getid = spinnerTermMap.get(fragmentGrregisterBinding.termSpinner.getSelectedItemPosition());
+                String name = fragmentLeftDetailBinding.termSpinner.getSelectedItem().toString();
+                String getid = spinnerTermMap.get(fragmentLeftDetailBinding.termSpinner.getSelectedItemPosition());
 
                 Log.d("value", name + " " + getid);
                 FinalTermIdStr = getid.toString();
@@ -121,11 +105,11 @@ public class GRRegisterFragment extends Fragment {
             }
         });
 
-        fragmentGrregisterBinding.gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragmentLeftDetailBinding.gradeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String name = fragmentGrregisterBinding.gradeSpinner.getSelectedItem().toString();
-                String getid = spinnerStandardMap.get(fragmentGrregisterBinding.gradeSpinner.getSelectedItemPosition());
+                String name = fragmentLeftDetailBinding.gradeSpinner.getSelectedItem().toString();
+                String getid = spinnerStandardMap.get(fragmentLeftDetailBinding.gradeSpinner.getSelectedItemPosition());
 
                 Log.d("value", name + " " + getid);
                 FinalStandardIdStr = getid.toString();
@@ -142,11 +126,11 @@ public class GRRegisterFragment extends Fragment {
             }
         });
 
-        fragmentGrregisterBinding.sectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragmentLeftDetailBinding.sectionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedsectionstr = fragmentGrregisterBinding.sectionSpinner.getSelectedItem().toString();
-                String getid = spinnerSectionMap.get(fragmentGrregisterBinding.sectionSpinner.getSelectedItemPosition());
+                String selectedsectionstr = fragmentLeftDetailBinding.sectionSpinner.getSelectedItem().toString();
+                String getid = spinnerSectionMap.get(fragmentLeftDetailBinding.sectionSpinner.getSelectedItemPosition());
 
                 Log.d("value", selectedsectionstr + " " + getid);
                 FinalClassIdStr = getid.toString();
@@ -159,11 +143,11 @@ public class GRRegisterFragment extends Fragment {
 
             }
         });
-        fragmentGrregisterBinding.statusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragmentLeftDetailBinding.statusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedstatusstr = fragmentGrregisterBinding.statusSpinner.getSelectedItem().toString();
-                String getid = spinnerStatusMap.get(fragmentGrregisterBinding.statusSpinner.getSelectedItemPosition());
+                String selectedstatusstr = fragmentLeftDetailBinding.statusSpinner.getSelectedItem().toString();
+                String getid = spinnerStatusMap.get(fragmentLeftDetailBinding.statusSpinner.getSelectedItemPosition());
                 Log.d("value", selectedstatusstr + "" + getid);
                 FinalStatusStr = selectedstatusstr;
                 FinalStatusIdStr = getid;
@@ -177,10 +161,10 @@ public class GRRegisterFragment extends Fragment {
             }
         });
 
-        fragmentGrregisterBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
+        fragmentLeftDetailBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callGRRegisterApi();
+                callLeftDetailApi();
             }
         });
     }
@@ -285,16 +269,16 @@ public class GRRegisterFragment extends Fragment {
     }
 
     // CALL GRRegisterData API HERE
-    private void callGRRegisterApi() {
+    private void callLeftDetailApi() {
         if (!Utils.checkNetwork(mContext)) {
             Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
             return;
         }
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        ApiHandler.getApiService().getLeftDetainStudent(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
             @Override
             public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
-//                Utils.dismissDialog();
+                Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
@@ -307,25 +291,25 @@ public class GRRegisterFragment extends Fragment {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
                     if (studentFullDetailModel.getFinalArray().size() == 0) {
-                        fragmentGrregisterBinding.studentGrregisterList.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.recyclerLinear.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.listHeader.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                        fragmentLeftDetailBinding.studentLeftdetailList.setVisibility(View.GONE);
+                        fragmentLeftDetailBinding.recyclerLinear.setVisibility(View.GONE);
+                        fragmentLeftDetailBinding.listHeader.setVisibility(View.GONE);
+                        fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     }
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {
                     if (studentFullDetailModel.getFinalArray().size() > 0) {
-                        fragmentGrregisterBinding.txtNoRecords.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.studentGrregisterList.setVisibility(View.VISIBLE);
-                        fragmentGrregisterBinding.recyclerLinear.setVisibility(View.VISIBLE);
-                        fragmentGrregisterBinding.listHeader.setVisibility(View.VISIBLE);
+                        fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.GONE);
+                        fragmentLeftDetailBinding.studentLeftdetailList.setVisibility(View.VISIBLE);
+                        fragmentLeftDetailBinding.recyclerLinear.setVisibility(View.VISIBLE);
+                        fragmentLeftDetailBinding.listHeader.setVisibility(View.VISIBLE);
                         grRegisterAdapter = new GRRegisterAdapter(mContext, studentFullDetailModel, new onViewClick() {
                             @Override
                             public void getViewClick() {
                                 fragment = new GRNoStudentDetailFragment();
                                 Bundle args=new Bundle();
-                                args.putString("flag","0");
+                                args.putString("flag","1");
                                 fragment.setArguments(args);
                                 fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction()
@@ -334,12 +318,12 @@ public class GRRegisterFragment extends Fragment {
                             }
                         });
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                        fragmentGrregisterBinding.studentGrregisterList.setLayoutManager(mLayoutManager);
-                        fragmentGrregisterBinding.studentGrregisterList.setItemAnimator(new DefaultItemAnimator());
-                        fragmentGrregisterBinding.studentGrregisterList.setAdapter(grRegisterAdapter);
+                        fragmentLeftDetailBinding.studentLeftdetailList.setLayoutManager(mLayoutManager);
+                        fragmentLeftDetailBinding.studentLeftdetailList.setItemAnimator(new DefaultItemAnimator());
+                        fragmentLeftDetailBinding.studentLeftdetailList.setAdapter(grRegisterAdapter);
                         Utils.dismissDialog();
                     } else {
-                        fragmentGrregisterBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                        fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -371,7 +355,6 @@ public class GRRegisterFragment extends Fragment {
     }
 
     public void fillTermSpinner() {
-
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
             TermId.add(finalArrayGetTermModels.get(i).getTermId());
@@ -388,15 +371,12 @@ public class GRRegisterFragment extends Fragment {
             spinnerTermMap.put(i, String.valueOf(TermId.get(i)));
             spinnertermIdArray[i] = Term.get(i).trim();
         }
-
-
-
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentGrregisterBinding.termSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentLeftDetailBinding.termSpinner);
 
             popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
@@ -404,7 +384,7 @@ public class GRRegisterFragment extends Fragment {
         }
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
-        fragmentGrregisterBinding.termSpinner.setAdapter(adapterTerm);
+        fragmentLeftDetailBinding.termSpinner.setAdapter(adapterTerm);
         FinalTermIdStr = spinnerTermMap.get(0);
     }
 
@@ -441,7 +421,7 @@ public class GRRegisterFragment extends Fragment {
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentGrregisterBinding.gradeSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentLeftDetailBinding.gradeSpinner);
 
             popupWindow.setHeight(spinnerstandardIdArray.length > 4 ? 500 : spinnerstandardIdArray.length * 100);
 //            popupWindow1.setHeght(200);
@@ -451,7 +431,7 @@ public class GRRegisterFragment extends Fragment {
 
 
         ArrayAdapter<String> adapterstandard = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
-        fragmentGrregisterBinding.gradeSpinner.setAdapter(adapterstandard);
+        fragmentLeftDetailBinding.gradeSpinner.setAdapter(adapterstandard);
 
         FinalStandardIdStr = spinnerStandardMap.get(0);
     }
@@ -502,17 +482,17 @@ public class GRRegisterFragment extends Fragment {
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentGrregisterBinding.sectionSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentLeftDetailBinding.sectionSpinner);
 
             popupWindow.setHeight(spinnersectionIdArray.length > 4 ? 500 : spinnersectionIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
         ArrayAdapter<String> adapterstandard = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnersectionIdArray);
-        fragmentGrregisterBinding.sectionSpinner.setAdapter(adapterstandard);
+        fragmentLeftDetailBinding.sectionSpinner.setAdapter(adapterstandard);
 
         FinalClassIdStr = spinnerSectionMap.get(0);
-        callGRRegisterApi();
+        callLeftDetailApi();
     }
 
     public void fillStatus() {
@@ -526,9 +506,9 @@ public class GRRegisterFragment extends Fragment {
 
         ArrayList<String> statusdetail = new ArrayList<>();
 //        statusdetail.add("--Select--");
-        statusdetail.add("Current Student");
         statusdetail.add("Left School");
-        statusdetail.add("PassOut");
+        statusdetail.add("Detain");
+        statusdetail.add("Pass Out");
 
 
         String[] spinnerstatusdetailIdArray = new String[statusdetailId.size()];
@@ -543,7 +523,7 @@ public class GRRegisterFragment extends Fragment {
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentGrregisterBinding.statusSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentLeftDetailBinding.statusSpinner);
 
             popupWindow.setHeight(spinnerstatusdetailIdArray.length > 4 ? 500 : spinnerstatusdetailIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
@@ -551,7 +531,7 @@ public class GRRegisterFragment extends Fragment {
         }
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstatusdetailIdArray);
-        fragmentGrregisterBinding.statusSpinner.setAdapter(adapterTerm);
+        fragmentLeftDetailBinding.statusSpinner.setAdapter(adapterTerm);
 
         FinalStatusStr = spinnerStatusMap.get(0);
     }

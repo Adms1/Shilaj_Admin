@@ -61,11 +61,11 @@
                 android:layout_marginTop="@dimen/_39sdp"
                 android:background="@drawable/menu" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/header"
-                android:scrollbars="none">
+            <!--<ScrollView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_below="@+id/header"-->
+                <!--android:scrollbars="none">-->
 
                 <LinearLayout
                     android:id="@+id/mainstudent_linear"
@@ -346,7 +346,7 @@
                             android:scrollbars="none" />
                     </LinearLayout>
                 </LinearLayout>
-            </ScrollView>
+            <!--</ScrollView>-->
 
         </RelativeLayout>
 

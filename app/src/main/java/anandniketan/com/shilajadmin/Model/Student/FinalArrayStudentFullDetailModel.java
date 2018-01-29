@@ -26,6 +26,9 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Standard")
     @Expose
     private String standard;
+    @SerializedName("Class")
+    @Expose
+    private String classes;
     @SerializedName("Name")
     @Expose
     private String name;
@@ -59,9 +62,10 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Date Of Admission")
     @Expose
     private String dateOfAdmission;
-    @SerializedName("Addmission Taken")
+    @SerializedName("Admission Taken")
     @Expose
-    private String addmissionTaken;
+    private String admissionTaken;
+
     @SerializedName("Blood Group")
     @Expose
     private String bloodGroup;
@@ -107,6 +111,12 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Father Name")
     @Expose
     private String fatherName;
+    @SerializedName("Father First Name")
+    @Expose
+    private String fatherfirstName;
+    @SerializedName("Father Last Name")
+    @Expose
+    private String fatherlastName;
     @SerializedName("Father Phone No.")
     @Expose
     private String fatherPhoneNo;
@@ -131,6 +141,12 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Mother Name")
     @Expose
     private String motherName;
+    @SerializedName("Mother First Name")
+    @Expose
+    private String motherfirstName;
+    @SerializedName("Mother Last Name")
+    @Expose
+    private String motherlastName;
     @SerializedName("Mother Phone No.")
     @Expose
     private String motherPhoneNo;
@@ -167,6 +183,18 @@ public class FinalArrayStudentFullDetailModel {
     @SerializedName("Zip Code")
     @Expose
     private String zipCode;
+    @SerializedName("Status")
+    @Expose
+    private String Status;
+    @SerializedName("Nationality")
+    @Expose
+    private String nationality;
+    @SerializedName("TermID")
+    @Expose
+    private String termId;
+    @SerializedName("Transport KMs")
+    @Expose
+    private String transportKms;
 
     public String getStudentId() {
         return studentId;
@@ -304,12 +332,12 @@ public class FinalArrayStudentFullDetailModel {
         this.dateOfAdmission = dateOfAdmission;
     }
 
-    public String getAddmissionTaken() {
-        return addmissionTaken;
+    public String getAdmissionTaken() {
+        return admissionTaken;
     }
 
-    public void setAddmissionTaken(String addmissionTaken) {
-        this.addmissionTaken = addmissionTaken;
+    public void setAdmissionTaken(String admissionTaken) {
+        this.admissionTaken = admissionTaken;
     }
 
     public String getBloodGroup() {
@@ -590,5 +618,77 @@ public class FinalArrayStudentFullDetailModel {
 
     public void setStudentType(String studentType) {
         this.studentType = studentType;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public String getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String classes) {
+        this.classes = classes;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getFatherfirstName() {
+        return fatherfirstName;
+    }
+
+    public void setFatherfirstName(String fatherfirstName) {
+        this.fatherfirstName = fatherfirstName;
+    }
+
+    public String getFatherlastName() {
+        return fatherlastName;
+    }
+
+    public void setFatherlastName(String fatherlastName) {
+        this.fatherlastName = fatherlastName;
+    }
+
+    public String getMotherfirstName() {
+        return motherfirstName;
+    }
+
+    public void setMotherfirstName(String motherfirstName) {
+        this.motherfirstName = motherfirstName;
+    }
+
+    public String getMotherlastName() {
+        return motherlastName;
+    }
+
+    public void setMotherlastName(String motherlastName) {
+        this.motherlastName = motherlastName;
+    }
+
+    public String getTransportKms() {
+        return transportKms;
+    }
+
+    public void setTransportKms(String transportKms) {
+        this.transportKms = transportKms;
+    }
+
+    public String getTermId() {
+        return termId;
+    }
+
+    public void setTermId(String termId) {
+        this.termId = termId;
     }
 }

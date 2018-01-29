@@ -71,6 +71,7 @@
     <string name="house">House</string>
     <string name="oldgr">Old GRNO</string>
     <string name="religion">Religion</string>
+    <string name="nationality">Nationality</string>
     <string name="username">User Name</string>
     <string name="password">Password</string>
     <string name="registration">Registration Date</string>
@@ -120,6 +121,7 @@
     <string name="employeesms">EMPLOYEE SMS</string>
     <string name="bulksms">BULK SMS</string>
     <string name="grregister">GR REGISTER</string>
+    <string name="leftdetail">Left Detail</string>
     <string name="profilepermission">PROFILE PERMISSION</string>
     <string name="studentabsent">STUDENT ABSENT</string>
     <string name="term1">Term 1</string>
@@ -178,6 +180,25 @@
     <string name="academicyear">Academic Year</string>
     <string name="edit">Edit</string>
     <string name="studentstatus">Student Status</string>
+    <string name="fatherfirstname">Father First Name</string>
+    <string name="fatherlastname">Father Last Name</string>
+    <string name="fatherphoneno">Father Phone no</string>
+    <string name="fathermobileno">Father Mobile no</string>
+    <string name="fatheremailaddress">Father Email Adress</string>
+    <string name="fatherqualification">Father Qualification</string>
+    <string name="fatheroccupation">Father Occupation</string>
+    <string name="fatheroragnization">Father Organization</string>
+    <string name="fatherdesignation">Father Designation</string>
+    <string name="motherfirstname">Mother First Name</string>
+    <string name="motherlastname">Mother Last Name</string>
+    <string name="motherphoneno">Mother Phone no</string>
+    <string name="mothermobileno">Mother Mobile no</string>
+    <string name="motheremailaddress">Mother Email Adress</string>
+    <string name="motherqualification">Mother Qualification</string>
+    <string name="motheroccupation">Mother Occupation</string>
+    <string name="motheroragnization">Mother Organization</string>
+    <string name="motherdesignation">Mother Designation</string>
+    <string name="transportkms">Transport KMs</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
