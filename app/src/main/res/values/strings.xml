@@ -122,6 +122,7 @@
     <string name="bulksms">BULK SMS</string>
     <string name="grregister">GR REGISTER</string>
     <string name="leftdetail">Left Detail</string>
+    <string name="studentviewmarks">VIEW MARKS</string>
     <string name="profilepermission">PROFILE PERMISSION</string>
     <string name="studentabsent">STUDENT ABSENT</string>
     <string name="term1">Term 1</string>
@@ -199,6 +200,9 @@
     <string name="motheroragnization">Mother Organization</string>
     <string name="motherdesignation">Mother Designation</string>
     <string name="transportkms">Transport KMs</string>
+    <string name="test">Test</string>
+    <string name="description">Discription</string>
+    <string name="order">Order</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

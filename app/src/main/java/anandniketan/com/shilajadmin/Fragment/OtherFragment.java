@@ -46,7 +46,7 @@ public class OtherFragment extends Fragment {
 
     public void initViews() {
         Glide.with(mContext)
-                .load( AppConfiguration.BASEURL_IMAGES + "Other/" + "other_inside.png")
+                .load(AppConfiguration.BASEURL_IMAGES + "Other/" + "other_inside.png")
                 .fitCenter()
                 .into(fragmentOtherBinding.circleImageView);
         fragmentOtherBinding.otherSubmenuGridView.setAdapter(new OtherSubMenuAdapter(mContext));
@@ -68,25 +68,25 @@ public class OtherFragment extends Fragment {
         fragmentOtherBinding.otherSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0){
+                if (position == 0) {
                     fragment = new StudentAbsentFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if(position==1){
+                } else if (position == 1) {
                     fragment = new BullkSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if(position==2){
+                } else if (position == 2) {
                     fragment = new SingleSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if(position==3){
+                } else if (position == 3) {
                     fragment = new EmployeeSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -117,13 +117,15 @@ public class OtherFragment extends Fragment {
 //                    fragmentManager.beginTransaction()
 //                            .setCustomAnimations(0, 0)
 //                            .replace(R.id.frame_container, fragment).commit();
-//                }else if(position==8){
-//                    fragment = new MenuPermissionFragment();
-//                    fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
-//                            .replace(R.id.frame_container, fragment).commit();
-//                }else if(position==9){
+//                }
+                else if (position == 8) {
+                    fragment = new AnnouncementFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
+                }
+//                else if(position==9){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()

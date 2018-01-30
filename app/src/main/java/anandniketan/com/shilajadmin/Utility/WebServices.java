@@ -226,4 +226,20 @@ public interface WebServices {
     @POST("/GetLeftDetainStudent")
     public void getLeftDetainStudent(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
 
+    @FormUrlEncoded
+    @POST("/GetTestName")
+    public void getTestName(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetStudentMarks")
+    public void getStudentMarks(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetAnnouncementData")
+    public void getAnnouncementData(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertAnnouncement")
+    public void InsertAnnouncement(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
 }

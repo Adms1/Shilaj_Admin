@@ -17,6 +17,36 @@ public class FinalArrayStudentNameModel {
     @SerializedName("StudentID")
     @Expose
     private String studentID;
+    @SerializedName("Test ID")
+    @Expose
+    private Integer testID;
+    @SerializedName("Test Name")
+    @Expose
+    private String testName;
+    @SerializedName("CheckedStatus")
+    @Expose
+    private String checkedStatus;
+    @SerializedName("URL")
+    @Expose
+    private String uRL;
+    @SerializedName("Cir_Date")
+    @Expose
+    private String cirDate;
+    @SerializedName("Cir_Subject")
+    @Expose
+    private String cirSubject;
+    @SerializedName("Cir_Description")
+    @Expose
+    private String cirDescription;
+    @SerializedName("Cir_Order")
+    @Expose
+    private Integer cirOrder;
+    @SerializedName("Cir_Status")
+    @Expose
+    private String cirStatus;
+    @SerializedName("PK_CircularID")
+    @Expose
+    private Integer pKCircularID;
 
     public String getName() {
         return name;
@@ -42,4 +72,91 @@ public class FinalArrayStudentNameModel {
         this.studentID = studentID;
     }
 
+    public String getgRNO() {
+        return gRNO;
+    }
+
+    public void setgRNO(String gRNO) {
+        this.gRNO = gRNO;
+    }
+
+    public Integer getTestID() {
+        return testID;
+    }
+
+    public void setTestID(Integer testID) {
+        this.testID = testID;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    public String getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(String checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
+
+    public String getuRL() {
+        return uRL;
+    }
+
+    public void setuRL(String uRL) {
+        this.uRL = uRL;
+    }
+
+    public String getCirDate() {
+        return cirDate;
+    }
+
+    public void setCirDate(String cirDate) {
+        this.cirDate = cirDate;
+    }
+
+    public String getCirSubject() {
+        return cirSubject;
+    }
+
+    public void setCirSubject(String cirSubject) {
+        this.cirSubject = cirSubject;
+    }
+
+    public String getCirDescription() {
+        return cirDescription;
+    }
+
+    public void setCirDescription(String cirDescription) {
+        this.cirDescription = cirDescription;
+    }
+
+    public Integer getCirOrder() {
+        return cirOrder;
+    }
+
+    public void setCirOrder(Integer cirOrder) {
+        this.cirOrder = cirOrder;
+    }
+
+    public String getCirStatus() {
+        return cirStatus;
+    }
+
+    public void setCirStatus(String cirStatus) {
+        this.cirStatus = cirStatus;
+    }
+
+    public Integer getpKCircularID() {
+        return pKCircularID;
+    }
+
+    public void setpKCircularID(Integer pKCircularID) {
+        this.pKCircularID = pKCircularID;
+    }
 }
