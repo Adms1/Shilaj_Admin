@@ -242,4 +242,12 @@ public interface WebServices {
     @POST("/InsertAnnouncement")
     public void InsertAnnouncement(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
 
+    @FormUrlEncoded
+    @POST("/GetInquiryCount")
+    public void getInquiryCount(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetInquiryData")
+    public void getInquiryData(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
 }

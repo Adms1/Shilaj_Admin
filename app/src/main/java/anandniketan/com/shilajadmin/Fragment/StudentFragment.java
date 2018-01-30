@@ -104,6 +104,12 @@ public class StudentFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
+                } else if (position == 1) {
+                    fragment = new StudentViewInquiryFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new StudentTranspotFragment();
                     fragmentManager = getFragmentManager();
@@ -116,19 +122,19 @@ public class StudentFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 5) {
+                } else if (position == 5) {
                     fragment = new LeftDetailFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 6) {
+                } else if (position == 6) {
                     fragment = new GRRegisterFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 7) {
+                } else if (position == 7) {
                     fragment = new StudentViewMarksFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
