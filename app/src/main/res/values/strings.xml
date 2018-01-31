@@ -37,6 +37,7 @@
     <string name="present">Present</string>
     <string name="leave">Leave</string>
     <string name="total">Total</string>
+    <string name="onduty">Onduty</string>
     <string name="resultstatus">Result Status</string>
     <string name="standardname">Standarname</string>
     <string name="standardstatus">Status</string>
@@ -121,6 +122,7 @@
     <string name="employeesms">EMPLOYEE SMS</string>
     <string name="bulksms">BULK SMS</string>
     <string name="grregister">GR REGISTER</string>
+    <string name="attendance">ATTENDANCE</string>
     <string name="leftdetail">Left Detail</string>
     <string name="studentviewmarks">VIEW MARKS</string>
     <string name="profilepermission">PROFILE PERMISSION</string>
@@ -147,6 +149,7 @@
     <string name="imprestdeduct">Imprest Deduct</string>
     <string name="remainimprest">Remain Imprest</string>
     <string name="dailyfeescollection">DAILY FEES COLLECTION</string>
+    <string name="announcment">ANNOUNCMENT</string>
     <string name="viewinquiry">VIEW INQUIRY</string>
     <string name="onlinepayment">ONLINE PAYMENT</string>
     <string name="termdetail">Term Detail</string>
@@ -158,6 +161,7 @@
     <string name="timetable">TIME TABLE</string>
     <string name="lecture">Lecuture</string>
     <string name="subject">Subject</string>
+    <string name="summary">SUMMARY</string>
     <string name="classes">Class</string>
     <string name="studentledger">STUDENT LEDGER</string>
     <string name="student_type">Student</string>

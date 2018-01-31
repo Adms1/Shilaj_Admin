@@ -60,6 +60,7 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
     private FragmentManager fragmentManager = null;
 
     int Year, Month, Day;
+    int mYear, mMonth, mDay;
     Calendar calendar;
     private static String dateFinal;
     private DatePickerDialog datePickerDialog;
@@ -285,14 +286,21 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = "Selected Date : " + Day + "/" + Month + "/" + Year;
+        String datestr = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+
+        mDay = dayOfMonth;
+        mMonth = monthOfYear + 1;
+        mYear = year;
         String d, m, y;
-        d = Integer.toString(dayOfMonth);
-        m = Integer.toString(monthOfYear);
-        y = Integer.toString(year);
-        if (dayOfMonth < 10) {
+        d = Integer.toString(mDay);
+        m = Integer.toString(mMonth);
+        y = Integer.toString(mYear);
+
+        if (mDay < 10) {
             d = "0" + d;
         }
-        if (monthOfYear < 10) {
+        if (mMonth < 10) {
             m = "0" + m;
         }
 

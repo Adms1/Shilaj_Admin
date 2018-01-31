@@ -65,6 +65,27 @@ public class FinalArrayStudentNameModel {
     @SerializedName("Staus Detail")
     @Expose
     private List<InquiryStausDetail> stausDetail = new ArrayList<InquiryStausDetail>();
+    @SerializedName("StandardID")
+    @Expose
+    private Integer standardID;
+    @SerializedName("ClassID")
+    @Expose
+    private Integer classID;
+    @SerializedName("TotalPresent")
+    @Expose
+    private Integer totalPresent;
+    @SerializedName("TotalAbsent")
+    @Expose
+    private Integer totalAbsent;
+    @SerializedName("TotalLeave")
+    @Expose
+    private Integer totalLeave;
+    @SerializedName("TotalOnDuty")
+    @Expose
+    private Integer totalOnDuty;
+    @SerializedName("StudentDetail")
+    @Expose
+    private List<StudentAttendanceDetail> studentDetail = new ArrayList<StudentAttendanceDetail>();
 
     public String getName() {
         return name;
@@ -216,5 +237,61 @@ public class FinalArrayStudentNameModel {
 
     public void setStausDetail(List<InquiryStausDetail> stausDetail) {
         this.stausDetail = stausDetail;
+    }
+
+    public Integer getStandardID() {
+        return standardID;
+    }
+
+    public void setStandardID(Integer standardID) {
+        this.standardID = standardID;
+    }
+
+    public Integer getClassID() {
+        return classID;
+    }
+
+    public void setClassID(Integer classID) {
+        this.classID = classID;
+    }
+
+    public Integer getTotalPresent() {
+        return totalPresent;
+    }
+
+    public void setTotalPresent(Integer totalPresent) {
+        this.totalPresent = totalPresent;
+    }
+
+    public Integer getTotalAbsent() {
+        return totalAbsent;
+    }
+
+    public void setTotalAbsent(Integer totalAbsent) {
+        this.totalAbsent = totalAbsent;
+    }
+
+    public Integer getTotalLeave() {
+        return totalLeave;
+    }
+
+    public void setTotalLeave(Integer totalLeave) {
+        this.totalLeave = totalLeave;
+    }
+
+    public Integer getTotalOnDuty() {
+        return totalOnDuty;
+    }
+
+    public void setTotalOnDuty(Integer totalOnDuty) {
+        this.totalOnDuty = totalOnDuty;
+    }
+
+    public List<StudentAttendanceDetail> getStudentDetail() {
+        return studentDetail;
+    }
+
+    public void setStudentDetail(List<StudentAttendanceDetail> studentDetail) {
+        this.studentDetail = studentDetail;
     }
 }

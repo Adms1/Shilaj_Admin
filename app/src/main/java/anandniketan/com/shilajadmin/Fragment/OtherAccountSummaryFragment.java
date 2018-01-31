@@ -2,9 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.icu.math.BigDecimal;
-import android.icu.text.LocaleDisplayNames;
-import android.icu.text.NumberFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,36 +19,33 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentAccountSummaryBinding;
+import anandniketan.com.shilajadmin.databinding.FragmentOtherAccountSummaryBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class AccountSummaryFragment extends Fragment {
+public class OtherAccountSummaryFragment extends Fragment {
 
-    public AccountSummaryFragment() {
+    public OtherAccountSummaryFragment() {
     }
 
-    private FragmentAccountSummaryBinding fragmentAccountSummaryBinding;
+    private FragmentOtherAccountSummaryBinding fragmentOtherAccountSummaryBinding;
     private View rootView;
     private Context mContext;
     private Fragment fragment = null;
@@ -69,9 +62,9 @@ public class AccountSummaryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        fragmentAccountSummaryBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_summary, container, false);
+        fragmentOtherAccountSummaryBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_other_account_summary, container, false);
 
-        rootView = fragmentAccountSummaryBinding.getRoot();
+        rootView = fragmentOtherAccountSummaryBinding.getRoot();
         mContext = getActivity().getApplicationContext();
 
         initViews();
@@ -81,28 +74,25 @@ public class AccountSummaryFragment extends Fragment {
     }
 
     public void initViews() {
-        FinalTermIdStr = AppConfiguration.TermId;
-        FinalTermDetailIdStr = AppConfiguration.TermDetailId;
-        callTermApi();
-        callAccountFeesStatusApi();
+        setUserVisibleHint(false);
+
+    }
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && rootView != null) {
+            callTermApi();
+            callAccountFeesStatusApi();
+        }
+        // execute your data loading logic.
     }
 
     public void setListner() {
-        fragmentAccountSummaryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment = new AccountFragment();
-                fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
-                        .replace(R.id.frame_container, fragment).commit();
-            }
-        });
-        fragmentAccountSummaryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        fragmentOtherAccountSummaryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String name = fragmentAccountSummaryBinding.termSpinner.getSelectedItem().toString();
-                String getid = spinnerTermMap.get(fragmentAccountSummaryBinding.termSpinner.getSelectedItemPosition());
+                String name = fragmentOtherAccountSummaryBinding.termSpinner.getSelectedItem().toString();
+                String getid = spinnerTermMap.get(fragmentOtherAccountSummaryBinding.termSpinner.getSelectedItemPosition());
 
                 Log.d("TermValue", name + "" + getid);
                 FinalTermIdStr = getid.toString();
@@ -115,11 +105,11 @@ public class AccountSummaryFragment extends Fragment {
 
             }
         });
-        fragmentAccountSummaryBinding.termDetailSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        fragmentOtherAccountSummaryBinding.termDetailSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String name = fragmentAccountSummaryBinding.termDetailSpinner.getSelectedItem().toString();
-                String getid = spinnerTermDetailIdMap.get(fragmentAccountSummaryBinding.termDetailSpinner.getSelectedItemPosition());
+                String name = fragmentOtherAccountSummaryBinding.termDetailSpinner.getSelectedItem().toString();
+                String getid = spinnerTermDetailIdMap.get(fragmentOtherAccountSummaryBinding.termDetailSpinner.getSelectedItemPosition());
 
                 Log.d("TermDetailValue", name + "" + getid);
                 FinalTermDetailIdStr = getid.toString();
@@ -207,33 +197,32 @@ public class AccountSummaryFragment extends Fragment {
                 }
                 if (accountFeesStatusModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
-
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
-                    fragmentAccountSummaryBinding.txtNoRecords.setVisibility(View.VISIBLE);
-                    fragmentAccountSummaryBinding.mainLinear.setVisibility(View.GONE);
-                    fragmentAccountSummaryBinding.standardwiseLinear.setVisibility(View.GONE);
+                    fragmentOtherAccountSummaryBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    fragmentOtherAccountSummaryBinding.mainLinear.setVisibility(View.GONE);
+                    fragmentOtherAccountSummaryBinding.standardwiseLinear.setVisibility(View.GONE);
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("True")) {
-                    fragmentAccountSummaryBinding.txtNoRecords.setVisibility(View.GONE);
+                    fragmentOtherAccountSummaryBinding.txtNoRecords.setVisibility(View.GONE);
                     for (int i = 0; i < accountFeesStatusModel.getFinalArray().size(); i++) {
                         collectionModelList = accountFeesStatusModel.getFinalArray().get(i).getCollection();
                         standardcollectionList = accountFeesStatusModel.getFinalArray().get(i).getStandardCollection();
                     }
                     if (collectionModelList != null) {
-                        fragmentAccountSummaryBinding.mainLinear.setVisibility(View.VISIBLE);
+                        fragmentOtherAccountSummaryBinding.mainLinear.setVisibility(View.VISIBLE);
                         fillData();
                     }
                     if (standardcollectionList != null) {
-                        fragmentAccountSummaryBinding.standardwiseLinear.setVisibility(View.VISIBLE);
+                        fragmentOtherAccountSummaryBinding.standardwiseLinear.setVisibility(View.VISIBLE);
                         standardwisecollectionAdapter = new StandardwiseCollectionListAdapter(getActivity(), standardcollectionList);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                        fragmentAccountSummaryBinding.standardwiseStudentCollection.setLayoutManager(mLayoutManager);
-                        fragmentAccountSummaryBinding.standardwiseStudentCollection.setItemAnimator(new DefaultItemAnimator());
-                        fragmentAccountSummaryBinding.standardwiseStudentCollection.setAdapter(standardwisecollectionAdapter);
+                        fragmentOtherAccountSummaryBinding.standardwiseStudentCollection.setLayoutManager(mLayoutManager);
+                        fragmentOtherAccountSummaryBinding.standardwiseStudentCollection.setItemAnimator(new DefaultItemAnimator());
+                        fragmentOtherAccountSummaryBinding.standardwiseStudentCollection.setAdapter(standardwisecollectionAdapter);
                     }
                 }
             }
@@ -280,7 +269,7 @@ public class AccountSummaryFragment extends Fragment {
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAccountSummaryBinding.termDetailSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentOtherAccountSummaryBinding.termDetailSpinner);
 
             popupWindow.setHeight(spinnertermdetailIdArray.length > 4 ? 500 : spinnertermdetailIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
@@ -288,16 +277,16 @@ public class AccountSummaryFragment extends Fragment {
         }
 
         ArrayAdapter<String> adapterTermdetail = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
-        fragmentAccountSummaryBinding.termDetailSpinner.setAdapter(adapterTermdetail);
-            Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
-            for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
-                if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
-                    Log.d("spinnerValue", spinnertermdetailIdArray[m]);
-                    int index = m;
-                    Log.d("indexOf", String.valueOf(index));
-                    fragmentAccountSummaryBinding.termDetailSpinner.setSelection(index);
-                }
-            }
+        fragmentOtherAccountSummaryBinding.termDetailSpinner.setAdapter(adapterTermdetail);
+        Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
+//        for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
+//            if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
+//                Log.d("spinnerValue", spinnertermdetailIdArray[m]);
+//                int index = m;
+//                Log.d("indexOf", String.valueOf(index));
+//                fragmentOtherAccountSummaryBinding.termDetailSpinner.setSelection(index);
+//            }
+//        }
     }
 
     public void fillTermSpinner() {
@@ -322,7 +311,7 @@ public class AccountSummaryFragment extends Fragment {
             popup.setAccessible(true);
 
             // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAccountSummaryBinding.termSpinner);
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentOtherAccountSummaryBinding.termSpinner);
 
             popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
@@ -330,23 +319,23 @@ public class AccountSummaryFragment extends Fragment {
         }
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
-        fragmentAccountSummaryBinding.termSpinner.setAdapter(adapterTerm);
+        fragmentOtherAccountSummaryBinding.termSpinner.setAdapter(adapterTerm);
 
-            Log.d("termspinner", String.valueOf(spinnertermIdArray));
-            String TermName = "";
-            for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
-                if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
-                    TermName = finalArrayGetTermModels.get(z).getTerm();
-                }
-            }
-            for (int m = 0; m < spinnertermIdArray.length; m++) {
-                if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
-                    Log.d("spinnerValue", spinnertermIdArray[m]);
-                    int index = m;
-                    Log.d("indexOf", String.valueOf(index));
-                    fragmentAccountSummaryBinding.termSpinner.setSelection(m);
-                }
-            }
+//        Log.d("termspinner", String.valueOf(spinnertermIdArray));
+//        String TermName = "";
+//        for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
+//            if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
+//                TermName = finalArrayGetTermModels.get(z).getTerm();
+//            }
+//        }
+//        for (int m = 0; m < spinnertermIdArray.length; m++) {
+//            if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
+//                Log.d("spinnerValue", spinnertermIdArray[m]);
+//                int index = m;
+//                Log.d("indexOf", String.valueOf(index));
+//                fragmentOtherAccountSummaryBinding.termSpinner.setSelection(m);
+//            }
+//        }
 
 
     }
@@ -364,8 +353,8 @@ public class AccountSummaryFragment extends Fragment {
             amount4 = Double.toString(Double.parseDouble(collectionModelList.get(i).getTotalRcvStudent()));
             amount5 = Double.toString(collectionModelList.get(i).getTotalDue());
             amount6 = Double.toString(Double.parseDouble(collectionModelList.get(i).getTotalDueStudent()));
-            fragmentAccountSummaryBinding.perTotalTxt.setText("(" + collectionModelList.get(i).getTotalDuePer() + "%" + ")");
-            fragmentAccountSummaryBinding.perStudentCountTxt.setText("(" + collectionModelList.get(i).getDueStudentPer() + "%" + ")");
+            fragmentOtherAccountSummaryBinding.perTotalTxt.setText("(" + collectionModelList.get(i).getTotalDuePer() + "%" + ")");
+            fragmentOtherAccountSummaryBinding.perStudentCountTxt.setText("(" + collectionModelList.get(i).getDueStudentPer() + "%" + ")");
         }
 
         longval1 = Double.parseDouble(amount1);
@@ -382,12 +371,12 @@ public class AccountSummaryFragment extends Fragment {
         formattedString5 = String.format("%,.1f", longval5);
         formattedString6 = String.format("%,.1f", longval6);
 
-        fragmentAccountSummaryBinding.totalAmountTxt.setText("₹" + " " + formattedString1);
-        fragmentAccountSummaryBinding.totalStudentAmountTxt.setText("₹" + " " + formattedString2);
-        fragmentAccountSummaryBinding.totalRcvAmountTxt.setText("₹" + " " + formattedString3);
-        fragmentAccountSummaryBinding.totalRcvStudentTxt.setText("₹" + " " + formattedString4);
-        fragmentAccountSummaryBinding.totalDueTxt.setText("₹" + " " + formattedString5);
-        fragmentAccountSummaryBinding.totalstudentDueTxt.setText("₹" + " " + formattedString6);
+        fragmentOtherAccountSummaryBinding.totalAmountTxt.setText("₹" + " " + formattedString1);
+        fragmentOtherAccountSummaryBinding.totalStudentAmountTxt.setText("₹" + " " + formattedString2);
+        fragmentOtherAccountSummaryBinding.totalRcvAmountTxt.setText("₹" + " " + formattedString3);
+        fragmentOtherAccountSummaryBinding.totalRcvStudentTxt.setText("₹" + " " + formattedString4);
+        fragmentOtherAccountSummaryBinding.totalDueTxt.setText("₹" + " " + formattedString5);
+        fragmentOtherAccountSummaryBinding.totalstudentDueTxt.setText("₹" + " " + formattedString6);
 
     }
 }

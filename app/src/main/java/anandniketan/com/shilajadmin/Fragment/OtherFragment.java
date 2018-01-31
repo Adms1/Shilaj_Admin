@@ -92,14 +92,14 @@ public class OtherFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(0, 0)
                             .replace(R.id.frame_container, fragment).commit();
+                }else if(position==4){
+                    fragment = new SummaryFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(0, 0)
+                            .replace(R.id.frame_container, fragment).commit();
                 }
-//                else if(position==4){
-//                    fragment = new MenuPermissionFragment();
-//                    fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
-//                            .replace(R.id.frame_container, fragment).commit();
-//                }else if(position==5){
+//                else if(position==5){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()

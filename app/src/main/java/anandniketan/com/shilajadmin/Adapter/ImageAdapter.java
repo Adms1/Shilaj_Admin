@@ -65,7 +65,7 @@ public class ImageAdapter extends BaseAdapter {
         txtGridOptionsName = (TextView) convertView.findViewById(R.id.txtGridOptionsName);
 
         String url = mThumbIds[position];
-        Log.d("url", url);
+//        Log.d("url", url);
         Glide.with(mContext)
                 .load(url)
                 .fitCenter()

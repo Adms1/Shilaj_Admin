@@ -14,6 +14,7 @@ public class StudentFullDetailModel {
     @SerializedName("Success")
     @Expose
     private String success;
+
     @SerializedName("FinalArray")
     @Expose
     private List<FinalArrayStudentFullDetailModel> finalArray = new ArrayList<FinalArrayStudentFullDetailModel>();

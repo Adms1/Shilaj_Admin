@@ -14,6 +14,9 @@ public class StudentNameModel {
     @SerializedName("Success")
     @Expose
     private String success;
+    @SerializedName("Date")
+    @Expose
+    private String date;
     @SerializedName("FinalArray")
     @Expose
     private List<FinalArrayStudentNameModel> finalArray = new ArrayList<FinalArrayStudentNameModel>();
@@ -24,6 +27,14 @@ public class StudentNameModel {
 
     public void setSuccess(String success) {
         this.success = success;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public List<FinalArrayStudentNameModel> getFinalArray() {

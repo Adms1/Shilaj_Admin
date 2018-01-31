@@ -3,20 +3,17 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -30,11 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import anandniketan.com.shilajadmin.Adapter.AnnouncmentAdpater;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInquiryData;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterImprest;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayImprestDetailModel;
-import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.InquiryStausDetail;
 import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
@@ -43,7 +36,6 @@ import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentAnnouncementBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentViewInquiryBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -63,15 +55,14 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
     private static boolean isFromDate = false;
     private DatePickerDialog datePickerDialog;
     HashMap<Integer, String> spinnerOrderMap;
-    AnnouncmentAdpater announcmentAdpater;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayStudentNameModel> finalArrayinquiryCountList;
-
+    private int lastExpandedPosition = -1;
     String FinalStartDateStr, FinalEndDateStr, FinalStatusStr, FinalStatusIdStr, FinalTermIdStr, FinalTermStr, FinalOnlineStatusStr = "All";
     ExpandableListAdapterInquiryData expandableListAdapterInquiryData;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<InquiryStausDetail>> listDataChild;
+    HashMap<String,List<InquiryStausDetail>> listDataChild;
 
     public StudentViewInquiryFragment() {
     }
@@ -108,6 +99,20 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
                         .setCustomAnimations(0, 0)
                         .replace(R.id.frame_container, fragment).commit();
             }
+        });
+        fragmentStudentViewInquiryBinding.lvExpviewinquiry.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+
+
+            @Override
+
+            public void onGroupExpand(int groupPosition) {
+                if (lastExpandedPosition != -1
+                        && groupPosition != lastExpandedPosition) {
+                    fragmentStudentViewInquiryBinding.lvExpviewinquiry.collapseGroup(lastExpandedPosition);
+                }
+                lastExpandedPosition = groupPosition;
+            }
+
         });
         fragmentStudentViewInquiryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -310,7 +315,6 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
         ApiHandler.getApiService().getInquiryData(getInquiryDetail(), new retrofit.Callback<StudentNameModel>() {
             @Override
             public void success(StudentNameModel inquiryDataModel, Response response) {
-                Utils.dismissDialog();
                 if (inquiryDataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
@@ -391,6 +395,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
             fragmentStudentViewInquiryBinding.enddateButton.setText(dateFinal);
         }
     }
+
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -493,7 +498,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<InquiryStausDetail>>();
+        listDataChild = new HashMap<String, List<InquiryStausDetail>>();
 
         for (int i = 0; i < finalArrayinquiryCountList.size(); i++) {
             listDataHeader.add(finalArrayinquiryCountList.get(i).getName() + "|" +
@@ -506,6 +511,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
             for (int j = 0; j < finalArrayinquiryCountList.get(i).getStausDetail().size(); j++) {
                 row.add(finalArrayinquiryCountList.get(i).getStausDetail().get(j));
                 Log.d("row", "" + row);
+
             }
             listDataChild.put(listDataHeader.get(i), row);
             Log.d("child", "" + listDataChild);

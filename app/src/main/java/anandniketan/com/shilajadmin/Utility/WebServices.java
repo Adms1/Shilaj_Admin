@@ -250,4 +250,7 @@ public interface WebServices {
     @POST("/GetInquiryData")
     public void getInquiryData(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
 
+    @FormUrlEncoded
+    @POST("/GetAttendence_Admin")
+    public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
 }
