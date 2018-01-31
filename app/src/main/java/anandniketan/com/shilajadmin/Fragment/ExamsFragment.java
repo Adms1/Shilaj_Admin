@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExamListAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayExamsModel;
@@ -77,6 +78,12 @@ public class ExamsFragment extends Fragment implements DatePickerDialog.OnDateSe
         fragmentExamsBinding.startDateBtn.setText(Utils.getTodaysDate());
         fragmentExamsBinding.endDateBtn.setText(Utils.getTodaysDate());
 
+        fragmentExamsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentExamsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

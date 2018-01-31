@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StudentPermissionSubmenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
@@ -71,6 +72,12 @@ public class StudentPermissionFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentStudentPermissionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentPermissionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

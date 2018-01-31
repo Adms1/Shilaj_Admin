@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
@@ -106,6 +107,12 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
 
 
     public void setListners() {
+        fragmentStudentAbsentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentAbsentBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,23 +123,6 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
-
-//        fragmentStudentAbsentBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String name = fragmentStudentAbsentBinding.termSpinner.getSelectedItem().toString();
-//                String getid = spinnerTermMap.get(fragmentStudentAbsentBinding.termSpinner.getSelectedItemPosition());
-//
-//                Log.d("value", name + " " + getid);
-//                FinalTermIdStr = getid.toString();
-//                Log.d("FinalTermIdStr", FinalTermIdStr);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
         fragmentStudentAbsentBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

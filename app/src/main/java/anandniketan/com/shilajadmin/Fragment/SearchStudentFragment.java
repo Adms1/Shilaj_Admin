@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StudentFilteredDataAdapter;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
@@ -76,6 +77,12 @@ public class SearchStudentFragment extends Fragment {
     }
 
     public void setListner() {
+        fragmentSearchStudentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentSearchStudentBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

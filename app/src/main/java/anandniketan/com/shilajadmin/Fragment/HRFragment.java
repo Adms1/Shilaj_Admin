@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 
 import com.bumptech.glide.Glide;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.HrSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.TransportSubMenuAdapter;
@@ -56,6 +57,12 @@ public class HRFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentHrBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentHrBinding.btnBackhr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

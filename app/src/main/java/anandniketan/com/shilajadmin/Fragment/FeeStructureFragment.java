@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.FeesStructureExpandableListAdapter;
 import anandniketan.com.shilajadmin.Adapter.TransportChargesListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStructureModel;
@@ -72,6 +73,12 @@ public class FeeStructureFragment extends Fragment {
 
 
     public void setListner() {
+        fragmentFeeStructureBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentFeeStructureBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

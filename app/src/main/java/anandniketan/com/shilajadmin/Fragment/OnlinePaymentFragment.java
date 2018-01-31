@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
 import anandniketan.com.shilajadmin.Adapter.OnlinePaymentPermissionAdapter;
 import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
@@ -98,7 +99,12 @@ public class OnlinePaymentFragment extends Fragment {
 
     public void setListners() {
 
-
+        fragmentOnlinePaymentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentOnlinePaymentBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ClassTeacherDetailListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
@@ -83,6 +84,12 @@ public class ClassTeacherFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentClassTeacherBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentClassTeacherBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

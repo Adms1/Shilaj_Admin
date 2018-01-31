@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.RoutePickupPointDetailAdapter;
 import anandniketan.com.shilajadmin.Adapter.VehicleDetailListAdapter;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayRouteDetailModel;
@@ -73,6 +74,12 @@ public class RoutePickUpDetailFragment extends Fragment {
 
 
     public void setListner() {
+        fragmentRoutePickUpDetailBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentRoutePickUpDetailBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

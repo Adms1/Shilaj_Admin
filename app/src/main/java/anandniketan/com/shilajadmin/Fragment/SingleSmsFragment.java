@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import java.util.HashMap;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
@@ -51,6 +52,12 @@ public class SingleSmsFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentSingleSmsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentSingleSmsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

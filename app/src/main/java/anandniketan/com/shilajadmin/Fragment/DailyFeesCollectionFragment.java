@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterImprest;
 import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
@@ -95,6 +96,13 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
         fragmentDailyFeesCollectionBinding.dateButton.setText(Utils.getTodaysDate());
+
+        fragmentDailyFeesCollectionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentDailyFeesCollectionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterTimeTable;
 import anandniketan.com.shilajadmin.Model.Staff.Datum;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTimeTable;
@@ -62,7 +63,12 @@ public class TimeTableFragment extends Fragment {
 
 
     public void setListners() {
-
+        fragmentTimeTableBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentTimeTableBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
 import anandniketan.com.shilajadmin.Adapter.TestNameAdapter;
@@ -82,6 +83,12 @@ public class StudentViewMarksFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentStudentViewMarksBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentViewMarksBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

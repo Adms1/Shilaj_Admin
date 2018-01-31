@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentFullDetail;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentTransportDetail;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
@@ -79,6 +80,12 @@ public class StudentTranspotFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentStudentTranspotBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentTranspotBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

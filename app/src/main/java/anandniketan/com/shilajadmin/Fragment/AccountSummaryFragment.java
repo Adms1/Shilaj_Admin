@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
@@ -88,6 +89,12 @@ public class AccountSummaryFragment extends Fragment {
     }
 
     public void setListner() {
+        fragmentAccountSummaryBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentAccountSummaryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AnnouncmentAdpater;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
 import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
@@ -96,6 +97,13 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
         fragmentAnnouncementBinding.dateButton.setText(Utils.getTodaysDate());
+
+        fragmentAnnouncementBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentAnnouncementBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

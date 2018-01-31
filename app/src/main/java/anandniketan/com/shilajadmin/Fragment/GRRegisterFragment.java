@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentFilteredDataAdapter;
@@ -92,6 +93,12 @@ public class GRRegisterFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentGrregisterBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentGrregisterBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AssignSubjectDetailListAdapter;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayAssignSubjectModel;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayInsertAssignSubjectModel;
@@ -83,6 +84,12 @@ public class AssignSubjectFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentAssignSubjectBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentAssignSubjectBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

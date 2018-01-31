@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 
 import com.bumptech.glide.Glide;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.OtherSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
@@ -54,6 +55,12 @@ public class OtherFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentOtherBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentOtherBinding.btnBackother.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

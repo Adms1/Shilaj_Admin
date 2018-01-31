@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Adapter.ProfilePermissionAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
@@ -89,6 +90,12 @@ public class ProfilePermissionFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentProfilePermissionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentProfilePermissionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

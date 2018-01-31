@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentTransportDetail;
 import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
@@ -94,6 +95,12 @@ public class ResultPermisssionFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentResultPermisssionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentResultPermisssionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

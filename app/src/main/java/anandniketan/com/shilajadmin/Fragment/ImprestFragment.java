@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentDiscount;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterImprest;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayDiscountModel;
@@ -79,6 +80,12 @@ public class ImprestFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentImprestBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentImprestBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

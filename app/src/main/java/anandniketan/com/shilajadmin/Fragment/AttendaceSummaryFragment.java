@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ConsistentAbsentTeacherAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseStudentAttendaceAdapter;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
@@ -76,6 +77,12 @@ public class AttendaceSummaryFragment extends Fragment {
     }
 
     public void setListner() {
+        fragmentAttendaceSummaryBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentAttendaceSummaryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

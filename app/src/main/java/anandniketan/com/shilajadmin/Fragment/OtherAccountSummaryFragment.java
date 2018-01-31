@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
@@ -87,7 +88,6 @@ public class OtherAccountSummaryFragment extends Fragment {
     }
 
     public void setListner() {
-
         fragmentOtherAccountSummaryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

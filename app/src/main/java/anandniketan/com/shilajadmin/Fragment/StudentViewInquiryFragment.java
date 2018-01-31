@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInquiryData;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.InquiryStausDetail;
@@ -90,6 +91,12 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
         fragmentStudentViewInquiryBinding.startdateButton.setText(Utils.getTodaysDate());
         fragmentStudentViewInquiryBinding.enddateButton.setText(Utils.getTodaysDate());
 
+        fragmentStudentViewInquiryBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentViewInquiryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

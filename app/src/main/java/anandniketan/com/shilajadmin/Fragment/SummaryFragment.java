@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.SummarypagerAdapter;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.FragmentSummaryBinding;
@@ -70,6 +71,12 @@ public class SummaryFragment extends Fragment {
     }
 
     public void setListner() {
+        fragmentSummaryBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentSummaryBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

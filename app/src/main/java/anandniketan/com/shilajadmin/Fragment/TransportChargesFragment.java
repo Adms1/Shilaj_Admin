@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.TransportChargesListAdapter;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
@@ -70,6 +71,12 @@ public class TransportChargesFragment extends Fragment {
 
 
     public void setListner() {
+        fragmentTransportChargesBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentTransportChargesBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

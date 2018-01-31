@@ -50,6 +50,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void setListners() {
+
         fragmentHomeBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

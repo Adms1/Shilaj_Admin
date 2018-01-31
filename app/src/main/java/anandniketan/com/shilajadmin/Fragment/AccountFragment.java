@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AccountSubMenuAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
@@ -86,7 +87,7 @@ public class AccountFragment extends Fragment {
         fragmentAccountBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DashboardActivity.onLeft();
             }
         });
         fragmentAccountBinding.accountSubmenuGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

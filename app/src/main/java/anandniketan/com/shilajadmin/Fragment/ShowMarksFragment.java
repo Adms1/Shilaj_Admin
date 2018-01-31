@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
@@ -69,6 +70,12 @@ public class ShowMarksFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentShowMarksBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentShowMarksBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

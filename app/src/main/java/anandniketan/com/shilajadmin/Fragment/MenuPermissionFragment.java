@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.OtherPageDeatilListAdapter;
 import anandniketan.com.shilajadmin.Adapter.PageDeatilListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
@@ -95,6 +96,12 @@ public class MenuPermissionFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentMenuPermissionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentMenuPermissionBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

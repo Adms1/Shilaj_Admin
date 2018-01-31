@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ConsistentAbsentTeacherAdapter;
 import anandniketan.com.shilajadmin.Adapter.StaffSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
@@ -81,6 +82,12 @@ public class StaffFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentStaffBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStaffBinding.btnBackstaffAttendance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

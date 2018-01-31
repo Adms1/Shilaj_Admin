@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
@@ -90,6 +92,12 @@ public class BullkSmsFragment extends Fragment {
 
 
     public void setListners() {
+        fragmentBullkSmsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentBullkSmsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

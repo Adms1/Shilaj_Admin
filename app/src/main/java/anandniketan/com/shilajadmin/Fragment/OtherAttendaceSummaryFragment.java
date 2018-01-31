@@ -71,7 +71,6 @@ public class OtherAttendaceSummaryFragment extends Fragment {
         Datestr = Utils.getTodaysDate();
         Log.d("TodayDate", Datestr);
         setUserVisibleHint(true);
-
     }
 
     public void setUserVisibleHint(boolean isVisibleToUser) {

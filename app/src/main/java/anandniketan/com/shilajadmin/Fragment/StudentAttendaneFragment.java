@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AttendanceAdapter;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
@@ -95,6 +96,12 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
 
         fragmentStudentAttendaneBinding.dateButton.setText(Utils.getTodaysDate());
 
+        fragmentStudentAttendaneBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentAttendaneBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

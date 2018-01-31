@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 
 import com.bumptech.glide.Glide;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.TransportSubMenuAdapter;
 import anandniketan.com.shilajadmin.R;
@@ -55,6 +56,12 @@ public class TransportFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentTransportBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentTransportBinding.btnBackTransport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

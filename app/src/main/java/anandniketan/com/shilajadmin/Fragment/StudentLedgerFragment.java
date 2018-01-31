@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Activity.Helper;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterAccountSummary;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterReceipt;
@@ -97,6 +98,12 @@ public class StudentLedgerFragment extends Fragment {
 
 
     public void setListner() {
+        fragmentStudentLedgerBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentStudentLedgerBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

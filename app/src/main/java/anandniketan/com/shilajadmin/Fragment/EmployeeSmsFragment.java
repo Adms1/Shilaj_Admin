@@ -27,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.EmployeeSMSDeatilListAdapter;
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
@@ -80,6 +81,12 @@ public class EmployeeSmsFragment extends Fragment {
     }
 
     public void setListners() {
+        fragmentEmployeeSmsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DashboardActivity.onLeft();
+            }
+        });
         fragmentEmployeeSmsBinding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
