@@ -68,7 +68,7 @@ public class TransportFragment extends Fragment {
                 fragment = new HomeFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -80,26 +80,26 @@ public class TransportFragment extends Fragment {
                     fragment = new TransportChargesFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }else if(position==1){
                     fragment = new RoutePickUpDetailFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
                 else if(position==2){
                     fragment = new VehicleDetailFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }else if(position==3){
                     fragment = new VehicleRouteFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
             }

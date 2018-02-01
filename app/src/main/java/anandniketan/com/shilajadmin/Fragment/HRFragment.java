@@ -69,7 +69,7 @@ public class HRFragment extends Fragment {
                 Fragment fragment = new HomeFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -80,7 +80,7 @@ public class HRFragment extends Fragment {
                     fragment = new MenuPermissionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
             }

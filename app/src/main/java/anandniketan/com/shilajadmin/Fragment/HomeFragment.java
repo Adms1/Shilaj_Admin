@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,12 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import com.bumptech.glide.Glide;
-
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ImageAdapter;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.FragmentHomeBinding;
 
 
@@ -64,37 +60,37 @@ public class HomeFragment extends Fragment {
                     fragment = new StudentFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 1) {
                     fragment = new StaffFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new AccountFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 3) {
                     fragment = new TransportFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 4) {
                     fragment = new HRFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 5) {
                     fragment = new OtherFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out)
                             .replace(R.id.frame_container, fragment).commit();
                 }
             }

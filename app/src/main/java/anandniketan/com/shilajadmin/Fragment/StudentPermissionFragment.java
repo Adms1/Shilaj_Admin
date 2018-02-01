@@ -84,7 +84,7 @@ public class StudentPermissionFragment extends Fragment {
                 fragment = new StudentFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -96,19 +96,19 @@ public class StudentPermissionFragment extends Fragment {
                     fragment = new ResultPermisssionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 1) {
                     fragment = new OnlinePaymentFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new ProfilePermissionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
             }

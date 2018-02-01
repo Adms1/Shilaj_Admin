@@ -88,7 +88,7 @@ public class StudentFragment extends Fragment {
                 fragment = new HomeFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -98,7 +98,7 @@ public class StudentFragment extends Fragment {
                 fragment = new AttendaceSummaryFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -109,49 +109,49 @@ public class StudentFragment extends Fragment {
                     fragment = new SearchStudentFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 1) {
                     fragment = new StudentViewInquiryFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new StudentTranspotFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 3) {
                     fragment = new StudentPermissionFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 4) {
                     fragment = new StudentAttendaneFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }else if (position == 5) {
                     fragment = new LeftDetailFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 6) {
                     fragment = new GRRegisterFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 7) {
                     fragment = new StudentViewMarksFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
             }

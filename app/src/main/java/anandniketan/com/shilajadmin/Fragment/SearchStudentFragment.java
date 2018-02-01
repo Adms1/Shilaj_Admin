@@ -89,7 +89,7 @@ public class SearchStudentFragment extends Fragment {
                 fragment = new StudentFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -302,7 +302,7 @@ public class SearchStudentFragment extends Fragment {
                                 fragment = new AllDepartmentDetailsFragment();
                                 fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction()
-                                        .setCustomAnimations(0, 0)
+                                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                                         .replace(R.id.frame_container, fragment).commit();
                             }
                         });

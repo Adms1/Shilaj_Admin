@@ -67,7 +67,7 @@ public class OtherFragment extends Fragment {
                 Fragment fragment = new HomeFragment();
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .setCustomAnimations(0, 0)
+                        .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
             }
         });
@@ -79,64 +79,64 @@ public class OtherFragment extends Fragment {
                     fragment = new StudentAbsentFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 1) {
                     fragment = new BullkSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 2) {
                     fragment = new SingleSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 } else if (position == 3) {
                     fragment = new EmployeeSmsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }else if(position==4){
                     fragment = new SummaryFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
 //                else if(position==5){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
+//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
 //                            .replace(R.id.frame_container, fragment).commit();
 //                }else if(position==6){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
+//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
 //                            .replace(R.id.frame_container, fragment).commit();
 //                }else if(position==7){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
+//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
 //                            .replace(R.id.frame_container, fragment).commit();
 //                }
                 else if (position == 8) {
                     fragment = new AnnouncementFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
-                            .setCustomAnimations(0, 0)
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
                 }
 //                else if(position==9){
 //                    fragment = new MenuPermissionFragment();
 //                    fragmentManager = getFragmentManager();
 //                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(0, 0)
+//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
 //                            .replace(R.id.frame_container, fragment).commit();
 //                }
             }
