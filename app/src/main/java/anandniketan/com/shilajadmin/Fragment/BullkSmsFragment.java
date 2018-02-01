@@ -366,6 +366,7 @@ public class BullkSmsFragment extends Fragment {
         return map;
     }
 
+    //Use for fill the Term Spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -400,6 +401,7 @@ public class BullkSmsFragment extends Fragment {
         FinalTermIdStr = spinnerTermMap.get(0);
     }
 
+    //Use for fill the Standard Spinner
     public void fillGradeSpinner() {
         ArrayList<String> firstValue = new ArrayList<>();
         firstValue.add("All");
@@ -448,6 +450,7 @@ public class BullkSmsFragment extends Fragment {
         FinalStandardIdStr = spinnerStandardMap.get(0);
     }
 
+    //Use for fill the Class Spinner
     public void fillSection() {
         ArrayList<String> sectionname = new ArrayList<>();
         ArrayList<Integer> sectionId = new ArrayList<>();
@@ -507,6 +510,7 @@ public class BullkSmsFragment extends Fragment {
         callGetBulkSMSDataApi();
     }
 
+    //Use for fill the SMS Detail List
     public void fillDataList() {
         fragmentBullkSmsBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentBullkSmsBinding.bulkSmsDetailList.setVisibility(View.VISIBLE);
@@ -554,6 +558,7 @@ public class BullkSmsFragment extends Fragment {
         fragmentBullkSmsBinding.bulkSmsDetailList.setAdapter(bulkSMSDetailListAdapter);
     }
 
+    //Use for fill the Selected student send the message
     public void SendMessage() {
         LayoutInflater lInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

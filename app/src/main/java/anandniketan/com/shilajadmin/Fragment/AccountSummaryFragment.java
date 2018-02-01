@@ -256,7 +256,6 @@ public class AccountSummaryFragment extends Fragment {
 
     }
 
-
     private Map<String, String> getAccountDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Term_ID", FinalTermIdStr);
@@ -264,6 +263,7 @@ public class AccountSummaryFragment extends Fragment {
         return map;
     }
 
+    //Use for Fill TermDetail Spinner
     public void fillTermDetailSpinner() {
         ArrayList<Integer> termdetailId = new ArrayList<>();
         termdetailId.add(1);
@@ -307,6 +307,7 @@ public class AccountSummaryFragment extends Fragment {
             }
     }
 
+    //Use for Fill Term Spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -358,6 +359,7 @@ public class AccountSummaryFragment extends Fragment {
 
     }
 
+    //Use for Fill FeesStatus Data
     public void fillData() {
         String amount1 = "", amount2 = "", amount3 = "", amount4 = "", amount5 = "", amount6 = "";
         Double longval1 = null, longval2 = null, longval3 = null, longval4 = null, longval5 = null, longval6 = null;

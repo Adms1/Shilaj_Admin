@@ -145,7 +145,6 @@ public class ClassTeacherFragment extends Fragment {
         });
     }
 
-
     // CALL Standard API HERE
     private void callStandardApi() {
 
@@ -357,6 +356,7 @@ public class ClassTeacherFragment extends Fragment {
         return map;
     }
 
+    //Use for fill the TeachetList with subject
     public void fillDataList() {
         fragmentClassTeacherBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentClassTeacherBinding.classTeacherDetailList.setVisibility(View.VISIBLE);
@@ -370,6 +370,7 @@ public class ClassTeacherFragment extends Fragment {
         fragmentClassTeacherBinding.classTeacherDetailList.setAdapter(classTeacherDetailListAdapter);
     }
 
+    //Use for fill the Standard Spinner
     public void fillGradeSpinner() {
         ArrayList<Integer> StandardId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayStandardsList.size(); i++) {
@@ -403,6 +404,7 @@ public class ClassTeacherFragment extends Fragment {
         fragmentClassTeacherBinding.gradeSpinner.setAdapter(adapterTerm);
     }
 
+    //Use for fill the TeacherName Spinner
     public void fillTeacherSpinner() {
         ArrayList<Integer> TeacherId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayTeachersModelList.size(); i++) {
@@ -437,6 +439,7 @@ public class ClassTeacherFragment extends Fragment {
 
     }
 
+    //Use for fill the Class Spinner
     public void fillSection() {
         ArrayList<String> classname = new ArrayList<>();
         ArrayList<String> classId = new ArrayList<>();
@@ -480,6 +483,7 @@ public class ClassTeacherFragment extends Fragment {
         }
     }
 
+    //Use for get the Final selected ClassID
     private RadioGroup.OnCheckedChangeListener mCheckedListner = new RadioGroup.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {

@@ -420,6 +420,7 @@ public class AssignSubjectFragment extends Fragment {
         return map;
     }
 
+    //Use for fill the Term Spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -455,6 +456,7 @@ public class AssignSubjectFragment extends Fragment {
         callAssignSubjectApi();
     }
 
+    //Use for fill the Teacher Name Spinner
     public void fillTeacherSpinner() {
         ArrayList<Integer> TeacherId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayTeachersModelList.size(); i++) {
@@ -489,6 +491,7 @@ public class AssignSubjectFragment extends Fragment {
 
     }
 
+    //Use for fill the Subject Spinner
     public void fillSubjectSpinner() {
         ArrayList<Integer> SubjectId = new ArrayList<Integer>();
         for (int i = 0; i < finalArraySubjectModelList.size(); i++) {
@@ -523,6 +526,7 @@ public class AssignSubjectFragment extends Fragment {
 
     }
 
+    //Use for fill the Subject with Teacher data
     public void fillDataList() {
         fragmentAssignSubjectBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentAssignSubjectBinding.assignSubjectDetailList.setVisibility(View.VISIBLE);

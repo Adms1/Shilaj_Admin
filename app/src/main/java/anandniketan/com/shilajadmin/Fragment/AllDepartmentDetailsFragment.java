@@ -66,14 +66,9 @@ public class AllDepartmentDetailsFragment extends Fragment {
         rootView = fragmentAllDepartmentDetailsBinding.getRoot();
         mContext = getActivity().getApplicationContext();
 
-        initViews();
         setListners();
         callStaffApi();
         return rootView;
-    }
-
-    public void initViews() {
-
     }
 
     public void setListners() {

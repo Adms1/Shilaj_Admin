@@ -42,6 +42,7 @@ public class AccountFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
+    //Use for Store Resopnse
     List<AccountFeesCollectionModel> collectionModelList;
     String FinalTermtermdetailId = "1";
 
@@ -65,7 +66,7 @@ public class AccountFragment extends Fragment {
 
     public void initViews() {
         Glide.with(mContext)
-                .load( AppConfiguration.BASEURL_IMAGES + "Account/" + "account_inside.png")
+                .load(AppConfiguration.BASEURL_IMAGES + "Account/" + "account_inside.png")
                 .fitCenter()
                 .into(fragmentAccountBinding.circleImageView);
         fragmentAccountBinding.accountSubmenuGridView.setAdapter(new AccountSubMenuAdapter(mContext));
@@ -76,7 +77,7 @@ public class AccountFragment extends Fragment {
         fragmentAccountBinding.btnBackAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AppConfiguration.ReverseTermDetailId="";
+                AppConfiguration.ReverseTermDetailId = "";
                 fragment = new HomeFragment();
                 fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
@@ -210,6 +211,7 @@ public class AccountFragment extends Fragment {
         return map;
     }
 
+    // Use for fill data account data
     public void fillData() {
         for (int i = 0; i < collectionModelList.size(); i++) {
             AppConfiguration.TermId = String.valueOf(collectionModelList.get(i).getTermID());
@@ -221,8 +223,9 @@ public class AccountFragment extends Fragment {
         AppConfiguration.TermDetailId = FinalTermtermdetailId;
     }
 
+    //Use for get Selected Term value for next page
     public void SelectTerm() {
-        if(!AppConfiguration.ReverseTermDetailId.equalsIgnoreCase("")) {
+        if (!AppConfiguration.ReverseTermDetailId.equalsIgnoreCase("")) {
             if (AppConfiguration.ReverseTermDetailId.equalsIgnoreCase(fragmentAccountBinding.term1RadioButton.getTag().toString())) {
                 fragmentAccountBinding.term1RadioButton.setChecked(true);
             } else if (AppConfiguration.ReverseTermDetailId.equalsIgnoreCase(fragmentAccountBinding.term2RadioButton.getTag().toString())) {

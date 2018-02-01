@@ -66,7 +66,6 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
     private static String dateFinal;
     private DatePickerDialog datePickerDialog;
     HashMap<Integer, String> spinnerOrderMap;
-    List<FinalArrayStudentNameModel> announcmentList;
     AnnouncmentAdpater announcmentAdpater;
 
 
@@ -292,6 +291,7 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
         return map;
     }
 
+    //Use for DatePicker Dialog
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = "Selected Date : " + Day + "/" + Month + "/" + Year;
@@ -316,6 +316,7 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
         fragmentAnnouncementBinding.dateButton.setText(dateFinal);
     }
 
+    //Use for Fill Order Spinner
     public void fillOrderSpinner() {
         ArrayList<Integer> orderIdArray = new ArrayList<Integer>();
         orderIdArray.add(0);
@@ -370,6 +371,7 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
         FinalOrderStr = spinnerOrderMap.get(0);
     }
 
+    //Use for Get the Selected Value
     public void getFinalAllId() {
         FinalDateStr = fragmentAnnouncementBinding.dateButton.getText().toString();
         FinalSubjectStr = fragmentAnnouncementBinding.subjectEdt.getText().toString();

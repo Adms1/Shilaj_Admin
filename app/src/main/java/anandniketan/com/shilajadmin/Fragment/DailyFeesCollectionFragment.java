@@ -205,7 +205,6 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         });
     }
 
-
     // CALL Term API HERE
     private void callTermApi() {
 
@@ -256,7 +255,6 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         Map<String, String> map = new HashMap<>();
         return map;
     }
-
 
     // CALL Standard API HERE
     private void callStandardApi() {
@@ -378,6 +376,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         return map;
     }
 
+    //Use for fill the Term Spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -413,6 +412,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         FinalTermIdStr=spinnerTermMap.get(0);
     }
 
+    //Use for fill the Standard Spinner
     public void fillStandardSpinner() {
         ArrayList<Integer> standardId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayStandardsList.size(); i++) {
@@ -448,6 +448,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         FinalstandardIdStr =spinnerStandardMap.get(0);
     }
 
+    //Use for fill the TermDetail Spinner
     public void fillTermDetailSpinner() {
         ArrayList<Integer> termdetailId = new ArrayList<>();
         termdetailId.add(1);
@@ -484,6 +485,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         FinalTermDetailIdStr=spinnerTermDetailIdMap.get(0);
     }
 
+    //Use for fill the paymentMode Spinner
     public void fillPaymentModeDetailSpinner() {
         ArrayList<Integer> paymentmodeId = new ArrayList<>();
         paymentmodeId.add(1);
@@ -524,6 +526,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         callDailyCollectionApi();
     }
 
+    //Use for fill the Term Spinner
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<String, ArrayList<FinalArrayDailyCollection>>();
