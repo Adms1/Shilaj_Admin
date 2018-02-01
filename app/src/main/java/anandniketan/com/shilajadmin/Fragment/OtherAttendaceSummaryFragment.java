@@ -93,6 +93,7 @@ public class OtherAttendaceSummaryFragment extends Fragment {
 //        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getStaffAttendace(getStaffDetail(), new retrofit.Callback<StaffAttendaceModel>() {
 
+            
             @Override
             public void success(StaffAttendaceModel staffUser, Response response) {
 //                Utils.dismissDialog();

@@ -89,6 +89,7 @@ public class TimeTableFragment extends Fragment {
                 lastExpandedPosition = groupPosition;
             }
         });
+
     }
 
 

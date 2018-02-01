@@ -52,8 +52,8 @@ public class SummaryFragment extends Fragment {
     public void init() {
 //Initializing the tablayout
 
-        fragmentSummaryBinding.tabLayoutSchedule.addTab(fragmentSummaryBinding.tabLayoutSchedule.newTab().setText("Today Schedule"),true);
-        fragmentSummaryBinding.tabLayoutSchedule.addTab(fragmentSummaryBinding.tabLayoutSchedule.newTab().setText(Html.fromHtml("Lesson Plan \n Schedule")));
+        fragmentSummaryBinding.tabLayoutSchedule.addTab(fragmentSummaryBinding.tabLayoutSchedule.newTab().setText("Attendace Summary"),true);
+        fragmentSummaryBinding.tabLayoutSchedule.addTab(fragmentSummaryBinding.tabLayoutSchedule.newTab().setText(Html.fromHtml("Account Summary")));
         fragmentSummaryBinding.tabLayoutSchedule.setTabMode(TabLayout.MODE_FIXED);
         fragmentSummaryBinding.tabLayoutSchedule.setTabGravity(TabLayout.GRAVITY_FILL);
 
