@@ -16,6 +16,7 @@ import anandniketan.com.shilajadmin.Model.Account.FinalArrayPaymentLedgerModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupFeesStructureDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemAccountSummaryBinding;
+import anandniketan.com.shilajadmin.databinding.ListItemAccountSummaryNewBinding;
 
 /**
  * Created by admsandroid on 11/27/2017.
@@ -26,6 +27,7 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
     private Context _context;
     private List<String> _listDataHeader;
     private HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>> _listDataChild;
+    String headerTitle;
 
     public ExpandableListAdapterAccountSummary(Context _context, List<String> listDataHeader,
                                                HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>> listDataChild) {
@@ -43,24 +45,81 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        ListItemAccountSummaryBinding itembinding;
+        ListItemAccountSummaryNewBinding itembinding;
         ArrayList<FinalArrayPaymentLedgerModel> detail = getChild(groupPosition, 0);
         if (convertView == null) {
 
         }
-        itembinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.list_item_account_summary, parent, false);
+        itembinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.list_item_account_summary_new, parent, false);
         convertView = itembinding.getRoot();
-        itembinding.previousBalTxt.setText("₹" + " " + detail.get(childPosition).getPreviousBalance());
-        itembinding.tutionfeesTxt.setText("₹" + " " + detail.get(childPosition).getTutionFees());
-        itembinding.admissionTxt.setText("₹" + " " + detail.get(childPosition).getAdmissionFees());
-        itembinding.cautionTxt.setText("₹" + " " + detail.get(childPosition).getCautionFees());
-        itembinding.transportTxt.setText("₹" + " " + detail.get(childPosition).getTransportFees());
-        itembinding.imprestTxt.setText("₹" + " " + detail.get(childPosition).getImprest());
-        itembinding.lateTxt.setText("₹" + " " + detail.get(childPosition).getTermLateFee());
-        itembinding.discountTxt.setText("₹" + " " + detail.get(childPosition).getTermDiscount());
-        itembinding.totalPayTxt.setText("₹" + " " + detail.get(childPosition).getTermDuePay());
-        itembinding.paidfeesTxt.setText("₹" + " " + detail.get(childPosition).getTermPaid());
-        itembinding.balnceTxt.setText("₹" + " " + detail.get(childPosition).getTermTotal());
+//        itembinding.previousBalTxt.setText("₹" + " " + detail.get(childPosition).getPreviousBalance());
+//        itembinding.tutionfeesTxt.setText("₹" + " " + detail.get(childPosition).getTutionFees());
+//        itembinding.admissionTxt.setText("₹" + " " + detail.get(childPosition).getAdmissionFees());
+//        itembinding.cautionTxt.setText("₹" + " " + detail.get(childPosition).getCautionFees());
+//        itembinding.transportTxt.setText("₹" + " " + detail.get(childPosition).getTransportFees());
+//        itembinding.imprestTxt.setText("₹" + " " + detail.get(childPosition).getImprest());
+//        itembinding.lateTxt.setText("₹" + " " + detail.get(childPosition).getTermLateFee());
+//        itembinding.discountTxt.setText("₹" + " " + detail.get(childPosition).getTermDiscount());
+//        itembinding.totalPayTxt.setText("₹" + " " + detail.get(childPosition).getTermDuePay());
+//        itembinding.paidfeesTxt.setText("₹" + " " + detail.get(childPosition).getTermPaid());
+//        itembinding.balnceTxt.setText("₹" + " " + detail.get(childPosition).getTermTotal());
+        if (headerTitle.equalsIgnoreCase("Admission Fees")) {
+            itembinding.admissionFeesTxtView.setText("Admission Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getAdmissionFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Admission Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptAdmissionFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Admission Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingAdmissionFees());
+        }else if(headerTitle.equalsIgnoreCase("Tution Fees")){
+            itembinding.admissionFeesTxtView.setText("Tution Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTutionFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Tution Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptTutionFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Tution Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingTutionFees());
+        }else if(headerTitle.equalsIgnoreCase("Caution Fees")){
+            itembinding.admissionFeesTxtView.setText("Caution Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getCautionFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Caution Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptCautionFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Caution Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingCautionFees());
+        }else if(headerTitle.equalsIgnoreCase("Transport Fees")){
+            itembinding.admissionFeesTxtView.setText("Transport Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTransportFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Transport Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptTransportFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Transport Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingTransportFees());
+        }else if(headerTitle.equalsIgnoreCase("Imprest Fees")){
+            itembinding.admissionFeesTxtView.setText("Imprest Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getImprest());
+            itembinding.receiptAdmissionFeesTxtView.setText("Imprest Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptImprest());
+            itembinding.remainingFeesTxtView.setText("Remaining Imprest Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingImprest());
+        }else if(headerTitle.equalsIgnoreCase("Late Fees")){
+            itembinding.admissionFeesTxtView.setText("Late Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getLateFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Late Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptLateFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Late Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingLateFees());
+        }else if(headerTitle.equalsIgnoreCase("Discount Fees")){
+            itembinding.admissionFeesTxtView.setText("Discount Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermDiscount());
+            itembinding.receiptAdmissionFeesTxtView.setText("Discount Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptDiscount());
+            itembinding.remainingFeesTxtView.setText("Remaining Discount Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingDiscount());
+        }else if(headerTitle.equalsIgnoreCase("Fees")){
+            itembinding.admissionFeesTxtView.setText("Term Fees");
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermTotalFees());
+            itembinding.receiptAdmissionFeesTxtView.setText("Term Fees Receipt");
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermReceiptFees());
+            itembinding.remainingFeesTxtView.setText("Remaining Term Fees");
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermRemainingFees());
+        }
         return convertView;
     }
 
@@ -94,7 +153,7 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         ListGroupFeesStructureDetailBinding groupbinding;
-        String headerTitle = (String) getGroup(groupPosition);
+        headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
 
         }

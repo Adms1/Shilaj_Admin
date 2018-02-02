@@ -34,7 +34,7 @@ public class AccountSubMenuAdapter extends BaseAdapter {
     };
 
     public String[] mThumbNames = {"Account Summary", "Collection", "Fee Structure",
-            "Student Discount", "Daily Fees Collection", "Imprest","Student Ledger", "Fees SMS"};
+            "Student Discount", "Daily Fees Collection", "Imprest","Student Ledger", "Cheque Payment"};
 
     // Constructor
     public AccountSubMenuAdapter(Context c) {

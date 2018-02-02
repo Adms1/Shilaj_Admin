@@ -1,7 +1,9 @@
 package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,13 +31,15 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader;
     private HashMap<String, ArrayList<String>> _listDataChild;
+    private ArrayList<String> imagesId;
 
 
     public ExpandableListAdapterMenu(Context context, List<String> listDataHeader,
-                                     HashMap<String, ArrayList<String>> listDataChild) {
+                                     HashMap<String, ArrayList<String>> listDataChild, ArrayList<String> imagesId) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
+        this.imagesId = imagesId;
     }
 
 
@@ -57,7 +63,7 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
             txtLecture = (TextView) convertView.findViewById(R.id.txtLecture);
 
 
-            txtLecture.setText(getChild(groupPosition,childPosition));
+            txtLecture.setText(getChild(groupPosition, childPosition));
 
         }
         return convertView;
@@ -94,10 +100,9 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         String headerTitle = (String) getGroup(groupPosition);
-
+        String [] spiltValue=headerTitle.split("\\|");
         Log.d("headerTitle", headerTitle);
-//        String[] h1=headerTitle.split("\\|");
-//        Integer url= Integer.valueOf(h1[1]);
+
         if (convertView == null) {
 
         }
@@ -109,15 +114,25 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
 
         TextView lblListHeader = (TextView) convertView.findViewById(R.id.title);
         ImageView image_menu = (ImageView) convertView.findViewById(R.id.image_menu);
+        ImageView image_arrow = (ImageView) convertView.findViewById(R.id.image_arrow);
 
-        lblListHeader.setText(headerTitle);
-//        image_menu.setBackgroundResource(url);
+            lblListHeader.setText(spiltValue[0]);
 
-//        if (isExpanded) {
-//            groupbinding.lblListHeader.setTextColor(_context.getResources().getColor(R.color.present));
-//        } else {
-//            groupbinding.lblListHeader.setTextColor(_context.getResources().getColor(R.color.orange));
-//        }
+        Glide.with(_context)
+                .load(spiltValue[1])
+                .fitCenter()
+                .into(image_menu);
+
+        if (spiltValue[0].equalsIgnoreCase("OTHER")) {
+            image_arrow.setVisibility(View.VISIBLE);
+            if (isExpanded) {
+                image_arrow.setBackgroundResource(R.drawable.arrow_1_42_down);
+            } else {
+                image_arrow.setBackgroundResource(R.drawable.arrow_1_42);
+            }
+        } else {
+            image_arrow.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

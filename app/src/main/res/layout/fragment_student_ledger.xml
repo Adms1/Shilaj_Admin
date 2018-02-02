@@ -77,7 +77,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -147,7 +147,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -199,7 +199,7 @@
                         android:id="@+id/linear_gr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
                         android:orientation="horizontal"
                         android:weightSum="3">
 
@@ -279,7 +279,7 @@
                             android:layout_below="@+id/main_linear_add"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:background="@drawable/linear_border"
                             android:orientation="vertical"
                             android:visibility="gone">
@@ -502,20 +502,32 @@
                                     android:textStyle="normal" />
                             </LinearLayout>
                         </LinearLayout>
-
+                        <TextView
+                            android:id="@+id/acc_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Account Detail"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/scheduleheadertextcolor"
+                            android:textSize="@dimen/_12sdp"
+                            android:visibility="gone"/>
                         <LinearLayout
                             android:id="@+id/exp_header"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_112sdp"
+                            android:layout_height="@dimen/_300sdp"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_3sdp"
                             android:orientation="horizontal">
+
 
                             <ExpandableListView
                                 android:id="@+id/lvExpaccountsummary"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_102sdp"
+                                android:layout_height="match_parent"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_below="@+id/linear_gr"
@@ -533,7 +545,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_marginRight="@dimen/_5sdp"
-                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
                             android:orientation="vertical"
                             android:visibility="gone">
 
@@ -567,8 +579,6 @@
                     </LinearLayout>
                 </ScrollView>
             </LinearLayout>
-
-
         </RelativeLayout>
 
     </LinearLayout>

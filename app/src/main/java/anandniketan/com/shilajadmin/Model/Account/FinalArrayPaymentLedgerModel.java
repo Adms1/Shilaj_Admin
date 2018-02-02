@@ -29,21 +29,24 @@ public class FinalArrayPaymentLedgerModel {
     @SerializedName("Date of Joining")
     @Expose
     private String dateOfJoining;
-    @SerializedName("TermTotal")
+    @SerializedName("TermTotalFees")
     @Expose
-    private String termTotal;
-    @SerializedName("TermPaid")
+    private String termTotalFees;
+    @SerializedName("TermReceiptFees")
     @Expose
-    private String termPaid;
-    @SerializedName("TermDuePay")
+    private String termReceiptFees;
+    @SerializedName("TermRemainingFees")
     @Expose
-    private String termDuePay;
+    private String termRemainingFees;
     @SerializedName("TermDiscount")
     @Expose
     private String termDiscount;
-    @SerializedName("TermLateFee")
+    @SerializedName("TermLateFees")
     @Expose
-    private String termLateFee;
+    private String termLateFees;
+    @SerializedName("LateFees")
+    @Expose
+    private String lateFees;
     @SerializedName("PreviousBalance")
     @Expose
     private String previousBalance;
@@ -62,6 +65,48 @@ public class FinalArrayPaymentLedgerModel {
     @SerializedName("Imprest")
     @Expose
     private String imprest;
+    @SerializedName("ReceiptTutionFees")
+    @Expose
+    private String receiptTutionFees;
+    @SerializedName("RemainingTutionFees")
+    @Expose
+    private String remainingTutionFees;
+    @SerializedName("ReceiptDiscount")
+    @Expose
+    private String receiptDiscount;
+    @SerializedName("RemainingDiscount")
+    @Expose
+    private String remainingDiscount;
+    @SerializedName("ReceiptAdmissionFees")
+    @Expose
+    private String receiptAdmissionFees;
+    @SerializedName("RemainingAdmissionFees")
+    @Expose
+    private String remainingAdmissionFees;
+    @SerializedName("ReceiptCautionFees")
+    @Expose
+    private String receiptCautionFees;
+    @SerializedName("RemainingCautionFees")
+    @Expose
+    private String remainingCautionFees;
+    @SerializedName("ReceiptTransportFees")
+    @Expose
+    private String receiptTransportFees;
+    @SerializedName("RemainingTransportFees")
+    @Expose
+    private String remainingTransportFees;
+    @SerializedName("ReceiptLateFees")
+    @Expose
+    private String receiptLateFees;
+    @SerializedName("RemainingLateFees")
+    @Expose
+    private String remainingLateFees;
+    @SerializedName("ReceiptImprest")
+    @Expose
+    private String receiptImprest;
+    @SerializedName("RemainingImprest")
+    @Expose
+    private String remainingImprest;
 
     public String getTerm() {
         return term;
@@ -95,19 +140,19 @@ public class FinalArrayPaymentLedgerModel {
         this.className = className;
     }
 
-    public String getGRNO() {
+    public String getgRNO() {
         return gRNO;
     }
 
-    public void setGRNO(String gRNO) {
+    public void setgRNO(String gRNO) {
         this.gRNO = gRNO;
     }
 
-    public String getSMSNo() {
+    public String getsMSNo() {
         return sMSNo;
     }
 
-    public void setSMSNo(String sMSNo) {
+    public void setsMSNo(String sMSNo) {
         this.sMSNo = sMSNo;
     }
 
@@ -119,28 +164,28 @@ public class FinalArrayPaymentLedgerModel {
         this.dateOfJoining = dateOfJoining;
     }
 
-    public String getTermTotal() {
-        return termTotal;
+    public String getTermTotalFees() {
+        return termTotalFees;
     }
 
-    public void setTermTotal(String termTotal) {
-        this.termTotal = termTotal;
+    public void setTermTotalFees(String termTotalFees) {
+        this.termTotalFees = termTotalFees;
     }
 
-    public String getTermPaid() {
-        return termPaid;
+    public String getTermReceiptFees() {
+        return termReceiptFees;
     }
 
-    public void setTermPaid(String termPaid) {
-        this.termPaid = termPaid;
+    public void setTermReceiptFees(String termReceiptFees) {
+        this.termReceiptFees = termReceiptFees;
     }
 
-    public String getTermDuePay() {
-        return termDuePay;
+    public String getTermRemainingFees() {
+        return termRemainingFees;
     }
 
-    public void setTermDuePay(String termDuePay) {
-        this.termDuePay = termDuePay;
+    public void setTermRemainingFees(String termRemainingFees) {
+        this.termRemainingFees = termRemainingFees;
     }
 
     public String getTermDiscount() {
@@ -151,12 +196,20 @@ public class FinalArrayPaymentLedgerModel {
         this.termDiscount = termDiscount;
     }
 
-    public String getTermLateFee() {
-        return termLateFee;
+    public String getTermLateFees() {
+        return termLateFees;
     }
 
-    public void setTermLateFee(String termLateFee) {
-        this.termLateFee = termLateFee;
+    public void setTermLateFees(String termLateFees) {
+        this.termLateFees = termLateFees;
+    }
+
+    public String getLateFees() {
+        return lateFees;
+    }
+
+    public void setLateFees(String lateFees) {
+        this.lateFees = lateFees;
     }
 
     public String getPreviousBalance() {
@@ -205,5 +258,117 @@ public class FinalArrayPaymentLedgerModel {
 
     public void setImprest(String imprest) {
         this.imprest = imprest;
+    }
+
+    public String getReceiptTutionFees() {
+        return receiptTutionFees;
+    }
+
+    public void setReceiptTutionFees(String receiptTutionFees) {
+        this.receiptTutionFees = receiptTutionFees;
+    }
+
+    public String getRemainingTutionFees() {
+        return remainingTutionFees;
+    }
+
+    public void setRemainingTutionFees(String remainingTutionFees) {
+        this.remainingTutionFees = remainingTutionFees;
+    }
+
+    public String getReceiptDiscount() {
+        return receiptDiscount;
+    }
+
+    public void setReceiptDiscount(String receiptDiscount) {
+        this.receiptDiscount = receiptDiscount;
+    }
+
+    public String getRemainingDiscount() {
+        return remainingDiscount;
+    }
+
+    public void setRemainingDiscount(String remainingDiscount) {
+        this.remainingDiscount = remainingDiscount;
+    }
+
+    public String getReceiptAdmissionFees() {
+        return receiptAdmissionFees;
+    }
+
+    public void setReceiptAdmissionFees(String receiptAdmissionFees) {
+        this.receiptAdmissionFees = receiptAdmissionFees;
+    }
+
+    public String getRemainingAdmissionFees() {
+        return remainingAdmissionFees;
+    }
+
+    public void setRemainingAdmissionFees(String remainingAdmissionFees) {
+        this.remainingAdmissionFees = remainingAdmissionFees;
+    }
+
+    public String getReceiptCautionFees() {
+        return receiptCautionFees;
+    }
+
+    public void setReceiptCautionFees(String receiptCautionFees) {
+        this.receiptCautionFees = receiptCautionFees;
+    }
+
+    public String getRemainingCautionFees() {
+        return remainingCautionFees;
+    }
+
+    public void setRemainingCautionFees(String remainingCautionFees) {
+        this.remainingCautionFees = remainingCautionFees;
+    }
+
+    public String getReceiptTransportFees() {
+        return receiptTransportFees;
+    }
+
+    public void setReceiptTransportFees(String receiptTransportFees) {
+        this.receiptTransportFees = receiptTransportFees;
+    }
+
+    public String getRemainingTransportFees() {
+        return remainingTransportFees;
+    }
+
+    public void setRemainingTransportFees(String remainingTransportFees) {
+        this.remainingTransportFees = remainingTransportFees;
+    }
+
+    public String getReceiptLateFees() {
+        return receiptLateFees;
+    }
+
+    public void setReceiptLateFees(String receiptLateFees) {
+        this.receiptLateFees = receiptLateFees;
+    }
+
+    public String getRemainingLateFees() {
+        return remainingLateFees;
+    }
+
+    public void setRemainingLateFees(String remainingLateFees) {
+        this.remainingLateFees = remainingLateFees;
+    }
+
+    public String getReceiptImprest() {
+        return receiptImprest;
+    }
+
+    public void setReceiptImprest(String receiptImprest) {
+        this.receiptImprest = receiptImprest;
+    }
+
+    public String getRemainingImprest() {
+        return remainingImprest;
+    }
+
+    public void setRemainingImprest(String remainingImprest) {
+        this.remainingImprest = remainingImprest;
     }
 }

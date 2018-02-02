@@ -253,4 +253,8 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetAttendence_Admin")
     public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetReceiptDetails")
+    public void getReceiptDetails(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
 }

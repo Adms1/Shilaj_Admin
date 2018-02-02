@@ -544,7 +544,6 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
     }
 
-
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = "Selected Date : " + Day + "/" + Month + "/" + Year;

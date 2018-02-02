@@ -25,7 +25,7 @@
                 android:layout_gravity="center_vertical"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_12sdp" />
 
             <ImageView
                 android:id="@+id/arrow_img"

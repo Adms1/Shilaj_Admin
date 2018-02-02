@@ -74,6 +74,7 @@ public class DashboardActivity extends FragmentActivity {
     static ExpandableListView mDrawerList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<String>> listDataChild;
+    ArrayList<String> imagesId = new ArrayList<String>();
 
 
     @Override
@@ -185,8 +186,8 @@ public class DashboardActivity extends FragmentActivity {
 
         @Override
         public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-            Utils.ping(mContext,""+expandableListAdapterMenu.getChild(i,i1));
-            String str=expandableListAdapterMenu.getChild(i,i1);
+//            Utils.ping(mContext,""+expandableListAdapterMenu.getChild(i,i1));
+            String str = expandableListAdapterMenu.getChild(i, i1);
             displayView1(str);
             return true;
 
@@ -194,7 +195,7 @@ public class DashboardActivity extends FragmentActivity {
 
         @Override
         public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
-            Utils.ping(mContext,""+i);
+//            Utils.ping(mContext,""+i);
             displayView(i);
             return false;
         }
@@ -276,27 +277,27 @@ public class DashboardActivity extends FragmentActivity {
 
     public void displayView1(String position) {
         switch (position) {
-            case "Student Absent":
+            case "STUDENT ABSENT":
                 fragment = new StudentAbsentFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-            case "Bulk SMS":
+            case "BULK SMS":
                 fragment = new BullkSmsFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-            case "Single SMS":
+            case "SINGLE SMS":
                 fragment = new SingleSmsFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-            case "Employee SMS":
+            case "EMPLOYEE SMS":
                 fragment = new EmployeeSmsFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-            case "Summary":
+            case "SUMMARY":
                 fragment = new SummaryFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -311,7 +312,7 @@ public class DashboardActivity extends FragmentActivity {
 //                myid = fragment.getId();
 //                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 //                break;
-            case "Announcement":
+            case "ANNOUNCMENT":
                 fragment = new AnnouncementFragment();
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -353,6 +354,7 @@ public class DashboardActivity extends FragmentActivity {
             Log.e("Dashboard", "Error in creating fragment");
         }
     }
+
     public static void onLeft() {
         // TODO Auto-generated method stub
         mDrawerList.setSelectionAfterHeaderView();
@@ -380,57 +382,59 @@ public class DashboardActivity extends FragmentActivity {
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<String, ArrayList<String>>();
+        ArrayList<String> finalImageArray = new ArrayList<String>();
 
         ArrayList<String> finalheaderArray = new ArrayList<>();
-        finalheaderArray.add("Home");
-        finalheaderArray.add("Student");
-        finalheaderArray.add("Staff");
-        finalheaderArray.add("Account");
-        finalheaderArray.add("Transport");
-        finalheaderArray.add("Hr");
-        finalheaderArray.add("Other");
-        finalheaderArray.add("Logout");
+        finalheaderArray.add("HOME");
+        finalheaderArray.add("STUDENT");
+        finalheaderArray.add("STAFF");
+        finalheaderArray.add("ACCOUNT");
+        finalheaderArray.add("TRANSPORT");
+        finalheaderArray.add("HR");
+        finalheaderArray.add("OTHER");
+        finalheaderArray.add("LOGOUT");
 
         ArrayList<String> finalchildArray = new ArrayList<>();
-        finalchildArray.add("Student Absent");
-        finalchildArray.add("Bulk SMS");
-        finalchildArray.add("Single SMS");
-        finalchildArray.add("Employee SMS");
-        finalchildArray.add("Summary");
-        finalchildArray.add("Holiday");
+        finalchildArray.add("STUDENT ABSENT");
+        finalchildArray.add("BULK SMS");
+        finalchildArray.add("SINGLE SMS");
+        finalchildArray.add("EMPLOYEE SMS");
+        finalchildArray.add("SUMMARY");
+        finalchildArray.add("HOLIDAY");
         finalchildArray.add("PTM");
-        finalchildArray.add("Activity Logging");
-        finalchildArray.add("Announcement");
-        finalchildArray.add("Quick Email");
+        finalchildArray.add("ACTIVITY LOGGING");
+        finalchildArray.add("ANNOUNCMENT");
+        finalchildArray.add("QUICK EMAIL");
 
-        String[] mThumbIds = {
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Home.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Student.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Staff.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Account.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Transport.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_HR.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Other.png",
-                AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Logout.png"
-        };
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Home.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Student.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Staff.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Account.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Transport.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_HR.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Other.png");
+        imagesId.add(AppConfiguration.BASEURL_IMAGES + "SideMenu/" + "Menu_Logout.png");
+
+        for (int k = 0; k < imagesId.size(); k++) {
+            finalImageArray.add(imagesId.get(k));
+        }
+        Log.d("finalImageArray", "" + finalImageArray);
 
         for (int i = 0; i < finalheaderArray.size(); i++) {
-//            for (int k = 0; k < mThumbIds.length; k++) {
-                listDataHeader.add(finalheaderArray.get(i));//+"|"+mThumbIds[k]
+                listDataHeader.add(finalheaderArray.get(i)+"|"+imagesId.get(i));//+"|"+mThumbIds[k]
                 Log.d("header", "" + listDataHeader);
                 ArrayList<String> row = new ArrayList<String>();
 
                 for (int j = 0; j < finalchildArray.size(); j++) {
-                    if (finalheaderArray.get(i).equalsIgnoreCase("Other")) {
+                    if (finalheaderArray.get(i).equalsIgnoreCase("OTHER")) {
                         row.add(finalchildArray.get(j));
                         Log.d("row", "" + row);
                     }
                 }
                 listDataChild.put(listDataHeader.get(i), row);
-                Log.d("child", "" + listDataChild);
-//            }
+            Log.d("child", "" + listDataChild);
         }
-        expandableListAdapterMenu = new ExpandableListAdapterMenu(mContext, listDataHeader, listDataChild);
+        expandableListAdapterMenu = new ExpandableListAdapterMenu(mContext, listDataHeader, listDataChild,imagesId);
         mDrawerList.setAdapter(expandableListAdapterMenu);
     }
 }
