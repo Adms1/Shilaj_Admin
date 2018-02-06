@@ -30,7 +30,7 @@ public class AccountSubMenuAdapter extends BaseAdapter {
             AppConfiguration.BASEURL_IMAGES + "Account/" + "Daily%20Fees%20Collection.png",
             AppConfiguration.BASEURL_IMAGES + "Account/" + "Imprest.png",
             AppConfiguration.BASEURL_IMAGES + "Account/" + "Student%20Ledger.png",
-            AppConfiguration.BASEURL_IMAGES + "Account/" + "Fees%20SMS.png",
+            AppConfiguration.BASEURL_IMAGES + "Account/" + "Cheque%20Payment.png",
     };
 
     public String[] mThumbNames = {"Account Summary", "Collection", "Fee Structure",

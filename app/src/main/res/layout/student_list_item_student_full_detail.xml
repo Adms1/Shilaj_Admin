@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/tag_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -33,7 +33,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=":"
                 android:textAlignment="center"
@@ -44,7 +44,7 @@
             <TextView
                 android:id="@+id/tag_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -62,7 +62,7 @@
             <TextView
                 android:id="@+id/firstname_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/firstname"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -71,7 +71,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -81,7 +81,7 @@
             <TextView
                 android:id="@+id/firstname_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -99,7 +99,7 @@
             <TextView
                 android:id="@+id/middle_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/middlename"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -108,7 +108,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -118,7 +118,7 @@
             <TextView
                 android:id="@+id/middle_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -136,7 +136,7 @@
             <TextView
                 android:id="@+id/lastname_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/lastname"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -145,7 +145,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -155,7 +155,7 @@
             <TextView
                 android:id="@+id/lastname_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -173,7 +173,7 @@
             <TextView
                 android:id="@+id/dob_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/dob"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -182,7 +182,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -192,7 +192,7 @@
             <TextView
                 android:id="@+id/dob_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -211,7 +211,7 @@
             <TextView
                 android:id="@+id/birthplace_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/birthplace"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -220,7 +220,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -230,7 +230,7 @@
             <TextView
                 android:id="@+id/birthplace_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -248,7 +248,7 @@
             <TextView
                 android:id="@+id/age_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/age"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -257,7 +257,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -267,7 +267,7 @@
             <TextView
                 android:id="@+id/age_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -285,7 +285,7 @@
             <TextView
                 android:id="@+id/gender_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/gender"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -294,7 +294,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -304,7 +304,7 @@
             <TextView
                 android:id="@+id/gender_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -322,7 +322,7 @@
             <TextView
                 android:id="@+id/aadhar_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/aadhar"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -331,7 +331,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -341,7 +341,7 @@
             <TextView
                 android:id="@+id/aadhar_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -358,7 +358,7 @@
             <TextView
                 android:id="@+id/student_type_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttype"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -367,7 +367,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -377,7 +377,7 @@
             <TextView
                 android:id="@+id/student_type_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -394,7 +394,7 @@
             <TextView
                 android:id="@+id/acedamic_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/acedamic"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -403,7 +403,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -413,7 +413,7 @@
             <TextView
                 android:id="@+id/acedamic_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -431,7 +431,7 @@
             <TextView
                 android:id="@+id/grade_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/grade"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -440,7 +440,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -450,7 +450,7 @@
             <TextView
                 android:id="@+id/grade_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -468,7 +468,7 @@
             <TextView
                 android:id="@+id/section_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/section"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -477,7 +477,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -487,7 +487,7 @@
             <TextView
                 android:id="@+id/section_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -505,7 +505,7 @@
             <TextView
                 android:id="@+id/lastschool_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/lastschool"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -514,7 +514,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -524,7 +524,7 @@
             <TextView
                 android:id="@+id/lastschool_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -542,7 +542,7 @@
             <TextView
                 android:id="@+id/doa_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/doa"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -551,7 +551,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -561,7 +561,7 @@
             <TextView
                 android:id="@+id/doa_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -579,7 +579,7 @@
             <TextView
                 android:id="@+id/doataken_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/doataken"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -588,7 +588,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -598,7 +598,7 @@
             <TextView
                 android:id="@+id/doataken_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -616,7 +616,7 @@
             <TextView
                 android:id="@+id/bloodgroup_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/bloodgroup"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -625,7 +625,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -635,7 +635,7 @@
             <TextView
                 android:id="@+id/bloodgroup_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -653,7 +653,7 @@
             <TextView
                 android:id="@+id/house_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/house"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -662,7 +662,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -672,7 +672,7 @@
             <TextView
                 android:id="@+id/house_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -690,7 +690,7 @@
             <TextView
                 android:id="@+id/oldgr_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/oldgr"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -699,7 +699,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -709,7 +709,7 @@
             <TextView
                 android:id="@+id/oldgr_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -727,7 +727,7 @@
             <TextView
                 android:id="@+id/religion_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/religion"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -736,7 +736,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -746,7 +746,7 @@
             <TextView
                 android:id="@+id/religion_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -764,7 +764,7 @@
             <TextView
                 android:id="@+id/username_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/username"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -773,7 +773,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -783,7 +783,7 @@
             <TextView
                 android:id="@+id/username_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -801,7 +801,7 @@
             <TextView
                 android:id="@+id/password_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/password"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -810,7 +810,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -820,7 +820,7 @@
             <TextView
                 android:id="@+id/password_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -839,7 +839,7 @@
             <TextView
                 android:id="@+id/status_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="Status"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -848,7 +848,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -858,7 +858,7 @@
             <TextView
                 android:id="@+id/status_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -875,7 +875,7 @@
             <TextView
                 android:id="@+id/grno_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/grno"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -884,7 +884,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -894,7 +894,7 @@
             <TextView
                 android:id="@+id/grno_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -912,7 +912,7 @@
             <TextView
                 android:id="@+id/registration_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/registration"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -921,7 +921,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -931,7 +931,7 @@
             <TextView
                 android:id="@+id/registration_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"

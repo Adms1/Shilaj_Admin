@@ -16,7 +16,7 @@
             <TextView
                 android:id="@+id/motherfirst_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motherfirstname"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -25,7 +25,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -35,7 +35,7 @@
             <TextView
                 android:id="@+id/motherfirstname_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -53,7 +53,7 @@
             <TextView
                 android:id="@+id/motherlastname_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motherlastname"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -62,7 +62,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -72,7 +72,7 @@
             <TextView
                 android:id="@+id/motherlastname_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -90,7 +90,7 @@
             <TextView
                 android:id="@+id/mphone_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motherphoneno"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -99,7 +99,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -109,7 +109,7 @@
             <TextView
                 android:id="@+id/mphone_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -127,7 +127,7 @@
             <TextView
                 android:id="@+id/mmobile_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/mothermobileno"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -136,7 +136,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -146,7 +146,7 @@
             <TextView
                 android:id="@+id/mmobile_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -164,7 +164,7 @@
             <TextView
                 android:id="@+id/memail_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motheremailaddress"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -173,7 +173,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -183,7 +183,7 @@
             <TextView
                 android:id="@+id/memail_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -201,7 +201,7 @@
             <TextView
                 android:id="@+id/mqualification_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motherqualification"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -210,7 +210,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -220,7 +220,7 @@
             <TextView
                 android:id="@+id/mqualification_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -237,7 +237,7 @@
             <TextView
                 android:id="@+id/moccupation_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motheroccupation"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -246,7 +246,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -256,7 +256,7 @@
             <TextView
                 android:id="@+id/moccupation_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -274,7 +274,7 @@
             <TextView
                 android:id="@+id/morganisation_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motheroragnization"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -283,7 +283,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -293,7 +293,7 @@
             <TextView
                 android:id="@+id/morganisation_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
@@ -311,7 +311,7 @@
             <TextView
                 android:id="@+id/mdesignation_txt_View"
                 android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/motherdesignation"
                 android:textAlignment="textStart"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -320,7 +320,7 @@
 
             <TextView
                 android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text=":"
                 android:textAlignment="center"
                 android:textColor="@color/scheduleheadertextcolor"
@@ -330,7 +330,7 @@
             <TextView
                 android:id="@+id/mdesignation_txt"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_height="wrap_content"
                 android:text="@string/studenttag"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"

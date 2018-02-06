@@ -114,7 +114,7 @@ public class AllDepartmentDetailsFragment extends Fragment {
             return;
         }
 
-//        Utils.showDialog(getActivity());
+        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getStudentFullDetail(getStudentFullDetail(), new retrofit.Callback<StudentFullDetailModel>() {
 
             @Override
@@ -130,6 +130,7 @@ public class AllDepartmentDetailsFragment extends Fragment {
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {
@@ -160,6 +161,7 @@ public class AllDepartmentDetailsFragment extends Fragment {
                         }
                         listAdapterStudentFullDetail = new ExpandableListAdapterStudentFullDetail(getActivity(), listDataHeader, listDataChild);
                         fragmentAllDepartmentDetailsBinding.lvExpStudentDetail.setAdapter(listAdapterStudentFullDetail);
+                        Utils.dismissDialog();
                     }
                 }
 

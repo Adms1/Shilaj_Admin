@@ -97,7 +97,7 @@ public class VehicleRouteFragment extends Fragment {
             return;
         }
 
-//        Utils.showDialog(getActivity());
+        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getVehicleRouteDetail(getVehicleRouteDetail(), new retrofit.Callback<VehicleRouteDetailModel>() {
             @Override
             public void success(VehicleRouteDetailModel vehicleRouteDetailModel, Response response) {
@@ -116,6 +116,7 @@ public class VehicleRouteFragment extends Fragment {
                     fragmentVehicleRouteBinding.vehicleRouteList.setVisibility(View.GONE);
                     fragmentVehicleRouteBinding.recyclerLinear.setVisibility(View.GONE);
                     fragmentVehicleRouteBinding.listHeader.setVisibility(View.GONE);
+                    Utils.dismissDialog();
                     return;
                 }
                 if (vehicleRouteDetailModel.getSuccess().equalsIgnoreCase("True")) {
@@ -131,6 +132,7 @@ public class VehicleRouteFragment extends Fragment {
                         fragmentVehicleRouteBinding.vehicleRouteList.setLayoutManager(mLayoutManager);
                         fragmentVehicleRouteBinding.vehicleRouteList.setItemAnimator(new DefaultItemAnimator());
                         fragmentVehicleRouteBinding.vehicleRouteList.setAdapter(vehicleRouteDetailListAdapter);
+                        Utils.dismissDialog();
                     } else {
                         fragmentVehicleRouteBinding.txtNoRecords.setVisibility(View.VISIBLE);
                         fragmentVehicleRouteBinding.vehicleRouteList.setVisibility(View.GONE);

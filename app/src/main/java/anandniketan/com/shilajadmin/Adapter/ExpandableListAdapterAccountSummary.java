@@ -107,18 +107,18 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
             itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingLateFees());
         }else if(headerTitle.equalsIgnoreCase("Discount Fees")){
             itembinding.admissionFeesTxtView.setText("Discount Fees");
-            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermDiscount());
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getDiscount());
             itembinding.receiptAdmissionFeesTxtView.setText("Discount Fees Receipt");
             itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptDiscount());
             itembinding.remainingFeesTxtView.setText("Remaining Discount Fees");
             itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingDiscount());
         }else if(headerTitle.equalsIgnoreCase("Fees")){
             itembinding.admissionFeesTxtView.setText("Term Fees");
-            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermTotalFees());
+            itembinding.admissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTotalTermFees());
             itembinding.receiptAdmissionFeesTxtView.setText("Term Fees Receipt");
-            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermReceiptFees());
+            itembinding.receiptAdmissionFeesTxt.setText("₹" + " " +detail.get(childPosition).getReceiptTermFees());
             itembinding.remainingFeesTxtView.setText("Remaining Term Fees");
-            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getTermRemainingFees());
+            itembinding.remainingFeesTxt.setText("₹" + " " +detail.get(childPosition).getRemainingTermFees());
         }
         return convertView;
     }

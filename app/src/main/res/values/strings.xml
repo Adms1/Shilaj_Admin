@@ -165,6 +165,7 @@
     <string name="lecture">Lecuture</string>
     <string name="subject">Subject</string>
     <string name="summary">SUMMARY</string>
+    <string name="ptm">PTM</string>
     <string name="classes">Class</string>
     <string name="studentledger">STUDENT LEDGER</string>
     <string name="student_type">Student</string>
@@ -212,6 +213,8 @@
     <string name="description">Discription</string>
     <string name="order">Order</string>
     <string name="inquirycount">Inquiry Count</string>
+    <string name="student_name">Megha Shah</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

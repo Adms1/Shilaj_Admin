@@ -32,6 +32,30 @@ public class FinalArrayBulkSMSModel {
     @SerializedName("CheckboxStatus")
     @Expose
     private String check;
+    @SerializedName("MessageID")
+    @Expose
+    private String messageID;
+    @SerializedName("FromID")
+    @Expose
+    private String fromID;
+    @SerializedName("ToID")
+    @Expose
+    private String toID;
+    @SerializedName("MeetingDate")
+    @Expose
+    private String meetingDate;
+    @SerializedName("SubjectLine")
+    @Expose
+    private String subjectLine;
+    @SerializedName("Description")
+    @Expose
+    private String description;
+    @SerializedName("UserName")
+    @Expose
+    private String userName;
+    @SerializedName("ReadStatus")
+    @Expose
+    private String readStatus;
 
     public String getStudentName() {
         return studentName;
@@ -95,5 +119,69 @@ public class FinalArrayBulkSMSModel {
 
     public void setCheck(String check) {
         this.check = check;
+    }
+
+    public String getMessageID() {
+        return messageID;
+    }
+
+    public void setMessageID(String messageID) {
+        this.messageID = messageID;
+    }
+
+    public String getFromID() {
+        return fromID;
+    }
+
+    public void setFromID(String fromID) {
+        this.fromID = fromID;
+    }
+
+    public String getToID() {
+        return toID;
+    }
+
+    public void setToID(String toID) {
+        this.toID = toID;
+    }
+
+    public String getMeetingDate() {
+        return meetingDate;
+    }
+
+    public void setMeetingDate(String meetingDate) {
+        this.meetingDate = meetingDate;
+    }
+
+    public String getSubjectLine() {
+        return subjectLine;
+    }
+
+    public void setSubjectLine(String subjectLine) {
+        this.subjectLine = subjectLine;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(String readStatus) {
+        this.readStatus = readStatus;
     }
 }

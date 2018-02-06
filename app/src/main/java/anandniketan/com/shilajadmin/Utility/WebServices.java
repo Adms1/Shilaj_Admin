@@ -257,4 +257,20 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetReceiptDetails")
     public void getReceiptDetails(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
+
+    @FormUrlEncoded
+    @POST("/PTMTeacherStudentGetDetail")
+    public void getPTMTeacherStudentGetDetail(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/PTMTeacherStudentInsertDetail")
+    public void PTMTeacherStudentInsertDetail(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/PTMDeleteMeeting")
+    public void PTMDeleteMeeting(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/TeacherGetClassSubjectWiseStudent")
+    public void getTeacherGetClassSubjectWiseStudent(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
 }

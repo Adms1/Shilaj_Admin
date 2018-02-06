@@ -86,6 +86,21 @@ public class FinalArrayStudentNameModel {
     @SerializedName("StudentDetail")
     @Expose
     private List<StudentAttendanceDetail> studentDetail = new ArrayList<StudentAttendanceDetail>();
+    @SerializedName("Standard")
+    @Expose
+    private String standard;
+    @SerializedName("classname")
+    @Expose
+    private String classname;
+    @SerializedName("Subject")
+    @Expose
+    private String subject;
+    @SerializedName("SubjectID")
+    @Expose
+    private Integer subjectID;
+    @SerializedName("StudentData")
+    @Expose
+    private List<StudentAttendanceDetail> studentData = new ArrayList<StudentAttendanceDetail>();
 
     public String getName() {
         return name;
@@ -293,5 +308,44 @@ public class FinalArrayStudentNameModel {
 
     public void setStudentDetail(List<StudentAttendanceDetail> studentDetail) {
         this.studentDetail = studentDetail;
+    }
+    public String getStandard() {
+        return standard;
+    }
+
+    public void setStandard(String standard) {
+        this.standard = standard;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public Integer getSubjectID() {
+        return subjectID;
+    }
+
+    public void setSubjectID(Integer subjectID) {
+        this.subjectID = subjectID;
+    }
+
+    public List<StudentAttendanceDetail> getStudentData() {
+        return studentData;
+    }
+
+    public void setStudentData(List<StudentAttendanceDetail> studentData) {
+        this.studentData = studentData;
     }
 }

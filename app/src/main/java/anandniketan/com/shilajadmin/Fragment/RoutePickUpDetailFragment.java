@@ -120,7 +120,7 @@ public class RoutePickUpDetailFragment extends Fragment {
             return;
         }
 
-//        Utils.showDialog(getActivity());
+        Utils.showDialog(getActivity());
         ApiHandler.getApiService().getRouteDetail(getRouteDetail(), new retrofit.Callback<GetRoutePickUpPointDetailModel>() {
             @Override
             public void success(GetRoutePickUpPointDetailModel routeDetail, Response response) {
@@ -142,6 +142,7 @@ public class RoutePickUpDetailFragment extends Fragment {
                     if (finalArrayRouteDetailModelList != null) {
                         pickupPointDetailModelList = finalArrayRouteDetailModelList.get(0).getPickupPointDetail();
                         fillRouteSpinner();
+                        Utils.dismissDialog();
                     }
 
                 }

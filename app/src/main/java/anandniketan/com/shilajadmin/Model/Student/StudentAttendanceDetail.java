@@ -26,7 +26,12 @@ public class StudentAttendanceDetail {
     @SerializedName("Comment")
     @Expose
     private String comment;
-
+    @SerializedName("GRNO")
+    @Expose
+    private String gRNO;
+    @SerializedName("CheckboxStatus")
+    @Expose
+    private String check;
     public Integer getStudentID() {
         return studentID;
     }
@@ -75,4 +80,19 @@ public class StudentAttendanceDetail {
         this.comment = comment;
     }
 
+    public String getgRNO() {
+        return gRNO;
+    }
+
+    public void setgRNO(String gRNO) {
+        this.gRNO = gRNO;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check;
+    }
 }

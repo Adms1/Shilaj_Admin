@@ -538,7 +538,7 @@ public class StudentLedgerFragment extends Fragment {
             fragmentStudentLedgerBinding.termTxt.setText(finalArrayPaymentLedgerModelList.get(m).getTerm());
             fragmentStudentLedgerBinding.nameTxt.setText(finalArrayPaymentLedgerModelList.get(m).getStudentName());
             fragmentStudentLedgerBinding.gradetxt.setText(finalArrayPaymentLedgerModelList.get(m).getStandard() + "-" + finalArrayPaymentLedgerModelList.get(m).getClassName());
-            fragmentStudentLedgerBinding.smsTxt.setText(finalArrayPaymentLedgerModelList.get(m).getsMSNo());
+            fragmentStudentLedgerBinding.smsTxt.setText(finalArrayPaymentLedgerModelList.get(m).getSMSNo());
             fragmentStudentLedgerBinding.dojTxt.setText(finalArrayPaymentLedgerModelList.get(m).getDateOfJoining());
         }
 
@@ -553,18 +553,7 @@ public class StudentLedgerFragment extends Fragment {
         account.add("Late Fees");
         account.add("Discount Fees");
         account.add("Fees");
-//
-//        for (int i = 0; i < account.size(); i++) {
-//            listDataHeader.add(account.get(i));
-//            Log.d("header", "" + listDataHeader);
-//            ArrayList<FinalArrayPaymentLedgerModel> row = new ArrayList<FinalArrayPaymentLedgerModel>();
-//            for (int j = 0; j < finalArrayPaymentLedgerModelList.size(); j++) {
-//                row.add(finalArrayPaymentLedgerModelList.get(i));
-//                Log.d("row", "" + row);
-//            }
-//            listDataChild.put(listDataHeader.get(i), row);
-//            Log.d("child", "" + listDataChild);
-//        }
+
         for (int i = 0; i < account.size(); i++) {
             Log.d("account", "" + account);
             listDataHeader.add(account.get(i));

@@ -330,7 +330,6 @@ public class AssignSubjectFragment extends Fragment {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     if (getSubjectAssginModel.getFinalArray().size() == 0) {
                         fragmentAssignSubjectBinding.txtNoRecords.setVisibility(View.VISIBLE);
-                        fragmentAssignSubjectBinding.assignSubjectDetailList.setVisibility(View.GONE);
                         fragmentAssignSubjectBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentAssignSubjectBinding.lvExpHeader.setVisibility(View.GONE);
                     }
@@ -339,10 +338,15 @@ public class AssignSubjectFragment extends Fragment {
                 if (getSubjectAssginModel.getSuccess().equalsIgnoreCase("True")) {
                     finalArrayAssignSubjectModelList = getSubjectAssginModel.getFinalArray();
                     if (finalArrayAssignSubjectModelList != null) {
+                        fragmentAssignSubjectBinding.txtNoRecords.setVisibility(View.GONE);
+                        fragmentAssignSubjectBinding.recyclerLinear.setVisibility(View.VISIBLE);
+                        fragmentAssignSubjectBinding.lvExpHeader.setVisibility(View.VISIBLE);
                         fillDataList();
                         Utils.dismissDialog();
                     } else {
                         fragmentAssignSubjectBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                        fragmentAssignSubjectBinding.recyclerLinear.setVisibility(View.GONE);
+                        fragmentAssignSubjectBinding.lvExpHeader.setVisibility(View.GONE);
                     }
                 }
             }

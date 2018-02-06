@@ -469,6 +469,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_2sdp"
             android:weightSum="4">
 
             <ImageView
@@ -488,6 +489,7 @@
                 android:gravity="left"
                 android:textSize="@dimen/_9sdp"
                 android:text="Current OutStanding"
+                android:paddingBottom="@dimen/_2sdp"
                 android:textColor="@color/scheduleheadertextcolor" />
 
             <TextView

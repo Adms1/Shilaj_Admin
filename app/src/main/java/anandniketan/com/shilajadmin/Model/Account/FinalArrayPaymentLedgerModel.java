@@ -29,18 +29,18 @@ public class FinalArrayPaymentLedgerModel {
     @SerializedName("Date of Joining")
     @Expose
     private String dateOfJoining;
-    @SerializedName("TermTotalFees")
+    @SerializedName("TotalTermFees")
     @Expose
-    private String termTotalFees;
-    @SerializedName("TermReceiptFees")
+    private String totalTermFees;
+    @SerializedName("ReceiptTermFees")
     @Expose
-    private String termReceiptFees;
-    @SerializedName("TermRemainingFees")
+    private String receiptTermFees;
+    @SerializedName("RemainingTermFees")
     @Expose
-    private String termRemainingFees;
-    @SerializedName("TermDiscount")
+    private String remainingTermFees;
+    @SerializedName("Discount")
     @Expose
-    private String termDiscount;
+    private String discount;
     @SerializedName("TermLateFees")
     @Expose
     private String termLateFees;
@@ -140,19 +140,19 @@ public class FinalArrayPaymentLedgerModel {
         this.className = className;
     }
 
-    public String getgRNO() {
+    public String getGRNO() {
         return gRNO;
     }
 
-    public void setgRNO(String gRNO) {
+    public void setGRNO(String gRNO) {
         this.gRNO = gRNO;
     }
 
-    public String getsMSNo() {
+    public String getSMSNo() {
         return sMSNo;
     }
 
-    public void setsMSNo(String sMSNo) {
+    public void setSMSNo(String sMSNo) {
         this.sMSNo = sMSNo;
     }
 
@@ -164,36 +164,36 @@ public class FinalArrayPaymentLedgerModel {
         this.dateOfJoining = dateOfJoining;
     }
 
-    public String getTermTotalFees() {
-        return termTotalFees;
+    public String getTotalTermFees() {
+        return totalTermFees;
     }
 
-    public void setTermTotalFees(String termTotalFees) {
-        this.termTotalFees = termTotalFees;
+    public void setTotalTermFees(String totalTermFees) {
+        this.totalTermFees = totalTermFees;
     }
 
-    public String getTermReceiptFees() {
-        return termReceiptFees;
+    public String getReceiptTermFees() {
+        return receiptTermFees;
     }
 
-    public void setTermReceiptFees(String termReceiptFees) {
-        this.termReceiptFees = termReceiptFees;
+    public void setReceiptTermFees(String receiptTermFees) {
+        this.receiptTermFees = receiptTermFees;
     }
 
-    public String getTermRemainingFees() {
-        return termRemainingFees;
+    public String getRemainingTermFees() {
+        return remainingTermFees;
     }
 
-    public void setTermRemainingFees(String termRemainingFees) {
-        this.termRemainingFees = termRemainingFees;
+    public void setRemainingTermFees(String remainingTermFees) {
+        this.remainingTermFees = remainingTermFees;
     }
 
-    public String getTermDiscount() {
-        return termDiscount;
+    public String getDiscount() {
+        return discount;
     }
 
-    public void setTermDiscount(String termDiscount) {
-        this.termDiscount = termDiscount;
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 
     public String getTermLateFees() {
