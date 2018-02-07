@@ -20,6 +20,16 @@ public class FinalArraySMSDataModel {
     @SerializedName("CheckboxStatus")
     @Expose
     private String check;
+    @SerializedName("Count")
+    @Expose
+    private Integer count;
+    @SerializedName("Month")
+    @Expose
+    private Integer month;
+    @SerializedName("Type")
+    @Expose
+    private String type;
+
     public Integer getPKEmployeeID() {
         return pKEmployeeID;
     }
@@ -50,5 +60,29 @@ public class FinalArraySMSDataModel {
 
     public void setCheck(String check) {
         this.check = check;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getMonth() {
+        return month;
+    }
+
+    public void setMonth(Integer month) {
+        this.month = month;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

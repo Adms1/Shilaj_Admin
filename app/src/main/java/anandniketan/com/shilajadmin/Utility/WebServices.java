@@ -12,6 +12,7 @@ import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
 import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
@@ -272,5 +273,9 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/TeacherGetClassSubjectWiseStudent")
-    public void getTeacherGetClassSubjectWiseStudent(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getTeacherGetClassSubjectWiseStudent(@FieldMap Map<String, String> map, Callback<DisplayStudentModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetMonthlyCount")
+    public void getMonthlyCount(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 }

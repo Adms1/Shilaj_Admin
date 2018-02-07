@@ -152,6 +152,7 @@
     <string name="remainimprest">Remain Imprest</string>
     <string name="dailyfeescollection">DAILY FEES COLLECTION</string>
     <string name="checkpayment">CHEQUE PAYMENT</string>
+    <string name="activitylogging">ACTIVITY LOGGING</string>
     <string name="announcment">ANNOUNCMENT</string>
     <string name="viewinquiry">VIEW INQUIRY</string>
     <string name="onlinepayment">ONLINE PAYMENT</string>
@@ -214,6 +215,10 @@
     <string name="order">Order</string>
     <string name="inquirycount">Inquiry Count</string>
     <string name="student_name">Megha Shah</string>
+    <string name="totalstudent">Total Student</string>
+    <string name="activatetoday">Activate Today</string>
+    <string name="totalteacher">Total Teacher</string>
+
 
 
     <!-- TODO: Remove or change this placeholder text -->

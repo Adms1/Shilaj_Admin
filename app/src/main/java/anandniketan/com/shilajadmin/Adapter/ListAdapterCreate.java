@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import anandniketan.com.shilajadmin.Interface.onCheckBoxChnage;
+import anandniketan.com.shilajadmin.Model.Other.StudentDatum;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceDetail;
 import anandniketan.com.shilajadmin.R;
 
@@ -28,14 +29,14 @@ import anandniketan.com.shilajadmin.R;
 
 public class ListAdapterCreate extends BaseAdapter {
     private Context mContext;
-    private ArrayList<StudentAttendanceDetail> arrayList = new ArrayList<>();
+    private ArrayList<StudentDatum> arrayList = new ArrayList<>();
     private ProgressDialog progressDialog = null;
     FragmentManager manager;
     private ArrayList<String> dataCheck = new ArrayList<String>();
     private onCheckBoxChnage listner;
 
     // Constructor
-    public ListAdapterCreate(Context c, ArrayList<StudentAttendanceDetail> arrayList, FragmentManager manager, onCheckBoxChnage listner) {
+    public ListAdapterCreate(Context c, ArrayList<StudentDatum> arrayList, FragmentManager manager, onCheckBoxChnage listner) {
         mContext = c;
         this.arrayList = arrayList;
         this.manager = manager;
@@ -77,7 +78,7 @@ public class ListAdapterCreate extends BaseAdapter {
 
             try {
                 viewHolder.student_name_txt.setText(arrayList.get(position).getStudentName());
-                viewHolder.gr_no_txt.setText(arrayList.get(position).getgRNO());
+                viewHolder.gr_no_txt.setText(arrayList.get(position).getGRNO());
 
 
                 viewHolder.create_Checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -117,7 +118,7 @@ public class ListAdapterCreate extends BaseAdapter {
         return dataCheck;
     }
 
-    public ArrayList<StudentAttendanceDetail> getDatas(){
+    public ArrayList<StudentDatum> getDatas(){
         return arrayList;
     }
 }

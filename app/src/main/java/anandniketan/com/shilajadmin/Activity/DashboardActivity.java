@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterMenu;
-import anandniketan.com.shilajadmin.Adapter.ListAdapter;
 import anandniketan.com.shilajadmin.Fragment.AccountFragment;
+import anandniketan.com.shilajadmin.Fragment.ActivityLoggingFragment;
 import anandniketan.com.shilajadmin.Fragment.AnnouncementFragment;
 import anandniketan.com.shilajadmin.Fragment.BullkSmsFragment;
 import anandniketan.com.shilajadmin.Fragment.EmployeeSmsFragment;
@@ -37,6 +37,7 @@ import anandniketan.com.shilajadmin.Fragment.HRFragment;
 import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
 import anandniketan.com.shilajadmin.Fragment.OtherFragment;
+import anandniketan.com.shilajadmin.Fragment.PTMMainFragment;
 import anandniketan.com.shilajadmin.Fragment.SingleSmsFragment;
 import anandniketan.com.shilajadmin.Fragment.StaffFragment;
 import anandniketan.com.shilajadmin.Fragment.StudentAbsentFragment;
@@ -44,13 +45,8 @@ import anandniketan.com.shilajadmin.Fragment.StudentFragment;
 import anandniketan.com.shilajadmin.Fragment.SummaryFragment;
 import anandniketan.com.shilajadmin.Fragment.TransportFragment;
 import anandniketan.com.shilajadmin.Model.MenuoptionItemModel;
-import anandniketan.com.shilajadmin.Model.Staff.Datum;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
-import anandniketan.com.shilajadmin.Utility.Utils;
-import pl.openrnd.multilevellistview.ItemInfo;
-import pl.openrnd.multilevellistview.MultiLevelListView;
-import pl.openrnd.multilevellistview.OnItemClickListener;
 
 public class DashboardActivity extends FragmentActivity {
     static DrawerLayout mDrawerLayout;
@@ -307,11 +303,16 @@ public class DashboardActivity extends FragmentActivity {
 //                myid = fragment.getId();
 //                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 //                break;
-//            case "PTM":
-//                fragment = new OtherFragment();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
+            case "PTM":
+                fragment = new PTMMainFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
+            case "ACTIVITY LOGGING":
+                fragment = new ActivityLoggingFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
             case "ANNOUNCMENT":
                 fragment = new AnnouncementFragment();
                 myid = fragment.getId();

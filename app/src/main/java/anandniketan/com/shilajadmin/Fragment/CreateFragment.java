@@ -40,7 +40,10 @@ import anandniketan.com.shilajadmin.Adapter.ListAdapterCreate;
 import anandniketan.com.shilajadmin.Interface.onCheckBoxChnage;
 import anandniketan.com.shilajadmin.Interface.onInboxRead;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArrayStudentForCreate;
+import anandniketan.com.shilajadmin.Model.Other.StudentDatum;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceDetail;
 import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
@@ -52,20 +55,20 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
-public class CreateFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class CreateFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private FragmentCreateBinding fragmentCreateBinding;
     private View rootView;
     private Context mContext;
 
-    List<FinalArrayStudentNameModel> finalArrayStudentNameModelsList;
+    List<FinalArrayStudentForCreate> finalArrayStudentNameModelsList;
     ListAdapterCreate listAdapterCreate;
 
     List<String> listDataHeader = new ArrayList<>();
     HashMap<String, List<FinalArrayBulkSMSModel>> listDataChild = new HashMap<>();
     String spinnerSelectedValue, value;
-    StudentNameModel responseArray;
-    private ArrayList<StudentAttendanceDetail> arrayList;
+    DisplayStudentModel responseArray;
+    private ArrayList<StudentDatum> arrayList;
 
 
     //Use for Dialog
@@ -77,7 +80,8 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     private Button close_btn, send_btn;
     private static TextView insert_message_date_txt;
     private EditText insert_message_subject_txt, insert_message_Message_txt;
-    String finalStudentArray,finalmessageDate,finalmessageSubject, finalmessageMessageLine;
+    String finalStudentArray, finalmessageDate, finalmessageSubject, finalmessageMessageLine;
+
     public CreateFragment() {
     }
 
@@ -117,8 +121,8 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 String value = array[2].replaceFirst(">", "");
                 Log.d("Array", Arrays.toString(array));
                 Log.d("Array1", value);
-                List<FinalArrayStudentNameModel> filterFinalArray = new ArrayList<FinalArrayStudentNameModel>();
-                for (FinalArrayStudentNameModel arrayObj : responseArray.getFinalArray()) {
+                List<FinalArrayStudentForCreate> filterFinalArray = new ArrayList<FinalArrayStudentForCreate>();
+                for (FinalArrayStudentForCreate arrayObj : responseArray.getFinalArraycreate()) {
                     if (arrayObj.getStandard().equalsIgnoreCase(array[0].trim()) &&
                             arrayObj.getClassname().equalsIgnoreCase(array[1].trim()) && arrayObj.getSubject().equalsIgnoreCase(value.trim())) {
                         filterFinalArray.add(arrayObj);
@@ -126,7 +130,6 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 }
                 setExpandableListView(filterFinalArray);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -150,22 +153,22 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTeacherGetClassSubjectWiseStudent(getInboxDataDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getTeacherGetClassSubjectWiseStudent(getInboxDataDetail(), new retrofit.Callback<DisplayStudentModel>() {
             @Override
-            public void success(StudentNameModel classSubjectWisDataeModel, Response response) {
+            public void success(DisplayStudentModel displayStudentModel, Response response) {
                 Utils.dismissDialog();
-                if (classSubjectWisDataeModel == null) {
+                if (displayStudentModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
                 }
-                if (classSubjectWisDataeModel.getSuccess() == null) {
+                if (displayStudentModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
                 }
-                if (classSubjectWisDataeModel.getSuccess().equalsIgnoreCase("False")) {
+                if (displayStudentModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
-                    if (classSubjectWisDataeModel.getFinalArray().size() == 0) {
+                    if (displayStudentModel.getFinalArraycreate().size() == 0) {
                         fragmentCreateBinding.txtNoRecordsCreate.setVisibility(View.VISIBLE);
                         fragmentCreateBinding.lvCreate.setVisibility(View.GONE);
                         fragmentCreateBinding.createHeader.setVisibility(View.GONE);
@@ -173,9 +176,9 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
 
                     return;
                 }
-                if (classSubjectWisDataeModel.getSuccess().equalsIgnoreCase("True")) {
-                    responseArray = classSubjectWisDataeModel;
-                    finalArrayStudentNameModelsList = classSubjectWisDataeModel.getFinalArray();
+                if (displayStudentModel.getSuccess().equalsIgnoreCase("True")) {
+                    responseArray =displayStudentModel;
+                    finalArrayStudentNameModelsList = displayStudentModel.getFinalArraycreate();
                     if (finalArrayStudentNameModelsList != null) {
                         fillspinner();
                         Utils.dismissDialog();
@@ -232,7 +235,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         fragmentCreateBinding.createClassSpinner.setAdapter(adapterYear);
     }
 
-    private void setExpandableListView(List<FinalArrayStudentNameModel> array) {
+    private void setExpandableListView(List<FinalArrayStudentForCreate> array) {
         arrayList = new ArrayList<>();
         arrayList.clear();
 
@@ -259,7 +262,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
             @Override
             public void getChecked() {
                 fragmentCreateBinding.insertMessageImg.setVisibility(View.GONE);
-                ArrayList<StudentAttendanceDetail> updatedData = listAdapterCreate.getDatas();
+                ArrayList<StudentDatum> updatedData = listAdapterCreate.getDatas();
                 Boolean data = false;
                 for (int i = 0; i < updatedData.size(); i++) {
                     if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
@@ -336,7 +339,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
             public void onClick(View v) {
                 ArrayList<String> id = new ArrayList<>();
 
-                ArrayList<StudentAttendanceDetail> array = listAdapterCreate.getDatas();
+                ArrayList<StudentDatum> array = listAdapterCreate.getDatas();
                 for (int j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {
                         id.add(array.get(j).getStudentID().toString());
@@ -351,7 +354,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 if (!finalStudentArray.equalsIgnoreCase("") && !finalmessageDate.equalsIgnoreCase("") &&
                         !finalmessageSubject.equalsIgnoreCase("") && !finalmessageMessageLine.equalsIgnoreCase("")) {
                     callCreateMessageDetailApi();
-                }else {
+                } else {
                     Utils.ping(mContext, "Blank field not allowed.");
                 }
             }

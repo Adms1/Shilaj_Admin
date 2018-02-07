@@ -118,15 +118,13 @@ public class OtherFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
-                }
-//                else if(position==7){
-//                    fragment = new MenuPermissionFragment();
-//                    fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
-//                            .replace(R.id.frame_container, fragment).commit();
-//                }
-                else if (position == 8) {
+                } else if(position==7){
+                    fragment = new ActivityLoggingFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 8) {
                     fragment = new AnnouncementFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
