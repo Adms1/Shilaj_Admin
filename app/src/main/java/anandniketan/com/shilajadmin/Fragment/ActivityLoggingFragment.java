@@ -13,14 +13,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
 import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -49,10 +58,12 @@ public class ActivityLoggingFragment extends Fragment {
 
     //Use for fill Barchart
     List<FinalArraySMSDataModel> monthNumArrayList;
-    ArrayList<String> monthNameArray;
+    ArrayList<Integer> monthNumber = new ArrayList<>();
+    ArrayList<String> monthNameArray = new ArrayList<>();
     ArrayList<Integer> countStudentArray;
     ArrayList<Integer> countTeacherArray;
     ArrayList<Integer> countAdminArray;
+
 
     public ActivityLoggingFragment() {
     }
@@ -74,9 +85,9 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     public void init() {
-        groupSpace = 0.1f;
-        barSpace = 0.02f;
-        barWidth = 0.43f;
+        groupSpace = 0.5f;
+        barSpace = 0f;
+        barWidth = 0.3f;
     }
 
     public void setListners() {
@@ -95,6 +106,28 @@ public class ActivityLoggingFragment extends Fragment {
                 fragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                         .replace(R.id.frame_container, fragment).commit();
+            }
+        });
+        fragmentActivityLoggingBinding.barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                String x = fragmentActivityLoggingBinding.barChart.getXAxis().getValueFormatter().getFormattedValue(e.getX(), fragmentActivityLoggingBinding.barChart.getXAxis());
+                Log.d("clickValue", x);
+
+                Calendar cal = Calendar.getInstance();
+                try {
+                    cal.setTime(new SimpleDateFormat("MMM").parse(x));
+                } catch (ParseException e1) {
+                    e1.printStackTrace();
+                }
+                int monthInt = cal.get(Calendar.MONTH) + 1;
+                Log.d("Selectedmonth", "" + monthInt);
+
+            }
+
+            @Override
+            public void onNothingSelected() {
+
             }
         });
     }
@@ -127,6 +160,13 @@ public class ActivityLoggingFragment extends Fragment {
                     return;
                 }
                 if (monthlyCount.getSuccess().equalsIgnoreCase("True")) {
+                    fragmentActivityLoggingBinding.totalStudentTxt.setText(String.valueOf(monthlyCount.getTotalStudentCount()));
+                    fragmentActivityLoggingBinding.activatedStudentTxt.setText(String.valueOf(monthlyCount.getActiveStudentCount()));
+                    fragmentActivityLoggingBinding.totalTeacherTxt.setText(String.valueOf(monthlyCount.getTotalTeacherCount()));
+                    fragmentActivityLoggingBinding.activatedTeacherTxt.setText(String.valueOf(monthlyCount.getActiveTeacherCount()));
+                    fragmentActivityLoggingBinding.totalAdminTxt.setText(String.valueOf(monthlyCount.getTotalAdminCount()));
+                    fragmentActivityLoggingBinding.activatedAdminTxt.setText(String.valueOf(monthlyCount.getActiveadminCount()));
+
                     monthNumArrayList = monthlyCount.getFinalArray();
                     if (monthlyCount.getFinalArray().size() > 0) {
                         fillBarChartArray();
@@ -153,7 +193,6 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     public void fillBarChartArray() {
-        ArrayList<Integer> monthNumber = new ArrayList<>();
         countStudentArray = new ArrayList<>();
         countTeacherArray = new ArrayList<>();
         countAdminArray = new ArrayList<>();
@@ -167,28 +206,31 @@ public class ActivityLoggingFragment extends Fragment {
             } else if (monthNumArrayList.get(i).getType().equalsIgnoreCase("Admin")) {
                 countAdminArray.add(monthNumArrayList.get(i).getCount());
             }
-
-            HashSet hs = new HashSet();
-            hs.addAll(monthNumber);
-            monthNumber.clear();
-            monthNumber.addAll(hs);
-            Log.d("marks", "" + monthNumber);
-            Collections.sort(monthNumber);
-            System.out.println("Sorted ArrayList in Java - Ascending order : " + monthNumber);
         }
+        HashSet hs = new HashSet();
+        hs.addAll(monthNumber);
+        monthNumber.clear();
+        monthNumber.addAll(hs);
+        Log.d("marks", "" + monthNumber);
+//        Collections.sort(monthNumber);
+//        System.out.println("Sorted ArrayList in Java - Ascending order : " + monthNumber);
         for (int j = 0; j < monthNumber.size(); j++) {
-            getMonth(monthNumber.get(j));
+            getMonthFun(monthNumber.get(j));
         }
         fillBarChartValue();
     }
 
-    public void getMonth(int month) {
-        monthNameArray = new ArrayList<String>();
-        monthNameArray.add(new DateFormatSymbols().getMonths()[month - 1]);
+    public void getMonthFun(int month) {
+        SimpleDateFormat monthParse = new SimpleDateFormat("MM");
+        SimpleDateFormat monthDisplay = new SimpleDateFormat("MMM");
+        try {
+            monthNameArray.add(monthDisplay.format(monthParse.parse(String.valueOf(month))));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        monthNameArray.add(new DateFormatSymbols().getMonths()[month - 1]);
         Log.d("month", "" + monthNameArray);
-//
     }
-
 
     public void fillBarChartValue() {
 
@@ -197,17 +239,24 @@ public class ActivityLoggingFragment extends Fragment {
         fragmentActivityLoggingBinding.barChart.setScaleEnabled(true);
         fragmentActivityLoggingBinding.barChart.setDrawBarShadow(false);
         fragmentActivityLoggingBinding.barChart.setDrawGridBackground(false);
+//        fragmentActivityLoggingBinding.barChart.animateY(3000);
 
-        int groupCount = 3;
+        int groupCount=12;
 
-        ArrayList xVals = new ArrayList();
+        ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < monthNameArray.size(); i++) {
             xVals.add(monthNameArray.get(i));
         }
+        Log.d("x-Axis", "" + xVals);
 
-        ArrayList yVals1 = new ArrayList();
-        ArrayList yVals2 = new ArrayList();
-        ArrayList yVals3 = new ArrayList();
+
+        ArrayList<Integer> yVals1 = new ArrayList<Integer>();
+        ArrayList<Integer> yVals2 = new ArrayList<Integer>();
+        ArrayList<Integer> yVals3 = new ArrayList<Integer>();
+
+        ArrayList<BarEntry> entries1 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
+        ArrayList<BarEntry> entries3 = new ArrayList<BarEntry>();
 
         for (int j = 0; j < countStudentArray.size(); j++) {
             yVals1.add(countStudentArray.get(j));
@@ -218,42 +267,58 @@ public class ActivityLoggingFragment extends Fragment {
         for (int j = 0; j < countAdminArray.size(); j++) {
             yVals3.add(countAdminArray.get(j));
         }
-        Log.d("value Of Array", "yVals1 : " + yVals1 + "yVals2" + yVals2 + "yVals3" + yVals3);
-
-        List<BarEntry> entriesGroup1 = new ArrayList<>();
-        List<BarEntry> entriesGroup2 = new ArrayList<>();
-        List<BarEntry> entriesGroup3 = new ArrayList<>();
-
-
-// fill the lists
-
-
-
+        for (int i = 0; i < monthNumber.size(); i++) {
+            entries1.add(new BarEntry(monthNumber.get(i), yVals1.get(i)));
+            entries2.add(new BarEntry(monthNumber.get(i), yVals2.get(i)));
+            entries3.add(new BarEntry(monthNumber.get(i), yVals3.get(i)));
+        }
 
         BarDataSet set1, set2, set3;
-        set1 = new BarDataSet(entriesGroup1, "Student");
+        set1 = new BarDataSet(entries1, "Student");
         set1.setColor(getResources().getColor(R.color.darkblue));
-        set2 = new BarDataSet(entriesGroup2, "Teacher");
+        set2 = new BarDataSet(entries2, "Teacher");
         set2.setColor(getResources().getColor(R.color.yellow));
-        set3 = new BarDataSet(entriesGroup3, "Admin");
-        set3.setColor(getResources().getColor(R.color.absent));
+        set3 = new BarDataSet(entries3, "Admin");
+        set3.setColor(getResources().getColor(R.color.orange));
 
         BarData data = new BarData(set1, set2, set3);
         data.setValueFormatter(new LargeValueFormatter());
         fragmentActivityLoggingBinding.barChart.setData(data);
-        fragmentActivityLoggingBinding.barChart.getBarData().setBarWidth(barWidth);
-        fragmentActivityLoggingBinding.barChart.getXAxis().setTextSize(12);
-        fragmentActivityLoggingBinding.barChart.groupBars(0, groupSpace, barSpace);
+        Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChart.getBarData());
 
-//        Legend l = fragmentActivityLoggingBinding.barChart.getLegend();
-//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-//        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-//        l.setDrawInside(true);
-//        l.setYOffset(20f);
-//        l.setXOffset(0f);
-//        l.setYEntrySpace(0f);
-//        l.setTextSize(8f);
+        fragmentActivityLoggingBinding.barChart.getBarData().setBarWidth(barWidth);
+        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMinimum(0);
+        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMaximum(0 + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+        fragmentActivityLoggingBinding.barChart.groupBars(0, groupSpace, barSpace);
+        fragmentActivityLoggingBinding.barChart.invalidate();
+        Log.d("value", "" + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+        Legend l = fragmentActivityLoggingBinding.barChart.getLegend();
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+        l.setDrawInside(false);
+        l.setYOffset(0f);
+        l.setXOffset(20f);
+        l.setYEntrySpace(10f);
+        l.setTextSize(12f);
+
+        //X-axis
+        XAxis xAxis = fragmentActivityLoggingBinding.barChart.getXAxis();
+        xAxis.setGranularity(1f);
+        xAxis.setGranularityEnabled(true);
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setDrawGridLines(false);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
+
+        //Y-axis
+        fragmentActivityLoggingBinding.barChart.getAxisRight().setEnabled(false);
+        YAxis leftAxis = fragmentActivityLoggingBinding.barChart.getAxisLeft();
+        leftAxis.setValueFormatter(new LargeValueFormatter());
+        leftAxis.setDrawGridLines(true);
+        leftAxis.setSpaceTop(5f);
+        leftAxis.setAxisMinimum(0f);
     }
 }
 
