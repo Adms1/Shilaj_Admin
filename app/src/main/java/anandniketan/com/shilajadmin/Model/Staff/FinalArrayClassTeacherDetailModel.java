@@ -17,6 +17,25 @@ public class FinalArrayClassTeacherDetailModel {
     @SerializedName("Name")
     @Expose
     private String name;
+    @SerializedName("StandardId")
+    @Expose
+    private Integer standardId;
+    @SerializedName("SubjectId")
+    @Expose
+    private Integer subjectId;
+    @SerializedName("SubjectID")
+    @Expose
+    private Integer subjectID;
+    @SerializedName("Subject")
+    @Expose
+    private String subject;
+    @SerializedName("EmployeeId")
+    @Expose
+    private String employeeId;
+    @SerializedName("Employee")
+    @Expose
+    private String employee;
+
 
     public Integer getPkClsTeacherID() {
         return pkClsTeacherID;
@@ -42,4 +61,51 @@ public class FinalArrayClassTeacherDetailModel {
         this.name = name;
     }
 
+    public Integer getStandardId() {
+        return standardId;
+    }
+
+    public void setStandardId(Integer standardId) {
+        this.standardId = standardId;
+    }
+
+    public Integer getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(Integer subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
+
+    public Integer getSubjectID() {
+        return subjectID;
+    }
+
+    public void setSubjectID(Integer subjectID) {
+        this.subjectID = subjectID;
+    }
 }

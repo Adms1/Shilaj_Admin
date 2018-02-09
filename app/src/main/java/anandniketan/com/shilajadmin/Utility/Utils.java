@@ -25,6 +25,16 @@ public class Utils {
     public static Dialog dialog;
 
 
+    public static boolean isNetworkConnected(Context ctxt) {
+        ConnectivityManager cm = (ConnectivityManager) ctxt
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni == null) {
+            // There are no active networks.
+            return false;
+        } else
+            return true;
+    }
 
 
     public static boolean checkNetwork(Context context) {

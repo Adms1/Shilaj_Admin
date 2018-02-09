@@ -105,13 +105,12 @@ public class OtherFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
-//                }
-//                else if(position==5){
-//                    fragment = new MenuPermissionFragment();
-//                    fragmentManager = getFragmentManager();
-//                    fragmentManager.beginTransaction()
-//                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
-//                            .replace(R.id.frame_container, fragment).commit();
+                } else if(position==5){
+                    fragment = new HolidayFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                            .replace(R.id.frame_container, fragment).commit();
                 }else if(position==6){
                     fragment = new PTMMainFragment();
                     fragmentManager = getFragmentManager();

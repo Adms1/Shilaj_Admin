@@ -151,10 +151,12 @@
     <string name="imprestdeduct">Imprest Deduct</string>
     <string name="remainimprest">Remain Imprest</string>
     <string name="dailyfeescollection">DAILY FEES COLLECTION</string>
+    <string name="viewlessonplan">VIEW LESSON PLAN</string>
     <string name="checkpayment">CHEQUE PAYMENT</string>
     <string name="activitylogging">ACTIVITY LOGGING</string>
     <string name="announcment">ANNOUNCMENT</string>
     <string name="viewinquiry">VIEW INQUIRY</string>
+    <string name="holiday">HOLIDAY</string>
     <string name="onlinepayment">ONLINE PAYMENT</string>
     <string name="termdetail">Term Detail</string>
     <string name="date">Date</string>
@@ -219,9 +221,17 @@
     <string name="activatetoday">Activate Today</string>
     <string name="totalteacher">Total Teacher</string>
     <string name="totaladmin">Total Admin</string>
-
-
-
+    <string name="holidaycategory">Holiday Category</string>
+    <string name="startdate">Start Date</string>
+    <string name="enddate">End Date</string>
+    <string name="holidayheading">Holiday Name</string>
+    <string name="chapterno">Chapter No</string>
+    <string name="chaptername">Chapter Name</string>
+    <string name="objective">Objective</string>
+    <string name="keypoint">Keypoint</string>
+    <string name="assesmentquestion">Assesment Question</string>
+    <string name="pdfheader">PDF</string>
+    <string name="wordheader">WORD</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

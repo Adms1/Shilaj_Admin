@@ -35,6 +35,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
@@ -197,14 +198,21 @@ public class ActivityLoggingFragment extends Fragment {
         countTeacherArray = new ArrayList<>();
         countAdminArray = new ArrayList<>();
 
+        HashMap<Integer, Integer> student = new HashMap<>();
+        HashMap<Integer, Integer> teacher = new HashMap<>();
+        HashMap<Integer, Integer> admin = new HashMap<>();
+
         for (int i = 0; i < monthNumArrayList.size(); i++) {
             monthNumber.add(monthNumArrayList.get(i).getMonth());
             if (monthNumArrayList.get(i).getType().equalsIgnoreCase("Student")) {
                 countStudentArray.add(monthNumArrayList.get(i).getCount());
+                student.put(monthNumArrayList.get(i).getMonth(), monthNumArrayList.get(i).getCount());
             } else if (monthNumArrayList.get(i).getType().equalsIgnoreCase("Teacher")) {
                 countTeacherArray.add(monthNumArrayList.get(i).getCount());
+                teacher.put(monthNumArrayList.get(i).getMonth(), monthNumArrayList.get(i).getCount());
             } else if (monthNumArrayList.get(i).getType().equalsIgnoreCase("Admin")) {
                 countAdminArray.add(monthNumArrayList.get(i).getCount());
+                admin.put(monthNumArrayList.get(i).getMonth(), monthNumArrayList.get(i).getCount());
             }
         }
         HashSet hs = new HashSet();
@@ -212,12 +220,15 @@ public class ActivityLoggingFragment extends Fragment {
         monthNumber.clear();
         monthNumber.addAll(hs);
         Log.d("marks", "" + monthNumber);
-//        Collections.sort(monthNumber);
-//        System.out.println("Sorted ArrayList in Java - Ascending order : " + monthNumber);
+        Collections.sort(monthNumber);
         for (int j = 0; j < monthNumber.size(); j++) {
             getMonthFun(monthNumber.get(j));
         }
-        fillBarChartValue();
+        Map<Integer, Integer> treeMap = new TreeMap<Integer, Integer>(student);
+        Map<Integer, Integer> teacherMap = new TreeMap<Integer, Integer>(teacher);
+        Map<Integer, Integer> adminMap = new TreeMap<Integer, Integer>(admin);
+
+        fillBarChartValueNew(treeMap, teacherMap,adminMap);
     }
 
     public void getMonthFun(int month) {
@@ -228,12 +239,10 @@ public class ActivityLoggingFragment extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        monthNameArray.add(new DateFormatSymbols().getMonths()[month - 1]);
         Log.d("month", "" + monthNameArray);
     }
 
-    public void fillBarChartValue() {
-
+    private void fillBarChartValueNew(Map<Integer, Integer> treeMap, Map<Integer, Integer> teacherMap, Map<Integer, Integer> adminMap) {
         fragmentActivityLoggingBinding.barChart.setDescription(null);
         fragmentActivityLoggingBinding.barChart.setPinchZoom(false);
         fragmentActivityLoggingBinding.barChart.setScaleEnabled(true);
@@ -241,14 +250,12 @@ public class ActivityLoggingFragment extends Fragment {
         fragmentActivityLoggingBinding.barChart.setDrawGridBackground(false);
 //        fragmentActivityLoggingBinding.barChart.animateY(3000);
 
-        int groupCount=12;
+        int groupCount = 12;
 
         ArrayList<String> xVals = new ArrayList<String>();
         for (int i = 0; i < monthNameArray.size(); i++) {
             xVals.add(monthNameArray.get(i));
         }
-        Log.d("x-Axis", "" + xVals);
-
 
         ArrayList<Integer> yVals1 = new ArrayList<Integer>();
         ArrayList<Integer> yVals2 = new ArrayList<Integer>();
@@ -258,30 +265,34 @@ public class ActivityLoggingFragment extends Fragment {
         ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
         ArrayList<BarEntry> entries3 = new ArrayList<BarEntry>();
 
-        for (int j = 0; j < countStudentArray.size(); j++) {
-            yVals1.add(countStudentArray.get(j));
+        for (Map.Entry<Integer,Integer> entry : treeMap.entrySet()) {
+            yVals1.add(entry.getValue());
         }
-        for (int j = 0; j < countTeacherArray.size(); j++) {
-            yVals2.add(countTeacherArray.get(j));
+
+        for (Map.Entry<Integer,Integer> entry : teacherMap.entrySet()) {
+            yVals2.add(entry.getValue());
         }
-        for (int j = 0; j < countAdminArray.size(); j++) {
-            yVals3.add(countAdminArray.get(j));
+
+        for (Map.Entry<Integer,Integer> entry : adminMap.entrySet()) {
+            yVals3.add(entry.getValue());
         }
+
         for (int i = 0; i < monthNumber.size(); i++) {
             entries1.add(new BarEntry(monthNumber.get(i), yVals1.get(i)));
             entries2.add(new BarEntry(monthNumber.get(i), yVals2.get(i)));
             entries3.add(new BarEntry(monthNumber.get(i), yVals3.get(i)));
         }
 
+
         BarDataSet set1, set2, set3;
         set1 = new BarDataSet(entries1, "Student");
         set1.setColor(getResources().getColor(R.color.darkblue));
         set2 = new BarDataSet(entries2, "Teacher");
         set2.setColor(getResources().getColor(R.color.yellow));
-        set3 = new BarDataSet(entries3, "Admin");
+        set3 = new BarDataSet(entries3, "Teacher");
         set3.setColor(getResources().getColor(R.color.orange));
 
-        BarData data = new BarData(set1, set2, set3);
+        BarData data = new BarData(set1, set2,set3);
         data.setValueFormatter(new LargeValueFormatter());
         fragmentActivityLoggingBinding.barChart.setData(data);
         Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChart.getBarData());
@@ -319,6 +330,103 @@ public class ActivityLoggingFragment extends Fragment {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(5f);
         leftAxis.setAxisMinimum(0f);
+
+
     }
+
+
+
+
+
+
+
+//    public void fillBarChartValue() {
+//
+//        fragmentActivityLoggingBinding.barChart.setDescription(null);
+//        fragmentActivityLoggingBinding.barChart.setPinchZoom(false);
+//        fragmentActivityLoggingBinding.barChart.setScaleEnabled(true);
+//        fragmentActivityLoggingBinding.barChart.setDrawBarShadow(false);
+//        fragmentActivityLoggingBinding.barChart.setDrawGridBackground(false);
+////        fragmentActivityLoggingBinding.barChart.animateY(3000);
+//
+//        int groupCount=12;
+//
+//        ArrayList<String> xVals = new ArrayList<String>();
+//        for (int i = 0; i < monthNameArray.size(); i++) {
+//            xVals.add(monthNameArray.get(i));
+//        }
+//        Log.d("x-Axis", "" + xVals);
+//
+//
+//        ArrayList<Integer> yVals1 = new ArrayList<Integer>();
+//        ArrayList<Integer> yVals2 = new ArrayList<Integer>();
+//        ArrayList<Integer> yVals3 = new ArrayList<Integer>();
+//
+//        ArrayList<BarEntry> entries1 = new ArrayList<BarEntry>();
+//        ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
+//        ArrayList<BarEntry> entries3 = new ArrayList<BarEntry>();
+//
+//        for (int j = 0; j < countStudentArray.size(); j++) {
+//            yVals1.add(countStudentArray.get(j));
+//        }
+//        for (int j = 0; j < countTeacherArray.size(); j++) {
+//            yVals2.add(countTeacherArray.get(j));
+//        }
+//        for (int j = 0; j < countAdminArray.size(); j++) {
+//            yVals3.add(countAdminArray.get(j));
+//        }
+//        for (int i = 0; i < monthNumber.size(); i++) {
+//            entries1.add(new BarEntry(monthNumber.get(i), yVals1.get(i)));
+//            entries2.add(new BarEntry(monthNumber.get(i), yVals2.get(i)));
+//            entries3.add(new BarEntry(monthNumber.get(i), yVals3.get(i)));
+//        }
+//
+//        BarDataSet set1, set2, set3;
+//        set1 = new BarDataSet(entries1, "Student");
+//        set1.setColor(getResources().getColor(R.color.darkblue));
+//        set2 = new BarDataSet(entries2, "Teacher");
+//        set2.setColor(getResources().getColor(R.color.yellow));
+//        set3 = new BarDataSet(entries3, "Admin");
+//        set3.setColor(getResources().getColor(R.color.orange));
+//
+//        BarData data = new BarData(set1, set2, set3);
+//        data.setValueFormatter(new LargeValueFormatter());
+//        fragmentActivityLoggingBinding.barChart.setData(data);
+//        Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChart.getBarData());
+//
+//        fragmentActivityLoggingBinding.barChart.getBarData().setBarWidth(barWidth);
+//        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMinimum(0);
+//        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMaximum(0 + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+//        fragmentActivityLoggingBinding.barChart.groupBars(0, groupSpace, barSpace);
+//        fragmentActivityLoggingBinding.barChart.invalidate();
+//        Log.d("value", "" + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+//        Legend l = fragmentActivityLoggingBinding.barChart.getLegend();
+//        l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+//        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+//        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
+//        l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
+//        l.setDrawInside(false);
+//        l.setYOffset(0f);
+//        l.setXOffset(20f);
+//        l.setYEntrySpace(10f);
+//        l.setTextSize(12f);
+//
+//        //X-axis
+//        XAxis xAxis = fragmentActivityLoggingBinding.barChart.getXAxis();
+//        xAxis.setGranularity(1f);
+//        xAxis.setGranularityEnabled(true);
+//        xAxis.setCenterAxisLabels(true);
+//        xAxis.setDrawGridLines(false);
+//        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+//        xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
+//
+//        //Y-axis
+//        fragmentActivityLoggingBinding.barChart.getAxisRight().setEnabled(false);
+//        YAxis leftAxis = fragmentActivityLoggingBinding.barChart.getAxisLeft();
+//        leftAxis.setValueFormatter(new LargeValueFormatter());
+//        leftAxis.setDrawGridLines(true);
+//        leftAxis.setSpaceTop(5f);
+//        leftAxis.setAxisMinimum(0f);
+//    }
 }
 

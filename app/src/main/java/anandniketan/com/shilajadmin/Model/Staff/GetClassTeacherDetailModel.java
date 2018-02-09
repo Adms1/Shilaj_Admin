@@ -14,6 +14,9 @@ public class GetClassTeacherDetailModel {
     @SerializedName("Success")
     @Expose
     private String success;
+    @SerializedName("Year")
+    @Expose
+    private String year;
     @SerializedName("FinalArray")
     @Expose
     private List<FinalArrayClassTeacherDetailModel> finalArray = new ArrayList<FinalArrayClassTeacherDetailModel>();
@@ -24,6 +27,14 @@ public class GetClassTeacherDetailModel {
 
     public void setSuccess(String success) {
         this.success = success;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public List<FinalArrayClassTeacherDetailModel> getFinalArray() {

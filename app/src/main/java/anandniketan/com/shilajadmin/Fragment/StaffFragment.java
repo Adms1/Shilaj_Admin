@@ -113,7 +113,13 @@ public class StaffFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
-                } else if (position == 4) {
+                }  else if (position == 2) {
+                    fragment = new ViewLessonPlanFragment();
+                    fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                            .replace(R.id.frame_container, fragment).commit();
+                }else if (position == 4) {
                     fragment = new ExamsFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()

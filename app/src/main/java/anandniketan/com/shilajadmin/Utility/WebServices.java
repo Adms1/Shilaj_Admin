@@ -278,4 +278,28 @@ public interface WebServices {
     @FormUrlEncoded
     @POST("/GetMonthlyCount")
     public void getMonthlyCount(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetHolidayCategory")
+    public void getHolidayCategory(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetHoliday")
+    public void getHoliday(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/InsertHoliday")
+    public void InsertHoliday(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetEmployeeBySubject")
+    public void getEmployeeBySubject(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetLessonPlanSubject")
+    public void getLessonPlanSubject(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetLessonPlan")
+    public void getLessonPlan(@FieldMap Map<String, String> map, Callback<GetSubjectAssginModel> callback);
 }

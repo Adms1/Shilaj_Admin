@@ -1,6 +1,5 @@
 package anandniketan.com.shilajadmin.Fragment;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -35,18 +34,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInbox;
 import anandniketan.com.shilajadmin.Adapter.ListAdapterCreate;
 import anandniketan.com.shilajadmin.Interface.onCheckBoxChnage;
-import anandniketan.com.shilajadmin.Interface.onInboxRead;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayStudentForCreate;
 import anandniketan.com.shilajadmin.Model.Other.StudentDatum;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceDetail;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -60,14 +53,12 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     private FragmentCreateBinding fragmentCreateBinding;
     private View rootView;
     private Context mContext;
-
+    DisplayStudentModel responseArray;
     List<FinalArrayStudentForCreate> finalArrayStudentNameModelsList;
     ListAdapterCreate listAdapterCreate;
 
-    List<String> listDataHeader = new ArrayList<>();
-    HashMap<String, List<FinalArrayBulkSMSModel>> listDataChild = new HashMap<>();
     String spinnerSelectedValue, value;
-    DisplayStudentModel responseArray;
+
     private ArrayList<StudentDatum> arrayList;
 
 
@@ -105,6 +96,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
 
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+
         if (isVisibleToUser && rootView != null) {
             callClassSubjectWiseStudentDataApi();
         }
@@ -168,16 +160,11 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 if (displayStudentModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
-                    if (displayStudentModel.getFinalArraycreate().size() == 0) {
-                        fragmentCreateBinding.txtNoRecordsCreate.setVisibility(View.VISIBLE);
-                        fragmentCreateBinding.lvCreate.setVisibility(View.GONE);
-                        fragmentCreateBinding.createHeader.setVisibility(View.GONE);
-                    }
-
                     return;
                 }
                 if (displayStudentModel.getSuccess().equalsIgnoreCase("True")) {
                     responseArray =displayStudentModel;
+                    Log.d("responseArray",""+responseArray);
                     finalArrayStudentNameModelsList = displayStudentModel.getFinalArraycreate();
                     if (finalArrayStudentNameModelsList != null) {
                         fillspinner();
@@ -186,7 +173,6 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                     }
                 }
             }
-
             @Override
             public void failure(RetrofitError error) {
                 Utils.dismissDialog();
@@ -201,7 +187,6 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     private Map<String, String> getInboxDataDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("StaffID", "0");
-
         return map;
     }
 

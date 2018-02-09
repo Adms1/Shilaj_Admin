@@ -34,6 +34,7 @@ import anandniketan.com.shilajadmin.Fragment.AnnouncementFragment;
 import anandniketan.com.shilajadmin.Fragment.BullkSmsFragment;
 import anandniketan.com.shilajadmin.Fragment.EmployeeSmsFragment;
 import anandniketan.com.shilajadmin.Fragment.HRFragment;
+import anandniketan.com.shilajadmin.Fragment.HolidayFragment;
 import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
 import anandniketan.com.shilajadmin.Fragment.OtherFragment;
@@ -298,11 +299,11 @@ public class DashboardActivity extends FragmentActivity {
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-//            case "Holiday":
-//                fragment = new Holid();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
+            case "HOLIDAY":
+                fragment = new HolidayFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
             case "PTM":
                 fragment = new PTMMainFragment();
                 myid = fragment.getId();
