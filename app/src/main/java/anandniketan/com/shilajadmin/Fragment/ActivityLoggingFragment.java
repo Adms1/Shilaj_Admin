@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -86,9 +87,9 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     public void init() {
-        groupSpace = 0.1f;
-        barSpace = 0.1f;
-        barWidth = 0.1f;
+        groupSpace = 0.3f;
+        barSpace = 0f;
+        barWidth = 0.3f;
     }
 
     public void setListners() {
@@ -123,7 +124,7 @@ public class ActivityLoggingFragment extends Fragment {
                 }
                 int monthInt = cal.get(Calendar.MONTH) + 1;
                 Log.d("Selectedmonth", "" + monthInt);
-
+                Utils.ping(mContext,"Selected MOnth"+":"+monthInt);
             }
 
             @Override
@@ -228,7 +229,7 @@ public class ActivityLoggingFragment extends Fragment {
         Map<Integer, Integer> teacherMap = new TreeMap<Integer, Integer>(teacher);
         Map<Integer, Integer> adminMap = new TreeMap<Integer, Integer>(admin);
 
-        fillBarChartValueNew(treeMap, teacherMap,adminMap);
+        fillBarChartValueNew(treeMap, teacherMap, adminMap);
     }
 
     public void getMonthFun(int month) {
@@ -265,15 +266,15 @@ public class ActivityLoggingFragment extends Fragment {
         ArrayList<BarEntry> entries2 = new ArrayList<BarEntry>();
         ArrayList<BarEntry> entries3 = new ArrayList<BarEntry>();
 
-        for (Map.Entry<Integer,Integer> entry : treeMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
             yVals1.add(entry.getValue());
         }
 
-        for (Map.Entry<Integer,Integer> entry : teacherMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : teacherMap.entrySet()) {
             yVals2.add(entry.getValue());
         }
 
-        for (Map.Entry<Integer,Integer> entry : adminMap.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : adminMap.entrySet()) {
             yVals3.add(entry.getValue());
         }
 
@@ -292,14 +293,14 @@ public class ActivityLoggingFragment extends Fragment {
         set3 = new BarDataSet(entries3, "Teacher");
         set3.setColor(getResources().getColor(R.color.orange));
 
-        BarData data = new BarData(set1, set2,set3);
+        BarData data = new BarData(set1, set2, set3);
         data.setValueFormatter(new LargeValueFormatter());
         fragmentActivityLoggingBinding.barChart.setData(data);
         Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChart.getBarData());
 
         fragmentActivityLoggingBinding.barChart.getBarData().setBarWidth(barWidth);
         fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMinimum(0);
-        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMaximum(0 + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
+//        fragmentActivityLoggingBinding.barChart.getXAxis().setAxisMaximum(0 + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
         fragmentActivityLoggingBinding.barChart.groupBars(0, groupSpace, barSpace);
         fragmentActivityLoggingBinding.barChart.invalidate();
         Log.d("value", "" + fragmentActivityLoggingBinding.barChart.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
@@ -330,14 +331,7 @@ public class ActivityLoggingFragment extends Fragment {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(5f);
         leftAxis.setAxisMinimum(0f);
-
-
     }
-
-
-
-
-
 
 
 //    public void fillBarChartValue() {
