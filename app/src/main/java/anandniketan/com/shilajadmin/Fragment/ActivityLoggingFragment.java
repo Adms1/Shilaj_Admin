@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -87,9 +88,9 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     public void init() {
-        groupSpace = 0.3f;
-        barSpace = 0f;
-        barWidth = 0.3f;
+        groupSpace = 0.8f;
+        barSpace = 0.03f;
+        barWidth = 0.2f;
     }
 
     public void setListners() {
@@ -290,10 +291,10 @@ public class ActivityLoggingFragment extends Fragment {
         set1.setColor(getResources().getColor(R.color.darkblue));
         set2 = new BarDataSet(entries2, "Teacher");
         set2.setColor(getResources().getColor(R.color.yellow));
-        set3 = new BarDataSet(entries3, "Teacher");
+        set3 = new BarDataSet(entries3, "Admin");
         set3.setColor(getResources().getColor(R.color.orange));
 
-        BarData data = new BarData(set1, set2, set3);
+        BarData data = new BarData(set1, set2,set3);//
         data.setValueFormatter(new LargeValueFormatter());
         fragmentActivityLoggingBinding.barChart.setData(data);
         Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChart.getBarData());
@@ -331,6 +332,8 @@ public class ActivityLoggingFragment extends Fragment {
         leftAxis.setDrawGridLines(true);
         leftAxis.setSpaceTop(5f);
         leftAxis.setAxisMinimum(0f);
+
+
     }
 
 
