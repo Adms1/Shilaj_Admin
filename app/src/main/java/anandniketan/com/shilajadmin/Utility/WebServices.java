@@ -15,6 +15,7 @@ import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
 import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
+import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
 import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
@@ -285,7 +286,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetHoliday")
-    public void getHoliday(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+    public void getHoliday(@FieldMap Map<String, String> map, Callback<HolidayDataModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertHoliday")

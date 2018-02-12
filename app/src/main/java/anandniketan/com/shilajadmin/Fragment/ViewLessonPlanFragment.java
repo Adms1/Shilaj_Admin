@@ -58,11 +58,12 @@ public class ViewLessonPlanFragment extends Fragment {
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     List<FinalArrayStandard> finalArrayStandardsList;
     List<FinalArrayClassTeacherDetailModel> finalArrayEmployeeList;
+    List<FinalArrayClassTeacherDetailModel> finalArrayEmployeefilterList;
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSubjectMap;
-    HashMap<Integer,String> spinneremployeeMap;
-    String FinalTermIdStr, FinalStandardIdStr = "",FinalSubjectIdStr="",FinalEmployeeIdStr="",StandardName;
+    HashMap<Integer, String> spinneremployeeMap;
+    String FinalTermIdStr, FinalStandardIdStr = "", FinalSubjectIdStr = "", FinalEmployeeIdStr = "", StandardName;
 
     List<FinalArrayAssignSubjectModel> finalArraylessonplanList;
     List<String> listDataHeader;
@@ -126,6 +127,7 @@ public class ViewLessonPlanFragment extends Fragment {
                 FinalTermIdStr = getid.toString();
                 Log.d("FinalTermIdStr", FinalTermIdStr);
 
+                fragmentViewLessonPlanBinding.standardSpinner.setSelection(0);
             }
 
             @Override
@@ -184,7 +186,7 @@ public class ViewLessonPlanFragment extends Fragment {
         fragmentViewLessonPlanBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               callLessonPlanApi();
+                callLessonPlanApi();
             }
         });
     }
@@ -334,9 +336,9 @@ public class ViewLessonPlanFragment extends Fragment {
 
     private Map<String, String> getEmployeeDetail() {
         Map<String, String> map = new HashMap<>();
-        map.put("TermId",FinalTermIdStr);
-        map.put("StandardID",FinalStandardIdStr);
-        map.put("SubjectID",FinalSubjectIdStr);
+        map.put("TermId", FinalTermIdStr);
+        map.put("StandardID", FinalStandardIdStr);
+        map.put("SubjectID", FinalSubjectIdStr);
         return map;
     }
 
@@ -386,8 +388,8 @@ public class ViewLessonPlanFragment extends Fragment {
 
     private Map<String, String> getSubjectDetail() {
         Map<String, String> map = new HashMap<>();
-        map.put("TermId",FinalTermIdStr);
-        map.put("StandardID",FinalStandardIdStr);
+        map.put("TermId", FinalTermIdStr);
+        map.put("StandardID", FinalStandardIdStr);
         return map;
     }
 
@@ -494,7 +496,7 @@ public class ViewLessonPlanFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentViewLessonPlanBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr=spinnerTermMap.get(0);
+        FinalTermIdStr = spinnerTermMap.get(0);
         callStandardApi();
     }
 
@@ -580,7 +582,7 @@ public class ViewLessonPlanFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnersubjectIdArray);
         fragmentViewLessonPlanBinding.subjectSpinner.setAdapter(adapterTerm);
 
-        FinalSubjectIdStr=spinnerSubjectMap.get(0);
+        FinalSubjectIdStr = spinnerSubjectMap.get(0);
 
     }
 
@@ -594,15 +596,31 @@ public class ViewLessonPlanFragment extends Fragment {
         for (int m = 0; m < firstValueId.size(); m++) {
             EmpolyeeId.add(firstValueId.get(m));
             for (int i = 0; i < finalArrayEmployeeList.size(); i++) {
-                EmpolyeeId.add(Integer.valueOf(finalArrayEmployeeList.get(i).getEmployeeId()));
+                if (finalArrayEmployeeList.get(i).getEmployeeId().contains(",")) {
+                    String[] spiltIdValue = finalArrayEmployeeList.get(i).getEmployeeId().split("\\,");
+                    Log.d("id", spiltIdValue[0]);
+                    for (int j = 0; j < spiltIdValue.length; j++) {
+                        EmpolyeeId.add(Integer.valueOf(spiltIdValue[j]));
+                    }
+                } else {
+                    EmpolyeeId.add(Integer.valueOf(finalArrayEmployeeList.get(i).getEmployeeId()));
+                }
+
             }
         }
-
         ArrayList<String> Employee = new ArrayList<String>();
         for (int z = 0; z < firstValue.size(); z++) {
             Employee.add(firstValue.get(z));
             for (int j = 0; j < finalArrayEmployeeList.size(); j++) {
-                Employee.add(finalArrayEmployeeList.get(j).getEmployee());
+                if (finalArrayEmployeeList.get(j).getEmployee().contains(",")) {
+                    String[] spiltnameValue = finalArrayEmployeeList.get(j).getEmployee().split("\\,");
+                    Log.d("name", spiltnameValue[0]);
+                    for (int i = 0; i < spiltnameValue.length; i++) {
+                        Employee.add(spiltnameValue[i]);
+                    }
+                } else {
+                    Employee.add(finalArrayEmployeeList.get(j).getEmployee());
+                }
             }
         }
 
@@ -628,7 +646,7 @@ public class ViewLessonPlanFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerempolyeeIdArray);
         fragmentViewLessonPlanBinding.employeeNameSpinner.setAdapter(adapterTerm);
 
-        FinalEmployeeIdStr=spinneremployeeMap.get(0);
+        FinalEmployeeIdStr = spinneremployeeMap.get(0);
     }
 
     //Use for fill the LessonList Spinner
@@ -638,7 +656,7 @@ public class ViewLessonPlanFragment extends Fragment {
 
         for (int i = 0; i < finalArraylessonplanList.size(); i++) {
             listDataHeader.add(finalArraylessonplanList.get(i).getChapterNo() + "|" +
-                    finalArraylessonplanList.get(i).getChapterName() + "|" + finalArraylessonplanList.get(i).getEmployeeName());
+                    finalArraylessonplanList.get(i).getChapterName() + "|" + finalArraylessonplanList.get(i).getEmployeeName() + "|" + finalArraylessonplanList.get(i).getiD());
             Log.d("header", "" + listDataHeader);
             ArrayList<FinalArrayAssignSubjectModel> row = new ArrayList<FinalArrayAssignSubjectModel>();
             row.add(finalArraylessonplanList.get(i));

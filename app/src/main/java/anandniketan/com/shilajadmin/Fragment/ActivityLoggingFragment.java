@@ -86,9 +86,9 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     public void init() {
-        groupSpace = 0.5f;
-        barSpace = 0f;
-        barWidth = 0.3f;
+        groupSpace = 0.1f;
+        barSpace = 0.1f;
+        barWidth = 0.1f;
     }
 
     public void setListners() {

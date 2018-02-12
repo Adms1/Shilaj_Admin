@@ -33,6 +33,8 @@ import anandniketan.com.shilajadmin.Adapter.HolidayAdapter;
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArrayHolidayDetial;
+import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
 import anandniketan.com.shilajadmin.R;
@@ -57,8 +59,9 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
     private static boolean isFromDate = false;
     private DatePickerDialog datePickerDialog;
     HashMap<Integer, String> spinnerHolidayCategoryMap;
-    String FinalCategoryIdStr, FinalHolidayStr, startDateArray = "", endDateArray = "", discriptionArray = "", holidayId = "", HolidayNameStr, categoryStr;
+    String FinalCategoryIdStr, FinalHolidayStr, startDateArray = "", endDateArray = "", discriptionArray = "", FinalholidayId = "", HolidayNameStr, categoryStr,categoryIdStr="";
     List<FinalArrayResultPermissionModel> finalHolidaycategoryList;
+    List<FinalArrayHolidayDetial> finalArrayHolidayDetialsList;
     HolidayAdapter holidayAdapter;
     String[] spinnerholidaycategoryIdArray;
 
@@ -122,6 +125,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
 
             }
         });
+
         fragmentHolidayBinding.updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,6 +186,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
                     return;
                 }
                 if (holidayModel.getSuccess().equalsIgnoreCase("True")) {
+
                     if (holidayModel.getFinalArray().size() > 0) {
                         finalHolidaycategoryList = holidayModel.getFinalArray();
                         fillCatergorySpinner();
@@ -214,19 +219,19 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
             return;
         }
 
-        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getHoliday(getHolidayDetail(), new retrofit.Callback<GetResultPermissionModel>() {
+//        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().getHoliday(getHolidayDetail(), new retrofit.Callback<HolidayDataModel>() {
             @Override
-            public void success(GetResultPermissionModel holidayModel, Response response) {
-                if (holidayModel == null) {
+            public void success(HolidayDataModel holidaydataModel, Response response) {
+                if (holidaydataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
                 }
-                if (holidayModel.getSuccess() == null) {
+                if (holidaydataModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
                 }
-                if (holidayModel.getSuccess().equalsIgnoreCase("false")) {
+                if (holidaydataModel.getSuccess().equalsIgnoreCase("false")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
                     fragmentHolidayBinding.txtNoRecords.setVisibility(View.VISIBLE);
@@ -234,13 +239,13 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
                     fragmentHolidayBinding.recyclerLinear.setVisibility(View.GONE);
                     return;
                 }
-                if (holidayModel.getSuccess().equalsIgnoreCase("True")) {
-                    finalHolidaycategoryList = holidayModel.getFinalArray();
-                    if (holidayModel.getFinalArray().size() > 0) {
+                if (holidaydataModel.getSuccess().equalsIgnoreCase("True")) {
+                    finalArrayHolidayDetialsList = holidaydataModel.getFinalArray();
+                    if (holidaydataModel.getFinalArray().size() > 0) {
                         fragmentHolidayBinding.txtNoRecords.setVisibility(View.GONE);
                         fragmentHolidayBinding.lvExpHeader.setVisibility(View.VISIBLE);
                         fragmentHolidayBinding.recyclerLinear.setVisibility(View.VISIBLE);
-                        holidayAdapter = new HolidayAdapter(mContext, holidayModel, new getEditpermission() {
+                        holidayAdapter = new HolidayAdapter(mContext, holidaydataModel, new getEditpermission() {
                             @Override
                             public void getEditpermission() {
                                 UpdateHoliday();
@@ -323,7 +328,8 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
         map.put("EndDT", fragmentHolidayBinding.endDateButton.getText().toString());
         map.put("Description", fragmentHolidayBinding.descriptionEdt.getText().toString());
         map.put("HolidayName", FinalHolidayStr);
-        map.put("PK_HolidayID", FinalCategoryIdStr);
+        map.put("PK_HolidayID", FinalholidayId);
+        map.put("FK_CategoryId",FinalCategoryIdStr);
 
 
         return map;
@@ -399,10 +405,12 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
             Log.d("rowValueStr", rowValueStr);
             String[] spiltString = rowValueStr.split("\\|");
             categoryStr = spiltString[0];
-            holidayId = spiltString[1];
+            FinalholidayId = spiltString[1];
             startDateArray = spiltString[2];
             endDateArray = spiltString[3];
             discriptionArray = spiltString[4];
+            categoryIdStr=spiltString[5];
+
 //            statusArray = statusArray.substring(0, statusArray.length() - 1);
 
             Log.d("startDateArray", startDateArray);
@@ -412,7 +420,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
         fragmentHolidayBinding.descriptionEdt.setText(discriptionArray);
 
         for (int i = 0; i < finalHolidaycategoryList.size(); i++) {
-            if (categoryStr.contains(finalHolidaycategoryList.get(i).getCategory())) {
+            if (categoryIdStr.equalsIgnoreCase(finalHolidaycategoryList.get(i).getPkCategoryId().toString())) {
                 HolidayNameStr = finalHolidaycategoryList.get(i).getCategory();
             }
         }

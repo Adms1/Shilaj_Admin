@@ -317,7 +317,7 @@
                     android:orientation="horizontal"
                     android:visibility="gone">
 
-                    <include layout="@layout/" />
+                    <include layout="@layout/lesson_plan_header" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.lang.reflect.Field;
@@ -42,6 +43,7 @@ import anandniketan.com.shilajadmin.Model.Other.FinalArrayStudentForCreate;
 import anandniketan.com.shilajadmin.Model.Other.StudentDatum;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentCreateBinding;
 import retrofit.RetrofitError;
@@ -72,6 +74,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     private static TextView insert_message_date_txt;
     private EditText insert_message_subject_txt, insert_message_Message_txt;
     String finalStudentArray, finalmessageDate, finalmessageSubject, finalmessageMessageLine;
+    String textIcon;
 
     public CreateFragment() {
     }
@@ -91,6 +94,10 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
     }
 
     public void initViews() {
+        Glide.with(mContext)
+                .load(AppConfiguration.BASEURL_ICONS+"Done.png")
+                .fitCenter()
+                .into(fragmentCreateBinding.insertMessageImg);
         setUserVisibleHint(true);
     }
 
@@ -109,19 +116,20 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 spinnerSelectedValue = adapterView.getItemAtPosition(i).toString();
                 Log.d("spinner", spinnerSelectedValue);
-                String[] array = spinnerSelectedValue.split("-");
-                String value = array[2].replaceFirst(">", "");
+                String[] array = spinnerSelectedValue.split(textIcon);
+//                String value = array[2].replaceFirst(">", "");
                 Log.d("Array", Arrays.toString(array));
-                Log.d("Array1", value);
+//                Log.d("Array1", value);
                 List<FinalArrayStudentForCreate> filterFinalArray = new ArrayList<FinalArrayStudentForCreate>();
                 for (FinalArrayStudentForCreate arrayObj : responseArray.getFinalArraycreate()) {
                     if (arrayObj.getStandard().equalsIgnoreCase(array[0].trim()) &&
-                            arrayObj.getClassname().equalsIgnoreCase(array[1].trim()) && arrayObj.getSubject().equalsIgnoreCase(value.trim())) {
+                            arrayObj.getClassname().equalsIgnoreCase(array[1].trim()) && arrayObj.getSubject().equalsIgnoreCase(array[2].trim())) {
                         filterFinalArray.add(arrayObj);
                     }
                 }
                 setExpandableListView(filterFinalArray);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -163,8 +171,8 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                     return;
                 }
                 if (displayStudentModel.getSuccess().equalsIgnoreCase("True")) {
-                    responseArray =displayStudentModel;
-                    Log.d("responseArray",""+responseArray);
+                    responseArray = displayStudentModel;
+                    Log.d("responseArray", "" + responseArray);
                     finalArrayStudentNameModelsList = displayStudentModel.getFinalArraycreate();
                     if (finalArrayStudentNameModelsList != null) {
                         fillspinner();
@@ -173,6 +181,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                     }
                 }
             }
+
             @Override
             public void failure(RetrofitError error) {
                 Utils.dismissDialog();
@@ -192,11 +201,16 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
 
     public void fillspinner() {
         ArrayList<String> row = new ArrayList<String>();
+//        int unicode = 0x2B05;
 
+//        textIcon = new String(Character.toChars(unicode));
+        textIcon =getResources().getString(R.string.arrow);
         for (int z = 0; z < finalArrayStudentNameModelsList.size(); z++) {
-            row.add(finalArrayStudentNameModelsList.get(z).getStandard() + "-" +
-                    finalArrayStudentNameModelsList.get(z).getClassname() + "->" +
-                    finalArrayStudentNameModelsList.get(z).getSubject());
+            if (!finalArrayStudentNameModelsList.get(z).getSubject().equalsIgnoreCase("")) {
+                row.add(finalArrayStudentNameModelsList.get(z).getStandard() + textIcon +
+                        finalArrayStudentNameModelsList.get(z).getClassname() + textIcon +
+                        finalArrayStudentNameModelsList.get(z).getSubject());
+            }
         }
         HashSet hs = new HashSet();
         hs.addAll(row);
@@ -272,7 +286,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View layout = lInflater.inflate(R.layout.insert_message_item, null);
 
-        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(getActivity());
         alertDialogBuilderUserInput.setView(layout);
 
         alertDialogAndroid = alertDialogBuilderUserInput.create();

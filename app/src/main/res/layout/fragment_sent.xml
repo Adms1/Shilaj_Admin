@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/Sent_header"
+            android:layout_below="@+id/sent_header"
             android:childDivider="@android:color/transparent"
             android:divider="@android:color/white"
             android:dividerHeight="@dimen/_5sdp"

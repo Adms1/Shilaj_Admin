@@ -23,7 +23,9 @@ import anandniketan.com.shilajadmin.R;
 public class Utils {
     Context context;
     public static Dialog dialog;
-
+    public static String parentFolderName = "Skool 360 Teacher";
+    public static String childAnnouncementFolderName = "Pdf";
+    public static String childCircularFolderName = "Word";
 
     public static boolean isNetworkConnected(Context ctxt) {
         ConnectivityManager cm = (ConnectivityManager) ctxt

@@ -14,7 +14,7 @@
         android:paddingBottom="1dp"
         android:visibility="visible"
         android:weightSum="4"
-        android:background="@drawable/shadow_box">
+        >
 
         <TextView
             android:id="@+id/name_inbox_txt"

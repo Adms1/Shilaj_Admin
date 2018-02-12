@@ -23,21 +23,6 @@ public class FinalArrayResultPermissionModel {
     @SerializedName("Pk_CategoryId")
     @Expose
     private Integer pkCategoryId;
-    @SerializedName("StartDT")
-    @Expose
-    private String startDT;
-    @SerializedName("EndDT")
-    @Expose
-    private String endDT;
-    @SerializedName("Description")
-    @Expose
-    private String description;
-    @SerializedName("HolidayName")
-    @Expose
-    private String holidayName;
-    @SerializedName("PK_HolidayID")
-    @Expose
-    private Integer pKHolidayID;
 
     public Integer getPKStatusID() {
         return pKStatusID;
@@ -87,43 +72,4 @@ public class FinalArrayResultPermissionModel {
         this.pkCategoryId = pkCategoryId;
     }
 
-    public String getStartDT() {
-        return startDT;
-    }
-
-    public void setStartDT(String startDT) {
-        this.startDT = startDT;
-    }
-
-    public String getEndDT() {
-        return endDT;
-    }
-
-    public void setEndDT(String endDT) {
-        this.endDT = endDT;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getHolidayName() {
-        return holidayName;
-    }
-
-    public void setHolidayName(String holidayName) {
-        this.holidayName = holidayName;
-    }
-
-    public Integer getpKHolidayID() {
-        return pKHolidayID;
-    }
-
-    public void setpKHolidayID(Integer pKHolidayID) {
-        this.pKHolidayID = pKHolidayID;
-    }
 }
