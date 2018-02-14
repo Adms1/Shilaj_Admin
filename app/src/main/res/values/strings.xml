@@ -233,6 +233,7 @@
     <string name="pdfheader">PDF</string>
     <string name="wordheader">WORD</string>
     <string name="arrow">\u2192</string>
+    <string name="back">\u226A</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

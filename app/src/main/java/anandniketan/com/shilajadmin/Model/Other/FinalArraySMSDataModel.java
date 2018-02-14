@@ -29,7 +29,27 @@ public class FinalArraySMSDataModel {
     @SerializedName("Type")
     @Expose
     private String type;
-
+    @SerializedName("Date")
+    @Expose
+    private String date;
+    @SerializedName("StudentCount")
+    @Expose
+    private Integer studentCount;
+    @SerializedName("TeacherCount")
+    @Expose
+    private Integer teacherCount;
+    @SerializedName("AdminCount")
+    @Expose
+    private Integer adminCount;
+    @SerializedName("Employee Code")
+    @Expose
+    private String employeeCode;
+    @SerializedName("Employee Name")
+    @Expose
+    private String employeeName;
+    @SerializedName("Login Details")
+    @Expose
+    private String loginDetails;
 
     public Integer getPKEmployeeID() {
         return pKEmployeeID;
@@ -85,5 +105,61 @@ public class FinalArraySMSDataModel {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public Integer getStudentCount() {
+        return studentCount;
+    }
+
+    public void setStudentCount(Integer studentCount) {
+        this.studentCount = studentCount;
+    }
+
+    public Integer getTeacherCount() {
+        return teacherCount;
+    }
+
+    public void setTeacherCount(Integer teacherCount) {
+        this.teacherCount = teacherCount;
+    }
+
+    public Integer getAdminCount() {
+        return adminCount;
+    }
+
+    public void setAdminCount(Integer adminCount) {
+        this.adminCount = adminCount;
+    }
+
+    public String getEmployeeCode() {
+        return employeeCode;
+    }
+
+    public void setEmployeeCode(String employeeCode) {
+        this.employeeCode = employeeCode;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public String getLoginDetails() {
+        return loginDetails;
+    }
+
+    public void setLoginDetails(String loginDetails) {
+        this.loginDetails = loginDetails;
     }
 }

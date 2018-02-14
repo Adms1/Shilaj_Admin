@@ -281,6 +281,13 @@ public interface WebServices {
     public void getMonthlyCount(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
+    @POST("/GetDateCountPerMonth")
+    public void getDateCountPerMonth(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
+
+    @FormUrlEncoded
+    @POST("/GetLoginDetailsDatewise")
+    public void getLoginDetailsDatewise(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
+    @FormUrlEncoded
     @POST("/GetHolidayCategory")
     public void getHolidayCategory(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
 
