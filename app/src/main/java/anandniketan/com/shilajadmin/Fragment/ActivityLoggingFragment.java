@@ -628,7 +628,7 @@ public class ActivityLoggingFragment extends Fragment {
         fragmentActivityLoggingBinding.barChartDatewise.setData(data);
         Log.d("getBarData", "" + fragmentActivityLoggingBinding.barChartDatewise.getBarData());
 
-        fragmentActivityLoggingBinding.barChartDatewise.zoom(3f, 0f, 0f, 0f);
+        fragmentActivityLoggingBinding.barChartDatewise.zoom(5f, 0f, 0f, 0f);
         fragmentActivityLoggingBinding.barChartDatewise.getBarData().setBarWidth(barWidth1);
         fragmentActivityLoggingBinding.barChartDatewise.getXAxis().setAxisMinimum(0);
 //        fragmentActivityLoggingBinding.barChartDatewise.getXAxis().setAxisMaximum(0 + fragmentActivityLoggingBinding.barChartDatewise.getBarData().getGroupWidth(groupSpace, barSpace) * groupCount);
