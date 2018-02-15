@@ -50,7 +50,6 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-//        ListItemTimeTableBinding itembinding;
         if (convertView == null) {
 
             LayoutInflater infalInflater = (LayoutInflater) this._context
