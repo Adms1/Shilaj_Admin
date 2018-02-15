@@ -19,34 +19,26 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -76,7 +68,7 @@ public class ActivityLoggingFragment extends Fragment {
 
 
     //Use for fill Barchart
-    List<FinalArraySMSDataModel> monthNumArrayList,datewisemonthArrayList,LoginDetailArrayList;
+    List<FinalArraySMSDataModel> monthNumArrayList, datewisemonthArrayList, LoginDetailArrayList;
     ArrayList<Integer> monthNumber = new ArrayList<>();
     ArrayList<String> monthNameArray = new ArrayList<>();
     String FinalSelectedMonth;
@@ -91,7 +83,7 @@ public class ActivityLoggingFragment extends Fragment {
     //Use for showLoginDetail
     private AlertDialog alertDialogAndroid = null;
     private Button close_btn;
-    private LinearLayout header_linear;
+    private LinearLayout header_linear,recycler_linear;
     private RecyclerView login_status_list;
     private TextView txtNoRecordsloginstatus;
     LoginDetailStatusAdapter loginDetailStatusAdapter;
@@ -148,7 +140,8 @@ public class ActivityLoggingFragment extends Fragment {
             public void onValueSelected(Entry e, Highlight h) {
                 String x = fragmentActivityLoggingBinding.barChart.getXAxis().getValueFormatter().getFormattedValue(e.getX(), fragmentActivityLoggingBinding.barChart.getXAxis());
                 Log.d("clickValue", x);
-
+                Log.d("secondValue", "" + e.getY());
+//                if(!x.equalsIgnoreCase("")) {
                 Calendar cal = Calendar.getInstance();
                 try {
                     cal.setTime(new SimpleDateFormat("MMM").parse(x));
@@ -157,13 +150,14 @@ public class ActivityLoggingFragment extends Fragment {
                 }
                 int monthInt = cal.get(Calendar.MONTH) + 1;
                 Log.d("Selectedmonth", "" + monthInt);
-                Utils.ping(mContext, "Selected MOnth" + ":" + monthInt);
+                Utils.ping(mContext, "Select Month :" + monthInt);
                 FinalSelectedMonth = String.valueOf(monthInt);
                 if (!FinalSelectedMonth.equalsIgnoreCase("")) {
                     callDateCountPerMonthApi();
                 } else {
                     Utils.ping(mContext, "Please Select value");
                 }
+
             }
 
             @Override
@@ -177,7 +171,7 @@ public class ActivityLoggingFragment extends Fragment {
             public void onValueSelected(Entry e, Highlight h) {
                 String date = fragmentActivityLoggingBinding.barChartDatewise.getXAxis().getValueFormatter().getFormattedValue(e.getX(), fragmentActivityLoggingBinding.barChartDatewise.getXAxis());
                 Log.d("SelectedDate", date);
-                if(!date.equalsIgnoreCase("")) {
+                if (!date.equalsIgnoreCase("")) {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     SimpleDateFormat output = new SimpleDateFormat("MM/dd/yyyy");
                     Date d = null;
@@ -202,6 +196,7 @@ public class ActivityLoggingFragment extends Fragment {
 
             }
         });
+
         fragmentActivityLoggingBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -297,7 +292,7 @@ public class ActivityLoggingFragment extends Fragment {
                     return;
                 }
                 if (datePerMonthCount.getSuccess().equalsIgnoreCase("false")) {
-                    Utils.ping(mContext,"No Record Found");
+                    Utils.ping(mContext, "No Record Found");
                     Utils.dismissDialog();
                     return;
                 }
@@ -308,8 +303,8 @@ public class ActivityLoggingFragment extends Fragment {
                         fragmentActivityLoggingBinding.back.setVisibility(View.VISIBLE);
                         fragmentActivityLoggingBinding.listHeader.setVisibility(View.GONE);
                         fillBarChartArrayDateWise();
-                    }else{
-                        Utils.ping(mContext,"No Record Found");
+                    } else {
+                        Utils.ping(mContext, "No Record Found");
                     }
 
                 }
@@ -499,16 +494,11 @@ public class ActivityLoggingFragment extends Fragment {
         Legend l = fragmentActivityLoggingBinding.barChart.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-//        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setYOffset(0f);
-        l.setXOffset(10f);
-        l.setYEntrySpace(0f);
-        l.setTextSize(12f);
-        l.setFormToTextSpace(3f);
-        l.setTextColor(Color.BLACK);
-        l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormLineWidth(99f);
+        l.setDrawInside(false);
+        l.setFormSize(8f);
+        l.setFormToTextSpace(4f);
+        l.setXEntrySpace(6f);
 
 
         //Draw the X-Axis and Y-Axis
@@ -521,7 +511,7 @@ public class ActivityLoggingFragment extends Fragment {
         xAxis.setLabelRotationAngle(-45);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
-
+        xAxis.setDrawAxisLine(true);
 
         //Y-axis
         fragmentActivityLoggingBinding.barChart.getAxisRight().setEnabled(false);
@@ -535,8 +525,8 @@ public class ActivityLoggingFragment extends Fragment {
     }
 
     public void fillBarChartArrayDateWise() {
-        DateNumber=new ArrayList<>();
-        DateArray=new ArrayList<>();
+        DateNumber = new ArrayList<>();
+        DateArray = new ArrayList<>();
         fragmentActivityLoggingBinding.barChartDatewise.zoom(0f, 0f, 0f, 0f);
         for (int i = 0; i < datewisemonthArrayList.size(); i++) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -640,16 +630,11 @@ public class ActivityLoggingFragment extends Fragment {
         Legend l = fragmentActivityLoggingBinding.barChartDatewise.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-//        l.setPosition(Legend.LegendPosition.BELOW_CHART_CENTER);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
-        l.setYOffset(0f);
-        l.setXOffset(10f);
-        l.setYEntrySpace(0f);
-        l.setTextSize(12f);
-        l.setFormToTextSpace(3f);
-        l.setTextColor(Color.BLACK);
-        l.setForm(Legend.LegendForm.SQUARE);
-        l.setFormLineWidth(99f);
+        l.setDrawInside(false);
+        l.setFormSize(8f);
+        l.setFormToTextSpace(4f);
+        l.setXEntrySpace(6f);
 
 
         //Draw the X-Axis and Y-Axis
@@ -699,7 +684,7 @@ public class ActivityLoggingFragment extends Fragment {
         header_linear = (LinearLayout) layout.findViewById(R.id.header_linear);
         login_status_list = (RecyclerView) layout.findViewById(R.id.login_status_list);
         txtNoRecordsloginstatus = (TextView) layout.findViewById(R.id.txtNoRecordsloginstatus);
-
+        recycler_linear=(LinearLayout)layout.findViewById(R.id.recycler_linear);
         FillLoginDetailList();
 
         close_btn.setOnClickListener(new View.OnClickListener() {
@@ -711,8 +696,8 @@ public class ActivityLoggingFragment extends Fragment {
 
     }
 
-    public void FillLoginDetailList(){
-        login_status_list.setVisibility(View.VISIBLE);
+    public void FillLoginDetailList() {
+        recycler_linear.setVisibility(View.VISIBLE);
         header_linear.setVisibility(View.VISIBLE);
         for (int i = 0; i < LoginDetailArrayList.size(); i++) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");

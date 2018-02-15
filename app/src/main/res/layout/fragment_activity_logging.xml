@@ -374,7 +374,7 @@
                     android:layout_marginTop="@dimen/_3sdp"
                     android:text="@string/back"
                     android:textColor="@color/linear_color"
-                    android:textSize="@dimen/_25sdp"
+                    android:textSize="@dimen/_20sdp"
                     android:layout_gravity="top"
                     android:gravity="top"
                     android:layout_marginLeft="@dimen/_260sdp"

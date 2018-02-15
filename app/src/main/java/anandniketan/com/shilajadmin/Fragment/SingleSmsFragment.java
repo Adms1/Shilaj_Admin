@@ -117,7 +117,7 @@ public class SingleSmsFragment extends Fragment {
                     return;
                 }
                 if (insertsms.getSuccess().equalsIgnoreCase("True")) {
-                    Utils.ping(mContext, getString(R.string.true_msg));
+                    Utils.ping(mContext,"Message Sent Successfully");
                     fragmentSingleSmsBinding.mobilenoEdt.setText("");
                     fragmentSingleSmsBinding.messageEdt.setText("");
                 }

@@ -236,7 +236,7 @@
                             android:layout_gravity="center_horizontal|center"
                             android:layout_marginLeft="@dimen/_5sdp"
                             android:layout_weight="0.77"
-                            android:text="@string/resultstatus"
+                            android:text="@string/status"
                             android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_11sdp"
                             android:textStyle="bold" />

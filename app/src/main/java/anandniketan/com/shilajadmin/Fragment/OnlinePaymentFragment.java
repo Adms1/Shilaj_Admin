@@ -378,7 +378,7 @@ public class OnlinePaymentFragment extends Fragment {
                     return;
                 }
                 if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
-//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    Utils.ping(mContext,"Record update successful");
                     callOnlinePaymentPermission();
                 }
             }

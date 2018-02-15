@@ -579,9 +579,9 @@ public class BullkSmsFragment extends Fragment {
         window.setAttributes(wlp);
         alertDialogAndroid.show();
 
-        date_txt = (TextView) layout.findViewById(R.id.date_txt);
-        message_edt = (TextView) layout.findViewById(R.id.message_edt);
-        send_btn = (Button) layout.findViewById(R.id.send_btn);
+        date_txt = (TextView) layout.findViewById(R.id.insert_message_date_txt);
+        message_edt = (TextView) layout.findViewById(R.id.insert_message_Message_txt);
+        send_btn = (Button) layout.findViewById(R.id.send_message_btn);
         close_btn = (Button) layout.findViewById(R.id.close_btn);
 
         date_txt.setText(Utils.getTodaysDate());

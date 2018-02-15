@@ -13,9 +13,9 @@
         android:layout_width="@dimen/_27sdp"
         android:layout_height="@dimen/_27sdp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_231sdp"
         android:layout_marginRight="@dimen/_2sdp"
-        android:layout_marginLeft="@dimen/_231sdp">
+        android:layout_marginTop="@dimen/_5sdp">
 
         <Button
             android:id="@+id/close_btn"
@@ -33,11 +33,14 @@
         android:id="@+id/header_linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
         android:layout_marginTop="15dp"
         android:visibility="gone">
 
         <include layout="@layout/header_login_detail" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/txtNoRecordsloginstatus"
         android:layout_width="match_parent"
@@ -51,12 +54,22 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/login_status_list"
+    <LinearLayout
+        android:id="@+id/recycler_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_5sdp"
         android:layout_weight="1"
-        android:scrollbars="none"
-        android:visibility="gone"/>
+        android:background="@drawable/linear_border"
+        android:orientation="vertical"
+        android:visibility="gone">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/login_status_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none" />
+    </LinearLayout>
 </LinearLayout>

@@ -107,7 +107,7 @@
                             android:layout_height="@dimen/_31sdp"
                             android:layout_weight="1.6"
                             android:paddingLeft="@dimen/_9sdp"
-                            android:text="@string/pagename"
+                            android:text="@string/employeename"
                             android:gravity="center"
                             android:textAlignment="textStart"
                             android:textColor="@color/app_bg"

@@ -166,7 +166,7 @@ public class ProfilePermissionFragment extends Fragment {
         fragmentProfilePermissionBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!FinalSectionStr.equalsIgnoreCase("All") && !FinalStandardStr.equalsIgnoreCase("All")) {
+                if (!FinalSectionStr.equalsIgnoreCase("--Select--") && !FinalStandardStr.equalsIgnoreCase("--Select--")) {
                     callInsertProfilePermission();
                 } else {
                     Utils.ping(mContext, "Please Select All Filed");
@@ -336,7 +336,7 @@ public class ProfilePermissionFragment extends Fragment {
     //use for fill Standard spinner
     public void fillGradeSpinner() {
         ArrayList<String> firstValue = new ArrayList<>();
-        firstValue.add("All");
+        firstValue.add("--Select--");
 
         ArrayList<String> standardname = new ArrayList<>();
         for (int z = 0; z < firstValue.size(); z++) {
@@ -387,11 +387,11 @@ public class ProfilePermissionFragment extends Fragment {
         ArrayList<String> sectionname = new ArrayList<>();
         ArrayList<Integer> sectionId = new ArrayList<>();
         ArrayList<String> firstSectionValue = new ArrayList<String>();
-        firstSectionValue.add("All");
+        firstSectionValue.add("--Select--");
         ArrayList<Integer> firstSectionId = new ArrayList<>();
         firstSectionId.add(0);
 
-        if (StandardName.equalsIgnoreCase("All")) {
+        if (StandardName.equalsIgnoreCase("--Select--")) {
             for (int j = 0; j < firstSectionValue.size(); j++) {
                 sectionname.add(firstSectionValue.get(j));
             }

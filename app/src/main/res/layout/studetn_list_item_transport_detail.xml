@@ -77,7 +77,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -114,7 +115,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -151,7 +153,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -188,7 +191,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -225,7 +229,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
 
         </LinearLayout>
 
@@ -263,7 +268,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="normal" />
+                android:textStyle="normal"
+                android:layout_marginLeft="@dimen/_3sdp"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

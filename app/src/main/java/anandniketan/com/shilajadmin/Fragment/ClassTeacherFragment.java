@@ -328,6 +328,7 @@ public class ClassTeacherFragment extends Fragment {
                     return;
                 }
                 if (insertClassTeachersModel.getSuccess().equalsIgnoreCase("True")) {
+                    Utils.ping(mContext,"Record Inserted Successfully...!!");
                     finalArrayInsertClassTeachersModelList = insertClassTeachersModel.getFinalArray();
                     if (finalArrayInsertClassTeachersModelList != null) {
                         callClassTeacherApi();

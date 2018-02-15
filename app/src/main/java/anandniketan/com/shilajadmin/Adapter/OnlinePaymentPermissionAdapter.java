@@ -22,7 +22,7 @@ import anandniketan.com.shilajadmin.R;
 public class OnlinePaymentPermissionAdapter extends RecyclerView.Adapter<OnlinePaymentPermissionAdapter.MyViewHolder> {
     private Context context;
     private GetResultPermissionModel resultPermissionModel;
-    private ArrayList<String> rowvalue = new ArrayList<String>();
+    private ArrayList<String> rowvalue;
     getEditpermission listner;
 
     public OnlinePaymentPermissionAdapter(Context mContext, GetResultPermissionModel resultPermissionModel, getEditpermission listner) {
@@ -51,6 +51,7 @@ public class OnlinePaymentPermissionAdapter extends RecyclerView.Adapter<OnlineP
         holder.edit_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rowvalue = new ArrayList<String>();
                 rowvalue.add(resultPermissionModel.getYear() + "|" + result.getStandard() + "|" + result.getStatus()+"|"+resultPermissionModel.getTerm());
                 listner.getEditpermission();
             }
