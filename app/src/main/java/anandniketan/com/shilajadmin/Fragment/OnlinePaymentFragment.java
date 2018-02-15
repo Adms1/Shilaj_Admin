@@ -490,6 +490,12 @@ public class OnlinePaymentFragment extends Fragment {
 
     // Use For UpdatePermission
     public void UpdatePermission() {
+        List<FinalArrayStandard> standardArray1 = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray1.size(); i++) {
+                standardArray1.get(i).setCheckedStatus("0");
+                standardAdapter.notifyDataSetChanged();
+
+        }
         fragmentOnlinePaymentBinding.searchBtn.setText("Update");
         ArrayList<String> academicYearArray = new ArrayList<String>();
         String statusArray = "", gradeArray = "";
@@ -505,7 +511,8 @@ public class OnlinePaymentFragment extends Fragment {
 
             Log.d("statusArray", statusArray);
         }
-        if (statusArray.equalsIgnoreCase(fragmentOnlinePaymentBinding.doneChk.getText().toString())) {
+        if (statusArray.equalsIgnoreCase(fragmentOnlinePaymentBinding
+                .doneChk.getText().toString())) {
             fragmentOnlinePaymentBinding.doneChk.setChecked(true);
         } else if (statusArray.equalsIgnoreCase(fragmentOnlinePaymentBinding.penddingChk.getText().toString())) {
             fragmentOnlinePaymentBinding.penddingChk.setChecked(true);

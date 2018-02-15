@@ -1,12 +1,15 @@
 package anandniketan.com.shilajadmin.Fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.icu.math.BigDecimal;
 import android.icu.text.LocaleDisplayNames;
 import android.icu.text.NumberFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -296,15 +299,15 @@ public class AccountSummaryFragment extends Fragment {
 
         ArrayAdapter<String> adapterTermdetail = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
         fragmentAccountSummaryBinding.termDetailSpinner.setAdapter(adapterTermdetail);
-            Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
-            for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
-                if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
-                    Log.d("spinnerValue", spinnertermdetailIdArray[m]);
-                    int index = m;
-                    Log.d("indexOf", String.valueOf(index));
-                    fragmentAccountSummaryBinding.termDetailSpinner.setSelection(index);
-                }
+        Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
+        for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
+            if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
+                Log.d("spinnerValue", spinnertermdetailIdArray[m]);
+                int index = m;
+                Log.d("indexOf", String.valueOf(index));
+                fragmentAccountSummaryBinding.termDetailSpinner.setSelection(index);
             }
+        }
     }
 
     //Use for Fill Term Spinner
@@ -340,21 +343,21 @@ public class AccountSummaryFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentAccountSummaryBinding.termSpinner.setAdapter(adapterTerm);
 
-            Log.d("termspinner", String.valueOf(spinnertermIdArray));
-            String TermName = "";
-            for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
-                if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
-                    TermName = finalArrayGetTermModels.get(z).getTerm();
-                }
+        Log.d("termspinner", String.valueOf(spinnertermIdArray));
+        String TermName = "";
+        for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
+            if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
+                TermName = finalArrayGetTermModels.get(z).getTerm();
             }
-            for (int m = 0; m < spinnertermIdArray.length; m++) {
-                if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
-                    Log.d("spinnerValue", spinnertermIdArray[m]);
-                    int index = m;
-                    Log.d("indexOf", String.valueOf(index));
-                    fragmentAccountSummaryBinding.termSpinner.setSelection(m);
-                }
+        }
+        for (int m = 0; m < spinnertermIdArray.length; m++) {
+            if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
+                Log.d("spinnerValue", spinnertermIdArray[m]);
+                int index = m;
+                Log.d("indexOf", String.valueOf(index));
+                fragmentAccountSummaryBinding.termSpinner.setSelection(m);
             }
+        }
 
 
     }
@@ -363,7 +366,7 @@ public class AccountSummaryFragment extends Fragment {
     public void fillData() {
         String amount1 = "", amount2 = "", amount3 = "", amount4 = "", amount5 = "", amount6 = "";
         Double longval1 = null, longval2 = null, longval3 = null, longval4 = null, longval5 = null, longval6 = null;
-        DecimalFormat formatter = new DecimalFormat("#,##,##,##.#");
+        Format formatter = new DecimalFormat("##,##,###");
         String formattedString1, formattedString2, formattedString3, formattedString4, formattedString5, formattedString6;
 
         for (int i = 0; i < collectionModelList.size(); i++) {
@@ -375,6 +378,8 @@ public class AccountSummaryFragment extends Fragment {
             amount6 = Double.toString(Double.parseDouble(collectionModelList.get(i).getTotalDueStudent()));
             fragmentAccountSummaryBinding.perTotalTxt.setText("(" + collectionModelList.get(i).getTotalDuePer() + "%" + ")");
             fragmentAccountSummaryBinding.perStudentCountTxt.setText("(" + collectionModelList.get(i).getDueStudentPer() + "%" + ")");
+
+
         }
 
         longval1 = Double.parseDouble(amount1);
@@ -383,13 +388,22 @@ public class AccountSummaryFragment extends Fragment {
         longval4 = Double.parseDouble(amount4);
         longval5 = Double.parseDouble(amount5);
         longval6 = Double.parseDouble(amount6);
+        Log.d("decimalValue", formatter.format(longval2));
 
-        formattedString1 = String.format("%,.1f", longval1);
-        formattedString2 = String.format("%,.1f", longval2);
-        formattedString3 = String.format("%,.1f", longval3);
-        formattedString4 = String.format("%,.1f", longval4);
-        formattedString5 = String.format("%,.1f", longval5);
-        formattedString6 = String.format("%,.1f", longval6);
+        formattedString1 = formatter.format(longval1);
+        formattedString2 = formatter.format(longval2);
+        formattedString3 = formatter.format(longval3);
+        formattedString4 = formatter.format(longval4);
+        formattedString5 = formatter.format(longval5);
+        formattedString6 = formatter.format(longval6);
+
+
+//        formattedString1 = String.format("%,.1f", longval1);
+//        formattedString2 = String.format("%,.1f", longval2);
+//        formattedString3 = String.format("%,.1f", longval3);
+//        formattedString4 = String.format("%,.1f", longval4);
+//        formattedString5 = String.format("%,.1f", longval5);
+//        formattedString6 = String.format("%,.1f", longval6);
 
         fragmentAccountSummaryBinding.totalAmountTxt.setText("₹" + " " + formattedString1);
         fragmentAccountSummaryBinding.totalStudentAmountTxt.setText("₹" + " " + formattedString2);
@@ -397,6 +411,5 @@ public class AccountSummaryFragment extends Fragment {
         fragmentAccountSummaryBinding.totalRcvStudentTxt.setText("₹" + " " + formattedString4);
         fragmentAccountSummaryBinding.totalDueTxt.setText("₹" + " " + formattedString5);
         fragmentAccountSummaryBinding.totalstudentDueTxt.setText("₹" + " " + formattedString6);
-
     }
 }

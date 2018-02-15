@@ -2,18 +2,21 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
 import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.Utils;
 
 /**
  * Created by admsandroid on 11/28/2017.
@@ -41,7 +44,7 @@ public class StandardwiseCollectionListAdapter extends RecyclerView.Adapter<Stan
     public void onBindViewHolder(StandardwiseCollectionListAdapter.ViewHolder holder, int position) {
         String amount1 = "", amount2 = "", amount3 = "";
         Double longval1 = null, longval2 = null, longval3 = null;
-        DecimalFormat formatter = new DecimalFormat("#,##,##,##");
+        Format formatter = new DecimalFormat("##,##,###");
         String formattedString1, formattedString2, formattedString3;
 
         amount1 = String.valueOf(studentCollectionModel.get(position).getStdTotalFees());
@@ -52,9 +55,13 @@ public class StandardwiseCollectionListAdapter extends RecyclerView.Adapter<Stan
         longval2 = Double.parseDouble(amount2);
         longval3 = Double.parseDouble(amount3);
 
-        formattedString1 = String.format("%,.0f", longval1);
-        formattedString2 = String.format("%,.0f", longval2);
-        formattedString3 = String.format("%,.0f", longval3);
+        formattedString1 = formatter.format(longval1);
+        formattedString2 = formatter.format(longval2);
+        formattedString3 = formatter.format(longval3);
+
+//        formattedString1 = String.format("%,.0f", longval1);
+//        formattedString2 = String.format("%,.0f", longval2);
+//        formattedString3 = String.format("%,.0f", longval3);
 
         holder.std_txt.setText(studentCollectionModel.get(position).getStandard());
         holder.total_txt.setText("₹" + " " +formattedString1);
@@ -63,7 +70,7 @@ public class StandardwiseCollectionListAdapter extends RecyclerView.Adapter<Stan
         holder.total_per_txt.setText("(" + studentCollectionModel.get(position).getStdStudent() + ")");
         holder.received_per_txt.setText("(" + studentCollectionModel.get(position).getStdStudentRcv() + ")");
         holder.dues_per_txt.setText("(" + studentCollectionModel.get(position).getStdStudentDues() + ")");
-
+        rupeeFormat(amount1);
     }
 
     @Override
@@ -85,5 +92,23 @@ public class StandardwiseCollectionListAdapter extends RecyclerView.Adapter<Stan
             dues_per_txt = (TextView) itemView.findViewById(R.id.dues_per_txt);
         }
     }
+    public static String rupeeFormat(String value){
+        value=value.replace(",","");
+        char lastDigit=value.charAt(value.length()-1);
+        String result = "";
+        int len = value.length()-1;
+        int nDigits = 0;
 
+        for (int i = len - 1; i >= 0; i--)
+        {
+            result = value.charAt(i) + result;
+            nDigits++;
+            if (((nDigits % 2) == 0) && (i > 0))
+            {
+                result = "," + result;
+            }
+        }
+        Log.d("decimal",result+lastDigit);
+        return (result+lastDigit);
+    }
 }
