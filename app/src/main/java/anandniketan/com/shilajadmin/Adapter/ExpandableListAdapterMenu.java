@@ -42,7 +42,6 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
         this.imagesId = imagesId;
     }
 
-
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
@@ -61,8 +60,6 @@ public class ExpandableListAdapterMenu extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item_menu, null);
             TextView txtLecture;
             txtLecture = (TextView) convertView.findViewById(R.id.txtLecture);
-
-
             txtLecture.setText(getChild(groupPosition, childPosition));
 
         }

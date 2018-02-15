@@ -22,6 +22,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
@@ -34,6 +35,7 @@ import java.util.List;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayAssignSubjectModel;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.ListGroupLessonPlanDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentDiscountDetailBinding;
@@ -136,7 +138,14 @@ public class ExpandableListAdapterLessonPlan extends BaseExpandableListAdapter {
         groupbinding.chapterNameTxt.setText(spiltValue[1]);
         Log.d("id", spiltValue[3]);
 
-
+        Glide.with(_context)
+                .load( AppConfiguration.BASEURL_ICONS +"pdf.png")
+                .fitCenter()
+                .into(groupbinding.pdfImg);
+        Glide.with(_context)
+                .load( AppConfiguration.BASEURL_ICONS +"Word.png")
+                .fitCenter()
+                .into(groupbinding.wordImg);
         groupbinding.pdfImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
