@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -38,9 +37,8 @@ import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
-import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
+import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -64,7 +62,7 @@ public class BullkSmsFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr;
-    List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList;
+    List<FinalArraySMSDataModel> finalArrayBulkSMSModelList;
     private boolean temp = false;
     BulkSMSDetailListAdapter bulkSMSDetailListAdapter;
     String finalBulkIdArray, finalmessageMessageLine, finalDateStr;
@@ -306,9 +304,9 @@ public class BullkSmsFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getBulkSMSData(getGetBulkSMSDataDetail(), new retrofit.Callback<GetBulkSMSDataModel>() {
+        ApiHandler.getApiService().getBulkSMSData(getGetBulkSMSDataDetail(), new retrofit.Callback<GetStaffSMSDataModel>() {
             @Override
-            public void success(GetBulkSMSDataModel getBulkSMSDataModel, Response response) {
+            public void success(GetStaffSMSDataModel getBulkSMSDataModel, Response response) {
                 Utils.dismissDialog();
                 if (getBulkSMSDataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -524,7 +522,7 @@ public class BullkSmsFragment extends Fragment {
         bulkSMSDetailListAdapter = new BulkSMSDetailListAdapter(mContext, finalArrayBulkSMSModelList, new getEmployeeCheck() {
             @Override
             public void getEmployeeSMSCheck() {
-                List<FinalArrayBulkSMSModel> updatedData = bulkSMSDetailListAdapter.getDatas();
+                List<FinalArraySMSDataModel> updatedData = bulkSMSDetailListAdapter.getDatas();
                 Boolean data = false;
                 int count = 0;
 
@@ -596,7 +594,7 @@ public class BullkSmsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ArrayList<String> id = new ArrayList<>();
-                List<FinalArrayBulkSMSModel> array = bulkSMSDetailListAdapter.getDatas();
+                List<FinalArraySMSDataModel> array = bulkSMSDetailListAdapter.getDatas();
                 int j;
                 for (j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {

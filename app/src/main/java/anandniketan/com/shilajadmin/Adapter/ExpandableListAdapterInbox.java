@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Interface.onInboxRead;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -29,12 +28,12 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<FinalArrayBulkSMSModel>> listChildData;
+    private HashMap<String, List<FinalArraySMSDataModel>> listChildData;
     private ArrayList<String> staffattendaceModel = new ArrayList<>();
     String messageId, FromId, Toid, messageDate, messageSubject, messageMessageLine;
     private onInboxRead onInboxRead;
 
-    public ExpandableListAdapterInbox(Context context, List<String> listDataHeader, HashMap<String, List<FinalArrayBulkSMSModel>> listDataChild, onInboxRead onInboxRead) {
+    public ExpandableListAdapterInbox(Context context, List<String> listDataHeader, HashMap<String, List<FinalArraySMSDataModel>> listDataChild, onInboxRead onInboxRead) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this.listChildData = listDataChild;
@@ -43,7 +42,7 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
     }
 
     @Override
-    public List<FinalArrayBulkSMSModel> getChild(int groupPosition, int childPosititon) {
+    public List<FinalArraySMSDataModel> getChild(int groupPosition, int childPosititon) {
         return this.listChildData.get(this._listDataHeader.get(groupPosition));
     }
 
@@ -56,7 +55,7 @@ public class ExpandableListAdapterInbox extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        List<FinalArrayBulkSMSModel> childData = getChild(groupPosition, 0);
+        List<FinalArraySMSDataModel> childData = getChild(groupPosition, 0);
 
 
         if (convertView == null) {

@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
 import anandniketan.com.shilajadmin.R;
 
@@ -28,13 +26,13 @@ import anandniketan.com.shilajadmin.R;
 
 public class BulkSMSDetailListAdapter extends RecyclerView.Adapter<BulkSMSDetailListAdapter.MyViewHolder> {
     private Context context;
-    List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList;
+    List<FinalArraySMSDataModel> finalArrayBulkSMSModelList;
     String stduentIdStr, mobilenoStr, FinalValue;
     private ArrayList<String> dataCheck = new ArrayList<String>();
     getEmployeeCheck listner;
 
 
-    public BulkSMSDetailListAdapter(Context mContext, List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList, getEmployeeCheck listner) {
+    public BulkSMSDetailListAdapter(Context mContext, List<FinalArraySMSDataModel> finalArrayBulkSMSModelList, getEmployeeCheck listner) {
         this.context = mContext;
         this.finalArrayBulkSMSModelList = finalArrayBulkSMSModelList;
         this.listner = listner;
@@ -137,7 +135,7 @@ public class BulkSMSDetailListAdapter extends RecyclerView.Adapter<BulkSMSDetail
         }
     }
 
-    public List<FinalArrayBulkSMSModel> getDatas() {
+    public List<FinalArraySMSDataModel> getDatas() {
         return finalArrayBulkSMSModelList;
     }
 

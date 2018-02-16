@@ -6,10 +6,7 @@ import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
-import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
-import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -158,7 +155,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetBulkSMSData")
-    public void getBulkSMSData(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+    public void getBulkSMSData(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertBulkSMSData")
@@ -166,7 +163,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetAbsentToday")
-    public void getAbsentToday(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+    public void getAbsentToday(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertAbsentTodaySMS")
@@ -238,7 +235,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/PTMTeacherStudentGetDetail")
-    public void getPTMTeacherStudentGetDetail(@FieldMap Map<String, String> map, Callback<GetBulkSMSDataModel> callback);
+    public void getPTMTeacherStudentGetDetail(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
     @POST("/PTMTeacherStudentInsertDetail")
@@ -250,7 +247,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/TeacherGetClassSubjectWiseStudent")
-    public void getTeacherGetClassSubjectWiseStudent(@FieldMap Map<String, String> map, Callback<DisplayStudentModel> callback);
+    public void getTeacherGetClassSubjectWiseStudent(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
     @POST("/GetMonthlyCount")
@@ -269,7 +266,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetHoliday")
-    public void getHoliday(@FieldMap Map<String, String> map, Callback<HolidayDataModel> callback);
+    public void getHoliday(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertHoliday")

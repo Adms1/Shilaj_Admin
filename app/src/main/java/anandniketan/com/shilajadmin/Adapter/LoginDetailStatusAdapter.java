@@ -5,16 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Interface.getEditpermission;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayHolidayDetial;
 import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
-import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
 import anandniketan.com.shilajadmin.R;
 
 /**

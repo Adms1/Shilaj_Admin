@@ -19,6 +19,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,8 @@ public class TransportChargesFragment extends Fragment {
     String FinalTermIdStr;
     List<FinalArrayTransportChargesModel> transportChargesModelsList;
     TransportChargesListAdapter transportChargesListAdapter;
+    Calendar calendar;
+    int Year;
 
     @Override
 
@@ -106,7 +109,6 @@ public class TransportChargesFragment extends Fragment {
         });
     }
 
-
     // CALL Term API HERE
     private void callTermApi() {
 
@@ -154,40 +156,6 @@ public class TransportChargesFragment extends Fragment {
     private Map<String, String> getTermDetail() {
         Map<String, String> map = new HashMap<>();
         return map;
-    }
-
-    public void fillTermSpinner() {
-        ArrayList<Integer> TermId = new ArrayList<Integer>();
-        for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
-            TermId.add(finalArrayGetTermModels.get(i).getTermId());
-        }
-        ArrayList<String> Term = new ArrayList<String>();
-        for (int j = 0; j < finalArrayGetTermModels.size(); j++) {
-            Term.add(finalArrayGetTermModels.get(j).getTerm());
-        }
-
-        String[] spinnertermIdArray = new String[TermId.size()];
-
-        spinnerTermMap = new HashMap<Integer, String>();
-        for (int i = 0; i < TermId.size(); i++) {
-            spinnerTermMap.put(i, String.valueOf(TermId.get(i)));
-            spinnertermIdArray[i] = Term.get(i).trim();
-        }
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentTransportChargesBinding.yearSpinner);
-
-            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
-        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            // silently fail...
-        }
-
-        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
-        fragmentTransportChargesBinding.yearSpinner.setAdapter(adapterTerm);
-
     }
 
     // CALL Transport charges API HERE
@@ -250,6 +218,41 @@ public class TransportChargesFragment extends Fragment {
         Map<String, String> map = new HashMap<>();
         map.put("Term_ID", FinalTermIdStr);
         return map;
+    }
+
+    //Use for fill TermSpinner
+    public void fillTermSpinner() {
+        ArrayList<Integer> TermId = new ArrayList<Integer>();
+        for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
+            TermId.add(finalArrayGetTermModels.get(i).getTermId());
+        }
+        ArrayList<String> Term = new ArrayList<String>();
+        for (int j = 0; j < finalArrayGetTermModels.size(); j++) {
+            Term.add(finalArrayGetTermModels.get(j).getTerm());
+        }
+
+        String[] spinnertermIdArray = new String[TermId.size()];
+
+        spinnerTermMap = new HashMap<Integer, String>();
+        for (int i = 0; i < TermId.size(); i++) {
+            spinnerTermMap.put(i, String.valueOf(TermId.get(i)));
+            spinnertermIdArray[i] = Term.get(i).trim();
+        }
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentTransportChargesBinding.yearSpinner);
+
+            popupWindow.setHeight(spinnertermIdArray.length > 4 ? 500 : spinnertermIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
+        fragmentTransportChargesBinding.yearSpinner.setAdapter(adapterTerm);
+
     }
 }
 

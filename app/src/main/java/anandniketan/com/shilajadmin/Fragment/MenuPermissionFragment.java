@@ -280,7 +280,6 @@ public class MenuPermissionFragment extends Fragment {
 
     }
 
-
     // CALL Teacher API HERE
     private void callTeacherApi() {
 
@@ -328,41 +327,6 @@ public class MenuPermissionFragment extends Fragment {
     private Map<String, String> getTeacherDetail() {
         Map<String, String> map = new HashMap<>();
         return map;
-    }
-
-    public void fillTeacherSpinner() {
-        ArrayList<Integer> TeacherId = new ArrayList<Integer>();
-        for (int i = 0; i < finalArrayTeachersModelList.size(); i++) {
-            TeacherId.add(finalArrayTeachersModelList.get(i).getPkEmployeeID());
-        }
-        ArrayList<String> Teacher = new ArrayList<String>();
-        for (int j = 0; j < finalArrayTeachersModelList.size(); j++) {
-            Teacher.add(finalArrayTeachersModelList.get(j).getTeacher());
-        }
-
-        String[] spinnerteacherIdArray = new String[TeacherId.size()];
-
-        spinnerTeacherMap = new HashMap<Integer, String>();
-        for (int i = 0; i < TeacherId.size(); i++) {
-            spinnerTeacherMap.put(i, String.valueOf(TeacherId.get(i)));
-            spinnerteacherIdArray[i] = Teacher.get(i).trim();
-        }
-        try {
-            Field popup = Spinner.class.getDeclaredField("mPopup");
-            popup.setAccessible(true);
-
-            // Get private mPopup member variable and try cast to ListPopupWindow
-            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentMenuPermissionBinding.teacherSpinner);
-
-            popupWindow.setHeight(spinnerteacherIdArray.length > 4 ? 500 : spinnerteacherIdArray.length * 100);
-        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
-            // silently fail...
-        }
-
-        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerteacherIdArray);
-        fragmentMenuPermissionBinding.teacherSpinner.setAdapter(adapterTerm);
-        FinalTeacherIdStr = spinnerTeacherMap.get(0);
-        callPageListApi();
     }
 
     // CALL PageList API HERE
@@ -427,6 +391,95 @@ public class MenuPermissionFragment extends Fragment {
         return map;
     }
 
+    // CALL InsertMenuPermission API HERE
+    private void callInsertMenuPermissionApi() {
+        FatchInsertPermissionData();
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().InsertMenuPermission(getInsertMenuPermissionDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
+            @Override
+            public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
+                Utils.dismissDialog();
+                if (insertMenuPermissionModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    if (insertMenuPermissionModel.getFinalArray().size() == 0) {
+                        Utils.ping(mContext, getString(R.string.false_msg));
+                    }
+                    return;
+                }
+                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
+                    Utils.ping(mContext,"Information Successfully saved..!");
+                    callPageListApi();
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getInsertMenuPermissionDetail() {
+        Map<String, String> map = new HashMap<>();
+        map.put("Pk_EmployeID", FinalTeacherIdStr);
+        map.put("Pages", FinalPageStr);//FinalPageStr
+        return map;
+    }
+
+    //Use for fill TeacherNameSpinner
+    public void fillTeacherSpinner() {
+        ArrayList<Integer> TeacherId = new ArrayList<Integer>();
+        for (int i = 0; i < finalArrayTeachersModelList.size(); i++) {
+            TeacherId.add(finalArrayTeachersModelList.get(i).getPkEmployeeID());
+        }
+        ArrayList<String> Teacher = new ArrayList<String>();
+        for (int j = 0; j < finalArrayTeachersModelList.size(); j++) {
+            Teacher.add(finalArrayTeachersModelList.get(j).getTeacher());
+        }
+
+        String[] spinnerteacherIdArray = new String[TeacherId.size()];
+
+        spinnerTeacherMap = new HashMap<Integer, String>();
+        for (int i = 0; i < TeacherId.size(); i++) {
+            spinnerTeacherMap.put(i, String.valueOf(TeacherId.get(i)));
+            spinnerteacherIdArray[i] = Teacher.get(i).trim();
+        }
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentMenuPermissionBinding.teacherSpinner);
+
+            popupWindow.setHeight(spinnerteacherIdArray.length > 4 ? 500 : spinnerteacherIdArray.length * 100);
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
+
+        ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerteacherIdArray);
+        fragmentMenuPermissionBinding.teacherSpinner.setAdapter(adapterTerm);
+        FinalTeacherIdStr = spinnerTeacherMap.get(0);
+        callPageListApi();
+    }
+
+    //Use for fillPermissionList
     public void fillDataList() {
         fragmentMenuPermissionBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentMenuPermissionBinding.pageListDetailList.setVisibility(View.VISIBLE);
@@ -677,59 +730,7 @@ public class MenuPermissionFragment extends Fragment {
         }
     }
 
-    // CALL InsertMenuPermission API HERE
-
-    private void callInsertMenuPermissionApi() {
-        FatchInsertPermissionData();
-        if (!Utils.checkNetwork(mContext)) {
-            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
-            return;
-        }
-
-        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().InsertMenuPermission(getInsertMenuPermissionDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
-            @Override
-            public void success(InsertMenuPermissionModel insertMenuPermissionModel, Response response) {
-                Utils.dismissDialog();
-                if (insertMenuPermissionModel == null) {
-                    Utils.ping(mContext, getString(R.string.something_wrong));
-                    return;
-                }
-                if (insertMenuPermissionModel.getSuccess() == null) {
-                    Utils.ping(mContext, getString(R.string.something_wrong));
-                    return;
-                }
-                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("false")) {
-                    Utils.ping(mContext, getString(R.string.false_msg));
-                    if (insertMenuPermissionModel.getFinalArray().size() == 0) {
-                        Utils.ping(mContext, getString(R.string.false_msg));
-                    }
-                    return;
-                }
-                if (insertMenuPermissionModel.getSuccess().equalsIgnoreCase("True")) {
-                    callPageListApi();
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Utils.dismissDialog();
-                error.printStackTrace();
-                error.getMessage();
-                Utils.ping(mContext, getString(R.string.something_wrong));
-            }
-        });
-
-    }
-
-    private Map<String, String> getInsertMenuPermissionDetail() {
-        Map<String, String> map = new HashMap<>();
-        map.put("Pk_EmployeID", FinalTeacherIdStr);
-        map.put("Pages", FinalPageStr);//FinalPageStr
-        return map;
-    }
-
-
+    //Use for FetchInsertPermissionData
     public void FatchInsertPermissionData() {
         if (Finalflag.equalsIgnoreCase("Teacher")) {
             ArrayList<String> id = new ArrayList<>();

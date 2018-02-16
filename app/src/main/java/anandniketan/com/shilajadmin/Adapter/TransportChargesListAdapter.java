@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.List;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
 import anandniketan.com.shilajadmin.R;
@@ -19,7 +22,10 @@ public class TransportChargesListAdapter extends BaseAdapter {
     private Context mContext;
     private List<FinalArrayTransportChargesModel> transportChargesModelsList;
     TransportChargesListBinding binding;
-
+    String amount1 = "", amount2 = "";
+    Double longval1 = null, longval2 = null;
+    Format formatter = new DecimalFormat("##,##,###");
+    String formattedString1, formattedString2;
     public TransportChargesListAdapter(Context mContext, List<FinalArrayTransportChargesModel> transportChargesModelsList) {
         this.mContext = mContext;
         this.transportChargesModelsList = transportChargesModelsList;
@@ -59,8 +65,15 @@ public class TransportChargesListAdapter extends BaseAdapter {
 
         try {
             binding.kmTxt.setText(transportChargesModelsList.get(position).getKm());
-            binding.term1Txt.setText("₹" + " " +String.valueOf(transportChargesModelsList.get(position).getTerm1()));
-            binding.term2Txt.setText("₹" + " " +String.valueOf(transportChargesModelsList.get(position).getTerm2()));
+            amount1 = String.valueOf(transportChargesModelsList.get(position).getTerm1());
+            amount2 = String.valueOf(transportChargesModelsList.get(position).getTerm2());
+
+            longval1 = Double.parseDouble(amount1);
+            longval2 = Double.parseDouble(amount2);
+            formattedString1 = formatter.format(longval1);
+            formattedString2 = formatter.format(longval2);
+            binding.term1Txt.setText("₹" + " " +formattedString1);
+            binding.term2Txt.setText("₹" + " " +formattedString2);
 
         } catch (Exception e) {
             e.printStackTrace();

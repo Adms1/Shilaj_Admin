@@ -3,7 +3,6 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -42,14 +41,12 @@ import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
-import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
+import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentBullkSmsBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentAbsentBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -67,7 +64,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalDateStr, FinalStandardStr, FinalSectionStr;
-    List<FinalArrayBulkSMSModel> finalArrayBulkSMSModelList;
+    List<FinalArraySMSDataModel> finalArrayBulkSMSModelList;
     private boolean temp = false;
     BulkSMSDetailListAdapter bulkSMSDetailListAdapter;
     String finalstudentAbsentIdArray, finalmessageMessageLine, finalDateStr;
@@ -269,9 +266,9 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getAbsentToday(getAbsentTodayDetail(), new retrofit.Callback<GetBulkSMSDataModel>() {
+        ApiHandler.getApiService().getAbsentToday(getAbsentTodayDetail(), new retrofit.Callback<GetStaffSMSDataModel>() {
             @Override
-            public void success(GetBulkSMSDataModel getBulkSMSDataModel, Response response) {
+            public void success(GetStaffSMSDataModel getBulkSMSDataModel, Response response) {
                 Utils.dismissDialog();
                 if (getBulkSMSDataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -449,7 +446,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         bulkSMSDetailListAdapter = new BulkSMSDetailListAdapter(mContext, finalArrayBulkSMSModelList, new getEmployeeCheck() {
             @Override
             public void getEmployeeSMSCheck() {
-                List<FinalArrayBulkSMSModel> updatedData = bulkSMSDetailListAdapter.getDatas();
+                List<FinalArraySMSDataModel> updatedData = bulkSMSDetailListAdapter.getDatas();
                 Boolean data = false;
                 int count = 0;
 
@@ -520,7 +517,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 ArrayList<String> id = new ArrayList<>();
-                List<FinalArrayBulkSMSModel> array = bulkSMSDetailListAdapter.getDatas();
+                List<FinalArraySMSDataModel> array = bulkSMSDetailListAdapter.getDatas();
                 int j;
                 for (j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {

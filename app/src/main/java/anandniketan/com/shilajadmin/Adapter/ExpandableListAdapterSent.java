@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Interface.onDeleteButton;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
+import anandniketan.com.shilajadmin.Model.Other.FinalArraySMSDataModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -28,13 +27,13 @@ public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader; // header titles
-    private HashMap<String, List<FinalArrayBulkSMSModel>> listChildData;
+    private HashMap<String, List<FinalArraySMSDataModel>> listChildData;
     // child data in format of header title, child title
     private ArrayList<String> dataCheck = new ArrayList<String>();
     private onDeleteButton listner;
 
 
-    public ExpandableListAdapterSent(Context context, List<String> listDataHeader, HashMap<String, List<FinalArrayBulkSMSModel>> listDataChild, onDeleteButton onDeleteButton) {
+    public ExpandableListAdapterSent(Context context, List<String> listDataHeader, HashMap<String, List<FinalArraySMSDataModel>> listDataChild, onDeleteButton onDeleteButton) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this.listChildData = listDataChild;
@@ -42,7 +41,7 @@ public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
     }
 
     @Override
-    public List<FinalArrayBulkSMSModel> getChild(int groupPosition, int childPosititon) {
+    public List<FinalArraySMSDataModel> getChild(int groupPosition, int childPosititon) {
         return this.listChildData.get(this._listDataHeader.get(groupPosition));
     }
 
@@ -55,7 +54,7 @@ public class ExpandableListAdapterSent extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final List<FinalArrayBulkSMSModel> childData = getChild(groupPosition, 0);
+        final List<FinalArraySMSDataModel> childData = getChild(groupPosition, 0);
 
 
         if (convertView == null) {
