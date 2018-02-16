@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +11,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayPaymentLedgerModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupFeesStructureDetailBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemAccountSummaryBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemAccountSummaryNewBinding;
 
 /**
@@ -26,11 +24,11 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
 
     private Context _context;
     private List<String> _listDataHeader;
-    private HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>> _listDataChild;
+    private HashMap<String, ArrayList<FinalArrayAccountFeesModel>> _listDataChild;
     String headerTitle;
 
     public ExpandableListAdapterAccountSummary(Context _context, List<String> listDataHeader,
-                                               HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>> listDataChild) {
+                                               HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild) {
         this._context = _context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
@@ -46,7 +44,7 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         ListItemAccountSummaryNewBinding itembinding;
-        ArrayList<FinalArrayPaymentLedgerModel> detail = getChild(groupPosition, 0);
+        ArrayList<FinalArrayAccountFeesModel> detail = getChild(groupPosition, 0);
         if (convertView == null) {
 
         }
@@ -135,7 +133,7 @@ public class ExpandableListAdapterAccountSummary extends BaseExpandableListAdapt
     }
 
     @Override
-    public ArrayList<FinalArrayPaymentLedgerModel> getChild(int groupPosition, int childPosititon) {
+    public ArrayList<FinalArrayAccountFeesModel> getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition));
     }
 

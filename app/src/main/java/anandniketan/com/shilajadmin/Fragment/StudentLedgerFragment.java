@@ -29,11 +29,9 @@ import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Activity.Helper;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterAccountSummary;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterReceipt;
-import anandniketan.com.shilajadmin.Model.Account.DatumPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayAllPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.GetAllPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
@@ -64,13 +62,13 @@ public class StudentLedgerFragment extends Fragment {
     private int lastExpandedPosition = -1;
     private ArrayList studentName = new ArrayList();
     List<FinalArrayStudentModel> finalArrayStudentNameModelList;
-    List<FinalArrayPaymentLedgerModel> finalArrayPaymentLedgerModelList;
+    List<FinalArrayAccountFeesModel> finalArrayPaymentLedgerModelList;
     ExpandableListAdapterAccountSummary expandableListAdapterAccountSummary;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>> listDataChild;
-    List<FinalArrayAllPaymentLedgerModel> finalArrayAllPaymentLedgerModelList;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
+    List<FinalArrayAccountFeesModel> finalArrayAllPaymentLedgerModelList;
     List<String> listDataHeaderreceipt;
-    HashMap<String, ArrayList<DatumPaymentLedgerModel>> listDataChildreceipt;
+    HashMap<String, ArrayList<AccountFeesCollectionModel>> listDataChildreceipt;
     ExpandableListAdapterReceipt expandableListAdapterReceipt;
 
     @Override
@@ -237,9 +235,9 @@ public class StudentLedgerFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getPaymentLedger(getPaymentLedgerDetail(), new retrofit.Callback<GetPaymentLedgerModel>() {
+        ApiHandler.getApiService().getPaymentLedger(getPaymentLedgerDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(GetPaymentLedgerModel paymentLedgerModel, Response response) {
+            public void success(AccountFeesStatusModel paymentLedgerModel, Response response) {
                 Utils.dismissDialog();
                 if (paymentLedgerModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -298,9 +296,9 @@ public class StudentLedgerFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getAllPaymentLedger(getAllPaymentLedgerDetail(), new retrofit.Callback<GetAllPaymentLedgerModel>() {
+        ApiHandler.getApiService().getAllPaymentLedger(getAllPaymentLedgerDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(GetAllPaymentLedgerModel allPaymentLedgerModel, Response response) {
+            public void success(AccountFeesStatusModel allPaymentLedgerModel, Response response) {
                 Utils.dismissDialog();
                 if (allPaymentLedgerModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -532,12 +530,12 @@ public class StudentLedgerFragment extends Fragment {
             fragmentStudentLedgerBinding.termTxt.setText(finalArrayPaymentLedgerModelList.get(m).getTerm());
             fragmentStudentLedgerBinding.nameTxt.setText(finalArrayPaymentLedgerModelList.get(m).getStudentName());
             fragmentStudentLedgerBinding.gradetxt.setText(finalArrayPaymentLedgerModelList.get(m).getStandard() + "-" + finalArrayPaymentLedgerModelList.get(m).getClassName());
-            fragmentStudentLedgerBinding.smsTxt.setText(finalArrayPaymentLedgerModelList.get(m).getSMSNo());
+            fragmentStudentLedgerBinding.smsTxt.setText(finalArrayPaymentLedgerModelList.get(m).getsMSNo());
             fragmentStudentLedgerBinding.dojTxt.setText(finalArrayPaymentLedgerModelList.get(m).getDateOfJoining());
         }
 
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayPaymentLedgerModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
         ArrayList<String> account = new ArrayList<>();
         account.add("Admission Fees");
         account.add("Tution Fees");
@@ -552,7 +550,7 @@ public class StudentLedgerFragment extends Fragment {
             Log.d("account", "" + account);
             listDataHeader.add(account.get(i));
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayPaymentLedgerModel> row = new ArrayList<FinalArrayPaymentLedgerModel>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
             for (int j = 0; j < finalArrayPaymentLedgerModelList.size(); j++) {
                 row.add(finalArrayPaymentLedgerModelList.get(j));
             }
@@ -565,12 +563,12 @@ public class StudentLedgerFragment extends Fragment {
     public void fillExpLVReceipt() {
 
         listDataHeaderreceipt = new ArrayList<>();
-        listDataChildreceipt = new HashMap<String, ArrayList<DatumPaymentLedgerModel>>();
+        listDataChildreceipt = new HashMap<String, ArrayList<AccountFeesCollectionModel>>();
 
         for (int i = 0; i < finalArrayAllPaymentLedgerModelList.size(); i++) {
             listDataHeaderreceipt.add(finalArrayAllPaymentLedgerModelList.get(i).getPayDate() + "|" + finalArrayAllPaymentLedgerModelList.get(i).getPaid());
             Log.d("header", "" + listDataHeaderreceipt);
-            ArrayList<DatumPaymentLedgerModel> row = new ArrayList<DatumPaymentLedgerModel>();
+            ArrayList<AccountFeesCollectionModel> row = new ArrayList<AccountFeesCollectionModel>();
             for (int j = 0; j < finalArrayAllPaymentLedgerModelList.get(i).getData().size(); j++) {
                 row.add(finalArrayAllPaymentLedgerModelList.get(i).getData().get(j));
                 Log.d("row", "" + row);

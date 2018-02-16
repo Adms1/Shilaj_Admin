@@ -22,8 +22,8 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.FeesStructureExpandableListAdapter;
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStructureModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayFeesStructureModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -47,10 +47,10 @@ public class FeeStructureFragment extends Fragment {
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
     String FinalTermIdStr;
-    List<FinalArrayFeesStructureModel> finalArrayFeesStructureModelList;
+    List<FinalArrayAccountFeesModel> finalArrayFeesStructureModelList;
     FeesStructureExpandableListAdapter feesStructureExpandableListAdapter;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayFeesStructureModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     private int lastExpandedPosition = -1;
     @Override
 
@@ -212,9 +212,9 @@ public class FeeStructureFragment extends Fragment {
             return;
         }
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getAccountFeesStructureDetail(geFeesStructureDetail(), new retrofit.Callback<AccountFeesStructureModel>() {
+        ApiHandler.getApiService().getAccountFeesStructureDetail(geFeesStructureDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(AccountFeesStructureModel accountFeesStructureModel, Response response) {
+            public void success(AccountFeesStatusModel accountFeesStructureModel, Response response) {
 //                Utils.dismissDialog();
                 if (accountFeesStructureModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -269,12 +269,12 @@ public class FeeStructureFragment extends Fragment {
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayFeesStructureModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
 
         for (int i = 0; i < finalArrayFeesStructureModelList.size(); i++) {
             listDataHeader.add(finalArrayFeesStructureModelList.get(i).getStandard());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayFeesStructureModel> row = new ArrayList<FinalArrayFeesStructureModel>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
 
             row.add(finalArrayFeesStructureModelList.get(i));
             Log.d("row", "" + row);

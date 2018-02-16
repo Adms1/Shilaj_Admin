@@ -3,23 +3,17 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.Spinner;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -28,20 +22,12 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.CheckPaymentAdapter;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayAllPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetAllPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.TermModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentCheckPaymentBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -60,8 +46,8 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
     //Use for fill ReceiptList
     CheckPaymentAdapter checkPaymentAdapter;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayAllPaymentLedgerModel>> listDataChild;
-    List<FinalArrayAllPaymentLedgerModel> finalArrayAllPaymentLedgerModelList;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
+    List<FinalArrayAccountFeesModel> finalArrayAllPaymentLedgerModelList;
 
     int Year, Month, Day;
     int mYear, mMonth, mDay;
@@ -166,9 +152,9 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getReceiptDetails(getCheckPaymentDetail(), new retrofit.Callback<GetAllPaymentLedgerModel>() {
+        ApiHandler.getApiService().getReceiptDetails(getCheckPaymentDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(GetAllPaymentLedgerModel checkReceiptModel, Response response) {
+            public void success(AccountFeesStatusModel checkReceiptModel, Response response) {
 //                Utils.dismissDialog();
                 if (checkReceiptModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -233,7 +219,7 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayAllPaymentLedgerModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
 
         for (int i = 0; i < finalArrayAllPaymentLedgerModelList.size(); i++) {
             listDataHeader.add(finalArrayAllPaymentLedgerModelList.get(i).getgRNO() + "|"
@@ -242,7 +228,7 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
                     finalArrayAllPaymentLedgerModelList.get(i).getPayPaidFees() + "|" +
                     finalArrayAllPaymentLedgerModelList.get(i).getChequeNo());
 
-            ArrayList<FinalArrayAllPaymentLedgerModel> row = new ArrayList<FinalArrayAllPaymentLedgerModel>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
             row.add(finalArrayAllPaymentLedgerModelList.get(i));
 
             listDataChild.put(listDataHeader.get(i), row);

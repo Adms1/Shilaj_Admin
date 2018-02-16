@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
@@ -29,12 +28,9 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterImprest;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayImprestDetailModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -42,7 +38,6 @@ import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentImprestBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -61,9 +56,9 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
     HashMap<Integer, String> spinnerTermDetailIdMap;
     HashMap<Integer,String> spinnerPaymentModeMap;
     String FinalTermIdStr, FinalstandardIdStr = "",FinalTermDetailIdStr="",FinalPaymentmodeStr="";
-    List<FinalArrayDailyCollection> dailyCollectionsList;
+    List<FinalArrayAccountFeesModel> dailyCollectionsList;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayDailyCollection>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandbleListAdapterDailyCollection expandbleListAdapterDailyCollection;
     int Year, Month, Day;
     int mYear, mMonth, mDay;
@@ -315,9 +310,9 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getDailyFeeColleCtionDetail(getFeesCollectionDetail(), new retrofit.Callback<DailyFeeCollectionModel>() {
+        ApiHandler.getApiService().getDailyFeeColleCtionDetail(getFeesCollectionDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(DailyFeeCollectionModel dailyFeeCollectionModel, Response response) {
+            public void success(AccountFeesStatusModel dailyFeeCollectionModel, Response response) {
 //                Utils.dismissDialog();
                 if (dailyFeeCollectionModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -529,13 +524,13 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
     //Use for fill the Term Spinner
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayDailyCollection>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
 
         for (int i = 0; i < dailyCollectionsList.size(); i++) {
             listDataHeader.add(dailyCollectionsList.get(i).getName() + "|" +
-                    dailyCollectionsList.get(i).getGRNO() + "|" + dailyCollectionsList.get(i).getStandard());
+                    dailyCollectionsList.get(i).getgRNO() + "|" + dailyCollectionsList.get(i).getStandard());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayDailyCollection> row = new ArrayList<FinalArrayDailyCollection>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
             row.add(dailyCollectionsList.get(i));
             Log.d("row", "" + row);
             listDataChild.put(listDataHeader.get(i), row);

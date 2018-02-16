@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 
+import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -217,11 +219,25 @@ public class AccountFragment extends Fragment {
 
     // Use for fill data account data
     public void fillData() {
+        String amount1 = "", amount2 = "", amount3 = "";
+        Double longval1 = null, longval2 = null, longval3 = null;
+        Format formatter = new DecimalFormat("##,##,###");
+        String formattedString1, formattedString2, formattedString3;
+
         for (int i = 0; i < collectionModelList.size(); i++) {
             AppConfiguration.TermId = String.valueOf(collectionModelList.get(i).getTermID());
-            fragmentAccountBinding.totalAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalAmt()));
-            fragmentAccountBinding.totalReceiveAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalRcv()));
-            fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " + String.valueOf(collectionModelList.get(i).getTotalDue()));
+            amount1 = String.valueOf(collectionModelList.get(i).getTotalAmt());
+            amount2 = String.valueOf(collectionModelList.get(i).getTotalRcv());
+            amount3 = String.valueOf(collectionModelList.get(i).getTotalDue());
+            longval1 = Double.parseDouble(amount1);
+            longval2 = Double.parseDouble(amount2);
+            longval3 = Double.parseDouble(amount3);
+            formattedString1 = formatter.format(longval1);
+            formattedString2 = formatter.format(longval2);
+            formattedString3 = formatter.format(longval3);
+            fragmentAccountBinding.totalAmountCount.setText("₹" + " " + formattedString1);
+            fragmentAccountBinding.totalReceiveAmountCount.setText("₹" + " " + formattedString2);
+            fragmentAccountBinding.totalDueAmountCount.setText("₹" + " " + formattedString3);
         }
         Log.d("termid", AppConfiguration.TermId);
         AppConfiguration.TermDetailId = FinalTermtermdetailId;

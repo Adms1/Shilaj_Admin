@@ -12,11 +12,8 @@ import java.text.DecimalFormat;
 import java.text.Format;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
-import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.R;
-import anandniketan.com.shilajadmin.Utility.Utils;
 
 /**
  * Created by admsandroid on 11/28/2017.
@@ -24,9 +21,9 @@ import anandniketan.com.shilajadmin.Utility.Utils;
 
 public class StandardwiseCollectionListAdapter extends RecyclerView.Adapter<StandardwiseCollectionListAdapter.ViewHolder> {
     private Context context;
-    private List<AccountFeesStandardCollectionModel> studentCollectionModel;
+    private List<AccountFeesCollectionModel> studentCollectionModel;
 
-    public StandardwiseCollectionListAdapter(Context mContext, List<AccountFeesStandardCollectionModel> studentCollectionModel) {
+    public StandardwiseCollectionListAdapter(Context mContext, List<AccountFeesCollectionModel> studentCollectionModel) {
         this.context = mContext;
         this.studentCollectionModel = studentCollectionModel;
     }

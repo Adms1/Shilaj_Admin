@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,9 +23,9 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentDiscount;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDiscountModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -52,9 +51,9 @@ public class StudentDiscountFragment extends Fragment {
     HashMap<Integer, String> spinnerdiscountTypeMap;
     HashMap<Integer, String> spinnerStandardMap;
     String FinalTermIdStr, FinaldiscountypeIdStr = "", FinalstandardIdStr = "";
-    List<FinalArrayDiscountModel> finalArrayDiscountModelList;
+    List<FinalArrayAccountFeesModel> finalArrayDiscountModelList;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayDiscountModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandableListAdapterStudentDiscount expandableListAdapterStudentDiscount;
 
     public StudentDiscountFragment() {
@@ -274,9 +273,9 @@ public class StudentDiscountFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getDiscountDetail(getStudentgetDiscountDetail(), new retrofit.Callback<GetDiscountDetailsModel>() {
+        ApiHandler.getApiService().getDiscountDetail(getStudentgetDiscountDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(GetDiscountDetailsModel discountDetailsModel, Response response) {
+            public void success(AccountFeesStatusModel discountDetailsModel, Response response) {
 //                Utils.dismissDialog();
                 if (discountDetailsModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -454,13 +453,13 @@ public class StudentDiscountFragment extends Fragment {
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayDiscountModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
 
         for (int i = 0; i < finalArrayDiscountModelList.size(); i++) {
             listDataHeader.add(finalArrayDiscountModelList.get(i).getName() + "|" +
-                    finalArrayDiscountModelList.get(i).getGRNO() + "|" + finalArrayDiscountModelList.get(i).getStandard());
+                    finalArrayDiscountModelList.get(i).getgRNO() + "|" + finalArrayDiscountModelList.get(i).getStandard());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayDiscountModel> row = new ArrayList<FinalArrayDiscountModel>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
             row.add(finalArrayDiscountModelList.get(i));
             Log.d("row", "" + row);
             listDataChild.put(listDataHeader.get(i), row);

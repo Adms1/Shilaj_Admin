@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.DatumPaymentLedgerModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.ListGroupReceiptDetailBinding;
@@ -28,10 +27,10 @@ public class ExpandableListAdapterReceipt extends BaseExpandableListAdapter {
 
     private Context _context;
     private List<String> _listDataHeader;
-    private HashMap<String, ArrayList<DatumPaymentLedgerModel>> _listDataChild;
+    private HashMap<String, ArrayList<AccountFeesCollectionModel>> _listDataChild;
 
     public ExpandableListAdapterReceipt(Context _context, List<String> listDataHeader,
-                                        HashMap<String, ArrayList<DatumPaymentLedgerModel>> listDataChild) {
+                                        HashMap<String, ArrayList<AccountFeesCollectionModel>> listDataChild) {
         this._context = _context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
@@ -47,7 +46,7 @@ public class ExpandableListAdapterReceipt extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
        ListItemReceiptBinding itembinding;
-        ArrayList<DatumPaymentLedgerModel> detail = getChild(groupPosition, 0);
+        ArrayList<AccountFeesCollectionModel> detail = getChild(groupPosition, 0);
         if (convertView == null) {
 
         }
@@ -85,7 +84,7 @@ public class ExpandableListAdapterReceipt extends BaseExpandableListAdapter {
     }
 
     @Override
-    public ArrayList<DatumPaymentLedgerModel> getChild(int groupPosition, int childPosititon) {
+    public ArrayList<AccountFeesCollectionModel> getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition));
     }
 

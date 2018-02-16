@@ -3,12 +3,6 @@ package anandniketan.com.shilajadmin.Utility;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStructureModel;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.GetAllPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
-import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
-import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
@@ -84,7 +78,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/Admin_AccountFeesStructure")
-    public void getAccountFeesStructureDetail(@FieldMap Map<String, String> map, Callback<AccountFeesStructureModel> callback);
+    public void getAccountFeesStructureDetail(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/GetStandardSection")
@@ -92,15 +86,15 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetDiscountDetail")
-    public void getDiscountDetail(@FieldMap Map<String, String> map, Callback<GetDiscountDetailsModel> callback);
+    public void getDiscountDetail(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/GetImprestDetail")
-    public void getImprestDetail(@FieldMap Map<String, String> map, Callback<GetImprestDetailModel> callback);
+    public void getImprestDetail(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/DailyFeeColleCtion")
-    public void getDailyFeeColleCtionDetail(@FieldMap Map<String, String> map, Callback<DailyFeeCollectionModel> callback);
+    public void getDailyFeeColleCtionDetail(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/TeacherGetTimetable")
@@ -108,11 +102,11 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetPaymentLedger")
-    public void getPaymentLedger(@FieldMap Map<String, String> map, Callback<GetPaymentLedgerModel> callback);
+    public void getPaymentLedger(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/GetAllPaymentLedger")
-    public void getAllPaymentLedger(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
+    public void getAllPaymentLedger(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/GetExams")
@@ -240,7 +234,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetReceiptDetails")
-    public void getReceiptDetails(@FieldMap Map<String, String> map, Callback<GetAllPaymentLedgerModel> callback);
+    public void getReceiptDetails(@FieldMap Map<String, String> map, Callback<AccountFeesStatusModel> callback);
 
     @FormUrlEncoded
     @POST("/PTMTeacherStudentGetDetail")

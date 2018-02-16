@@ -13,7 +13,7 @@
             android:orientation="horizontal"
             android:paddingBottom="1dp"
             android:visibility="visible">
-
+            
             <TextView
                 android:id="@+id/index_txt"
                 android:layout_width="@dimen/_60sdp"

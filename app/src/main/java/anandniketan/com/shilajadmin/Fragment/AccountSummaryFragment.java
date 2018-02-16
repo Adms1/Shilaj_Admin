@@ -1,21 +1,13 @@
 package anandniketan.com.shilajadmin.Fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.icu.math.BigDecimal;
-import android.icu.text.LocaleDisplayNames;
-import android.icu.text.NumberFormat;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.LoginFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,15 +23,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -66,7 +55,7 @@ public class AccountSummaryFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     List<AccountFeesCollectionModel> collectionModelList;
-    List<AccountFeesStandardCollectionModel> standardcollectionList;
+    List<AccountFeesCollectionModel> standardcollectionList;
     private StandardwiseCollectionListAdapter standardwisecollectionAdapter;
 
     @Override

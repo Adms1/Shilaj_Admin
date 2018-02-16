@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,10 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -56,7 +53,7 @@ public class OtherAccountSummaryFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     List<AccountFeesCollectionModel> collectionModelList;
-    List<AccountFeesStandardCollectionModel> standardcollectionList;
+    List<AccountFeesCollectionModel> standardcollectionList;
     private StandardwiseCollectionListAdapter standardwisecollectionAdapter;
 
     @Override

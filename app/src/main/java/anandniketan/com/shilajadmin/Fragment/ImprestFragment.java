@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,13 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentDiscount;
 import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterImprest;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDiscountModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayImprestDetailModel;
+import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
+import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetDiscountDetailsModel;
-import anandniketan.com.shilajadmin.Model.Account.GetImprestDetailModel;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
@@ -37,7 +33,6 @@ import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentImprestBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentStudentDiscountBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -55,9 +50,9 @@ public class ImprestFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStandardMap;
     String FinalTermIdStr, FinalstandardIdStr = "";
-    List<FinalArrayImprestDetailModel> finalArrayImprestDetailModelList;
+    List<FinalArrayAccountFeesModel> finalArrayImprestDetailModelList;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayImprestDetailModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandbleListAdapterImprest expandbleListAdapterImprest;
 
     public ImprestFragment() {
@@ -253,9 +248,9 @@ public class ImprestFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getImprestDetail(getImprestDetail(), new retrofit.Callback<GetImprestDetailModel>() {
+        ApiHandler.getApiService().getImprestDetail(getImprestDetail(), new retrofit.Callback<AccountFeesStatusModel>() {
             @Override
-            public void success(GetImprestDetailModel getImprestDetailModel, Response response) {
+            public void success(AccountFeesStatusModel getImprestDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (getImprestDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -385,13 +380,13 @@ public class ImprestFragment extends Fragment {
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayImprestDetailModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
 
         for (int i = 0; i < finalArrayImprestDetailModelList.size(); i++) {
             listDataHeader.add(finalArrayImprestDetailModelList.get(i).getName() + "|" +
-                    finalArrayImprestDetailModelList.get(i).getGRNO() + "|" + finalArrayImprestDetailModelList.get(i).getStandard());
+                    finalArrayImprestDetailModelList.get(i).getgRNO() + "|" + finalArrayImprestDetailModelList.get(i).getStandard());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayImprestDetailModel> row = new ArrayList<FinalArrayImprestDetailModel>();
+            ArrayList<FinalArrayAccountFeesModel> row = new ArrayList<FinalArrayAccountFeesModel>();
             row.add(finalArrayImprestDetailModelList.get(i));
             Log.d("row", "" + row);
             listDataChild.put(listDataHeader.get(i), row);
