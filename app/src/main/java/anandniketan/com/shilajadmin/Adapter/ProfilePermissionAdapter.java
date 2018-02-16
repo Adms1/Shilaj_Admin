@@ -5,16 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-import anandniketan.com.shilajadmin.Interface.getEditpermission;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayProfilePermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetStudentProfilePermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -23,10 +17,10 @@ import anandniketan.com.shilajadmin.R;
 
 public class ProfilePermissionAdapter extends RecyclerView.Adapter<ProfilePermissionAdapter.MyViewHolder> {
     private Context context;
-    private GetStudentProfilePermissionModel profilePermissionModel;
+    private StudentAttendanceModel profilePermissionModel;
 
 
-    public ProfilePermissionAdapter(Context mContext, GetStudentProfilePermissionModel profilePermissionModel) {
+    public ProfilePermissionAdapter(Context mContext, StudentAttendanceModel profilePermissionModel) {
         this.context=mContext;
         this.profilePermissionModel=profilePermissionModel;
     }
@@ -41,10 +35,10 @@ public class ProfilePermissionAdapter extends RecyclerView.Adapter<ProfilePermis
     @Override
     public void onBindViewHolder(ProfilePermissionAdapter.MyViewHolder holder, int position) {
         String sr = String.valueOf(position + 1);
-        final FinalArrayProfilePermissionModel result = profilePermissionModel.getFinalArray().get(position);
+        final FinalArrayStudentModel result = profilePermissionModel.getFinalArray().get(position);
 
         holder.standard_txt.setText(result.getStandard());
-        holder.class_txt.setText(String.valueOf(result.getClass_()));
+        holder.class_txt.setText(String.valueOf(result.getClasses()));
         holder.status_txt.setText(result.getStatus());
 
 

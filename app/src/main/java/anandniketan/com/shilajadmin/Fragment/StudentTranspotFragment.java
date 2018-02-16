@@ -22,16 +22,14 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentFullDetail;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentTransportDetail;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentTransportModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayRouteDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.GetRoutePickUpPointDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
 import anandniketan.com.shilajadmin.Model.Transport.PickupPointDetailModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
+import anandniketan.com.shilajadmin.Model.Transport.TransportChargesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -50,14 +48,14 @@ public class StudentTranspotFragment extends Fragment {
     private int lastExpandedPosition = -1;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
-    List<FinalArrayRouteDetailModel> finalArrayRouteDetailModelList;
+    List<FinalArrayTransportChargesModel> finalArrayRouteDetailModelList;
     List<PickupPointDetailModel> pickupPointDetailModelList;
     HashMap<Integer, String> spinnerRouteMap;
     HashMap<Integer, String> spinnerPickupMap;
     String FinalTermIdStr, FinalRouteIdStr = "", FinalPickupIdStr = "", FinalGrnoStr = "", RouteName;
-    List<FinalArrayStudentTransportModel> finalArrayStudentTransportModelList;
+    List<FinalArrayStudentModel> finalArrayStudentTransportModelList;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayStudentTransportModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayStudentModel>> listDataChild;
     ExpandableListAdapterStudentTransportDetail expandableListAdapterStudentTransportDetail;
 
     public StudentTranspotFragment() {
@@ -233,9 +231,9 @@ public class StudentTranspotFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getRouteDetail(getRouteDetail(), new retrofit.Callback<GetRoutePickUpPointDetailModel>() {
+        ApiHandler.getApiService().getRouteDetail(getRouteDetail(), new retrofit.Callback<TransportChargesModel>() {
             @Override
-            public void success(GetRoutePickUpPointDetailModel routeDetail, Response response) {
+            public void success(TransportChargesModel routeDetail, Response response) {
 //                Utils.dismissDialog();
                 if (routeDetail == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -285,9 +283,9 @@ public class StudentTranspotFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentTransportDetail(getStudentTransportDetail(), new retrofit.Callback<StudentTransportDetailModel>() {
+        ApiHandler.getApiService().getStudentTransportDetail(getStudentTransportDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentTransportDetailModel studentTransportDetailModel, Response response) {
+            public void success(StudentAttendanceModel studentTransportDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentTransportDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -495,13 +493,13 @@ public class StudentTranspotFragment extends Fragment {
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentTransportModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentModel>>();
 
         for (int i = 0; i < finalArrayStudentTransportModelList.size(); i++) {
             listDataHeader.add(finalArrayStudentTransportModelList.get(i).getStudentName() + "|" +
-                    finalArrayStudentTransportModelList.get(i).getGRNO() + "|" + finalArrayStudentTransportModelList.get(i).getStandard());
+                    finalArrayStudentTransportModelList.get(i).getgRNO() + "|" + finalArrayStudentTransportModelList.get(i).getStandard());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayStudentTransportModel> row = new ArrayList<FinalArrayStudentTransportModel>();
+            ArrayList<FinalArrayStudentModel> row = new ArrayList<FinalArrayStudentModel>();
 //            for (int j = 0; j < finalArrayStudentTransportModelList.size(); j++) {
             row.add(finalArrayStudentTransportModelList.get(i));
 //            }

@@ -16,28 +16,10 @@ import anandniketan.com.shilajadmin.Model.Other.DisplayStudentModel;
 import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.GetStaffSMSDataModel;
 import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
-import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetStudentProfilePermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.GetRoutePickUpPointDetailModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TransportChargesModel;
-import anandniketan.com.shilajadmin.Model.Transport.VehicleDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.VehicleRouteDetailModel;
 import retrofit.Callback;
 import retrofit.http.FieldMap;
 import retrofit.http.FormUrlEncoded;
@@ -58,19 +40,19 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/Admin_StudentSearchByParentName")
-    public void getParentName(@FieldMap Map<String, String> map, Callback<ParentsNameModel> callback);
+    public void getParentName(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/Admin_StudentSearchByStuName")
-    public void getStudentName(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getStudentName(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/Admin_StudentShowFilteredData")
-    public void getStudentFilterData(@FieldMap Map<String, String> map, Callback<StudentShowFilteredDataModel> callback);
+    public void getStudentFilterData(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/Admin_StudentFullDetail")
-    public void getStudentFullDetail(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+    public void getStudentFullDetail(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetTerm")
@@ -78,11 +60,11 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetRoutePickUpPointDetail")
-    public void getRouteDetail(@FieldMap Map<String, String> map, Callback<GetRoutePickUpPointDetailModel> callback);
+    public void getRouteDetail(@FieldMap Map<String, String> map, Callback<TransportChargesModel> callback);
 
     @FormUrlEncoded
     @POST("/StudentTransportDetail")
-    public void getStudentTransportDetail(@FieldMap Map<String, String> map, Callback<StudentTransportDetailModel> callback);
+    public void getStudentTransportDetail(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetTrasportCharges")
@@ -90,11 +72,11 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetVehicleDetail")
-    public void getVehicleDetail(@FieldMap Map<String, String> map, Callback<VehicleDetailModel> callback);
+    public void getVehicleDetail(@FieldMap Map<String, String> map, Callback<TransportChargesModel> callback);
 
     @FormUrlEncoded
     @POST("/GetVehicleToRouteDetail")
-    public void getVehicleRouteDetail(@FieldMap Map<String, String> map, Callback<VehicleRouteDetailModel> callback);
+    public void getVehicleRouteDetail(@FieldMap Map<String, String> map, Callback<TransportChargesModel> callback);
 
     @FormUrlEncoded
     @POST("/Admin_AccountFeesStatus")
@@ -122,7 +104,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/TeacherGetTimetable")
-    public void getTimeTable(@FieldMap Map<String, String> map, Callback<TimeTableModel> callback);
+    public void getTimeTable(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetPaymentLedger")
@@ -134,31 +116,31 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetExams")
-    public void getExams(@FieldMap Map<String, String> map, Callback<GetExamsModel> callback);
+    public void getExams(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetTeachers")
-    public void getTeachers(@FieldMap Map<String, String> map, Callback<GetTeachersModel> callback);
+    public void getTeachers(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetSubject")
-    public void getSubject(@FieldMap Map<String, String> map, Callback<GetSubjectModel> callback);
+    public void getSubject(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetSubjectAssgin")
-    public void getSubjectAssgin(@FieldMap Map<String, String> map, Callback<GetSubjectAssginModel> callback);
+    public void getSubjectAssgin(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertAssignSubject")
-    public void InsertAssignSubject(@FieldMap Map<String, String> map, Callback<InsertAssignSubjectModel> callback);
+    public void InsertAssignSubject(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetClassTeacherDetail")
-    public void getClassTeacherDetail(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+    public void getClassTeacherDetail(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertClassTeachers")
-    public void InsertClassTeachers(@FieldMap Map<String, String> map, Callback<InsertClassTeachersModel> callback);
+    public void InsertClassTeachers(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetPageList")
@@ -198,7 +180,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetResultPermission")
-    public void getResultPermission(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+    public void getResultPermission(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertResultPermission")
@@ -206,7 +188,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetStudentProfilePermission")
-    public void getStudentProfilePermission(@FieldMap Map<String, String> map, Callback<GetStudentProfilePermissionModel> callback);
+    public void getStudentProfilePermission(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertProfilePermission")
@@ -214,7 +196,7 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetOnlinePaymentPermission")
-    public void getOnlinePaymentPermission(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+    public void getOnlinePaymentPermission(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertOnlinePaymentPermission")
@@ -222,23 +204,23 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetGRRegister")
-    public void getGRRegister(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+    public void getGRRegister(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetLeftDetainStudent")
-    public void getLeftDetainStudent(@FieldMap Map<String, String> map, Callback<StudentFullDetailModel> callback);
+    public void getLeftDetainStudent(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetTestName")
-    public void getTestName(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getTestName(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetStudentMarks")
-    public void getStudentMarks(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getStudentMarks(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetAnnouncementData")
-    public void getAnnouncementData(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getAnnouncementData(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/InsertAnnouncement")
@@ -246,15 +228,15 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetInquiryCount")
-    public void getInquiryCount(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getInquiryCount(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetInquiryData")
-    public void getInquiryData(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getInquiryData(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetAttendence_Admin")
-    public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentNameModel> callback);
+    public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetReceiptDetails")
@@ -289,7 +271,7 @@ public interface WebServices {
     public void getLoginDetailsDatewise(@FieldMap Map<String, String> map, Callback<GetStaffSMSDataModel> callback);
     @FormUrlEncoded
     @POST("/GetHolidayCategory")
-    public void getHolidayCategory(@FieldMap Map<String, String> map, Callback<GetResultPermissionModel> callback);
+    public void getHolidayCategory(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetHoliday")
@@ -301,13 +283,13 @@ public interface WebServices {
 
     @FormUrlEncoded
     @POST("/GetEmployeeBySubject")
-    public void getEmployeeBySubject(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+    public void getEmployeeBySubject(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetLessonPlanSubject")
-    public void getLessonPlanSubject(@FieldMap Map<String, String> map, Callback<GetClassTeacherDetailModel> callback);
+    public void getLessonPlanSubject(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 
     @FormUrlEncoded
     @POST("/GetLessonPlan")
-    public void getLessonPlan(@FieldMap Map<String, String> map, Callback<GetSubjectAssginModel> callback);
+    public void getLessonPlan(@FieldMap Map<String, String> map, Callback<StaffAttendaceModel> callback);
 }

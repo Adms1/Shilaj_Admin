@@ -3,7 +3,6 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,15 +30,13 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.HolidayAdapter;
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayHolidayDetial;
 import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
-import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentHolidayBinding;
 import retrofit.RetrofitError;
@@ -60,7 +57,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
     private DatePickerDialog datePickerDialog;
     HashMap<Integer, String> spinnerHolidayCategoryMap;
     String FinalCategoryIdStr, FinalHolidayStr, startDateArray = "", endDateArray = "", discriptionArray = "", FinalholidayId = "", HolidayNameStr, categoryStr,categoryIdStr="";
-    List<FinalArrayResultPermissionModel> finalHolidaycategoryList;
+    List<FinalArrayStudentModel> finalHolidaycategoryList;
     List<FinalArrayHolidayDetial> finalArrayHolidayDetialsList;
     HolidayAdapter holidayAdapter;
     String[] spinnerholidaycategoryIdArray;
@@ -169,9 +166,9 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getHolidayCategory(getHolidayCategoryDetail(), new retrofit.Callback<GetResultPermissionModel>() {
+        ApiHandler.getApiService().getHolidayCategory(getHolidayCategoryDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(GetResultPermissionModel holidayModel, Response response) {
+            public void success(StudentAttendanceModel holidayModel, Response response) {
                 if (holidayModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;

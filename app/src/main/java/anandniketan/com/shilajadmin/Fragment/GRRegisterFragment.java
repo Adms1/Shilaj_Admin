@@ -2,29 +2,20 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -33,25 +24,17 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.BulkSMSDetailListAdapter;
 import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
-import anandniketan.com.shilajadmin.Adapter.StudentFilteredDataAdapter;
-import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
-import anandniketan.com.shilajadmin.Model.Other.GetBulkSMSDataModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentBullkSmsBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentGrregisterBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -298,9 +281,9 @@ public class GRRegisterFragment extends Fragment {
             return;
         }
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
+            public void success(StudentAttendanceModel studentFullDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

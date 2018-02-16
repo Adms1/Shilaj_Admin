@@ -2,40 +2,27 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.RoutePickupPointDetailAdapter;
-import anandniketan.com.shilajadmin.Adapter.VehicleDetailListAdapter;
 import anandniketan.com.shilajadmin.Adapter.VehicleRouteDetailListAdapter;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayRouteDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleRouteModel;
-import anandniketan.com.shilajadmin.Model.Transport.GetRoutePickUpPointDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.PickupPointDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.VehicleRouteDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
+import anandniketan.com.shilajadmin.Model.Transport.TransportChargesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentRoutePickUpDetailBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentVehicleRouteBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -51,7 +38,7 @@ public class VehicleRouteFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    List<FinalArrayVehicleRouteModel> finalArrayVehicleRouteModelList;
+    List<FinalArrayTransportChargesModel> finalArrayVehicleRouteModelList;
     VehicleRouteDetailListAdapter vehicleRouteDetailListAdapter;
 
     @Override
@@ -98,9 +85,9 @@ public class VehicleRouteFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getVehicleRouteDetail(getVehicleRouteDetail(), new retrofit.Callback<VehicleRouteDetailModel>() {
+        ApiHandler.getApiService().getVehicleRouteDetail(getVehicleRouteDetail(), new retrofit.Callback<TransportChargesModel>() {
             @Override
-            public void success(VehicleRouteDetailModel vehicleRouteDetailModel, Response response) {
+            public void success(TransportChargesModel vehicleRouteDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (vehicleRouteDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

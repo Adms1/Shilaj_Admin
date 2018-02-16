@@ -18,8 +18,8 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.VehicleDetailListAdapter;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleDetail;
-import anandniketan.com.shilajadmin.Model.Transport.VehicleDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
+import anandniketan.com.shilajadmin.Model.Transport.TransportChargesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -37,7 +37,7 @@ public class VehicleDetailFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    List<FinalArrayVehicleDetail> vehicleDetailList;
+    List<FinalArrayTransportChargesModel> vehicleDetailList;
     VehicleDetailListAdapter vehicleDetailListAdapter;
 
     @Override
@@ -88,9 +88,9 @@ public class VehicleDetailFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getVehicleDetail(getVehicleDetail(), new retrofit.Callback<VehicleDetailModel>() {
+        ApiHandler.getApiService().getVehicleDetail(getVehicleDetail(), new retrofit.Callback<TransportChargesModel>() {
             @Override
-            public void success(VehicleDetailModel vehicleDetailModel, Response response) {
+            public void success(TransportChargesModel vehicleDetailModel, Response response) {
                 Utils.dismissDialog();
                 if (vehicleDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

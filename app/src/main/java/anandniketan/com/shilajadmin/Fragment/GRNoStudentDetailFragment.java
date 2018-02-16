@@ -2,14 +2,10 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +19,12 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterGRstudentdetail;
-import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentFullDetail;
-import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
-import anandniketan.com.shilajadmin.Interface.onViewClick;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentAllDepartmentDetailsBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentGrnoStudentDetailBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -45,10 +37,10 @@ public class GRNoStudentDetailFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    List<FinalArrayStudentFullDetailModel> studentFullDetailArray;
+    List<FinalArrayStudentModel> studentFullDetailArray;
     List<String> listDataHeader;
     String flag;
-    HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayStudentModel>> listDataChild;
 
     ExpandableListAdapterGRstudentdetail listAdapterGRstudentdetail;
 
@@ -128,10 +120,10 @@ public class GRNoStudentDetailFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        ApiHandler.getApiService().getGRRegister(getGRRegisterDetail(), new retrofit.Callback<StudentAttendanceModel>() {
 
             @Override
-            public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
+            public void success(StudentAttendanceModel studentFullDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -163,13 +155,13 @@ public class GRNoStudentDetailFragment extends Fragment {
                             Log.d("array", "" + arraystu);
 
                             listDataHeader = new ArrayList<>();
-                            listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
+                            listDataChild = new HashMap<String, ArrayList<FinalArrayStudentModel>>();
 
                             for (int i = 0; i < arraystu.size(); i++) {
                                 Log.d("arraystu", "" + arraystu);
                                 listDataHeader.add(arraystu.get(i));
                                 Log.d("header", "" + listDataHeader);
-                                ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
+                                ArrayList<FinalArrayStudentModel> row = new ArrayList<FinalArrayStudentModel>();
                                 for (int j = 0; j < studentFullDetailArray.size(); j++) {
                                     if (studentFullDetailArray.get(j).getStudentId().equalsIgnoreCase(AppConfiguration.CheckStudentId)) {
                                         row.add(studentFullDetailArray.get(j));

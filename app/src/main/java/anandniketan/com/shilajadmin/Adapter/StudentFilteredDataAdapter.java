@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import anandniketan.com.shilajadmin.Interface.onViewClick;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFilteredData;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
@@ -19,10 +19,10 @@ import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 public class StudentFilteredDataAdapter extends RecyclerView.Adapter<StudentFilteredDataAdapter.MyViewHolder> {
     private Context context;
-    private StudentShowFilteredDataModel filteredDataModel;
+    private StudentAttendanceModel filteredDataModel;
     private onViewClick onViewClick;
 
-    public StudentFilteredDataAdapter(Context mContext, StudentShowFilteredDataModel filteredDataModel, onViewClick onViewClick) {
+    public StudentFilteredDataAdapter(Context mContext, StudentAttendanceModel filteredDataModel, onViewClick onViewClick) {
         this.context = mContext;
         this.filteredDataModel = filteredDataModel;
         this.onViewClick = onViewClick;
@@ -37,10 +37,10 @@ public class StudentFilteredDataAdapter extends RecyclerView.Adapter<StudentFilt
 
     @Override
     public void onBindViewHolder(StudentFilteredDataAdapter.MyViewHolder holder, int position) {
-        final FinalArrayStudentFilteredData filter = filteredDataModel.getFinalArray().get(position);
+        final FinalArrayStudentModel filter = filteredDataModel.getFinalArray().get(position);
         holder.parentsname_txt.setText(filter.getFatherName());
         holder.studentname_txt.setText(filter.getStudentName());
-        holder.grnno_txt.setText(String.valueOf(filter.getGRNO()));
+        holder.grnno_txt.setText(String.valueOf(filter.getgRNO()));
         holder.grade_txt.setText(filter.getGradeSection());
 
         holder.view_txt.setOnClickListener(new View.OnClickListener() {

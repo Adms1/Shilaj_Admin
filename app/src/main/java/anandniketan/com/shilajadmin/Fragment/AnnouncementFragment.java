@@ -3,7 +3,6 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -28,26 +26,16 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AnnouncmentAdpater;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.TermModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentAnnouncementBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -180,9 +168,9 @@ public class AnnouncementFragment extends Fragment implements DatePickerDialog.O
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getAnnouncementData(getAnnouncementDataDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getAnnouncementData(getAnnouncementDataDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel announcmentModel, Response response) {
+            public void success(StudentAttendanceModel announcmentModel, Response response) {
 //                Utils.dismissDialog();
                 if (announcmentModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

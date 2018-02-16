@@ -3,7 +3,6 @@ package anandniketan.com.shilajadmin.Fragment;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,20 +30,13 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AttendanceAdapter;
-import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
-import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.TermModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
-import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentGrregisterBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentAttendaneBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -60,7 +52,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
     List<FinalArrayStandard> finalArrayStandardsList;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
-    List<FinalArrayStudentNameModel> finalArrayStudentNameModelList;
+    List<FinalArrayStudentModel> finalArrayStudentNameModelList;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalStandardStr, FinalSectionStr, FinalDataStr;
     AttendanceAdapter attendanceAdapter;
 
@@ -226,9 +218,9 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
             return;
         }
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getAttendence_Admin(getAttendence_AdminDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getAttendence_Admin(getAttendence_AdminDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel attendanceModel, Response response) {
+            public void success(StudentAttendanceModel attendanceModel, Response response) {
 //                Utils.dismissDialog();
                 if (attendanceModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

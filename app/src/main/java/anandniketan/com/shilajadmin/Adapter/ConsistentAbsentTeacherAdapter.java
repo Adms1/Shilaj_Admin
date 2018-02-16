@@ -2,16 +2,13 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import anandniketan.com.shilajadmin.Model.Staff.ConsistenceAbsentStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.Datum;
 import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
-import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -39,7 +36,7 @@ public class ConsistentAbsentTeacherAdapter extends RecyclerView.Adapter<Consist
 
     @Override
     public void onBindViewHolder(ConsistentAbsentTeacherAdapter.ViewHolder holder, int position) {
-        ConsistenceAbsentStaffModel details = staffAttendaceModel.getFinalArray().get(0).getConsistenceAbsent().get(position);
+        Datum details = staffAttendaceModel.getFinalArray().get(0).getConsistenceAbsent().get(position);
 
         holder.employee_txt.setText(String.valueOf(details.getEmpName().trim()));
         holder.days_txt.setText(String.valueOf(details.getDays()));

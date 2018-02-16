@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -29,7 +28,7 @@ import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -282,9 +281,9 @@ public class LeftDetailFragment extends Fragment {
             return;
         }
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getLeftDetainStudent(getGRRegisterDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        ApiHandler.getApiService().getLeftDetainStudent(getGRRegisterDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
+            public void success(StudentAttendanceModel studentFullDetailModel, Response response) {
                 Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -297,12 +296,10 @@ public class LeftDetailFragment extends Fragment {
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
-                    if (studentFullDetailModel.getFinalArray().size() == 0) {
                         fragmentLeftDetailBinding.studentLeftdetailList.setVisibility(View.GONE);
                         fragmentLeftDetailBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentLeftDetailBinding.listHeader.setVisibility(View.GONE);
                         fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
-                    }
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {

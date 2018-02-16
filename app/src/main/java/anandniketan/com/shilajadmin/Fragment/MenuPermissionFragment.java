@@ -2,10 +2,8 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,11 +23,8 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
@@ -39,10 +34,8 @@ import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.GetPageListModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Other.FinalArrayBulkSMSModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -60,7 +53,7 @@ public class MenuPermissionFragment extends Fragment {
     private FragmentManager fragmentManager = null;
     private RadioGroup radioGroup;
 
-    List<FinalArrayTeachersModel> finalArrayTeachersModelList;
+    List<FinalArrayStaffModel> finalArrayTeachersModelList;
     HashMap<Integer, String> spinnerTeacherMap;
     String FinalTeacherIdStr, Finalflag, FinalPageStr;
 
@@ -297,9 +290,9 @@ public class MenuPermissionFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<GetTeachersModel>() {
+        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetTeachersModel teachersModel, Response response) {
+            public void success(StaffAttendaceModel teachersModel, Response response) {
                 Utils.dismissDialog();
                 if (teachersModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

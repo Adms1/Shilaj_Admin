@@ -9,10 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import anandniketan.com.shilajadmin.Interface.onViewClick;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFilteredData;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
@@ -22,10 +20,10 @@ import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 
 public class GRRegisterAdapter extends RecyclerView.Adapter<GRRegisterAdapter.MyViewHolder> {
     private Context context;
-    private StudentFullDetailModel filteredDataModel;
+    private StudentAttendanceModel filteredDataModel;
     private onViewClick onViewClick;
 
-    public GRRegisterAdapter(Context mContext, StudentFullDetailModel filteredDataModel, onViewClick onViewClick) {
+    public GRRegisterAdapter(Context mContext, StudentAttendanceModel filteredDataModel, onViewClick onViewClick) {
         this.context = mContext;
         this.filteredDataModel = filteredDataModel;
         this.onViewClick = onViewClick;
@@ -40,12 +38,12 @@ public class GRRegisterAdapter extends RecyclerView.Adapter<GRRegisterAdapter.My
 
     @Override
     public void onBindViewHolder(GRRegisterAdapter.MyViewHolder holder, int position) {
-        final FinalArrayStudentFullDetailModel filter = filteredDataModel.getFinalArray().get(position);
+        final FinalArrayStudentModel filter = filteredDataModel.getFinalArray().get(position);
         String sr = String.valueOf(position + 1);
         holder.index_txt.setText(sr);
         holder.firstname_txt.setText(filter.getFirstName());
         holder.lastname_txt.setText(filter.getLastName());
-        holder.grnno_txt.setText(String.valueOf(filter.getGRNO()));
+        holder.grnno_txt.setText(String.valueOf(filter.getgRNO()));
         holder.grade_txt.setText(filter.getStandard());
 
         holder.view_txt.setOnClickListener(new View.OnClickListener() {

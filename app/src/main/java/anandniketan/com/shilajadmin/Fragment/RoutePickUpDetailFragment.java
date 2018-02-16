@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,17 +24,13 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.RoutePickupPointDetailAdapter;
-import anandniketan.com.shilajadmin.Adapter.VehicleDetailListAdapter;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayRouteDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleDetail;
-import anandniketan.com.shilajadmin.Model.Transport.GetRoutePickUpPointDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
 import anandniketan.com.shilajadmin.Model.Transport.PickupPointDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.VehicleDetailModel;
+import anandniketan.com.shilajadmin.Model.Transport.TransportChargesModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentRoutePickUpDetailBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentVehicleDetailBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -50,7 +45,7 @@ public class RoutePickUpDetailFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    List<FinalArrayRouteDetailModel> finalArrayRouteDetailModelList;
+    List<FinalArrayTransportChargesModel> finalArrayRouteDetailModelList;
     List<PickupPointDetailModel> pickupPointDetailModelList;
     HashMap<Integer, String> spinnerRouteMap;
     String FinalRouteName;
@@ -121,9 +116,9 @@ public class RoutePickUpDetailFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getRouteDetail(getRouteDetail(), new retrofit.Callback<GetRoutePickUpPointDetailModel>() {
+        ApiHandler.getApiService().getRouteDetail(getRouteDetail(), new retrofit.Callback<TransportChargesModel>() {
             @Override
-            public void success(GetRoutePickUpPointDetailModel routeDetail, Response response) {
+            public void success(TransportChargesModel routeDetail, Response response) {
 //                Utils.dismissDialog();
                 if (routeDetail == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

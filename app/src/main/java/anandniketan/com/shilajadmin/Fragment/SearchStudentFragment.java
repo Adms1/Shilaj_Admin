@@ -2,15 +2,12 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +24,7 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.StudentFilteredDataAdapter;
 import anandniketan.com.shilajadmin.Interface.onViewClick;
-import anandniketan.com.shilajadmin.Model.Student.ParentsNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentShowFilteredDataModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
@@ -145,9 +140,9 @@ public class SearchStudentFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getParentName(getParentDetail(), new retrofit.Callback<ParentsNameModel>() {
+        ApiHandler.getApiService().getParentName(getParentDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(ParentsNameModel parentsNameModel, Response response) {
+            public void success(StudentAttendanceModel parentsNameModel, Response response) {
                 Utils.dismissDialog();
                 if (parentsNameModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -206,9 +201,9 @@ public class SearchStudentFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentName(getStudentDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getStudentName(getStudentDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel studentNameModel, Response response) {
+            public void success(StudentAttendanceModel studentNameModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentNameModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -268,9 +263,9 @@ public class SearchStudentFragment extends Fragment {
             return;
         }
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentFilterData(getStudentShowFilteredDataDetail(), new retrofit.Callback<StudentShowFilteredDataModel>() {
+        ApiHandler.getApiService().getStudentFilterData(getStudentShowFilteredDataDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentShowFilteredDataModel filteredDataModel, Response response) {
+            public void success(StudentAttendanceModel filteredDataModel, Response response) {
 //                Utils.dismissDialog();
                 if (filteredDataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

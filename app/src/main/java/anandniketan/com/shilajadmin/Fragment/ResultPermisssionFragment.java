@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,14 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.Checkable;
-import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-
-import com.nostra13.universalimageloader.core.assist.LoadedFrom;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -32,27 +26,20 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentTransportDetail;
 import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentTransportModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayRouteDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.GetRoutePickUpPointDetailModel;
-import anandniketan.com.shilajadmin.Model.Transport.PickupPointDetailModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentResultPermisssionBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentStudentTranspotBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -68,7 +55,7 @@ public class ResultPermisssionFragment extends Fragment {
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
     //Use for fill List
-    List<FinalArrayResultPermissionModel> finalArrayResultPermissionList;
+    List<FinalArrayStudentModel> finalArrayResultPermissionList;
     ResultPermissionAdapter resultPermissionAdapter;
 
     //Use for fill section
@@ -248,9 +235,9 @@ public class ResultPermisssionFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getResultPermission(getResultPermission(), new retrofit.Callback<GetResultPermissionModel>() {
+        ApiHandler.getApiService().getResultPermission(getResultPermission(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(GetResultPermissionModel resultPermissionModel, Response response) {
+            public void success(StudentAttendanceModel resultPermissionModel, Response response) {
                 Utils.dismissDialog();
                 if (resultPermissionModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -422,6 +409,11 @@ public class ResultPermisssionFragment extends Fragment {
 
     // Use For UpdatePermission
     public void UpdatePermission() {
+        List<FinalArrayStandard> standardArray1 = standardAdapter.getDatas();
+        for (int i = 0; i < standardArray1.size(); i++) {
+                standardArray1.get(i).setCheckedStatus("0");
+                standardAdapter.notifyDataSetChanged();
+        }
         fragmentResultPermisssionBinding.addBtn.setText("Update");
         ArrayList<String> academicYearArray = new ArrayList<String>();
         String statusArray = "", gradeArray = "";

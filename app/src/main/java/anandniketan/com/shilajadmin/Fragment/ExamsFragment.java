@@ -23,9 +23,8 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExamListAdapter;
-import anandniketan.com.shilajadmin.Adapter.StandardwiseCollectionListAdapter;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayExamsModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetExamsModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -48,7 +47,7 @@ public class ExamsFragment extends Fragment implements DatePickerDialog.OnDateSe
     private static boolean isFromDate = false;
     private DatePickerDialog datePickerDialog;
     ExamListAdapter examListAdapter;
-    List<FinalArrayExamsModel> finalArrayExamsModel;
+    List<FinalArrayStaffModel> finalArrayExamsModel;
 
 
     public ExamsFragment() {
@@ -137,9 +136,9 @@ public class ExamsFragment extends Fragment implements DatePickerDialog.OnDateSe
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getExams(getExamsDetail(), new retrofit.Callback<GetExamsModel>() {
+        ApiHandler.getApiService().getExams(getExamsDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetExamsModel examsModel, Response response) {
+            public void success(StaffAttendaceModel examsModel, Response response) {
                 Utils.dismissDialog();
                 if (examsModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

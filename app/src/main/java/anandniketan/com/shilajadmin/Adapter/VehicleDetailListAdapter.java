@@ -1,7 +1,6 @@
 package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Transport.FinalArrayVehicleDetail;
+import anandniketan.com.shilajadmin.Model.Transport.FinalArrayTransportChargesModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -19,10 +18,10 @@ import anandniketan.com.shilajadmin.R;
 
 public class VehicleDetailListAdapter extends RecyclerView.Adapter<VehicleDetailListAdapter.MyViewHolder> {
     private Context context;
-    List<FinalArrayVehicleDetail> vehicleDetailList;
+    List<FinalArrayTransportChargesModel> vehicleDetailList;
 //    VehicleDetailListItemBinding binding;
 
-    public VehicleDetailListAdapter(Context mContext, List<FinalArrayVehicleDetail> vehicleDetailList) {
+    public VehicleDetailListAdapter(Context mContext, List<FinalArrayTransportChargesModel> vehicleDetailList) {
         this.context = mContext;
         this.vehicleDetailList = vehicleDetailList;
     }

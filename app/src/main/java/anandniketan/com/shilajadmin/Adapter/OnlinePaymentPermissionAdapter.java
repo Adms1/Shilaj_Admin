@@ -11,8 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -21,11 +21,11 @@ import anandniketan.com.shilajadmin.R;
 
 public class OnlinePaymentPermissionAdapter extends RecyclerView.Adapter<OnlinePaymentPermissionAdapter.MyViewHolder> {
     private Context context;
-    private GetResultPermissionModel resultPermissionModel;
+    private StudentAttendanceModel resultPermissionModel;
     private ArrayList<String> rowvalue;
     getEditpermission listner;
 
-    public OnlinePaymentPermissionAdapter(Context mContext, GetResultPermissionModel resultPermissionModel, getEditpermission listner) {
+    public OnlinePaymentPermissionAdapter(Context mContext, StudentAttendanceModel resultPermissionModel, getEditpermission listner) {
         this.context = mContext;
         this.resultPermissionModel = resultPermissionModel;
         this.listner = listner;
@@ -41,7 +41,7 @@ public class OnlinePaymentPermissionAdapter extends RecyclerView.Adapter<OnlineP
     @Override
     public void onBindViewHolder(OnlinePaymentPermissionAdapter.MyViewHolder holder, int position) {
         String sr = String.valueOf(position + 1);
-        final FinalArrayResultPermissionModel result = resultPermissionModel.getFinalArray().get(position);
+        final FinalArrayStudentModel result = resultPermissionModel.getFinalArray().get(position);
         holder.index_txt.setText(sr);
         holder.academicyear_txt.setText(resultPermissionModel.getYear());
         holder.grade_txt.setText(String.valueOf(result.getStandard()));

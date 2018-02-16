@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.ConsistentAbsentTeacherAdapter;
 import anandniketan.com.shilajadmin.Adapter.StaffSubMenuAdapter;
 import anandniketan.com.shilajadmin.Adapter.StudentSubMenuAdapter;
 import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
@@ -34,7 +33,6 @@ import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentStaffBinding;
-import anandniketan.com.shilajadmin.databinding.FragmentStudentBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 

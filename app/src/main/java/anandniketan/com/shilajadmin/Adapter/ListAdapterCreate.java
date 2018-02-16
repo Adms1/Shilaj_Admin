@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 
 import anandniketan.com.shilajadmin.Interface.onCheckBoxChnage;
 import anandniketan.com.shilajadmin.Model.Other.StudentDatum;
-import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceDetail;
 import anandniketan.com.shilajadmin.R;
 
 /**

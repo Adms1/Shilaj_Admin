@@ -22,10 +22,8 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.FeesStructureExpandableListAdapter;
-import anandniketan.com.shilajadmin.Adapter.TransportChargesListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStructureModel;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayFeesStructureModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentTransportModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;

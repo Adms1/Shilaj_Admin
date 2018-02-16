@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,12 +29,8 @@ import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ClassTeacherDetailListAdapter;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayInsertClassTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertClassTeachersModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -55,10 +50,10 @@ public class ClassTeacherFragment extends Fragment {
     private int selectedPosition = -1;
     List<FinalArrayStandard> finalArrayStandardsList;
     HashMap<Integer, String> spinnerStandardMap;
-    List<FinalArrayTeachersModel> finalArrayTeachersModelList;
+    List<FinalArrayStaffModel> finalArrayTeachersModelList;
     HashMap<Integer, String> spinnerTeacherMap;
-    List<FinalArrayClassTeacherDetailModel> finalArrayClassTeacherDetailModelList;
-    List<FinalArrayInsertClassTeachersModel> finalArrayInsertClassTeachersModelList;
+    List<FinalArrayStaffModel> finalArrayClassTeacherDetailModelList;
+    List<FinalArrayStaffModel> finalArrayInsertClassTeachersModelList;
     String FinalStandardIdStr, FinalTeacherIdStr, FinalClassIdStr, StandardName;
 
     ClassTeacherDetailListAdapter classTeacherDetailListAdapter;
@@ -203,9 +198,9 @@ public class ClassTeacherFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<GetTeachersModel>() {
+        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetTeachersModel teachersModel, Response response) {
+            public void success(StaffAttendaceModel teachersModel, Response response) {
                 Utils.dismissDialog();
                 if (teachersModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -252,9 +247,9 @@ public class ClassTeacherFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getClassTeacherDetail(getClassTeacherDetail(), new retrofit.Callback<GetClassTeacherDetailModel>() {
+        ApiHandler.getApiService().getClassTeacherDetail(getClassTeacherDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetClassTeacherDetailModel getClassTeacherDetailModel, Response response) {
+            public void success(StaffAttendaceModel getClassTeacherDetailModel, Response response) {
                 Utils.dismissDialog();
                 if (getClassTeacherDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -310,9 +305,9 @@ public class ClassTeacherFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().InsertClassTeachers(getInsertClassTeacherDetail(), new retrofit.Callback<InsertClassTeachersModel>() {
+        ApiHandler.getApiService().InsertClassTeachers(getInsertClassTeacherDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(InsertClassTeachersModel insertClassTeachersModel, Response response) {
+            public void success(StaffAttendaceModel insertClassTeachersModel, Response response) {
                 Utils.dismissDialog();
                 if (insertClassTeachersModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

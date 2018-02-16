@@ -9,12 +9,10 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Interface.getEmployeeCheck;
 import anandniketan.com.shilajadmin.Model.HR.FinalArrayPageListModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayClassTeacherDetailModel;
 import anandniketan.com.shilajadmin.R;
 
 /**

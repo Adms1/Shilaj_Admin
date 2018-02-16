@@ -2,14 +2,10 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,22 +21,16 @@ import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.GRRegisterAdapter;
-import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
 import anandniketan.com.shilajadmin.Adapter.TestNameAdapter;
-import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
-import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentGrregisterBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentStudentViewMarksBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -56,7 +46,7 @@ public class StudentViewMarksFragment extends Fragment {
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayStandard> finalArrayStandardsList;
-    List<FinalArrayStudentNameModel> finalArrayStudentNameModelList;
+    List<FinalArrayStudentModel> finalArrayStudentNameModelList;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalTermStr, FinalTestStr, FinalTestIdStr;
@@ -278,9 +268,9 @@ public class StudentViewMarksFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTestName(getTestNameDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getTestName(getTestNameDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel testNameModel, Response response) {
+            public void success(StudentAttendanceModel testNameModel, Response response) {
                 Utils.dismissDialog();
                 if (testNameModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -329,9 +319,9 @@ public class StudentViewMarksFragment extends Fragment {
             return;
         }
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentMarks(getStudentMarksDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getStudentMarks(getStudentMarksDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel studentNameModel, Response response) {
+            public void success(StudentAttendanceModel studentNameModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentNameModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -536,7 +526,7 @@ public class StudentViewMarksFragment extends Fragment {
     public void GetSelectedTestId() {
         ArrayList<String> testNameArray = new ArrayList<String>();
         ArrayList<String> testIdArray = new ArrayList<String>();
-        List<FinalArrayStudentNameModel> testArray = testNameAdapter.getDatas();
+        List<FinalArrayStudentModel> testArray = testNameAdapter.getDatas();
         for (int i = 0; i < testArray.size(); i++) {
             if (testArray.get(i).getCheckedStatus().equalsIgnoreCase("1")) {
                 testNameArray.add(testArray.get(i).getTestName().toString());

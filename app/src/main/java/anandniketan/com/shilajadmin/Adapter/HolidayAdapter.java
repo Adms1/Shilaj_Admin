@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
 import anandniketan.com.shilajadmin.Model.Other.FinalArrayHolidayDetial;
 import anandniketan.com.shilajadmin.Model.Other.HolidayDataModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
 import anandniketan.com.shilajadmin.R;
 
 /**

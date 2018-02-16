@@ -34,8 +34,8 @@ import anandniketan.com.shilajadmin.Model.Account.FinalArrayAllPaymentLedgerMode
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetAllPaymentLedgerModel;
 import anandniketan.com.shilajadmin.Model.Account.GetPaymentLedgerModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -63,7 +63,7 @@ public class StudentLedgerFragment extends Fragment {
     String FinalTermIdStr, searchtypeStr = "Current Student", studentNameStr = "", FinalStudentIdStr, Selection;
     private int lastExpandedPosition = -1;
     private ArrayList studentName = new ArrayList();
-    List<FinalArrayStudentNameModel> finalArrayStudentNameModelList;
+    List<FinalArrayStudentModel> finalArrayStudentNameModelList;
     List<FinalArrayPaymentLedgerModel> finalArrayPaymentLedgerModelList;
     ExpandableListAdapterAccountSummary expandableListAdapterAccountSummary;
     List<String> listDataHeader;
@@ -175,12 +175,12 @@ public class StudentLedgerFragment extends Fragment {
                 for (int i = 0; i < finalArrayStudentNameModelList.size(); i++) {
                     if (searchtypeStr.equalsIgnoreCase("Current Student")) {
                         if (finalArrayStudentNameModelList.get(i).getName().equalsIgnoreCase(Selection)) {
-                            FinalStudentIdStr = finalArrayStudentNameModelList.get(i).getStudentID();
+                            FinalStudentIdStr = String.valueOf(finalArrayStudentNameModelList.get(i).getStudentID());
                             Log.d("FinalStudentIdStr", "" + FinalStudentIdStr);
                         }
                     } else {
-                        if (finalArrayStudentNameModelList.get(i).getGRNO().equalsIgnoreCase(Selection)) {
-                            FinalStudentIdStr = finalArrayStudentNameModelList.get(i).getStudentID();
+                        if (finalArrayStudentNameModelList.get(i).getgRNO().equalsIgnoreCase(Selection)) {
+                            FinalStudentIdStr = String.valueOf(finalArrayStudentNameModelList.get(i).getStudentID());
                             Log.d("FinalGRNOIdStr", "" + FinalStudentIdStr);
                         }
                     }
@@ -392,9 +392,9 @@ public class StudentLedgerFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentName(getStudentDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getStudentName(getStudentDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel studentNameModel, Response response) {
+            public void success(StudentAttendanceModel studentNameModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentNameModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -435,7 +435,7 @@ public class StudentLedgerFragment extends Fragment {
         ArrayList<String> Grno = new ArrayList<String>();
         for (int j = 0; j < finalArrayStudentNameModelList.size(); j++) {
             Student.add(finalArrayStudentNameModelList.get(j).getName());
-            Grno.add(finalArrayStudentNameModelList.get(j).getGRNO());
+            Grno.add(finalArrayStudentNameModelList.get(j).getgRNO());
         }
 
         if (searchtypeStr.equalsIgnoreCase("Current Student")) {

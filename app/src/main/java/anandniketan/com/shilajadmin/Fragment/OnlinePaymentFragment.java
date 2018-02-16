@@ -2,8 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,39 +15,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ExpandableListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
 import anandniketan.com.shilajadmin.Adapter.OnlinePaymentPermissionAdapter;
-import anandniketan.com.shilajadmin.Adapter.ResultPermissionAdapter;
 import anandniketan.com.shilajadmin.Adapter.StandardAdapter;
 import anandniketan.com.shilajadmin.Interface.getEditpermission;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
 import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayResultPermissionModel;
-import anandniketan.com.shilajadmin.Model.Student.GetResultPermissionModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
-import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBinding;
 import anandniketan.com.shilajadmin.databinding.FragmentOnlinePaymentBinding;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -72,7 +61,7 @@ public class OnlinePaymentFragment extends Fragment {
     StandardAdapter standardAdapter;
 
     //Use for fill List
-    List<FinalArrayResultPermissionModel> finalArrayResultPermissionList;
+    List<FinalArrayStudentModel> finalArrayResultPermissionList;
     OnlinePaymentPermissionAdapter onlinePaymentPermissionAdapter;
 
     String FinalTermIdStr, FinalGradeIsStr = "", FinalTermDetailIdStr = "",  FinalStatusStr = "1";
@@ -296,9 +285,9 @@ public class OnlinePaymentFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getOnlinePaymentPermission(getOnlinePaymentPermission(), new retrofit.Callback<GetResultPermissionModel>() {
+        ApiHandler.getApiService().getOnlinePaymentPermission(getOnlinePaymentPermission(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(GetResultPermissionModel resultPermissionModel, Response response) {
+            public void success(StudentAttendanceModel resultPermissionModel, Response response) {
                 Utils.dismissDialog();
                 if (resultPermissionModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

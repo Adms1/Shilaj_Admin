@@ -29,9 +29,9 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInquiryData;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
-import anandniketan.com.shilajadmin.Model.Student.InquiryStausDetail;
-import anandniketan.com.shilajadmin.Model.Student.StudentNameModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -58,12 +58,12 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
     HashMap<Integer, String> spinnerOrderMap;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
-    List<FinalArrayStudentNameModel> finalArrayinquiryCountList;
+    List<FinalArrayStudentModel> finalArrayinquiryCountList;
     private int lastExpandedPosition = -1;
     String FinalStartDateStr, FinalEndDateStr, FinalStatusStr, FinalStatusIdStr, FinalTermIdStr, FinalTermStr, FinalOnlineStatusStr = "All";
     ExpandableListAdapterInquiryData expandableListAdapterInquiryData;
     List<String> listDataHeader;
-    HashMap<String,List<InquiryStausDetail>> listDataChild;
+    HashMap<String,List<StandardWiseAttendanceModel>> listDataChild;
 
     public StudentViewInquiryFragment() {
     }
@@ -266,9 +266,9 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getInquiryCount(getInquiryCountDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getInquiryCount(getInquiryCountDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel inquiryCountModel, Response response) {
+            public void success(StudentAttendanceModel inquiryCountModel, Response response) {
                 Utils.dismissDialog();
                 if (inquiryCountModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -319,9 +319,9 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getInquiryData(getInquiryDetail(), new retrofit.Callback<StudentNameModel>() {
+        ApiHandler.getApiService().getInquiryData(getInquiryDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
-            public void success(StudentNameModel inquiryDataModel, Response response) {
+            public void success(StudentAttendanceModel inquiryDataModel, Response response) {
                 if (inquiryDataModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
                     return;
@@ -505,7 +505,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, List<InquiryStausDetail>>();
+        listDataChild = new HashMap<String, List<StandardWiseAttendanceModel>>();
 
         for (int i = 0; i < finalArrayinquiryCountList.size(); i++) {
             listDataHeader.add(finalArrayinquiryCountList.get(i).getName() + "|" +
@@ -513,7 +513,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
                     finalArrayinquiryCountList.get(i).getGender() + "|" +
                     finalArrayinquiryCountList.get(i).getCurrentStatus());
             Log.d("header", "" + listDataHeader);
-            ArrayList<InquiryStausDetail> row = new ArrayList<InquiryStausDetail>();
+            ArrayList<StandardWiseAttendanceModel> row = new ArrayList<StandardWiseAttendanceModel>();
 
             for (int j = 0; j < finalArrayinquiryCountList.get(i).getStausDetail().size(); j++) {
                 row.add(finalArrayinquiryCountList.get(i).getStausDetail().get(j));

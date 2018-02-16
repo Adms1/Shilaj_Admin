@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentNameModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -22,11 +23,11 @@ import anandniketan.com.shilajadmin.R;
 
 public class TestNameAdapter extends BaseAdapter {
     private Context mContext;
-    private List<FinalArrayStudentNameModel> testnameList;
+    private List<FinalArrayStudentModel> testnameList;
     private ArrayList<FinalArrayStandard> arrayList = new ArrayList<>();
 
     // Constructor
-    public TestNameAdapter(Context c, List<FinalArrayStudentNameModel> testnameList) {
+    public TestNameAdapter(Context c, List<FinalArrayStudentModel> testnameList) {
         mContext = c;
         this.testnameList = testnameList;
     }
@@ -60,7 +61,7 @@ public class TestNameAdapter extends BaseAdapter {
             LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = mInflater.inflate(R.layout.list_row_test_name_checkbox, null);
             viewHolder.check_standard = (CheckBox) convertView.findViewById(R.id.check_standard);
-            final FinalArrayStudentNameModel standarObj = testnameList.get(position);
+            final FinalArrayStudentModel standarObj = testnameList.get(position);
             try {
                 viewHolder.check_standard.setText(standarObj.getTestName());
                 viewHolder.check_standard.setTag(standarObj.getTestID());
@@ -89,7 +90,7 @@ public class TestNameAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public List<FinalArrayStudentNameModel> getDatas() {
+    public List<FinalArrayStudentModel> getDatas() {
         return testnameList;
     }
 

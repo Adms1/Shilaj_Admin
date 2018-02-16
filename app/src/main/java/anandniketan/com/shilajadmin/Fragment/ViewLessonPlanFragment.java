@@ -2,8 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,26 +15,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
 
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterLessonPlan;
-import anandniketan.com.shilajadmin.Adapter.ExpandbleListAdapterDailyCollection;
-import anandniketan.com.shilajadmin.Model.Account.DailyFeeCollectionModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayDailyCollection;
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayStandard;
 import anandniketan.com.shilajadmin.Model.Account.GetStandardModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayAssignSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetClassTeacherDetailModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -57,17 +47,16 @@ public class ViewLessonPlanFragment extends Fragment {
     private int lastExpandedPosition = -1;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     List<FinalArrayStandard> finalArrayStandardsList;
-    List<FinalArrayClassTeacherDetailModel> finalArrayEmployeeList;
-    List<FinalArrayClassTeacherDetailModel> finalArrayEmployeefilterList;
+    List<FinalArrayStaffModel> finalArrayEmployeeList;
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSubjectMap;
     HashMap<Integer, String> spinneremployeeMap;
     String FinalTermIdStr, FinalStandardIdStr = "", FinalSubjectIdStr = "", FinalEmployeeIdStr = "", StandardName;
 
-    List<FinalArrayAssignSubjectModel> finalArraylessonplanList;
+    List<FinalArrayStaffModel> finalArraylessonplanList;
     List<String> listDataHeader;
-    HashMap<String, ArrayList<FinalArrayAssignSubjectModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayStaffModel>> listDataChild;
     ExpandableListAdapterLessonPlan expandableListAdapterLessonPlan;
 
     public ViewLessonPlanFragment() {
@@ -299,9 +288,9 @@ public class ViewLessonPlanFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getEmployeeBySubject(getEmployeeDetail(), new retrofit.Callback<GetClassTeacherDetailModel>() {
+        ApiHandler.getApiService().getEmployeeBySubject(getEmployeeDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetClassTeacherDetailModel employeeModel, Response response) {
+            public void success(StaffAttendaceModel employeeModel, Response response) {
                 Utils.dismissDialog();
                 if (employeeModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -351,9 +340,9 @@ public class ViewLessonPlanFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getLessonPlanSubject(getSubjectDetail(), new retrofit.Callback<GetClassTeacherDetailModel>() {
+        ApiHandler.getApiService().getLessonPlanSubject(getSubjectDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetClassTeacherDetailModel lessonplanSubjectModel, Response response) {
+            public void success(StaffAttendaceModel lessonplanSubjectModel, Response response) {
                 Utils.dismissDialog();
                 if (lessonplanSubjectModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -402,9 +391,9 @@ public class ViewLessonPlanFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getLessonPlan(getLessonPlanDetail(), new retrofit.Callback<GetSubjectAssginModel>() {
+        ApiHandler.getApiService().getLessonPlan(getLessonPlanDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetSubjectAssginModel lessonPlanModel, Response response) {
+            public void success(StaffAttendaceModel lessonPlanModel, Response response) {
 //                Utils.dismissDialog();
                 if (lessonPlanModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -652,13 +641,13 @@ public class ViewLessonPlanFragment extends Fragment {
     //Use for fill the LessonList Spinner
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<String, ArrayList<FinalArrayAssignSubjectModel>>();
+        listDataChild = new HashMap<String, ArrayList<FinalArrayStaffModel>>();
 
         for (int i = 0; i < finalArraylessonplanList.size(); i++) {
             listDataHeader.add(finalArraylessonplanList.get(i).getChapterNo() + "|" +
                     finalArraylessonplanList.get(i).getChapterName() + "|" + finalArraylessonplanList.get(i).getEmployeeName() + "|" + finalArraylessonplanList.get(i).getiD());
             Log.d("header", "" + listDataHeader);
-            ArrayList<FinalArrayAssignSubjectModel> row = new ArrayList<FinalArrayAssignSubjectModel>();
+            ArrayList<FinalArrayStaffModel> row = new ArrayList<FinalArrayStaffModel>();
             row.add(finalArraylessonplanList.get(i));
             Log.d("row", "" + row);
             listDataChild.put(listDataHeader.get(i), row);

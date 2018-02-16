@@ -4,7 +4,6 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -13,24 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterStudentFullDetail;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentFullDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
+import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
@@ -46,10 +36,10 @@ public class AllDepartmentDetailsFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    List<FinalArrayStudentFullDetailModel> studentFullDetailArray;
+    List<FinalArrayStudentModel> studentFullDetailArray;
     List<String> listDataHeader;
 
-    HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>> listDataChild;
+    HashMap<String, ArrayList<FinalArrayStudentModel>> listDataChild;
 
     ExpandableListAdapterStudentFullDetail listAdapterStudentFullDetail;
 
@@ -115,10 +105,10 @@ public class AllDepartmentDetailsFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getStudentFullDetail(getStudentFullDetail(), new retrofit.Callback<StudentFullDetailModel>() {
+        ApiHandler.getApiService().getStudentFullDetail(getStudentFullDetail(), new retrofit.Callback<StudentAttendanceModel>() {
 
             @Override
-            public void success(StudentFullDetailModel studentFullDetailModel, Response response) {
+            public void success(StudentAttendanceModel studentFullDetailModel, Response response) {
 //                Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -145,13 +135,13 @@ public class AllDepartmentDetailsFragment extends Fragment {
                         Log.d("array", "" + arraystu);
 
                         listDataHeader = new ArrayList<>();
-                        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>>();
+                        listDataChild = new HashMap<String, ArrayList<FinalArrayStudentModel>>();
 
                         for (int i = 0; i < arraystu.size(); i++) {
                             Log.d("arraystu", "" + arraystu);
                             listDataHeader.add(arraystu.get(i));
                             Log.d("header", "" + listDataHeader);
-                            ArrayList<FinalArrayStudentFullDetailModel> row = new ArrayList<FinalArrayStudentFullDetailModel>();
+                            ArrayList<FinalArrayStudentModel> row = new ArrayList<FinalArrayStudentModel>();
                             for (int j = 0; j < studentFullDetailArray.size(); j++) {
                                 row.add(studentFullDetailArray.get(j));
                             }

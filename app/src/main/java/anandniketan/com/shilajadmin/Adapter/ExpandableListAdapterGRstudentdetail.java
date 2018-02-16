@@ -12,29 +12,19 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentFullDetailModel;
+import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;
 import anandniketan.com.shilajadmin.databinding.GrStudentListDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemCommunicationDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemFatherDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudentListItemMotherDetailBinding;
-import anandniketan.com.shilajadmin.databinding.StudentListItemStudentFullDetailBinding;
 import anandniketan.com.shilajadmin.databinding.StudetnListItemTransportDetailBinding;
 
 /**
@@ -45,12 +35,12 @@ public class ExpandableListAdapterGRstudentdetail extends BaseExpandableListAdap
 
     private Context _context;
     private List<String> _listDataHeader;
-    private HashMap<String, ArrayList<FinalArrayStudentFullDetailModel>> _listDataChild;
+    private HashMap<String, ArrayList<FinalArrayStudentModel>> _listDataChild;
     ImageLoader imageLoader;
 
 
     public ExpandableListAdapterGRstudentdetail(Context context, List<String> listDataHeader, HashMap<String,
-            ArrayList<FinalArrayStudentFullDetailModel>> listDataChild) {
+            ArrayList<FinalArrayStudentModel>> listDataChild) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
@@ -65,7 +55,7 @@ public class ExpandableListAdapterGRstudentdetail extends BaseExpandableListAdap
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-        final ArrayList<FinalArrayStudentFullDetailModel> childData = getChild(groupPosition, 0);
+        final ArrayList<FinalArrayStudentModel> childData = getChild(groupPosition, 0);
         GrStudentListDetailBinding binding;
         if (convertView == null) {
             Log.d("groupposition", "" + groupPosition);
@@ -89,7 +79,7 @@ public class ExpandableListAdapterGRstudentdetail extends BaseExpandableListAdap
             binding.lastschoolTxt.setText(childData.get(childPosition).getLastSchool());
             binding.bloodgroupTxt.setText(childData.get(childPosition).getBloodGroup());
             binding.religionTxt.setText(childData.get(childPosition).getReligion());
-            binding.grnoTxt.setText(childData.get(childPosition).getGRNO());
+            binding.grnoTxt.setText(childData.get(childPosition).getgRNO());
             binding.nationalityTxt.setText(childData.get(childPosition).getNationality());
             binding.admissionTakenTxt.setText(childData.get(childPosition).getAdmissionTaken());
 
@@ -149,7 +139,7 @@ public class ExpandableListAdapterGRstudentdetail extends BaseExpandableListAdap
             communicationDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_communication_detail, parent, false);
             convertView = communicationDetailBinding.getRoot();
 
-            communicationDetailBinding.smsTxt.setText(childData.get(childPosition).getSMSCommunicationNo());
+            communicationDetailBinding.smsTxt.setText(childData.get(childPosition).getsMSCommunicationNo());
             communicationDetailBinding.cityTxt.setText(childData.get(childPosition).getCity());
             communicationDetailBinding.addressTxt.setText(childData.get(childPosition).getAddress());
             communicationDetailBinding.zipTxt.setText(childData.get(childPosition).getZipCode());
@@ -171,7 +161,7 @@ public class ExpandableListAdapterGRstudentdetail extends BaseExpandableListAdap
     }
 
     @Override
-    public ArrayList<FinalArrayStudentFullDetailModel> getChild(int groupPosition, int childPosititon) {
+    public ArrayList<FinalArrayStudentModel> getChild(int groupPosition, int childPosititon) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition));
     }
 

@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,8 +20,8 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterTimeTable;
 import anandniketan.com.shilajadmin.Model.Staff.Datum;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTimeTable;
-import anandniketan.com.shilajadmin.Model.Staff.TimeTableModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.Utils;
@@ -39,7 +38,7 @@ public class TimeTableFragment extends Fragment {
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
     private int lastExpandedPosition = -1;
-    private List<FinalArrayTimeTable> finalArrayTimeTableList;
+    private List<FinalArrayStaffModel> finalArrayTimeTableList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<Datum>> listDataChild;
     ExpandableListAdapterTimeTable expandableListAdapterTimeTable;
@@ -102,9 +101,9 @@ public class TimeTableFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTimeTable(getTimeTableDetail(), new retrofit.Callback<TimeTableModel>() {
+        ApiHandler.getApiService().getTimeTable(getTimeTableDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(TimeTableModel timeTableModel, Response response) {
+            public void success(StaffAttendaceModel timeTableModel, Response response) {
                 Utils.dismissDialog();
                 if (timeTableModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

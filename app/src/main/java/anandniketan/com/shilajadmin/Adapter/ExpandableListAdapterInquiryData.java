@@ -2,22 +2,18 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Student.InquiryStausDetail;
+import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentInquiryDataDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemHeaderBinding;
@@ -32,18 +28,18 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<InquiryStausDetail>> listChildData;
+    private HashMap<String, List<StandardWiseAttendanceModel>> listChildData;
     private HashMap<String, String> listfooterDate;
 
 
-    public ExpandableListAdapterInquiryData(Context context, List<String> listDataHeader, HashMap<String, List<InquiryStausDetail>> listDataChild) {
+    public ExpandableListAdapterInquiryData(Context context, List<String> listDataHeader, HashMap<String, List<StandardWiseAttendanceModel>> listDataChild) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this.listChildData = listDataChild;
     }
 
     @Override
-    public InquiryStausDetail getChild(int groupPosition, int childPosititon) {
+    public StandardWiseAttendanceModel getChild(int groupPosition, int childPosititon) {
         return this.listChildData.get(this._listDataHeader.get(groupPosition))
                 .get(childPosititon);
     }
@@ -62,7 +58,7 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
 //                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (childPosition > 0 && childPosition < getChildrenCount(groupPosition)) {
 
-            InquiryStausDetail currentchild = getChild(groupPosition, childPosition - 1);
+            StandardWiseAttendanceModel currentchild = getChild(groupPosition, childPosition - 1);
             rowBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                     R.layout.list_item_inquiry_data, parent, false);
             convertView = rowBinding.getRoot();

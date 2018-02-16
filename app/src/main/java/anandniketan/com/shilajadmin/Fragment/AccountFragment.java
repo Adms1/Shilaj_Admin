@@ -25,8 +25,6 @@ import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AccountSubMenuAdapter;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesCollectionModel;
 import anandniketan.com.shilajadmin.Model.Account.AccountFeesStatusModel;
-import anandniketan.com.shilajadmin.Model.Account.FinalArrayAccountFeesModel;
-import anandniketan.com.shilajadmin.Model.Student.StudentTransportDetailModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.Utility.ApiHandler;
 import anandniketan.com.shilajadmin.Utility.AppConfiguration;

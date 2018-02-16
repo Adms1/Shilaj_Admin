@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,14 +25,8 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.AssignSubjectDetailListAdapter;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayAssignSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayInsertAssignSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArraySubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetSubjectAssginModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetSubjectModel;
-import anandniketan.com.shilajadmin.Model.Staff.GetTeachersModel;
-import anandniketan.com.shilajadmin.Model.Staff.InsertAssignSubjectModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
+import anandniketan.com.shilajadmin.Model.Staff.StaffAttendaceModel;
 import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 import anandniketan.com.shilajadmin.Model.Transport.TermModel;
 import anandniketan.com.shilajadmin.R;
@@ -53,12 +46,12 @@ public class AssignSubjectFragment extends Fragment {
     private FragmentManager fragmentManager = null;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
-    List<FinalArrayTeachersModel> finalArrayTeachersModelList;
+    List<FinalArrayStaffModel> finalArrayTeachersModelList;
     HashMap<Integer, String> spinnerTeacherMap;
-    List<FinalArraySubjectModel> finalArraySubjectModelList;
+    List<FinalArrayStaffModel> finalArraySubjectModelList;
     HashMap<Integer, String> spinnerSubjectMap;
-    List<FinalArrayAssignSubjectModel> finalArrayAssignSubjectModelList;
-    List<FinalArrayInsertAssignSubjectModel> finalArrayInsertAssignSubjectModelList;
+    List<FinalArrayStaffModel> finalArrayAssignSubjectModelList;
+    List<FinalArrayStaffModel> finalArrayInsertAssignSubjectModelList;
     String FinalTermIdStr, FinalTeacherIdStr, FinalSubjectIdStr;
 
     AssignSubjectDetailListAdapter assignSubjectDetailListAdapter;
@@ -216,9 +209,9 @@ public class AssignSubjectFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<GetTeachersModel>() {
+        ApiHandler.getApiService().getTeachers(getTeacherDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetTeachersModel teachersModel, Response response) {
+            public void success(StaffAttendaceModel teachersModel, Response response) {
                 Utils.dismissDialog();
                 if (teachersModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -265,9 +258,9 @@ public class AssignSubjectFragment extends Fragment {
         }
 
 //        Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getSubject(getSubjectDetail(), new retrofit.Callback<GetSubjectModel>() {
+        ApiHandler.getApiService().getSubject(getSubjectDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetSubjectModel subjectModel, Response response) {
+            public void success(StaffAttendaceModel subjectModel, Response response) {
                 Utils.dismissDialog();
                 if (subjectModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -314,9 +307,9 @@ public class AssignSubjectFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().getSubjectAssgin(getAssignSubjectDetail(), new retrofit.Callback<GetSubjectAssginModel>() {
+        ApiHandler.getApiService().getSubjectAssgin(getAssignSubjectDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(GetSubjectAssginModel getSubjectAssginModel, Response response) {
+            public void success(StaffAttendaceModel getSubjectAssginModel, Response response) {
                 Utils.dismissDialog();
                 if (getSubjectAssginModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
@@ -377,9 +370,9 @@ public class AssignSubjectFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().InsertAssignSubject(getInsertAssignSubjectDetail(), new retrofit.Callback<InsertAssignSubjectModel>() {
+        ApiHandler.getApiService().InsertAssignSubject(getInsertAssignSubjectDetail(), new retrofit.Callback<StaffAttendaceModel>() {
             @Override
-            public void success(InsertAssignSubjectModel insertAssignSubjectModel, Response response) {
+            public void success(StaffAttendaceModel insertAssignSubjectModel, Response response) {
                 Utils.dismissDialog();
                 if (insertAssignSubjectModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));

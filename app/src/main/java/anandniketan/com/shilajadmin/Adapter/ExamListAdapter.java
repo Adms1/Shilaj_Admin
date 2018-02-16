@@ -7,11 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
-import anandniketan.com.shilajadmin.Model.Account.AccountFeesStandardCollectionModel;
-import anandniketan.com.shilajadmin.Model.Staff.FinalArrayExamsModel;
+import anandniketan.com.shilajadmin.Model.Staff.FinalArrayStaffModel;
 import anandniketan.com.shilajadmin.R;
 
 /**
@@ -20,9 +18,9 @@ import anandniketan.com.shilajadmin.R;
 
 public class ExamListAdapter extends RecyclerView.Adapter<ExamListAdapter.ViewHolder> {
     private Context context;
-    private List<FinalArrayExamsModel> examsModelList;
+    private List<FinalArrayStaffModel> examsModelList;
 
-    public ExamListAdapter(Context mContext, List<FinalArrayExamsModel> examsModelList) {
+    public ExamListAdapter(Context mContext, List<FinalArrayStaffModel> examsModelList) {
         this.context = mContext;
         this.examsModelList = examsModelList;
     }

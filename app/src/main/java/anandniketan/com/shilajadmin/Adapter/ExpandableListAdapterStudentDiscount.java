@@ -8,19 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import anandniketan.com.shilajadmin.Model.Account.FinalArrayDiscountModel;
-import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentTransportModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentDiscountDetailBinding;
-import anandniketan.com.shilajadmin.databinding.ListGroupStudentRouteTransportDetailBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemStudentDiscountDetailBinding;
-import anandniketan.com.shilajadmin.databinding.ListItemStudentRouteTransportDetailBinding;
 
 /**
  * Created by admsandroid on 11/24/2017.
