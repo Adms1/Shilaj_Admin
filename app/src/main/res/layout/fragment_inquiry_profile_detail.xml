@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -62,12 +63,12 @@
                 android:background="@drawable/menu" />
 
 
-
             <LinearLayout
                 android:id="@+id/recycler_linear"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_350sdp"
                 android:layout_below="@+id/header"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_margin="@dimen/_5sdp">
 
                 <ExpandableListView
@@ -84,6 +85,18 @@
                     android:groupIndicator="@null"
                     android:scrollbars="none" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/cancle_inquiry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/recycler_linear"
+                android:text="@string/cancel_inquriy"
+                android:background="@color/absent"
+                android:textColor="@color/app_bg"
+                android:layout_marginLeft="@dimen/_95sdp"
+                android:visibility="gone"/>
+
 
             <TextView
                 android:id="@+id/txtNoRecords"

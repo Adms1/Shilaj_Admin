@@ -21,6 +21,7 @@ import java.util.Map;
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterGRstudentdetail;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInquiryDetail;
+import anandniketan.com.shilajadmin.Model.HR.InsertMenuPermissionModel;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
 import anandniketan.com.shilajadmin.R;
@@ -67,6 +68,7 @@ public class InquiryProfileDetailFragment extends Fragment {
     }
 
     public void initViews() {
+
     }
 
     public void setListners() {
@@ -97,9 +99,15 @@ public class InquiryProfileDetailFragment extends Fragment {
             }
 
         });
+        fragmentInquiryProfileDetailBinding.cancleInquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                callRejectInquiryApi();
+            }
+        });
     }
 
-    // CALL Stuednt Full Detail API HERE
+    // CALL Student Full Detail API HERE
     private void callStaffApi() {
 
         if (!Utils.checkNetwork(mContext)) {
@@ -154,7 +162,7 @@ public class InquiryProfileDetailFragment extends Fragment {
                                 Log.d("header", "" + listDataHeader);
                                 ArrayList<FinalArrayStudentModel> row = new ArrayList<FinalArrayStudentModel>();
                                 for (int j = 0; j < studentFullDetailArray.size(); j++) {
-                                        row.add(studentFullDetailArray.get(j));
+                                    row.add(studentFullDetailArray.get(j));
                                 }
                                 Log.d("row", "" + row);
                                 listDataChild.put(listDataHeader.get(i), row);
@@ -162,6 +170,12 @@ public class InquiryProfileDetailFragment extends Fragment {
                             }
                             expandableListAdapterInquiryDetail = new ExpandableListAdapterInquiryDetail(getActivity(), listDataHeader, listDataChild);
                             fragmentInquiryProfileDetailBinding.lvExpinquriyprofileDetail.setAdapter(expandableListAdapterInquiryDetail);
+
+                            if (!studentFullDetailArray.get(0).getStatus().equalsIgnoreCase("-1")) {
+                                fragmentInquiryProfileDetailBinding.cancleInquiry.setVisibility(View.VISIBLE);
+                            } else {
+                                fragmentInquiryProfileDetailBinding.cancleInquiry.setVisibility(View.GONE);
+                            }
                             Utils.dismissDialog();
                         }
                     } else {
@@ -184,7 +198,61 @@ public class InquiryProfileDetailFragment extends Fragment {
 
     private Map<String, String> getGRRegisterDetail() {
         Map<String, String> map = new HashMap<>();
-        map.put("StudentID",FinalSeletedstudentId);
+        map.put("StudentID", FinalSeletedstudentId);
+
+        return map;
+    }
+
+    // CALL RejectInquiry API HERE
+    private void callRejectInquiryApi() {
+
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
+
+        Utils.showDialog(getActivity());
+        ApiHandler.getApiService().RejectInquiry(getGRRegisterDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
+
+            @Override
+            public void success(InsertMenuPermissionModel rejectInquiryModel, Response response) {
+//                Utils.dismissDialog();
+                if (rejectInquiryModel == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
+                    return;
+                }
+                if (rejectInquiryModel.getSuccess() == null) {
+                    Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
+                    return;
+                }
+                if (rejectInquiryModel.getSuccess().equalsIgnoreCase("False")) {
+                    Utils.ping(mContext, getString(R.string.false_msg));
+                    Utils.dismissDialog();
+                    return;
+                }
+                if (rejectInquiryModel.getSuccess().equalsIgnoreCase("True")) {
+                    Utils.ping(mContext, "Delete Sucessfully.");
+                    Utils.dismissDialog();
+                }
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+//                Utils.dismissDialog();
+                error.printStackTrace();
+                error.getMessage();
+                Utils.ping(mContext, getString(R.string.something_wrong));
+            }
+        });
+
+    }
+
+    private Map<String, String> getRejectInquiryDetail() {
+        Map<String, String> map = new HashMap<>();
+        map.put("StudentID", FinalSeletedstudentId);
 
         return map;
     }

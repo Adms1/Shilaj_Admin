@@ -533,7 +533,6 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     }
 
-
     public void ShowDetail() {
         ArrayList<String> selectedId = new ArrayList<String>();
         String selectedIdStr="";

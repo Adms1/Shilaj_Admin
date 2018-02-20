@@ -230,6 +230,10 @@ public interface WebServices {
     public void getInduiryDataByID(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
+    @POST("/RejectInquiry")
+    public void RejectInquiry(@FieldMap Map<String, String> map, Callback<InsertMenuPermissionModel> callback);
+
+    @FormUrlEncoded
     @POST("/GetAttendence_Admin")
     public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
