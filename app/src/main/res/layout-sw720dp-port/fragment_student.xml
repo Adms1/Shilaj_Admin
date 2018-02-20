@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <data>
+        <variable
+            name="studentObj"
+            type="anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -97,7 +102,7 @@
                             android:layout_height="@dimen/_27sdp"
                             android:background="@color/orange"
                             android:gravity="center_vertical|center"
-                            android:text="0"
+                            android:text="@{studentObj.totalStudent}"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />
@@ -120,7 +125,7 @@
                             android:layout_marginLeft="@dimen/_9sdp"
                             android:background="@color/present"
                             android:gravity="center_vertical|center"
-                            android:text="0"
+                            android:text="@{studentObj.studentPresent}"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />
@@ -154,7 +159,7 @@
                             android:layout_height="@dimen/_27sdp"
                             android:background="@color/absent"
                             android:gravity="center_vertical|center"
-                            android:text="0"
+                            android:text="@{studentObj.studentAbsent}"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />
@@ -177,7 +182,7 @@
                             android:layout_marginLeft="@dimen/_9sdp"
                             android:background="@color/leave"
                             android:gravity="center_vertical|center"
-                            android:text="0"
+                            android:text="@{studentObj.studentLeave}"
                             android:textColor="@color/app_bg"
                             android:textSize="@dimen/_9sdp"
                             android:textStyle="bold" />

@@ -135,7 +135,7 @@ public class StudentFragment extends Fragment {
                     fragmentManager.beginTransaction()
                             .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
                             .replace(R.id.frame_container, fragment).commit();
-                }else if (position == 5) {
+                } else if (position == 5) {
                     fragment = new LeftDetailFragment();
                     fragmentManager = getFragmentManager();
                     fragmentManager.beginTransaction()
@@ -187,12 +187,12 @@ public class StudentFragment extends Fragment {
                 if (studentUser.getSuccess().equalsIgnoreCase("True")) {
                     List<FinalArrayStudentModel> studentArray = studentUser.getFinalArray();
                     for (int i = 0; i < studentArray.size(); i++) {
-                        FinalArrayStudentModel studentObj = studentArray.get(i);
+//                        FinalArrayStudentModel studentObj = studentArray.get(i);
+                        FinalArrayStudentModel studentObj = new FinalArrayStudentModel();
+                        studentObj = studentArray.get(i);
+                        Log.d("studentObj", "" + studentObj.getTotalStudent());
                         if (studentObj != null) {
-                            fragmentStudentBinding.totalStudentCount.setText(studentObj.getTotalStudent());
-                            fragmentStudentBinding.totalPresentstudentCount.setText(studentObj.getStudentPresent());
-                            fragmentStudentBinding.totalAbsentstudentCount.setText(studentObj.getStudentAbsent());
-                            fragmentStudentBinding.totalLeavestudentCount.setText(studentObj.getStudentLeave());
+                            fragmentStudentBinding.setStudentObj(studentObj);
                         }
                     }
 

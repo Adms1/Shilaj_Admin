@@ -212,7 +212,7 @@ public class InquiryProfileDetailFragment extends Fragment {
         }
 
         Utils.showDialog(getActivity());
-        ApiHandler.getApiService().RejectInquiry(getGRRegisterDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
+        ApiHandler.getApiService().RejectInquiry(getRejectInquiryDetail(), new retrofit.Callback<InsertMenuPermissionModel>() {
 
             @Override
             public void success(InsertMenuPermissionModel rejectInquiryModel, Response response) {
@@ -241,7 +241,7 @@ public class InquiryProfileDetailFragment extends Fragment {
 
             @Override
             public void failure(RetrofitError error) {
-//                Utils.dismissDialog();
+                Utils.dismissDialog();
                 error.printStackTrace();
                 error.getMessage();
                 Utils.ping(mContext, getString(R.string.something_wrong));
@@ -253,7 +253,6 @@ public class InquiryProfileDetailFragment extends Fragment {
     private Map<String, String> getRejectInquiryDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("StudentID", FinalSeletedstudentId);
-
         return map;
     }
 }
