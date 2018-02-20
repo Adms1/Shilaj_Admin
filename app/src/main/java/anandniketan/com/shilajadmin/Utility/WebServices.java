@@ -226,6 +226,10 @@ public interface WebServices {
     public void getInquiryData(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 
     @FormUrlEncoded
+    @POST("/GetInduiryDataByID")
+    public void getInduiryDataByID(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
+
+    @FormUrlEncoded
     @POST("/GetAttendence_Admin")
     public void getAttendence_Admin(@FieldMap Map<String, String> map, Callback<StudentAttendanceModel> callback);
 

@@ -45,11 +45,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/mother_lastname_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/motherlastname_txt_View"
@@ -83,11 +85,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/motherPhone_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/mphone_txt_View"
@@ -310,11 +314,13 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/mother_designation_linear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/mdesignation_txt_View"

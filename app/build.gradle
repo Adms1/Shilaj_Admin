@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-
+//    flavorDimensions "default"
     defaultConfig {
         applicationId "anandniketan.com.shilajadmin"
         minSdkVersion 15

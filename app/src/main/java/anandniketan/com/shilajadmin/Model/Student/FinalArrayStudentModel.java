@@ -107,21 +107,12 @@ public class FinalArrayStudentModel {
     @SerializedName("StudentImage")
     @Expose
     private String studentImage;
-    @SerializedName("First Name")
-    @Expose
-    private String firstName;
-    @SerializedName("Last Name")
-    @Expose
-    private String lastName;
     @SerializedName("Standard")
     @Expose
     private String standard;
     @SerializedName("Class")
     @Expose
     private String classes;
-    @SerializedName("Name")
-    @Expose
-    private String name;
     @SerializedName("Date Of Birth")
     @Expose
     private String dateOfBirth;
@@ -264,9 +255,6 @@ public class FinalArrayStudentModel {
     @SerializedName("City")
     @Expose
     private String city;
-    @SerializedName("Address")
-    @Expose
-    private String address;
     @SerializedName("Student Type")
     @Expose
     private String studentType;
@@ -276,9 +264,6 @@ public class FinalArrayStudentModel {
     @SerializedName("Status")
     @Expose
     private String Status;
-    @SerializedName("Nationality")
-    @Expose
-    private String nationality;
     @SerializedName("TermID")
     @Expose
     private String termId;
@@ -315,7 +300,57 @@ public class FinalArrayStudentModel {
     @SerializedName("Pk_CategoryId")
     @Expose
     private Integer pkCategoryId;
-
+    @SerializedName("Name")
+    @Expose
+    private String name;
+    @SerializedName("First Name")
+    @Expose
+    private String firstName;
+    @SerializedName("Last Name")
+    @Expose
+    private String lastName;
+    @SerializedName("Middle Name")
+    @Expose
+    private String middleName;
+    @SerializedName("State")
+    @Expose
+    private String state;
+    @SerializedName("Mother Tongue")
+    @Expose
+    private String motherTongue;
+    @SerializedName("Transport Required")
+    @Expose
+    private String transportRequired;
+    @SerializedName("Board ")
+    @Expose
+    private String board;
+    @SerializedName("Sibling in Anand Niketan School")
+    @Expose
+    private String siblingInAnandNiketanSchool;
+    @SerializedName("Name of Sibling 1")
+    @Expose
+    private String nameOfSibling1;
+    @SerializedName("Sibling 1 Grade")
+    @Expose
+    private String sibling1Grade;
+    @SerializedName("Name of Sibling 2")
+    @Expose
+    private String nameOfSibling2;
+    @SerializedName("Sibling 2 Grade")
+    @Expose
+    private String sibling2Grade;
+    @SerializedName("Address")
+    @Expose
+    private String address;
+    @SerializedName("Distance from School in Kms ")
+    @Expose
+    private String distanceFromSchoolInKms;
+    @SerializedName("Nationality")
+    @Expose
+    private String nationality;
+    @SerializedName("Seeking Admission for Grade")
+    @Expose
+    private String seekingAdmissionForGrade;
     public String getTotalStudent() {
         return totalStudent;
     }
@@ -1111,5 +1146,101 @@ public class FinalArrayStudentModel {
 
     public void setStudentDetail(List<StandardWiseAttendanceModel> studentDetail) {
         this.studentDetail = studentDetail;
+    }
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getMotherTongue() {
+        return motherTongue;
+    }
+
+    public void setMotherTongue(String motherTongue) {
+        this.motherTongue = motherTongue;
+    }
+
+    public String getTransportRequired() {
+        return transportRequired;
+    }
+
+    public void setTransportRequired(String transportRequired) {
+        this.transportRequired = transportRequired;
+    }
+
+    public String getBoard() {
+        return board;
+    }
+
+    public void setBoard(String board) {
+        this.board = board;
+    }
+
+    public String getSiblingInAnandNiketanSchool() {
+        return siblingInAnandNiketanSchool;
+    }
+
+    public void setSiblingInAnandNiketanSchool(String siblingInAnandNiketanSchool) {
+        this.siblingInAnandNiketanSchool = siblingInAnandNiketanSchool;
+    }
+
+    public String getNameOfSibling1() {
+        return nameOfSibling1;
+    }
+
+    public void setNameOfSibling1(String nameOfSibling1) {
+        this.nameOfSibling1 = nameOfSibling1;
+    }
+
+    public String getSibling1Grade() {
+        return sibling1Grade;
+    }
+
+    public void setSibling1Grade(String sibling1Grade) {
+        this.sibling1Grade = sibling1Grade;
+    }
+
+    public String getNameOfSibling2() {
+        return nameOfSibling2;
+    }
+
+    public void setNameOfSibling2(String nameOfSibling2) {
+        this.nameOfSibling2 = nameOfSibling2;
+    }
+
+    public String getSibling2Grade() {
+        return sibling2Grade;
+    }
+
+    public void setSibling2Grade(String sibling2Grade) {
+        this.sibling2Grade = sibling2Grade;
+    }
+
+    public String getDistanceFromSchoolInKms() {
+        return distanceFromSchoolInKms;
+    }
+
+    public void setDistanceFromSchoolInKms(String distanceFromSchoolInKms) {
+        this.distanceFromSchoolInKms = distanceFromSchoolInKms;
+    }
+
+    public String getSeekingAdmissionForGrade() {
+        return seekingAdmissionForGrade;
+    }
+
+    public void setSeekingAdmissionForGrade(String seekingAdmissionForGrade) {
+        this.seekingAdmissionForGrade = seekingAdmissionForGrade;
     }
 }

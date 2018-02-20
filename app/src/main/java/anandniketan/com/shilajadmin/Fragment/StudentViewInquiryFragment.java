@@ -29,6 +29,7 @@ import java.util.Map;
 
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ExpandableListAdapterInquiryData;
+import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Student.FinalArrayStudentModel;
 import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
 import anandniketan.com.shilajadmin.Model.Student.StudentAttendanceModel;
@@ -63,7 +64,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
     String FinalStartDateStr, FinalEndDateStr, FinalStatusStr, FinalStatusIdStr, FinalTermIdStr, FinalTermStr, FinalOnlineStatusStr = "All";
     ExpandableListAdapterInquiryData expandableListAdapterInquiryData;
     List<String> listDataHeader;
-    HashMap<String,List<StandardWiseAttendanceModel>> listDataChild;
+    HashMap<String, List<StandardWiseAttendanceModel>> listDataChild;
 
     public StudentViewInquiryFragment() {
     }
@@ -345,10 +346,15 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
                         fragmentStudentViewInquiryBinding.lvExpHeader.setVisibility(View.VISIBLE);
                         fragmentStudentViewInquiryBinding.listHeader.setVisibility(View.VISIBLE);
                         fillExpLV();
-                        expandableListAdapterInquiryData = new ExpandableListAdapterInquiryData(getActivity(), listDataHeader, listDataChild);
+                        expandableListAdapterInquiryData = new ExpandableListAdapterInquiryData(getActivity(), listDataHeader, listDataChild, new onViewClick() {
+                            @Override
+                            public void getViewClick() {
+                                ShowDetail();
+                            }
+                        });
                         fragmentStudentViewInquiryBinding.lvExpviewinquiry.setAdapter(expandableListAdapterInquiryData);
                         Utils.dismissDialog();
-                    }else{
+                    } else {
                         fragmentStudentViewInquiryBinding.txtNoRecords.setVisibility(View.VISIBLE);
                         fragmentStudentViewInquiryBinding.lvExpHeader.setVisibility(View.GONE);
                         fragmentStudentViewInquiryBinding.listHeader.setVisibility(View.GONE);
@@ -511,7 +517,8 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
             listDataHeader.add(finalArrayinquiryCountList.get(i).getName() + "|" +
                     finalArrayinquiryCountList.get(i).getGrade() + "|" +
                     finalArrayinquiryCountList.get(i).getGender() + "|" +
-                    finalArrayinquiryCountList.get(i).getCurrentStatus());
+                    finalArrayinquiryCountList.get(i).getCurrentStatus()+"|"+
+                    finalArrayinquiryCountList.get(i).getStudentID());
             Log.d("header", "" + listDataHeader);
             ArrayList<StandardWiseAttendanceModel> row = new ArrayList<StandardWiseAttendanceModel>();
 
@@ -524,6 +531,28 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
             Log.d("child", "" + listDataChild);
         }
 
+    }
+
+
+    public void ShowDetail() {
+        ArrayList<String> selectedId = new ArrayList<String>();
+        String selectedIdStr="";
+        selectedId = expandableListAdapterInquiryData.getData();
+        Log.d("selectedId", "" + selectedId);
+        for (int i = 0; i < selectedId.size(); i++) {
+            selectedIdStr = selectedId.get(i);
+            Log.d("selectedIdStr",selectedIdStr);
+        }
+        if (!selectedIdStr.equalsIgnoreCase("")) {
+            fragment = new InquiryProfileDetailFragment();
+            Bundle args=new Bundle();
+            args.putString("StuId",selectedIdStr);
+            fragment.setArguments(args);
+            fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right)
+                    .replace(R.id.frame_container, fragment).commit();
+        }
     }
 
 }

@@ -2,6 +2,10 @@ package anandniketan.com.shilajadmin.Adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +13,17 @@ import android.widget.BaseExpandableListAdapter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import anandniketan.com.shilajadmin.Fragment.StudentFragment;
+import anandniketan.com.shilajadmin.Interface.onViewClick;
 import anandniketan.com.shilajadmin.Model.Student.StandardWiseAttendanceModel;
 import anandniketan.com.shilajadmin.R;
 import anandniketan.com.shilajadmin.databinding.ListGroupStudentInquiryDataDetailBinding;
+import anandniketan.com.shilajadmin.databinding.ListItemFooterBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemHeaderBinding;
 import anandniketan.com.shilajadmin.databinding.ListItemInquiryDataBinding;
 
@@ -29,13 +37,15 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
     private HashMap<String, List<StandardWiseAttendanceModel>> listChildData;
-    private HashMap<String, String> listfooterDate;
+    onViewClick onViewClick;
+    private ArrayList<String> dataCheck = new ArrayList<String>();
+    private String id;
 
-
-    public ExpandableListAdapterInquiryData(Context context, List<String> listDataHeader, HashMap<String, List<StandardWiseAttendanceModel>> listDataChild) {
+    public ExpandableListAdapterInquiryData(Context context, List<String> listDataHeader, HashMap<String, List<StandardWiseAttendanceModel>> listDataChild, onViewClick onViewClick) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this.listChildData = listDataChild;
+        this.onViewClick = onViewClick;
     }
 
     @Override
@@ -54,9 +64,10 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
                              boolean isLastChild, View convertView, ViewGroup parent) {
         ListItemHeaderBinding headerBinding;
         ListItemInquiryDataBinding rowBinding;
+        ListItemFooterBinding footerBinding;
 //        LayoutInflater infalInflater = (LayoutInflater) this._context
 //                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        if (childPosition > 0 && childPosition < getChildrenCount(groupPosition)) {
+        if (childPosition > 0 && childPosition < getChildrenCount(groupPosition) - 1) {
 
             StandardWiseAttendanceModel currentchild = getChild(groupPosition, childPosition - 1);
             rowBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
@@ -77,8 +88,18 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
             String formatedate = output.format(d);
             rowBinding.statusTxt.setText(currentchild.getStatus());
             rowBinding.dateTxt.setText(formatedate);
+        } else if (childPosition == getChildrenCount(groupPosition) - 1) {
+            footerBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.list_item_footer, parent, false);
+            convertView = footerBinding.getRoot();
 
-        } else if (childPosition == 0) {
+            footerBinding.viewprofileTxt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dataCheck.add(id);
+                    onViewClick.getViewClick();
+                }
+            });
+        } else {//if (childPosition == 0)
             headerBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
                     R.layout.list_item_header, parent, false);
             convertView = headerBinding.getRoot();
@@ -88,7 +109,7 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listChildData.get(this._listDataHeader.get(groupPosition)).size() + 1;
+        return this.listChildData.get(this._listDataHeader.get(groupPosition)).size() + 2;
     }
 
     @Override
@@ -116,6 +137,7 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
         String headerTitle2 = headerTitle[1];
         String headerTitle3 = headerTitle[2];
         String headerTitle4 = headerTitle[3];
+        id = headerTitle[4];
 
         if (convertView == null) {
 
@@ -149,6 +171,10 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public ArrayList<String> getData() {
+        return dataCheck;
     }
 }
 
