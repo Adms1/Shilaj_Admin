@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.app.NotificationCompat;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
@@ -117,7 +118,8 @@ public class ExpandableListAdapterLessonPlan extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
         String headerTitle = (String) getGroup(groupPosition);
         final String[] spiltValue = headerTitle.split("\\|");
         if (convertView == null) {

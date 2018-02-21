@@ -296,12 +296,12 @@ public class GRRegisterFragment extends Fragment {
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
-                    if (studentFullDetailModel.getFinalArray().size() == 0) {
+//                    if (studentFullDetailModel.getFinalArray().size() == 0) {
                         fragmentGrregisterBinding.studentGrregisterList.setVisibility(View.GONE);
                         fragmentGrregisterBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentGrregisterBinding.listHeader.setVisibility(View.GONE);
                         fragmentGrregisterBinding.txtNoRecords.setVisibility(View.VISIBLE);
-                    }
+//                    }
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {

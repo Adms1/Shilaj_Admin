@@ -1,34 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/linear_border"
-            android:stretchColumns="*">
+            android:orientation="horizontal"
+            android:background="@drawable/list_line1"
+            android:weightSum="1">
 
-            <TableRow
-                android:id="@+id/tableRow_header"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/viewprofile_txt"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:weightSum="1">
+                android:layout_margin="0.2dp"
+                android:gravity="center|center_horizontal"
+                android:layout_weight="1"
+                android:text="@string/viewprofile"
+                android:textColor="@color/scheduleheadertextcolor"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
+                android:padding="@dimen/_2sdp"/>
 
-                <TextView
-                    android:id="@+id/viewprofile_txt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_margin="0.2dp"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:text="@string/viewprofile"
-                    android:textColor="@color/scheduleheadertextcolor"
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="normal" />
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
+        </LinearLayout>
+        <!--<TableLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/linear_border"-->
+            <!--android:stretchColumns="*">-->
+
+            <!--<TableRow-->
+                <!--android:id="@+id/tableRow_header"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:weightSum="1">-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/viewprofile_txt"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="@dimen/_25sdp"-->
+                    <!--android:layout_margin="0.2dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:text="@string/viewprofile"-->
+                    <!--android:textColor="@color/scheduleheadertextcolor"-->
+                    <!--android:textSize="@dimen/_14sdp"-->
+                    <!--android:textStyle="normal" />-->
+            <!--</TableRow>-->
+        <!--</TableLayout>-->
+    </RelativeLayout>
 </layout>

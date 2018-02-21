@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ import anandniketan.com.shilajadmin.R;
  */
 
 public class Utils {
-    Context context;
+    static Context context;
     public static Dialog dialog;
     public static String parentFolderName = "Skool 360 Teacher";
     public static String childAnnouncementFolderName = "Pdf";
@@ -55,6 +56,7 @@ public class Utils {
         return wifiAvailable || mobileAvailable;
     }
     public static void showCustomDialog(String title, String str, Activity activity) {
+        context=activity;
         // custom dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
 // ...Irrelevant code for customizing the buttons and title
@@ -77,7 +79,11 @@ public class Utils {
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialog.dismiss();
+
+                context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
+
+
+//                alertDialog.dismiss();
             }
         });
 

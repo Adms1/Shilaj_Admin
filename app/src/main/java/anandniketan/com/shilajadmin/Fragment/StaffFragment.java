@@ -164,12 +164,13 @@ public class StaffFragment extends Fragment {
                 if (staffUser.getSuccess().equalsIgnoreCase("True")) {
                     List<FinalArrayStaffModel> staffArray = staffUser.getFinalArray();
                     for (int i = 0; i < staffArray.size(); i++) {
-                        FinalArrayStaffModel studentObj = staffArray.get(i);
-                        if (studentObj != null) {
-                            fragmentStaffBinding.totalAbsentstaffCount.setText(studentObj.getStaffAbsent());
-                            fragmentStaffBinding.totalLeavestaffCount.setText(studentObj.getStaffLeave());
-                            fragmentStaffBinding.totalPresentstaffCount.setText(studentObj.getStaffPresent());
-                            fragmentStaffBinding.totalStaffCount.setText(studentObj.getTotalStaff());
+                        FinalArrayStaffModel staffObj = staffArray.get(i);
+                        Log.d("staffObj",""+staffObj.getTotalStaff());
+                        if (staffObj != null) {
+                            fragmentStaffBinding.totalAbsentstaffCount.setText(staffObj.getStaffAbsent());
+                            fragmentStaffBinding.totalLeavestaffCount.setText(staffObj.getStaffLeave());
+                            fragmentStaffBinding.totalPresentstaffCount.setText(staffObj.getStaffPresent());
+                            fragmentStaffBinding.totalStaffCount.setText(staffObj.getTotalStaff());
                         }
                     }
                 }

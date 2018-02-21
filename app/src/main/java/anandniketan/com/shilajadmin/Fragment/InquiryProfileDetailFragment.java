@@ -147,10 +147,10 @@ public class InquiryProfileDetailFragment extends Fragment {
                         if (studentFullDetailArray != null) {
                             ArrayList<String> arraystu = new ArrayList<String>();
                             arraystu.add("Student Details");
-                            arraystu.add("Transport Details");
+//                          arraystu.add("Transport Details");
                             arraystu.add("Father Details");
                             arraystu.add("Mother Details");
-                            arraystu.add("Communication Details");
+//                            arraystu.add("Communication Details");
                             Log.d("array", "" + arraystu);
 
                             listDataHeader = new ArrayList<>();

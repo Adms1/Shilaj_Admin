@@ -81,22 +81,25 @@ public class ExpandableListAdapterInquiryDetail extends BaseExpandableListAdapte
             binding.gradeOfSibling1Txt.setText(childData.get(childPosition).getSibling1Grade());
             binding.nameOfSibling2Txt.setText(childData.get(childPosition).getNameOfSibling2());
             binding.gradeOfSibling2Txt.setText(childData.get(childPosition).getSibling2Grade());
-
-        } else if (headerTitle.equalsIgnoreCase("Transport Details")) {
-            StudetnListItemTransportDetailBinding transportDetailBinding;
-            transportDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.studetn_list_item_transport_detail, parent, false);
-            convertView = transportDetailBinding.getRoot();
-            transportDetailBinding.linerKms.setVisibility(View.VISIBLE);
-            transportDetailBinding.kmsView.setText("Distance from School in Kms");
-            transportDetailBinding.kmsTxt.setText(childData.get(childPosition).getDistanceFromSchoolInKms());
-            transportDetailBinding.pickupLinear.setVisibility(View.GONE);
-            transportDetailBinding.pickupPointLiner.setVisibility(View.GONE);
-            transportDetailBinding.pickuptimeLinear.setVisibility(View.GONE);
-            transportDetailBinding.dropbusLinear.setVisibility(View.GONE);
-            transportDetailBinding.droppointLinear.setVisibility(View.GONE);
-            transportDetailBinding.droppointtimeLinear.setVisibility(View.GONE);
-
-        } else if (headerTitle.equalsIgnoreCase("Father Details")) {
+            binding.addressTxt.setText(childData.get(childPosition).getAddress());
+            binding.kmsTxt.setText(childData.get(childPosition).getDistanceFromSchoolInKms());
+        }
+//        else if (headerTitle.equalsIgnoreCase("Transport Details")) {
+//            StudetnListItemTransportDetailBinding transportDetailBinding;
+//            transportDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.studetn_list_item_transport_detail, parent, false);
+//            convertView = transportDetailBinding.getRoot();
+//            transportDetailBinding.linerKms.setVisibility(View.VISIBLE);
+//            transportDetailBinding.kmsView.setText("Distance from School in Kms");
+//            transportDetailBinding.kmsTxt.setText(childData.get(childPosition).getDistanceFromSchoolInKms());
+//            transportDetailBinding.pickupLinear.setVisibility(View.GONE);
+//            transportDetailBinding.pickupPointLiner.setVisibility(View.GONE);
+//            transportDetailBinding.pickuptimeLinear.setVisibility(View.GONE);
+//            transportDetailBinding.dropbusLinear.setVisibility(View.GONE);
+//            transportDetailBinding.droppointLinear.setVisibility(View.GONE);
+//            transportDetailBinding.droppointtimeLinear.setVisibility(View.GONE);
+//
+//        }
+        else if (headerTitle.equalsIgnoreCase("Father Details")) {
             StudentListItemFatherDetailBinding fatherDetailBinding;
             fatherDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_father_detail, parent, false);
             convertView = fatherDetailBinding.getRoot();
@@ -127,17 +130,18 @@ public class ExpandableListAdapterInquiryDetail extends BaseExpandableListAdapte
             motherDetailBinding.morganisationTxt.setText(childData.get(childPosition).getMotherOrganisation());
 
 
-        } else if (headerTitle.equalsIgnoreCase("Communication Details")) {
-            StudentListItemCommunicationDetailBinding communicationDetailBinding;
-            communicationDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_communication_detail, parent, false);
-            convertView = communicationDetailBinding.getRoot();
-
-            communicationDetailBinding.smsLinear.setVisibility(View.GONE);
-            communicationDetailBinding.cityLinear.setVisibility(View.GONE);
-            communicationDetailBinding.zipLinear.setVisibility(View.GONE);
-            communicationDetailBinding.addressTxt.setText(childData.get(childPosition).getAddress());
-
         }
+//        else if (headerTitle.equalsIgnoreCase("Communication Details")) {
+//            StudentListItemCommunicationDetailBinding communicationDetailBinding;
+//            communicationDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_communication_detail, parent, false);
+//            convertView = communicationDetailBinding.getRoot();
+//
+//            communicationDetailBinding.smsLinear.setVisibility(View.GONE);
+//            communicationDetailBinding.cityLinear.setVisibility(View.GONE);
+//            communicationDetailBinding.zipLinear.setVisibility(View.GONE);
+//            communicationDetailBinding.addressTxt.setText(childData.get(childPosition).getAddress());
+//
+//        }
 
 
         return convertView;
@@ -184,15 +188,18 @@ public class ExpandableListAdapterInquiryDetail extends BaseExpandableListAdapte
         LinearLayout linear_group = (LinearLayout) convertView.findViewById(R.id.linear_group);
         if (headerTitle.equalsIgnoreCase("Student Details")) {
             linear_group.setBackgroundColor(Color.parseColor("#3597D3"));
-        } else if (headerTitle.equalsIgnoreCase("Transport Details")) {
-            linear_group.setBackgroundColor(Color.parseColor("#FF6BAE18"));
-        } else if (headerTitle.equalsIgnoreCase("Father Details")) {
+        }
+//        else if (headerTitle.equalsIgnoreCase("Transport Details")) {
+//            linear_group.setBackgroundColor(Color.parseColor("#FF6BAE18"));
+//        }
+        else if (headerTitle.equalsIgnoreCase("Father Details")) {
             linear_group.setBackgroundColor(Color.parseColor("#FFE6B12E"));
         } else if (headerTitle.equalsIgnoreCase("Mother Details")) {
             linear_group.setBackgroundColor(Color.parseColor("#FF48ADDE"));
-        } else if (headerTitle.equalsIgnoreCase("Communication Details")) {
-            linear_group.setBackgroundColor(Color.parseColor("#FF607D8B"));
         }
+//        else if (headerTitle.equalsIgnoreCase("Communication Details")) {
+//            linear_group.setBackgroundColor(Color.parseColor("#FF607D8B"));
+//        }
         return convertView;
     }
 

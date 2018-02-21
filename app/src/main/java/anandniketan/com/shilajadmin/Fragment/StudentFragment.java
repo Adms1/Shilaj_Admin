@@ -166,7 +166,6 @@ public class StudentFragment extends Fragment {
             Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
             return;
         }
-
         Utils.showDialog(getActivity());
         ApiHandler.getApiService().getStudentAttendace(getStudentDetail(), new retrofit.Callback<StudentAttendanceModel>() {
             @Override
@@ -187,18 +186,13 @@ public class StudentFragment extends Fragment {
                 if (studentUser.getSuccess().equalsIgnoreCase("True")) {
                     List<FinalArrayStudentModel> studentArray = studentUser.getFinalArray();
                     for (int i = 0; i < studentArray.size(); i++) {
-//                        FinalArrayStudentModel studentObj = studentArray.get(i);
-                        FinalArrayStudentModel studentObj = new FinalArrayStudentModel();
-                        studentObj = studentArray.get(i);
-                        Log.d("studentObj", "" + studentObj.getTotalStudent());
+                        FinalArrayStudentModel studentObj = studentArray.get(i);
                         if (studentObj != null) {
                             fragmentStudentBinding.setStudentObj(studentObj);
                         }
                     }
-
                 }
             }
-
             @Override
             public void failure(RetrofitError error) {
                 Utils.dismissDialog();
@@ -207,15 +201,11 @@ public class StudentFragment extends Fragment {
                 Utils.ping(mContext, getString(R.string.something_wrong));
             }
         });
-
     }
-
     private Map<String, String> getStudentDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Date", Datestr);
         return map;
     }
-
-
 }
 

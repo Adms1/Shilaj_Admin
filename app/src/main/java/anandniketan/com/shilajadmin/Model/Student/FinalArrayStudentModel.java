@@ -321,7 +321,7 @@ public class FinalArrayStudentModel {
     @SerializedName("Transport Required")
     @Expose
     private String transportRequired;
-    @SerializedName("Board ")
+    @SerializedName("Board")
     @Expose
     private String board;
     @SerializedName("Sibling in Anand Niketan School")

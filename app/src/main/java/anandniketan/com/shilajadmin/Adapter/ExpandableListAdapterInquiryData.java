@@ -65,8 +65,6 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
         ListItemHeaderBinding headerBinding;
         ListItemInquiryDataBinding rowBinding;
         ListItemFooterBinding footerBinding;
-//        LayoutInflater infalInflater = (LayoutInflater) this._context
-//                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (childPosition > 0 && childPosition < getChildrenCount(groupPosition) - 1) {
 
             StandardWiseAttendanceModel currentchild = getChild(groupPosition, childPosition - 1);
@@ -74,9 +72,6 @@ public class ExpandableListAdapterInquiryData extends BaseExpandableListAdapter 
                     R.layout.list_item_inquiry_data, parent, false);
             convertView = rowBinding.getRoot();
 
-//            TextView status_txt, date_txt;
-//            status_txt = (TextView) convertView.findViewById(R.id.status_txt);
-//            date_txt = (TextView) convertView.findViewById(R.id.date_txt);
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
             SimpleDateFormat output = new SimpleDateFormat("dd/MM/yyyy");
             Date d = null;
