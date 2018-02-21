@@ -81,9 +81,7 @@ public class Utils {
             public void onClick(View v) {
 
                 context.startActivity(new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS));
-
-
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
 

@@ -374,10 +374,10 @@
                     android:layout_marginTop="@dimen/_3sdp"
                     android:text="@string/back"
                     android:textColor="@color/linear_color"
-                    android:textSize="@dimen/_20sdp"
+                    android:textSize="@dimen/_12sdp"
                     android:layout_gravity="top"
                     android:gravity="top"
-                    android:layout_marginLeft="@dimen/_260sdp"
+                    android:layout_marginLeft="@dimen/_230sdp"
                     android:visibility="gone"/>
 
             </LinearLayout>

@@ -116,6 +116,7 @@
     <string name="message">Message</string>
     <string name="smsnumber">SMS Number</string>
     <string name="singlesms">SINGLE SMS</string>
+    <string name="quickemail">QUICK EMAIL</string>
     <string name="studenttransport">STUDENT TRANSPORT</string>
     <string name="transportcharge">TRANSPORT CHARGES</string>
     <string name="assignsubject">ASSIGN SUBJECT</string>
@@ -235,7 +236,7 @@
     <string name="pdfheader">PDF</string>
     <string name="wordheader">WORD</string>
     <string name="arrow">\u2192</string>
-    <string name="back">\u226A</string>
+    <string name="back">\u226A Back</string>
     <string name="viewprofile">View Profile \u226B</string>
     <string name="inquriyprofile">Inquriy Profile</string>
     <string name="mother_tongue">Mother Tongue</string>
@@ -248,6 +249,8 @@
     <string name="Sibling2_grade">Sibling 2 Grade</string>
     <string name="cancel_inquriy">CANCEL INQUIRY</string>
     <string name="board">Board</string>
+    <string name="to">To</string>
+    <string name="to_hint">Write Name Send Email</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

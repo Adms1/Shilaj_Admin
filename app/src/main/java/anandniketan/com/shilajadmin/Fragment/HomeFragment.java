@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import anandniketan.com.shilajadmin.Activity.DashboardActivity;
 import anandniketan.com.shilajadmin.Adapter.ImageAdapter;
 import anandniketan.com.shilajadmin.R;
+import anandniketan.com.shilajadmin.Utility.Utils;
 import anandniketan.com.shilajadmin.databinding.FragmentHomeBinding;
 
 
@@ -42,6 +43,10 @@ public class HomeFragment extends Fragment {
     }
 
     public void initViews() {
+        if (!Utils.checkNetwork(mContext)) {
+            Utils.showCustomDialog(getResources().getString(R.string.internet_error), getResources().getString(R.string.internet_connection_error), getActivity());
+            return;
+        }
         fragmentHomeBinding.gridView.setAdapter(new ImageAdapter(mContext));
     }
 
