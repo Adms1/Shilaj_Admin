@@ -165,7 +165,7 @@ public class StaffFragment extends Fragment {
                     List<FinalArrayStaffModel> staffArray = staffUser.getFinalArray();
                     for (int i = 0; i < staffArray.size(); i++) {
                         FinalArrayStaffModel staffObj = staffArray.get(i);
-                        Log.d("staffObj",""+staffObj.getTotalStaff());
+
                         if (staffObj != null) {
                             fragmentStaffBinding.totalAbsentstaffCount.setText(staffObj.getStaffAbsent());
                             fragmentStaffBinding.totalLeavestaffCount.setText(staffObj.getStaffLeave());

@@ -115,34 +115,34 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
             binding.grnoTxt.setText(childData.get(childPosition).getgRNO());
 
 
-            if(AppConfiguration.StudentStatus.equalsIgnoreCase("Current Student")){
+            if (AppConfiguration.StudentStatus.equalsIgnoreCase("Current Student")) {
                 binding.statusTxt.setTextColor(Color.parseColor("#FF6BAE18"));
                 binding.statusTxt.setText("Active");
 
-            }else{
+            } else {
                 binding.statusTxt.setTextColor(Color.parseColor("#ff0000"));
                 binding.statusTxt.setText("InActive");
             }
             SimpleDateFormat inFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-            Date date = null,date1=null;
+            Date date = null, date1 = null;
             try {
-                if(!childData.get(childPosition).getDateOfAdmission().equalsIgnoreCase("")) {
+                if (!childData.get(childPosition).getDateOfAdmission().equalsIgnoreCase("")) {
                     date = inFormat.parse(childData.get(childPosition).getDateOfAdmission());
                     SimpleDateFormat outFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String formatted = outFormat.format(date);
                     System.out.println(formatted);
                     binding.doaTxt.setText(formatted);
 
-                }else{
+                } else {
                     binding.doaTxt.setText("");
                 }
-                if(!childData.get(childPosition).getRegistrationDate().equalsIgnoreCase("")) {
+                if (!childData.get(childPosition).getRegistrationDate().equalsIgnoreCase("")) {
                     date1 = inFormat.parse(childData.get(childPosition).getRegistrationDate());
                     SimpleDateFormat outFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    String formatted1=outFormat.format(date1);
+                    String formatted1 = outFormat.format(date1);
                     System.out.println(formatted1);
                     binding.registrationTxt.setText(formatted1);
-                }else{
+                } else {
                     binding.registrationTxt.setText("");
                 }
             } catch (ParseException e) {
@@ -156,6 +156,13 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
             transportDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.studetn_list_item_transport_detail, parent, false);
             convertView = transportDetailBinding.getRoot();
 
+            transportDetailBinding.droppointtimeLinear.setVisibility(View.VISIBLE);
+            transportDetailBinding.droppointLinear.setVisibility(View.VISIBLE);
+            transportDetailBinding.dropbusLinear.setVisibility(View.VISIBLE);
+            transportDetailBinding.pickuptimeLinear.setVisibility(View.VISIBLE);
+            transportDetailBinding.pickupPointLiner.setVisibility(View.VISIBLE);
+            transportDetailBinding.pickupLinear.setVisibility(View.VISIBLE);
+
             transportDetailBinding.pickupTxt.setText(childData.get(childPosition).getPickupBus());
             transportDetailBinding.pickuppointTxt.setText(childData.get(childPosition).getPickupPoint());
             transportDetailBinding.pickuptimeTxt.setText(childData.get(childPosition).getPickupPointTime());
@@ -168,6 +175,9 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
             fatherDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_father_detail, parent, false);
             convertView = fatherDetailBinding.getRoot();
             String fname[] = childData.get(childPosition).getFatherName().split("\\ ");
+            fatherDetailBinding.fatherphoneLinear.setVisibility(View.VISIBLE);
+            fatherDetailBinding.fatherlastnameLinear.setVisibility(View.VISIBLE);
+            fatherDetailBinding.designationLinear.setVisibility(View.VISIBLE);
             fatherDetailBinding.fatherfirstnameTxt.setText(fname[0]);
             fatherDetailBinding.fatherlastnameTxt.setText(fname[1]);
             fatherDetailBinding.fphoneTxt.setText(childData.get(childPosition).getFatherPhoneNo());
@@ -184,6 +194,9 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
             convertView = motherDetailBinding.getRoot();
 
             String Mname[] = childData.get(childPosition).getMotherName().split("\\ ");
+            motherDetailBinding.motherPhoneLinear.setVisibility(View.VISIBLE);
+            motherDetailBinding.motherDesignationLinear.setVisibility(View.VISIBLE);
+            motherDetailBinding.motherLastnameLinear.setVisibility(View.VISIBLE);
             motherDetailBinding.motherfirstnameTxt.setText(Mname[0]);
             motherDetailBinding.motherlastnameTxt.setText(Mname[1]);
             motherDetailBinding.mphoneTxt.setText(childData.get(childPosition).getMotherPhoneNo());
@@ -197,7 +210,9 @@ public class ExpandableListAdapterStudentFullDetail extends BaseExpandableListAd
             StudentListItemCommunicationDetailBinding communicationDetailBinding;
             communicationDetailBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.student_list_item_communication_detail, parent, false);
             convertView = communicationDetailBinding.getRoot();
-
+            communicationDetailBinding.smsLinear.setVisibility(View.VISIBLE);
+            communicationDetailBinding.cityLinear.setVisibility(View.VISIBLE);
+            communicationDetailBinding.zipLinear.setVisibility(View.VISIBLE);
             communicationDetailBinding.smsTxt.setText(childData.get(childPosition).getsMSCommunicationNo());
             communicationDetailBinding.cityTxt.setText(childData.get(childPosition).getCity());
             communicationDetailBinding.addressTxt.setText(childData.get(childPosition).getAddress());
