@@ -2,7 +2,6 @@ package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -37,7 +37,6 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -79,11 +78,11 @@ public class ActivityLoggingFragment extends Fragment {
     ArrayList<Integer> DateNumber;
     float groupSpace1, barSpace1, barWidth1;
     String FinalSelectedDate;
-
+    ArrayList<String> xValsDate;
     //Use for showLoginDetail
     private AlertDialog alertDialogAndroid = null;
     private Button close_btn;
-    private LinearLayout header_linear,recycler_linear;
+    private LinearLayout header_linear, recycler_linear;
     private RecyclerView login_status_list;
     private TextView txtNoRecordsloginstatus;
     LoginDetailStatusAdapter loginDetailStatusAdapter;
@@ -138,20 +137,10 @@ public class ActivityLoggingFragment extends Fragment {
         fragmentActivityLoggingBinding.barChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                String x = fragmentActivityLoggingBinding.barChart.getXAxis().getValueFormatter().getFormattedValue(e.getX(), fragmentActivityLoggingBinding.barChart.getXAxis());
-                Log.d("clickValue", x);
-                Log.d("secondValue", "" + e.getY());
-//                if(!x.equalsIgnoreCase("")) {
-                Calendar cal = Calendar.getInstance();
-                try {
-                    cal.setTime(new SimpleDateFormat("MMM").parse(x));
-                } catch (ParseException e1) {
-                    e1.printStackTrace();
-                }
-                int monthInt = cal.get(Calendar.MONTH) + 1;
-                Log.d("Selectedmonth", "" + monthInt);
-                Utils.ping(mContext, "Select Month :" + monthInt);
-                FinalSelectedMonth = String.valueOf(monthInt);
+                int x = (int) e.getX() + 1;
+                int selectedIndex = (int) h.getDataSetIndex();
+
+                FinalSelectedMonth = String.valueOf(x);
                 if (!FinalSelectedMonth.equalsIgnoreCase("")) {
                     callDateCountPerMonthApi();
                 } else {
@@ -169,8 +158,15 @@ public class ActivityLoggingFragment extends Fragment {
         fragmentActivityLoggingBinding.barChartDatewise.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
-                String date = fragmentActivityLoggingBinding.barChartDatewise.getXAxis().getValueFormatter().getFormattedValue(e.getX(), fragmentActivityLoggingBinding.barChartDatewise.getXAxis());
-                Log.d("SelectedDate", date);
+                String date="" ;
+                int x= (int) e.getX();
+                Log.d("X", "" +x);
+                for (int k=0;k<xValsDate.size();k++){
+                    if(x==k){
+                        date=xValsDate.get(k);
+                        Log.d("selectedDate", "" + date);
+                    }
+                }
                 if (!date.equalsIgnoreCase("")) {
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     SimpleDateFormat output = new SimpleDateFormat("MM/dd/yyyy");
@@ -181,13 +177,13 @@ public class ActivityLoggingFragment extends Fragment {
                         ex.printStackTrace();
                     }
                     String formatedate = output.format(d);
-
+                    Log.d("formatedate", "" + formatedate);
                     FinalSelectedDate = formatedate;
-                    if (!FinalSelectedDate.equalsIgnoreCase("")) {
-                        callLoginDetailsDatewiseApi();
-                    } else {
-                        Utils.ping(mContext, "Please Select Date");
-                    }
+                if (!FinalSelectedDate.equalsIgnoreCase("")) {
+                    callLoginDetailsDatewiseApi();
+                } else {
+                    Utils.ping(mContext, "Please Select Date");
+                }
                 }
             }
 
@@ -571,11 +567,11 @@ public class ActivityLoggingFragment extends Fragment {
 
         int groupCount1;
 
-        final ArrayList<String> xVals = new ArrayList<String>();
+        xValsDate = new ArrayList<String>();
         for (int i = 0; i < DateArray.size(); i++) {
-            xVals.add(DateArray.get(i));
+            xValsDate.add(DateArray.get(i));
         }
-        Log.d("x-Axis", "" + xVals);
+        Log.d("x-Axis", "" + xValsDate);
 
         groupCount1 = DateNumber.size();
         ArrayList<Integer> yVals1 = new ArrayList<Integer>();
@@ -646,7 +642,7 @@ public class ActivityLoggingFragment extends Fragment {
         xAxis.setDrawGridLines(true);
         xAxis.setLabelRotationAngle(-45);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(xVals));
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(xValsDate));
 
 
         //Y-axis
@@ -684,7 +680,7 @@ public class ActivityLoggingFragment extends Fragment {
         header_linear = (LinearLayout) layout.findViewById(R.id.header_linear);
         login_status_list = (RecyclerView) layout.findViewById(R.id.login_status_list);
         txtNoRecordsloginstatus = (TextView) layout.findViewById(R.id.txtNoRecordsloginstatus);
-        recycler_linear=(LinearLayout)layout.findViewById(R.id.recycler_linear);
+        recycler_linear = (LinearLayout) layout.findViewById(R.id.recycler_linear);
         FillLoginDetailList();
 
         close_btn.setOnClickListener(new View.OnClickListener() {
