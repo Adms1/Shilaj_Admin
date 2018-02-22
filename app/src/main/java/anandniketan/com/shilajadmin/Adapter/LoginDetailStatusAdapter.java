@@ -16,14 +16,14 @@ import anandniketan.com.shilajadmin.R;
  * Created by admsandroid on 2/14/2018.
  */
 
-public class LoginDetailStatusAdapter  extends RecyclerView.Adapter<LoginDetailStatusAdapter.MyViewHolder> {
+public class LoginDetailStatusAdapter extends RecyclerView.Adapter<LoginDetailStatusAdapter.MyViewHolder> {
     private Context context;
     private List<FinalArraySMSDataModel> loginData;
 
 
     public LoginDetailStatusAdapter(Context mContext, List<FinalArraySMSDataModel> LoginDetailArrayList) {
         this.context = mContext;
-        this.loginData=LoginDetailArrayList;
+        this.loginData = LoginDetailArrayList;
     }
 
 
@@ -37,8 +37,16 @@ public class LoginDetailStatusAdapter  extends RecyclerView.Adapter<LoginDetailS
     public void onBindViewHolder(LoginDetailStatusAdapter.MyViewHolder holder, int position) {
         String sr = String.valueOf(position + 1);
         holder.name.setText(loginData.get(position).getEmployeeName());
-        holder.date.setText(loginData.get(position).getLoginDetails());
-        holder.type.setText(loginData.get(position).getType());
+        if (!loginData.get(position).getLoginDetails().equalsIgnoreCase("")) {
+            holder.date.setText(loginData.get(position).getLoginDetails());
+        } else {
+            holder.date.setText("-");
+        }
+        if (!loginData.get(position).getType().equalsIgnoreCase("")) {
+            holder.type.setText(loginData.get(position).getType());
+        } else {
+            holder.type.setText("-");
+        }
     }
 
     @Override
@@ -47,7 +55,7 @@ public class LoginDetailStatusAdapter  extends RecyclerView.Adapter<LoginDetailS
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView  name, date, type;
+        TextView name, date, type;
 
         public MyViewHolder(View itemView) {
             super(itemView);

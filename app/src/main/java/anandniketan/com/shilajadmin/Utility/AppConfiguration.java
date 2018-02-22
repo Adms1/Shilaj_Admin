@@ -10,16 +10,16 @@ import anandniketan.com.shilajadmin.Model.Transport.FinalArrayGetTermModel;
 
 public class AppConfiguration {
 
-    public static final String BASEURL = "http://192.168.1.10:8085/MobileApp_Service.asmx/";// use for office
-//  public static final String BASEURL = "http://103.8.216.132/MobileApp_Service.asmx/"; // use for client
+//    public static final String BASEURL = "http://192.168.1.10:8085/MobileApp_Service.asmx/";// use for office
+  public static final String BASEURL = "http://103.8.216.132/MobileApp_Service.asmx/"; // use for client
 
     //URL From Image
-    public static final String BASEURL_IMAGES = "http://192.168.1.10:8085/skool360-Category-Images/Admin/";// use for office
-//  public static final String BASEURL_IMAGES ="http://103.8.216.132/skool360-Category-Images/Admin/";// use for client
+//    public static final String BASEURL_IMAGES = "http://192.168.1.10:8085/skool360-Category-Images/Admin/";// use for office
+  public static final String BASEURL_IMAGES ="http://103.8.216.132/skool360-Category-Images/Admin/";// use for client
 
     //URL From Icons
-    public static final String BASEURL_ICONS = "http://192.168.1.10:8085/skool360-Design-Icons/Admin/";// use for office
-//  public static final String BASEURL_ICONS ="http://103.8.216.132/skool360-Design-Icons/Admin/";// use for client
+//    public static final String BASEURL_ICONS = "http://192.168.1.10:8085/skool360-Design-Icons/Admin/";// use for office
+  public static final String BASEURL_ICONS ="http://103.8.216.132/skool360-Design-Icons/Admin/";// use for client
 
     public static String StudentId;
     public static String TermId;
@@ -30,8 +30,8 @@ public class AppConfiguration {
     public static String StudentStatus;
 
     public static String FinalTermIdStr = "";
-    public static String FinalStandardIdStr = "";
-    public static String FinalClassIdStr = "";
+    public static String FinalStandardStr = "";
+    public static String FinalSectionStr = "";
     public static String FinalStatusStr = "";
     public static String CheckStudentId = "";
 

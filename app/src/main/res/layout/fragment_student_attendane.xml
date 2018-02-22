@@ -232,6 +232,22 @@
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
 
+
+                    <Button
+                        android:id="@+id/search_btn"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_weight="0.22"
+                        android:background="@drawable/round_button"
+                        android:text="Search"
+                        android:textAllCaps="true"
+                        android:textColor="@color/app_bg"
+                        android:textSize="@dimen/_11sdp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -239,42 +255,16 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="horizontal"
                         android:weightSum="3">
-
-                        <!--<TextView-->
-                            <!--android:id="@+id/total_view_txt"-->
-                            <!--android:layout_width="0dp"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_gravity="center_horizontal|center"-->
-                            <!--android:layout_marginLeft="@dimen/_5sdp"-->
-                            <!--android:layout_weight="0.77"-->
-                            <!--android:text="@string/total"-->
-                            <!--android:textColor="@color/scheduleheadertextcolor"-->
-                            <!--android:textSize="@dimen/_11sdp"-->
-                            <!--android:textStyle="bold" />-->
-
-                        <!--<TextView-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_gravity="center_horizontal|center"-->
-                            <!--android:layout_marginLeft="@dimen/_5sdp"-->
-                            <!--android:layout_weight="0.13"-->
-                            <!--android:text=":"-->
-                            <!--android:textColor="@color/scheduleheadertextcolor"-->
-                            <!--android:textSize="@dimen/_11sdp"-->
-                            <!--android:textStyle="bold" />-->
-
                         <TextView
                             android:id="@+id/total_txt"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:layout_marginBottom="@dimen/_3sdp"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_weight="1.8"
-                            android:background="@drawable/linear_border"
                             android:forceHasOverlappingRendering="false"
-                            android:gravity="center|center_vertical"
+                            android:gravity="left|center_vertical"
                             android:overlapAnchor="false"
                             android:paddingBottom="1dp"
                             android:paddingTop="@dimen/_5sdp"
@@ -282,13 +272,15 @@
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/data_linear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_3sdp"
                         android:layout_weight="0.04"
                         android:orientation="horizontal"
                         android:weightSum="4"
-                        android:padding="@dimen/_5sdp">
+                        android:padding="@dimen/_5sdp"
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/present_txt"
@@ -337,22 +329,6 @@
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
                     </LinearLayout>
-                    <Button
-                        android:id="@+id/search_btn"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="@dimen/_3sdp"
-                        android:layout_marginLeft="@dimen/_7sdp"
-                        android:layout_marginTop="@dimen/_1sdp"
-                        android:layout_weight="0.22"
-                        android:background="@drawable/round_button"
-                        android:text="Search"
-                        android:textAllCaps="true"
-                        android:textColor="@color/app_bg"
-                        android:textSize="@dimen/_11sdp" />
-
-
                     <TextView
                         android:id="@+id/txtNoRecords"
                         android:layout_width="match_parent"
@@ -386,7 +362,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/linear_border"
                     android:orientation="vertical"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:visibility="gone">

@@ -49,6 +49,7 @@
                 android:button="@drawable/custom_checkbox"
                 android:padding="@dimen/_5sdp"
                 android:tag="1"
+                android:clickable="false"
                 android:textAlignment="center"
                 android:textSize="@dimen/_9sdp" />
 
@@ -62,6 +63,7 @@
                 android:button="@drawable/absent_custom_checkbox"
                 android:padding="@dimen/_5sdp"
                 android:tag="0"
+                android:clickable="false"
                 android:textSize="@dimen/_9sdp"
                 android:textAlignment="center" />
 
@@ -75,6 +77,7 @@
                 android:button="@drawable/leave_custome_checkbox"
                 android:padding="@dimen/_5sdp"
                 android:tag="-1"
+                android:clickable="false"
                 android:textSize="@dimen/_9sdp"
                 android:textAlignment="center" />
             <RadioButton
@@ -87,6 +90,7 @@
                 android:button="@drawable/onduty_custome_checkbox"
                 android:padding="@dimen/_5sdp"
                 android:tag="-1"
+                android:clickable="false"
                 android:textSize="@dimen/_9sdp"
                 android:textAlignment="center" />
         </RadioGroup>

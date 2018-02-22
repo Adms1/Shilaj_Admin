@@ -53,7 +53,7 @@ public class LeftDetailFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     HashMap<Integer, String> spinnerStatusMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalStatusStr, FinalStatusIdStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Left School", FinalStatusIdStr;
     GRRegisterAdapter grRegisterAdapter;
 
     public LeftDetailFragment() {
@@ -102,7 +102,7 @@ public class LeftDetailFragment extends Fragment {
                 Log.d("value", name + " " + getid);
                 FinalTermIdStr = getid.toString();
                 Log.d("FinalTermIdStr", FinalTermIdStr);
-                AppConfiguration.TermName=name;
+                AppConfiguration.TermName = name;
             }
 
             @Override
@@ -121,8 +121,12 @@ public class LeftDetailFragment extends Fragment {
                 FinalStandardIdStr = getid.toString();
                 Log.d("FinalStandardIdStr", FinalStandardIdStr);
                 StandardName = name;
-                FinalStandardStr = name;
-                Log.d("StandardName", StandardName);
+                if (name.equalsIgnoreCase("All")) {
+                    FinalStandardStr = "0";
+                } else {
+                    FinalStandardStr = name;
+                    Log.d("StandardName", StandardName);
+                }
                 fillSection();
             }
 
@@ -140,7 +144,12 @@ public class LeftDetailFragment extends Fragment {
 
                 Log.d("value", selectedsectionstr + " " + getid);
                 FinalClassIdStr = getid.toString();
-                FinalSectionStr = selectedsectionstr;
+                if (selectedsectionstr.equalsIgnoreCase("All")) {
+                    FinalSectionStr = "0";
+                } else {
+                    FinalSectionStr = selectedsectionstr;
+                    Log.d("StandardName", StandardName);
+                }
                 Log.d("FinalClassIdStr", FinalClassIdStr);
             }
 
@@ -254,6 +263,7 @@ public class LeftDetailFragment extends Fragment {
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
+                        callLeftDetailApi();
                     }
                 }
             }
@@ -296,10 +306,10 @@ public class LeftDetailFragment extends Fragment {
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
-                        fragmentLeftDetailBinding.studentLeftdetailList.setVisibility(View.GONE);
-                        fragmentLeftDetailBinding.recyclerLinear.setVisibility(View.GONE);
-                        fragmentLeftDetailBinding.listHeader.setVisibility(View.GONE);
-                        fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    fragmentLeftDetailBinding.studentLeftdetailList.setVisibility(View.GONE);
+                    fragmentLeftDetailBinding.recyclerLinear.setVisibility(View.GONE);
+                    fragmentLeftDetailBinding.listHeader.setVisibility(View.GONE);
+                    fragmentLeftDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("True")) {
@@ -312,8 +322,8 @@ public class LeftDetailFragment extends Fragment {
                             @Override
                             public void getViewClick() {
                                 fragment = new GRNoStudentDetailFragment();
-                                Bundle args=new Bundle();
-                                args.putString("flag","1");
+                                Bundle args = new Bundle();
+                                args.putString("flag", "1");
                                 fragment.setArguments(args);
                                 fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction()
@@ -347,13 +357,13 @@ public class LeftDetailFragment extends Fragment {
         Map<String, String> map = new HashMap<>();
 
         AppConfiguration.FinalTermIdStr = FinalTermIdStr;
-        AppConfiguration.FinalStandardIdStr = FinalStandardIdStr;
-        AppConfiguration.FinalClassIdStr = FinalClassIdStr;
+        AppConfiguration.FinalStandardStr = FinalStandardStr;
+        AppConfiguration.FinalSectionStr = FinalSectionStr;
         AppConfiguration.FinalStatusStr = FinalStatusStr;
 
         map.put("Year", FinalTermIdStr);
-        map.put("Grade", FinalStandardIdStr);
-        map.put("Section", FinalClassIdStr);
+        map.put("Grade", FinalStandardStr);
+        map.put("Section", FinalSectionStr);
         map.put("Status", FinalStatusStr);
         return map;
     }
@@ -496,7 +506,7 @@ public class LeftDetailFragment extends Fragment {
         fragmentLeftDetailBinding.sectionSpinner.setAdapter(adapterstandard);
 
         FinalClassIdStr = spinnerSectionMap.get(0);
-        callLeftDetailApi();
+
     }
 
     public void fillStatus() {
@@ -512,7 +522,7 @@ public class LeftDetailFragment extends Fragment {
 //        statusdetail.add("--Select--");
         statusdetail.add("Left School");
         statusdetail.add("Detain");
-        statusdetail.add("Pass Out");
+        statusdetail.add("Passout");
 
 
         String[] spinnerstatusdetailIdArray = new String[statusdetailId.size()];
@@ -537,7 +547,7 @@ public class LeftDetailFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstatusdetailIdArray);
         fragmentLeftDetailBinding.statusSpinner.setAdapter(adapterTerm);
 
-        FinalStatusStr = spinnerStatusMap.get(0);
+//        FinalStatusStr = spinnerStatusMap.get(0);
     }
 }
 

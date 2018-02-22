@@ -53,7 +53,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     List<FinalArrayStudentModel> finalArrayStudentNameModelList;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalStandardStr, FinalSectionStr, FinalDataStr;
+    String FinalStandardIdStr, FinalClassIdStr="1", StandardName, FinalStandardStr, FinalSectionStr, FinalDataStr;
     AttendanceAdapter attendanceAdapter;
 
     int Year, Month, Day;
@@ -191,6 +191,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
+                        callAttendence_AdminApi();
                     }
                 }
             }
@@ -239,6 +240,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
                         fragmentStudentAttendaneBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentStudentAttendaneBinding.listHeader.setVisibility(View.GONE);
                         fragmentStudentAttendaneBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                        fragmentStudentAttendaneBinding.dataLinear.setVisibility(View.GONE);
                     }
                     return;
                 }
@@ -248,6 +250,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
                         fragmentStudentAttendaneBinding.txtNoRecords.setVisibility(View.GONE);
                         fragmentStudentAttendaneBinding.recyclerLinear.setVisibility(View.VISIBLE);
                         fragmentStudentAttendaneBinding.listHeader.setVisibility(View.VISIBLE);
+                        fragmentStudentAttendaneBinding.dataLinear.setVisibility(View.VISIBLE);
                         fragmentStudentAttendaneBinding.totalTxt.setText(Html.fromHtml("Total Student : " + "<font color='#1B88C8'>" + "<b>" + attendanceModel.getFinalArray().get(0).getTotal() + "</b>"));
                         fragmentStudentAttendaneBinding.presentTxt.setText(Html.fromHtml("Present : " + "<font color='#a4c639'>" + "<b>" + attendanceModel.getFinalArray().get(0).getTotalPresent() + "</b>"));
                         fragmentStudentAttendaneBinding.absentTxt.setText(Html.fromHtml("Absent : " + "<font color='#ff0000'>" + "<b>" + attendanceModel.getFinalArray().get(0).getTotalAbsent() + "</b>"));
@@ -391,7 +394,7 @@ public class StudentAttendaneFragment extends Fragment implements DatePickerDial
         fragmentStudentAttendaneBinding.sectionSpinner.setAdapter(adapterstandard);
 
         FinalClassIdStr = spinnerSectionMap.get(0);
-        callAttendence_AdminApi();
+
     }
 
     public void SetData() {

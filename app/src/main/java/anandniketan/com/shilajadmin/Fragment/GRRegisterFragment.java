@@ -53,7 +53,7 @@ public class GRRegisterFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     HashMap<Integer, String> spinnerStatusMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalStatusStr, FinalStatusIdStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr="0", FinalSectionStr="0", FinalStatusStr="Current Student", FinalStatusIdStr;
     GRRegisterAdapter grRegisterAdapter;
 
     public GRRegisterFragment() {
@@ -254,6 +254,7 @@ public class GRRegisterFragment extends Fragment {
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
+                        callGRRegisterApi();
                     }
                 }
             }
@@ -349,13 +350,13 @@ public class GRRegisterFragment extends Fragment {
         Map<String, String> map = new HashMap<>();
 
         AppConfiguration.FinalTermIdStr = FinalTermIdStr;
-        AppConfiguration.FinalStandardIdStr = FinalStandardIdStr;
-        AppConfiguration.FinalClassIdStr = FinalClassIdStr;
+        AppConfiguration.FinalStandardStr = FinalStandardStr;
+        AppConfiguration.FinalSectionStr = FinalSectionStr;
         AppConfiguration.FinalStatusStr = FinalStatusStr;
 
         map.put("Year", FinalTermIdStr);
-        map.put("Grade", FinalStandardIdStr);
-        map.put("Section", FinalClassIdStr);
+        map.put("Grade", FinalStandardStr);
+        map.put("Section", FinalSectionStr);
         map.put("Status", FinalStatusStr);
         return map;
     }
@@ -502,7 +503,7 @@ public class GRRegisterFragment extends Fragment {
         fragmentGrregisterBinding.sectionSpinner.setAdapter(adapterstandard);
 
         FinalClassIdStr = spinnerSectionMap.get(0);
-        callGRRegisterApi();
+
     }
 
     public void fillStatus() {
@@ -543,7 +544,7 @@ public class GRRegisterFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstatusdetailIdArray);
         fragmentGrregisterBinding.statusSpinner.setAdapter(adapterTerm);
 
-        FinalStatusStr = spinnerStatusMap.get(0);
+//        FinalStatusStr = spinnerStatusMap.get(0);
     }
 }
 

@@ -17,10 +17,10 @@
     <string name="other">OTHER</string>
     <string name="student_permission">PERMISSION</string>
     <string name="resultpermission">RESULT PERMISSION</string>
-    <string name="attendace">ATTENDACE</string>
+    <string name="attendace">ATTENDANCE</string>
     <string name="student_title">STUDENT</string>
     <string name="allDetails">STUDENT DETAILS</string>
-    <string name="standardwiseattendace">Standard Wise Attendace</string>
+    <string name="standardwiseattendace">Standard Wise Attendance</string>
     <string name="consistent_absent">Consistence Absent Teacher</string>
     <string name="alert_msg">Alert Msg</string>
     <string name="ok">OK</string>
@@ -158,7 +158,7 @@
     <string name="checkpayment">CHEQUE PAYMENT</string>
     <string name="activitylogging">ACTIVITY LOGGING</string>
     <string name="announcment">ANNOUNCMENT</string>
-    <string name="viewinquiry">VIEW INQUIRY</string>
+    <string name="viewinquiry">VIEW ENQUIRY</string>
     <string name="holiday">HOLIDAY</string>
     <string name="onlinepayment">ONLINE PAYMENT</string>
     <string name="termdetail">Term Detail</string>
@@ -218,7 +218,7 @@
     <string name="test">Test</string>
     <string name="description">Discription</string>
     <string name="order">Order</string>
-    <string name="inquirycount">Inquiry Count</string>
+    <string name="inquirycount">Enquiry Count</string>
     <string name="student_name">Megha Shah</string>
     <string name="totalstudent">Total Student</string>
     <string name="activatetoday">Activate Today</string>
@@ -247,7 +247,7 @@
     <string name="Sibling1_grade">Sibling 1 Grade</string>
     <string name="name_of_sibling_2">Name of Sibling2</string>
     <string name="Sibling2_grade">Sibling 2 Grade</string>
-    <string name="cancel_inquriy">CANCEL INQUIRY</string>
+    <string name="cancel_inquriy">CANCEL ENQUIRY</string>
     <string name="board">Board</string>
     <string name="to">To</string>
     <string name="to_hint">Write Name Send Email</string>

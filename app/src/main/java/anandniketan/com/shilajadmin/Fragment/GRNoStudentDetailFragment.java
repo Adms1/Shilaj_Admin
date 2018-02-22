@@ -196,8 +196,8 @@ public class GRNoStudentDetailFragment extends Fragment {
     private Map<String, String> getGRRegisterDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Year", AppConfiguration.FinalTermIdStr);
-        map.put("Grade", AppConfiguration.FinalStandardIdStr);
-        map.put("Section", AppConfiguration.FinalClassIdStr);
+        map.put("Grade", AppConfiguration.FinalStandardStr);
+        map.put("Section", AppConfiguration.FinalSectionStr);
         map.put("Status", AppConfiguration.FinalStatusStr);
         return map;
     }

@@ -10,7 +10,7 @@
         android:orientation="horizontal"
         android:paddingBottom="@dimen/_1sdp"
         android:visibility="visible"
-        android:background="@drawable/box_blue">
+        android:background="@color/app_bg">
 
         <TextView
             android:layout_width="@dimen/_45sdp"
