@@ -138,7 +138,6 @@ public class ActivityLoggingFragment extends Fragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 int x = (int) e.getX() + 1;
-                int selectedIndex = (int) h.getDataSetIndex();
 
                 FinalSelectedMonth = String.valueOf(x);
                 if (!FinalSelectedMonth.equalsIgnoreCase("")) {

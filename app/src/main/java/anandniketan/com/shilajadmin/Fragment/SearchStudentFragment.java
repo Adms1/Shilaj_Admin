@@ -8,13 +8,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -93,7 +99,7 @@ public class SearchStudentFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 searchtypeStr = parent.getItemAtPosition(position).toString();
                 Log.d("searchtypestr", searchtypeStr);
-                AppConfiguration.StudentStatus=searchtypeStr;
+                AppConfiguration.StudentStatus = searchtypeStr;
 
                 callParentNameApi();
                 callStudentNameApi();
@@ -108,6 +114,8 @@ public class SearchStudentFragment extends Fragment {
         fragmentSearchStudentBinding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 callStudentShowFilteredDataApi();
             }
         });
@@ -277,8 +285,9 @@ public class SearchStudentFragment extends Fragment {
                 }
                 if (filteredDataModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
+                    Utils.dismissDialog();
                     if (filteredDataModel.getFinalArray().size() == 0) {
-                       fragmentSearchStudentBinding.studentSearchList.setVisibility(View.GONE);
+                        fragmentSearchStudentBinding.studentSearchList.setVisibility(View.GONE);
                         fragmentSearchStudentBinding.recyclerLinear.setVisibility(View.GONE);
                         fragmentSearchStudentBinding.listHeader.setVisibility(View.GONE);
                         fragmentSearchStudentBinding.txtNoRecords.setVisibility(View.VISIBLE);
@@ -305,6 +314,7 @@ public class SearchStudentFragment extends Fragment {
                         fragmentSearchStudentBinding.studentSearchList.setLayoutManager(mLayoutManager);
                         fragmentSearchStudentBinding.studentSearchList.setItemAnimator(new DefaultItemAnimator());
                         fragmentSearchStudentBinding.studentSearchList.setAdapter(studentFilteredDataAdapter);
+                        Utils.dismissDialog();
                     } else {
                         fragmentSearchStudentBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     }

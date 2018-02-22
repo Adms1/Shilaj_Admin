@@ -39,6 +39,7 @@ import anandniketan.com.shilajadmin.Fragment.HomeFragment;
 import anandniketan.com.shilajadmin.Adapter.MenuoptionItemAdapter;
 import anandniketan.com.shilajadmin.Fragment.OtherFragment;
 import anandniketan.com.shilajadmin.Fragment.PTMMainFragment;
+import anandniketan.com.shilajadmin.Fragment.QuickEmailFragment;
 import anandniketan.com.shilajadmin.Fragment.SingleSmsFragment;
 import anandniketan.com.shilajadmin.Fragment.StaffFragment;
 import anandniketan.com.shilajadmin.Fragment.StudentAbsentFragment;
@@ -319,11 +320,11 @@ public class DashboardActivity extends FragmentActivity {
                 myid = fragment.getId();
                 mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                 break;
-//            case "Quick Email":
-//                fragment = new OtherFragment();
-//                myid = fragment.getId();
-//                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-//                break;
+            case "QUICK EMAIL":
+                fragment = new QuickEmailFragment();
+                myid = fragment.getId();
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                break;
         }
         if (fragment != null) {
 

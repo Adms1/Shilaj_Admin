@@ -276,7 +276,8 @@
                             android:hint="@string/grno"
                             android:paddingTop="@dimen/_5sdp"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_11sdp"
+                            android:imeOptions="actionDone"/>
 
                         <Button
                             android:id="@+id/search_btn"
