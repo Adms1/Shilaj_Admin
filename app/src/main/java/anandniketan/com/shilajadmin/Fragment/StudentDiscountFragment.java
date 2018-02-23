@@ -56,8 +56,7 @@ public class StudentDiscountFragment extends Fragment {
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandableListAdapterStudentDiscount expandableListAdapterStudentDiscount;
-    Calendar calendar;
-    int Year;
+
 
     public StudentDiscountFragment() {
     }
@@ -79,9 +78,7 @@ public class StudentDiscountFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
 
         fragmentStudentDiscountBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,6 +194,7 @@ public class StudentDiscountFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -286,10 +284,12 @@ public class StudentDiscountFragment extends Fragment {
 //                Utils.dismissDialog();
                 if (discountDetailsModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (discountDetailsModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (discountDetailsModel.getSuccess().equalsIgnoreCase("false")) {
@@ -381,8 +381,9 @@ public class StudentDiscountFragment extends Fragment {
         fragmentStudentDiscountBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentStudentDiscountBinding.termSpinner.setSelection(i);
+                FinalTermIdStr=spinnerTermMap.get(i);
             }
         }
     }

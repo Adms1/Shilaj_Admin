@@ -59,7 +59,7 @@ public class StudentLedgerFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStudentMap;
     HashMap<Integer, String> spinnerGrnoMap;
-    String FinalTermIdStr, searchtypeStr = "Current Student", studentNameStr = "", FinalStudentIdStr, Selection;
+    String FinalTermIdStr, searchtypeStr = "Current Student", studentNameStr = "", FinalStudentIdStr, Selection,prevYear;
     private int lastExpandedPosition = -1;
     private ArrayList studentName = new ArrayList();
     List<FinalArrayStudentModel> finalArrayStudentNameModelList;
@@ -72,9 +72,7 @@ public class StudentLedgerFragment extends Fragment {
     HashMap<String, ArrayList<AccountFeesCollectionModel>> listDataChildreceipt;
     ExpandableListAdapterReceipt expandableListAdapterReceipt;
     boolean flag = false;
-    Calendar calendar;
-    int Year;
-    String prevYear;
+
 
     @Override
 
@@ -96,10 +94,7 @@ public class StudentLedgerFragment extends Fragment {
 
 
     public void setListner() {
-        calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
-        prevYear = String.valueOf(Year);
-        Log.d("Year", "" + Year);
+
         fragmentStudentLedgerBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -393,7 +388,7 @@ public class StudentLedgerFragment extends Fragment {
 
 
         for (int i=0;i<spinnertermIdArray.length;i++){
-            if(spinnertermIdArray[i].contains(prevYear)){
+            if(spinnertermIdArray[i].equalsIgnoreCase(prevYear)){
                 fragmentStudentLedgerBinding.termSpinner.setSelection(i);
             }
         }
@@ -519,6 +514,7 @@ public class StudentLedgerFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();

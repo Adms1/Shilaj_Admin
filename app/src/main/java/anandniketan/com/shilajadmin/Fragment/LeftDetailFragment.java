@@ -56,8 +56,7 @@ public class LeftDetailFragment extends Fragment {
     HashMap<Integer, String> spinnerStatusMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Left School", FinalStatusIdStr,prevYear;
     GRRegisterAdapter grRegisterAdapter;
-    Calendar calendar;
-    int Year;
+
 
     public LeftDetailFragment() {
     }
@@ -79,9 +78,7 @@ public class LeftDetailFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
 
         fragmentLeftDetailBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,6 +214,7 @@ public class LeftDetailFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -270,7 +268,7 @@ public class LeftDetailFragment extends Fragment {
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
-                        callLeftDetailApi();
+
                     }
                 }
             }
@@ -304,10 +302,12 @@ public class LeftDetailFragment extends Fragment {
                 Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (studentFullDetailModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
@@ -407,9 +407,11 @@ public class LeftDetailFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentLeftDetailBinding.termSpinner.setAdapter(adapterTerm);
+
         for (int i=0;i<spinnertermIdArray.length;i++){
-            if(spinnertermIdArray[i].contains(prevYear)){
+            if(spinnertermIdArray[i].equalsIgnoreCase(prevYear)){
                 fragmentLeftDetailBinding.termSpinner.setSelection(i);
+                FinalTermIdStr=spinnerTermMap.get(i);
             }
         }
     }
@@ -563,6 +565,7 @@ public class LeftDetailFragment extends Fragment {
         fragmentLeftDetailBinding.statusSpinner.setAdapter(adapterTerm);
 
 //        FinalStatusStr = spinnerStatusMap.get(0);
+        callLeftDetailApi();
     }
 }
 

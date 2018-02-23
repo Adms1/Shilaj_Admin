@@ -59,8 +59,7 @@ public class StudentTranspotFragment extends Fragment {
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayStudentModel>> listDataChild;
     ExpandableListAdapterStudentTransportDetail expandableListAdapterStudentTransportDetail;
-    Calendar calendar;
-    int Year;
+
 
 
     public StudentTranspotFragment() {
@@ -83,9 +82,7 @@ public class StudentTranspotFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
         fragmentStudentTranspotBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -209,6 +206,7 @@ public class StudentTranspotFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -392,7 +390,7 @@ public class StudentTranspotFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentTranspotBinding.termSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentStudentTranspotBinding.termSpinner.setSelection(i);
             }
         }

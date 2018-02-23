@@ -55,8 +55,7 @@ public class ImprestFragment extends Fragment {
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandbleListAdapterImprest expandbleListAdapterImprest;
-    Calendar calendar;
-    int Year;
+
 
 
     public ImprestFragment() {
@@ -79,9 +78,7 @@ public class ImprestFragment extends Fragment {
 
 
     public void setListners() {
-        calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
-        prevYear = String.valueOf(Year);
+
 
         fragmentImprestBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +170,7 @@ public class ImprestFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -347,7 +345,7 @@ public class ImprestFragment extends Fragment {
         fragmentImprestBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentImprestBinding.termSpinner.setSelection(i);
             }
         }

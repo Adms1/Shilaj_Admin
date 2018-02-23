@@ -52,8 +52,6 @@ public class TransportChargesFragment extends Fragment {
     String FinalTermIdStr,prevYear;
     List<FinalArrayTransportChargesModel> transportChargesModelsList;
     TransportChargesListAdapter transportChargesListAdapter;
-    Calendar calendar;
-    int Year;
 
     @Override
 
@@ -74,9 +72,6 @@ public class TransportChargesFragment extends Fragment {
 
 
     public void setListner() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
 
         fragmentTransportChargesBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +134,7 @@ public class TransportChargesFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -257,7 +253,7 @@ public class TransportChargesFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentTransportChargesBinding.yearSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentTransportChargesBinding.yearSpinner.setSelection(i);
             }
         }

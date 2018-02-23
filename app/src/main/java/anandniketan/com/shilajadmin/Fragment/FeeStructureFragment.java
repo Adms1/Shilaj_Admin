@@ -53,8 +53,7 @@ public class FeeStructureFragment extends Fragment {
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     private int lastExpandedPosition = -1;
-    Calendar calendar;
-    int Year;
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,9 +73,7 @@ public class FeeStructureFragment extends Fragment {
 
 
     public void setListner() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
         fragmentFeeStructureBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,6 +149,7 @@ public class FeeStructureFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -208,7 +206,7 @@ public class FeeStructureFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentFeeStructureBinding.termSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentFeeStructureBinding.termSpinner.setSelection(i);
             }
         }

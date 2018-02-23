@@ -56,8 +56,6 @@ public class GRRegisterFragment extends Fragment {
     HashMap<Integer, String> spinnerStatusMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Current Student", FinalStatusIdStr, prevYear;
     GRRegisterAdapter grRegisterAdapter;
-    Calendar calendar;
-    int Year;
 
     public GRRegisterFragment() {
     }
@@ -79,9 +77,6 @@ public class GRRegisterFragment extends Fragment {
 
 
     public void setListners() {
-        calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
-        prevYear = String.valueOf(Year);
         fragmentGrregisterBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,6 +202,7 @@ public class GRRegisterFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -246,21 +242,24 @@ public class GRRegisterFragment extends Fragment {
                 Utils.dismissDialog();
                 if (standardModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (standardModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (standardModel.getSuccess().equalsIgnoreCase("false")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (standardModel.getSuccess().equalsIgnoreCase("True")) {
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
-                        callGRRegisterApi();
+
                     }
                 }
             }
@@ -294,10 +293,12 @@ public class GRRegisterFragment extends Fragment {
 //                Utils.dismissDialog();
                 if (studentFullDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (studentFullDetailModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (studentFullDetailModel.getSuccess().equalsIgnoreCase("False")) {
@@ -402,9 +403,10 @@ public class GRRegisterFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentGrregisterBinding.termSpinner.setAdapter(adapterTerm);
-        for (int i=0;i<spinnertermIdArray.length;i++){
-            if(spinnertermIdArray[i].contains(prevYear)){
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentGrregisterBinding.termSpinner.setSelection(i);
+                FinalTermIdStr = spinnerTermMap.get(i);
             }
         }
     }
@@ -558,6 +560,7 @@ public class GRRegisterFragment extends Fragment {
         fragmentGrregisterBinding.statusSpinner.setAdapter(adapterTerm);
 
 //        FinalStatusStr = spinnerStatusMap.get(0);
+        callGRRegisterApi();
     }
 }
 

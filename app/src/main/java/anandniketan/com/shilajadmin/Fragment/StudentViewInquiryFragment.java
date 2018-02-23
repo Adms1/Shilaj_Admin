@@ -86,11 +86,10 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     public void setListners() {
         calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
+        Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        prevYear = String.valueOf(Year);
         fragmentStudentViewInquiryBinding.startdateButton.setText(Utils.getTodaysDate());
         fragmentStudentViewInquiryBinding.enddateButton.setText(Utils.getTodaysDate());
 
@@ -236,6 +235,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -443,7 +443,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentViewInquiryBinding.termSpinner.setAdapter(adapterTerm);
         for (int i=0;i<spinnertermIdArray.length;i++){
-            if(spinnertermIdArray[i].contains(prevYear)){
+            if(spinnertermIdArray[i].equalsIgnoreCase(prevYear)){
                 fragmentStudentViewInquiryBinding.termSpinner.setSelection(i);
             }
         }

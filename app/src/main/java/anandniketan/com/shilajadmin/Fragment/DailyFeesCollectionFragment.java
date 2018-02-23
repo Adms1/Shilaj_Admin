@@ -87,10 +87,9 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
     public void setListners() {
         calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
+        Year = calendar.get(Calendar.YEAR);
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
-        prevYear = String.valueOf(Year);
 
         fragmentDailyFeesCollectionBinding.dateButton.setText(Utils.getTodaysDate());
 
@@ -228,6 +227,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -407,7 +407,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         fragmentDailyFeesCollectionBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentDailyFeesCollectionBinding.termSpinner.setSelection(i);
             }
         }

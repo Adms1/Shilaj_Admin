@@ -52,8 +52,6 @@ public class StudentViewMarksFragment extends Fragment {
     HashMap<Integer, String> spinnerSectionMap;
     String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalTermStr, FinalTestStr, FinalTestIdStr, prevYear;
     TestNameAdapter testNameAdapter;
-    Calendar calendar;
-    int Year;
 
     public StudentViewMarksFragment() {
     }
@@ -76,9 +74,7 @@ public class StudentViewMarksFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
         fragmentStudentViewMarksBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +188,7 @@ public class StudentViewMarksFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -421,7 +418,7 @@ public class StudentViewMarksFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentViewMarksBinding.termSpinner.setAdapter(adapterTerm);
         for (int i=0;i<spinnertermIdArray.length;i++){
-            if(spinnertermIdArray[i].contains(prevYear)){
+            if(spinnertermIdArray[i].equalsIgnoreCase(prevYear)){
                 fragmentStudentViewMarksBinding.termSpinner.setSelection(i);
             }
         }

@@ -54,8 +54,7 @@ public class AssignSubjectFragment extends Fragment {
     List<FinalArrayStaffModel> finalArrayAssignSubjectModelList;
     List<FinalArrayStaffModel> finalArrayInsertAssignSubjectModelList;
     String FinalTermIdStr, FinalTeacherIdStr, FinalSubjectIdStr, prevYear;
-    int Year;
-    Calendar calendar;
+
     AssignSubjectDetailListAdapter assignSubjectDetailListAdapter;
 
     public AssignSubjectFragment() {
@@ -79,10 +78,6 @@ public class AssignSubjectFragment extends Fragment {
 
 
     public void setListners() {
-
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
 
         fragmentAssignSubjectBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,6 +178,7 @@ public class AssignSubjectFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -456,7 +452,7 @@ public class AssignSubjectFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentAssignSubjectBinding.termSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentAssignSubjectBinding.termSpinner.setSelection(i);
             }
         }

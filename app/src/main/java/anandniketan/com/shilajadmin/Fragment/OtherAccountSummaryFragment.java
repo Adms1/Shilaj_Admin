@@ -56,8 +56,6 @@ public class OtherAccountSummaryFragment extends Fragment {
     List<AccountFeesCollectionModel> collectionModelList;
     List<AccountFeesCollectionModel> standardcollectionList;
     private StandardwiseCollectionListAdapter standardwisecollectionAdapter;
-    Calendar calendar;
-    int Year;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,9 +86,7 @@ public class OtherAccountSummaryFragment extends Fragment {
     }
 
     public void setListner() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
 
         fragmentOtherAccountSummaryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -156,6 +152,7 @@ public class OtherAccountSummaryFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -197,10 +194,12 @@ public class OtherAccountSummaryFragment extends Fragment {
                 Utils.dismissDialog();
                 if (accountFeesStatusModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("False")) {
@@ -283,14 +282,7 @@ public class OtherAccountSummaryFragment extends Fragment {
         ArrayAdapter<String> adapterTermdetail = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
         fragmentOtherAccountSummaryBinding.termDetailSpinner.setAdapter(adapterTermdetail);
         Log.d("termDetailSpinner", String.valueOf(Arrays.asList(spinnertermdetailIdArray)));
-//        for (int m = 0; m < spinnertermdetailIdArray.length; m++) {
-//            if ((AppConfiguration.TermDetailName).equalsIgnoreCase((spinnertermdetailIdArray[m]))) {
-//                Log.d("spinnerValue", spinnertermdetailIdArray[m]);
-//                int index = m;
-//                Log.d("indexOf", String.valueOf(index));
-//                fragmentOtherAccountSummaryBinding.termDetailSpinner.setSelection(index);
-//            }
-//        }
+
     }
 
     //Use for fill Acedemic year spinner
@@ -327,8 +319,9 @@ public class OtherAccountSummaryFragment extends Fragment {
         fragmentOtherAccountSummaryBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentOtherAccountSummaryBinding.termSpinner.setSelection(i);
+                FinalTermIdStr=spinnerTermMap.get(i);
             }
         }
 

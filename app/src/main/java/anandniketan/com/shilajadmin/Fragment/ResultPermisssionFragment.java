@@ -63,8 +63,7 @@ public class ResultPermisssionFragment extends Fragment {
     List<FinalArrayStandard> finalArrayStandardsList;
     StandardAdapter standardAdapter;
     String FinalTermIdStr, FinalGradeIsStr, FinalStatusStr = "1",prevYear;
-    Calendar calendar;
-    int Year;
+
 
     public ResultPermisssionFragment() {
     }
@@ -86,9 +85,7 @@ public class ResultPermisssionFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
         fragmentResultPermisssionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,6 +174,7 @@ public class ResultPermisssionFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -233,7 +231,7 @@ public class ResultPermisssionFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentResultPermisssionBinding.termSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentResultPermisssionBinding.termSpinner.setSelection(i);
             }
         }

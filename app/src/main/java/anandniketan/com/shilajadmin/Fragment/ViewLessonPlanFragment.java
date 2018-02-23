@@ -60,9 +60,6 @@ public class ViewLessonPlanFragment extends Fragment {
     HashMap<String, ArrayList<FinalArrayStaffModel>> listDataChild;
     ExpandableListAdapterLessonPlan expandableListAdapterLessonPlan;
 
-    Calendar calendar;
-    int Year;
-
     public ViewLessonPlanFragment() {
     }
 
@@ -83,10 +80,6 @@ public class ViewLessonPlanFragment extends Fragment {
 
 
     public void setListners() {
-
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
 
         fragmentViewLessonPlanBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,6 +207,7 @@ public class ViewLessonPlanFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -494,7 +488,7 @@ public class ViewLessonPlanFragment extends Fragment {
         fragmentViewLessonPlanBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentViewLessonPlanBinding.termSpinner.setSelection(i);
             }
         }

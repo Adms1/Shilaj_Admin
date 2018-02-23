@@ -70,8 +70,7 @@ public class BullkSmsFragment extends Fragment {
     private TextView date_txt, message_edt;
     private Button send_btn, close_btn;
     private AlertDialog alertDialogAndroid = null;
-    Calendar calendar;
-    int Year;
+
 
     public BullkSmsFragment() {
     }
@@ -93,9 +92,7 @@ public class BullkSmsFragment extends Fragment {
 
 
     public void setListners() {
-        calendar=Calendar.getInstance();
-        Year=calendar.get(Calendar.YEAR)-1;
-        prevYear=String.valueOf(Year);
+
 
         fragmentBullkSmsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,6 +227,7 @@ public class BullkSmsFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -404,7 +402,7 @@ public class BullkSmsFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentBullkSmsBinding.termSpinner.setAdapter(adapterTerm);
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentBullkSmsBinding.termSpinner.setSelection(i);
             }
         }

@@ -66,8 +66,6 @@ public class OnlinePaymentFragment extends Fragment {
     OnlinePaymentPermissionAdapter onlinePaymentPermissionAdapter;
 
     String FinalTermIdStr, FinalGradeIsStr = "", FinalTermDetailIdStr = "", FinalStatusStr = "1", prevYear;
-    Calendar calendar;
-    int Year;
 
 
     public OnlinePaymentFragment() {
@@ -90,9 +88,7 @@ public class OnlinePaymentFragment extends Fragment {
 
 
     public void setListners() {
-        calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR) - 1;
-        prevYear = String.valueOf(Year);
+
         fragmentOnlinePaymentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,6 +199,7 @@ public class OnlinePaymentFragment extends Fragment {
                     return;
                 }
                 if (termModel.getSuccess().equalsIgnoreCase("True")) {
+                    prevYear = termModel.getTerm();
                     finalArrayGetTermModels = termModel.getFinalArray();
                     if (finalArrayGetTermModels != null) {
                         fillTermSpinner();
@@ -432,7 +429,7 @@ public class OnlinePaymentFragment extends Fragment {
         fragmentOnlinePaymentBinding.termSpinner.setAdapter(adapterTerm);
 
         for (int i = 0; i < spinnertermIdArray.length; i++) {
-            if (spinnertermIdArray[i].contains(prevYear)) {
+            if (spinnertermIdArray[i].equalsIgnoreCase(prevYear)) {
                 fragmentOnlinePaymentBinding.termSpinner.setSelection(i);
             }
         }
