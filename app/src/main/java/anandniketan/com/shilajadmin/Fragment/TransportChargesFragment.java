@@ -49,7 +49,7 @@ public class TransportChargesFragment extends Fragment {
     private FragmentManager fragmentManager = null;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
-    String FinalTermIdStr;
+    String FinalTermIdStr,prevYear;
     List<FinalArrayTransportChargesModel> transportChargesModelsList;
     TransportChargesListAdapter transportChargesListAdapter;
     Calendar calendar;
@@ -74,6 +74,10 @@ public class TransportChargesFragment extends Fragment {
 
 
     public void setListner() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentTransportChargesBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -252,7 +256,11 @@ public class TransportChargesFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentTransportChargesBinding.yearSpinner.setAdapter(adapterTerm);
-
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentTransportChargesBinding.yearSpinner.setSelection(i);
+            }
+        }
     }
 }
 

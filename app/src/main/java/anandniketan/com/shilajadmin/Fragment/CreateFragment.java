@@ -143,7 +143,6 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         });
     }
 
-
     // CALL GetClassSubjectWiseStudentData API HERE
     private void callClassSubjectWiseStudentDataApi() {
 
@@ -199,6 +198,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         return map;
     }
 
+    //Use for fill subject-standard spinner
     public void fillspinner() {
         ArrayList<String> row = new ArrayList<String>();
         textIcon =getResources().getString(R.string.arrow);
@@ -231,6 +231,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
         fragmentCreateBinding.createClassSpinner.setAdapter(adapterYear);
     }
 
+    //Use for fill student List
     private void setExpandableListView(List<FinalArraySMSDataModel> array) {
         arrayList = new ArrayList<>();
         arrayList.clear();
@@ -278,6 +279,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
 
     }
 
+    //Use for Send message to selected student
     public void SendMessage() {
         LayoutInflater lInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -358,6 +360,7 @@ public class CreateFragment extends Fragment implements DatePickerDialog.OnDateS
 
     }
 
+    //Use for fetch date
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         mDay = dayOfMonth;

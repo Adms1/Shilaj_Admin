@@ -217,6 +217,7 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
         return map;
     }
 
+    //Use for fill Cheque Payment detail
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
@@ -235,6 +236,7 @@ public class CheckPaymentFragment extends Fragment implements DatePickerDialog.O
         }
     }
 
+    //Use for fatch Date
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = "Selected Date : " + Day + "/" + Month + "/" + Year;

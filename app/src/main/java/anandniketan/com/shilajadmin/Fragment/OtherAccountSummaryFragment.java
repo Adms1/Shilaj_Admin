@@ -20,6 +20,7 @@ import java.lang.reflect.Field;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,13 +49,15 @@ public class OtherAccountSummaryFragment extends Fragment {
     private Context mContext;
     private Fragment fragment = null;
     private FragmentManager fragmentManager = null;
-    String FinalTermIdStr, FinalTermDetailIdStr;
+    String FinalTermIdStr, FinalTermDetailIdStr,prevYear;
     HashMap<Integer, String> spinnerTermDetailIdMap;
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     List<AccountFeesCollectionModel> collectionModelList;
     List<AccountFeesCollectionModel> standardcollectionList;
     private StandardwiseCollectionListAdapter standardwisecollectionAdapter;
+    Calendar calendar;
+    int Year;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,6 +88,10 @@ public class OtherAccountSummaryFragment extends Fragment {
     }
 
     public void setListner() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentOtherAccountSummaryBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -235,7 +242,6 @@ public class OtherAccountSummaryFragment extends Fragment {
 
     }
 
-
     private Map<String, String> getAccountDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("Term_ID", FinalTermIdStr);
@@ -243,6 +249,7 @@ public class OtherAccountSummaryFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Term Detail spinner
     public void fillTermDetailSpinner() {
         ArrayList<Integer> termdetailId = new ArrayList<>();
         termdetailId.add(1);
@@ -286,6 +293,7 @@ public class OtherAccountSummaryFragment extends Fragment {
 //        }
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -318,25 +326,16 @@ public class OtherAccountSummaryFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentOtherAccountSummaryBinding.termSpinner.setAdapter(adapterTerm);
 
-//        Log.d("termspinner", String.valueOf(spinnertermIdArray));
-//        String TermName = "";
-//        for (int z = 0; z < finalArrayGetTermModels.size(); z++) {
-//            if (AppConfiguration.TermId.equalsIgnoreCase(finalArrayGetTermModels.get(z).getTermId().toString())) {
-//                TermName = finalArrayGetTermModels.get(z).getTerm();
-//            }
-//        }
-//        for (int m = 0; m < spinnertermIdArray.length; m++) {
-//            if (TermName.equalsIgnoreCase((spinnertermIdArray[m]))) {
-//                Log.d("spinnerValue", spinnertermIdArray[m]);
-//                int index = m;
-//                Log.d("indexOf", String.valueOf(index));
-//                fragmentOtherAccountSummaryBinding.termSpinner.setSelection(m);
-//            }
-//        }
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentOtherAccountSummaryBinding.termSpinner.setSelection(i);
+            }
+        }
 
 
     }
 
+    //Use for fill Account Summary List
     public void fillData() {
         String amount1 = "", amount2 = "", amount3 = "", amount4 = "", amount5 = "", amount6 = "";
         Double longval1 = null, longval2 = null, longval3 = null, longval4 = null, longval5 = null, longval6 = null;

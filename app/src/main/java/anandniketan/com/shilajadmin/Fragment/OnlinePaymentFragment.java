@@ -21,6 +21,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +65,9 @@ public class OnlinePaymentFragment extends Fragment {
     List<FinalArrayStudentModel> finalArrayResultPermissionList;
     OnlinePaymentPermissionAdapter onlinePaymentPermissionAdapter;
 
-    String FinalTermIdStr, FinalGradeIsStr = "", FinalTermDetailIdStr = "",  FinalStatusStr = "1";
+    String FinalTermIdStr, FinalGradeIsStr = "", FinalTermDetailIdStr = "", FinalStatusStr = "1", prevYear;
+    Calendar calendar;
+    int Year;
 
 
     public OnlinePaymentFragment() {
@@ -87,7 +90,9 @@ public class OnlinePaymentFragment extends Fragment {
 
 
     public void setListners() {
-
+        calendar = Calendar.getInstance();
+        Year = calendar.get(Calendar.YEAR) - 1;
+        prevYear = String.valueOf(Year);
         fragmentOnlinePaymentBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -367,7 +372,8 @@ public class OnlinePaymentFragment extends Fragment {
                     return;
                 }
                 if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
-                    Utils.ping(mContext,"Record update successful");
+                    Utils.ping(mContext, getString(R.string.updated_msg));
+                    fragmentOnlinePaymentBinding.searchBtn.setText("ADD");
                     callOnlinePaymentPermission();
                 }
             }
@@ -392,6 +398,7 @@ public class OnlinePaymentFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -424,9 +431,14 @@ public class OnlinePaymentFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentOnlinePaymentBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentOnlinePaymentBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
+    //Use for fill Term Detail spinner
     public void fillTermDetailSpinner() {
         ArrayList<Integer> termdetailId = new ArrayList<>();
         termdetailId.add(1);
@@ -481,11 +493,11 @@ public class OnlinePaymentFragment extends Fragment {
     public void UpdatePermission() {
         List<FinalArrayStandard> standardArray1 = standardAdapter.getDatas();
         for (int i = 0; i < standardArray1.size(); i++) {
-                standardArray1.get(i).setCheckedStatus("0");
-                standardAdapter.notifyDataSetChanged();
+            standardArray1.get(i).setCheckedStatus("0");
+            standardAdapter.notifyDataSetChanged();
 
         }
-        fragmentOnlinePaymentBinding.searchBtn.setText("Update");
+        fragmentOnlinePaymentBinding.searchBtn.setText("UPDATE");
         ArrayList<String> academicYearArray = new ArrayList<String>();
         String statusArray = "", gradeArray = "";
 

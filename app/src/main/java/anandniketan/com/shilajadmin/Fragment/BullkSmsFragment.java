@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class BullkSmsFragment extends Fragment {
     List<FinalArrayStandard> finalArrayStandardsList;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr,prevYear;
     List<FinalArraySMSDataModel> finalArrayBulkSMSModelList;
     private boolean temp = false;
     BulkSMSDetailListAdapter bulkSMSDetailListAdapter;
@@ -69,6 +70,8 @@ public class BullkSmsFragment extends Fragment {
     private TextView date_txt, message_edt;
     private Button send_btn, close_btn;
     private AlertDialog alertDialogAndroid = null;
+    Calendar calendar;
+    int Year;
 
     public BullkSmsFragment() {
     }
@@ -90,6 +93,10 @@ public class BullkSmsFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentBullkSmsBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -364,7 +371,7 @@ public class BullkSmsFragment extends Fragment {
         return map;
     }
 
-    //Use for fill the Term Spinner
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -396,7 +403,11 @@ public class BullkSmsFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentBullkSmsBinding.termSpinner.setAdapter(adapterTerm);
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentBullkSmsBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     //Use for fill the Standard Spinner

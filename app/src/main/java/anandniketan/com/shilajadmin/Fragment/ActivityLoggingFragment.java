@@ -379,6 +379,7 @@ public class ActivityLoggingFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Monthwise Barchart Array
     public void fillBarChartArray() {
         HashMap<Integer, Integer> student = new HashMap<>();
         HashMap<Integer, Integer> teacher = new HashMap<>();
@@ -410,6 +411,7 @@ public class ActivityLoggingFragment extends Fragment {
         fillBarChartValueNew(treeMap, teacherMap, adminMap);
     }
 
+    //Use for convert numberic month to string
     public void getMonthFun(int month) {
         SimpleDateFormat monthParse = new SimpleDateFormat("MM");
         SimpleDateFormat monthDisplay = new SimpleDateFormat("MMM");
@@ -421,6 +423,7 @@ public class ActivityLoggingFragment extends Fragment {
         Log.d("month", "" + monthNameArray);
     }
 
+    //Use for Draw Monthwise Barchart
     private void fillBarChartValueNew(Map<Integer, Integer> treeMap, Map<Integer, Integer> teacherMap, Map<Integer, Integer> adminMap) {
         fragmentActivityLoggingBinding.barChart.setDescription(null);
         fragmentActivityLoggingBinding.barChart.setPinchZoom(false);
@@ -519,6 +522,7 @@ public class ActivityLoggingFragment extends Fragment {
 
     }
 
+    //Use for fill Datewise Barchart Array
     public void fillBarChartArrayDateWise() {
         DateNumber = new ArrayList<>();
         DateArray = new ArrayList<>();
@@ -556,6 +560,7 @@ public class ActivityLoggingFragment extends Fragment {
 
     }
 
+    //Use for fill draw Datewise Barchart
     private void fillBarChartValueDateWise(Map<String, Integer> datewisetreeMap, Map<String, Integer> datewiseteacherMap, Map<String, Integer> datewiseadminMap) {
         fragmentActivityLoggingBinding.barChartDatewise.setDescription(null);
         fragmentActivityLoggingBinding.barChartDatewise.setPinchZoom(false);
@@ -655,6 +660,7 @@ public class ActivityLoggingFragment extends Fragment {
 
     }
 
+    //Use for fill LoginDetail List dialog
     public void ShowLoginDetail() {
         LayoutInflater lInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -688,9 +694,9 @@ public class ActivityLoggingFragment extends Fragment {
                 alertDialogAndroid.dismiss();
             }
         });
-
     }
 
+    //Use for fill LoginDetail List
     public void FillLoginDetailList() {
         recycler_linear.setVisibility(View.VISIBLE);
         header_linear.setVisibility(View.VISIBLE);

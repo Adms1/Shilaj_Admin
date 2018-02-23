@@ -91,10 +91,12 @@ public class VehicleRouteFragment extends Fragment {
 //                Utils.dismissDialog();
                 if (vehicleRouteDetailModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (vehicleRouteDetailModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (vehicleRouteDetailModel.getSuccess().equalsIgnoreCase("false")) {

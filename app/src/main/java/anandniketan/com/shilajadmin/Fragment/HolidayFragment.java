@@ -334,11 +334,13 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
         return map;
     }
 
+    //Use for fetch date
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         populateSetDate(year, monthOfYear + 1, dayOfMonth);
     }
 
+    //Use for fetch multiple date
     public void populateSetDate(int year, int month, int day) {
         String d, m, y;
         d = Integer.toString(day);
@@ -359,6 +361,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
         }
     }
 
+    //Use for fill Holidaycaterory spinner
     public void fillCatergorySpinner() {
         ArrayList<Integer> HolidaycategoryId = new ArrayList<Integer>();
         for (int i = 0; i < finalHolidaycategoryList.size(); i++) {
@@ -396,6 +399,7 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
 
     }
 
+    //Use for update holiday detail List
     public void UpdateHoliday() {
         fragmentHolidayBinding.updateBtn.setText("Update");
 

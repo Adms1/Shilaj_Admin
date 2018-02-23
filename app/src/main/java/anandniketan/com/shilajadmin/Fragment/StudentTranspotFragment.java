@@ -18,6 +18,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,11 +54,14 @@ public class StudentTranspotFragment extends Fragment {
     List<PickupPointDetailModel> pickupPointDetailModelList;
     HashMap<Integer, String> spinnerRouteMap;
     HashMap<Integer, String> spinnerPickupMap;
-    String FinalTermIdStr, FinalRouteIdStr = "", FinalPickupIdStr = "", FinalGrnoStr = "", RouteName;
+    String FinalTermIdStr, FinalRouteIdStr = "", FinalPickupIdStr = "", FinalGrnoStr = "", RouteName, prevYear;
     List<FinalArrayStudentModel> finalArrayStudentTransportModelList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayStudentModel>> listDataChild;
     ExpandableListAdapterStudentTransportDetail expandableListAdapterStudentTransportDetail;
+    Calendar calendar;
+    int Year;
+
 
     public StudentTranspotFragment() {
     }
@@ -79,6 +83,9 @@ public class StudentTranspotFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
         fragmentStudentTranspotBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,13 +155,13 @@ public class StudentTranspotFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String name = fragmentStudentTranspotBinding.pickupPointSpinner.getSelectedItem().toString();
-                if(!name.equalsIgnoreCase("-Please Select-")) {
+                if (!name.equalsIgnoreCase("-Please Select-")) {
                     String getid = spinnerPickupMap.get(fragmentStudentTranspotBinding.pickupPointSpinner.getSelectedItemPosition());
 
                     Log.d("pickvalue", name + " " + getid);
                     FinalPickupIdStr = getid.toString();
                     Log.d("FinalPickupIdStr", FinalPickupIdStr);
-                }else{
+                } else {
                     FinalPickupIdStr = "";
                     Log.d("NotPickupIdStr", FinalPickupIdStr);
                 }
@@ -384,7 +391,11 @@ public class StudentTranspotFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentTranspotBinding.termSpinner.setAdapter(adapterTerm);
-
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentStudentTranspotBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     public void fillRouteSpinner() {
@@ -487,7 +498,7 @@ public class StudentTranspotFragment extends Fragment {
             ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerpickupIdArray);
             fragmentStudentTranspotBinding.pickupPointSpinner.setAdapter(adapterTerm);
         } else {
-            ArrayList<String> pick=new ArrayList<String>();
+            ArrayList<String> pick = new ArrayList<String>();
             pick.add("-Please Select-");
             ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, pick);
             fragmentStudentTranspotBinding.pickupPointSpinner.setAdapter(adapterTerm);

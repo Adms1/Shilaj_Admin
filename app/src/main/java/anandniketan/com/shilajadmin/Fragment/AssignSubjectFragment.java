@@ -19,6 +19,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,9 @@ public class AssignSubjectFragment extends Fragment {
     HashMap<Integer, String> spinnerSubjectMap;
     List<FinalArrayStaffModel> finalArrayAssignSubjectModelList;
     List<FinalArrayStaffModel> finalArrayInsertAssignSubjectModelList;
-    String FinalTermIdStr, FinalTeacherIdStr, FinalSubjectIdStr;
-
+    String FinalTermIdStr, FinalTeacherIdStr, FinalSubjectIdStr, prevYear;
+    int Year;
+    Calendar calendar;
     AssignSubjectDetailListAdapter assignSubjectDetailListAdapter;
 
     public AssignSubjectFragment() {
@@ -77,6 +79,11 @@ public class AssignSubjectFragment extends Fragment {
 
 
     public void setListners() {
+
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentAssignSubjectBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +156,6 @@ public class AssignSubjectFragment extends Fragment {
             }
         });
     }
-
 
     // CALL Term API HERE
     private void callTermApi() {
@@ -449,7 +455,11 @@ public class AssignSubjectFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentAssignSubjectBinding.termSpinner.setAdapter(adapterTerm);
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentAssignSubjectBinding.termSpinner.setSelection(i);
+            }
+        }
         callAssignSubjectApi();
     }
 

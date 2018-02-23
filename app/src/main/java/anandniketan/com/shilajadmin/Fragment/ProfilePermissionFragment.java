@@ -266,7 +266,6 @@ public class ProfilePermissionFragment extends Fragment {
         return map;
     }
 
-
     // CALL InsertProfilePermission
     public void callInsertProfilePermission() {
         if (!Utils.checkNetwork(mContext)) {
@@ -292,7 +291,7 @@ public class ProfilePermissionFragment extends Fragment {
                     return;
                 }
                 if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
-//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    Utils.ping(mContext,getString(R.string.updated_msg));
                     callProfilePermissionApi();
                 }
             }
@@ -315,7 +314,6 @@ public class ProfilePermissionFragment extends Fragment {
         map.put("Status", FinalStatusStr);
         return map;
     }
-
 
     //use for fill Standard spinner
     public void fillGradeSpinner() {

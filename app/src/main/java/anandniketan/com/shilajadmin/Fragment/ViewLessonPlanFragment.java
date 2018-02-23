@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,12 +53,15 @@ public class ViewLessonPlanFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSubjectMap;
     HashMap<Integer, String> spinneremployeeMap;
-    String FinalTermIdStr, FinalStandardIdStr = "", FinalSubjectIdStr = "", FinalEmployeeIdStr = "", StandardName;
+    String FinalTermIdStr, FinalStandardIdStr = "", FinalSubjectIdStr = "", FinalEmployeeIdStr = "", StandardName,prevYear;
 
     List<FinalArrayStaffModel> finalArraylessonplanList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayStaffModel>> listDataChild;
     ExpandableListAdapterLessonPlan expandableListAdapterLessonPlan;
+
+    Calendar calendar;
+    int Year;
 
     public ViewLessonPlanFragment() {
     }
@@ -79,6 +83,10 @@ public class ViewLessonPlanFragment extends Fragment {
 
 
     public void setListners() {
+
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
 
         fragmentViewLessonPlanBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -485,7 +493,11 @@ public class ViewLessonPlanFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentViewLessonPlanBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentViewLessonPlanBinding.termSpinner.setSelection(i);
+            }
+        }
         callStandardApi();
     }
 

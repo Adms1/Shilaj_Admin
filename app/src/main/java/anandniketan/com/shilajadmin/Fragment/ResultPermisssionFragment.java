@@ -21,6 +21,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,10 @@ public class ResultPermisssionFragment extends Fragment {
     //Use for fill section
     List<FinalArrayStandard> finalArrayStandardsList;
     StandardAdapter standardAdapter;
-    String FinalTermIdStr, FinalGradeIsStr, FinalStatusStr = "1";
+    String FinalTermIdStr, FinalGradeIsStr, FinalStatusStr = "1",prevYear;
+    Calendar calendar;
+    int Year;
+
     public ResultPermisssionFragment() {
     }
 
@@ -82,6 +86,9 @@ public class ResultPermisssionFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
         fragmentResultPermisssionBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,6 +200,7 @@ public class ResultPermisssionFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -224,6 +232,11 @@ public class ResultPermisssionFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentResultPermisssionBinding.termSpinner.setAdapter(adapterTerm);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentResultPermisssionBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     // CALL ResultPermission API HERE
@@ -369,7 +382,8 @@ public class ResultPermisssionFragment extends Fragment {
                     return;
                 }
                 if (permissionModel.getSuccess().equalsIgnoreCase("True")) {
-//                    Utils.ping(mContext, getString(R.string.true_msg));
+                    Utils.ping(mContext, "Record Updated Successfully!");
+                    fragmentResultPermisssionBinding.addBtn.setText("ADD");
                     callResultPermission();
                 }
             }
@@ -414,7 +428,7 @@ public class ResultPermisssionFragment extends Fragment {
                 standardArray1.get(i).setCheckedStatus("0");
                 standardAdapter.notifyDataSetChanged();
         }
-        fragmentResultPermisssionBinding.addBtn.setText("Update");
+        fragmentResultPermisssionBinding.addBtn.setText("UPDATE");
         ArrayList<String> academicYearArray = new ArrayList<String>();
         String statusArray = "", gradeArray = "";
 

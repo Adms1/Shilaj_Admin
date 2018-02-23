@@ -231,7 +231,7 @@
                                 android:layout_weight="0.8"
                                 android:checked="true"
                                 android:tag="1"
-                                android:text="Active"
+                                android:text="@string/active"
                                 android:textSize="@dimen/_10sdp" />
 
                             <RadioButton
@@ -241,7 +241,7 @@
                                 android:layout_marginLeft="@dimen/_1sdp"
                                 android:layout_weight="1"
                                 android:tag="0"
-                                android:text="Inactive"
+                                android:text="@string/deactive"
                                 android:textSize="@dimen/_10sdp" />
                         </RadioGroup>
                     </LinearLayout>

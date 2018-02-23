@@ -265,7 +265,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
-                                android:text="Active"
+                                android:text="@string/active"
                                 android:checked="true"
                                 android:tag="1"
                                 android:layout_marginLeft="@dimen/_1sdp"
@@ -276,7 +276,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:tag="0"
-                                android:text="Inactive"
+                                android:text="@string/deactive"
                                 android:layout_marginLeft="@dimen/_1sdp"
                                 android:textSize="@dimen/_10sdp"/>
                         </RadioGroup>
@@ -290,7 +290,7 @@
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/round_button"
-                        android:text="Save"
+                        android:text="ADD"
                         android:textAllCaps="true"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp" />

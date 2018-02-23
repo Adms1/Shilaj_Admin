@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,10 @@ public class StudentViewMarksFragment extends Fragment {
     List<FinalArrayStudentModel> finalArrayStudentNameModelList;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalTermStr, FinalTestStr, FinalTestIdStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr, FinalSectionStr, FinalTermStr, FinalTestStr, FinalTestIdStr, prevYear;
     TestNameAdapter testNameAdapter;
+    Calendar calendar;
+    int Year;
 
     public StudentViewMarksFragment() {
     }
@@ -73,6 +76,9 @@ public class StudentViewMarksFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
         fragmentStudentViewMarksBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,8 +159,8 @@ public class StudentViewMarksFragment extends Fragment {
                 GetSelectedTestId();
                 if (!FinalTermIdStr.equalsIgnoreCase("") && !FinalStandardIdStr.equalsIgnoreCase("0") && !FinalClassIdStr.equalsIgnoreCase("0")) {
                     callGetStudentMarksApi();
-                }else{
-                    Utils.ping(mContext,"Please Select Value.");
+                } else {
+                    Utils.ping(mContext, "Please Select Value.");
                 }
             }
         });
@@ -414,7 +420,11 @@ public class StudentViewMarksFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentViewMarksBinding.termSpinner.setAdapter(adapterTerm);
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i=0;i<spinnertermIdArray.length;i++){
+            if(spinnertermIdArray[i].contains(prevYear)){
+                fragmentStudentViewMarksBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     public void fillGradeSpinner() {
@@ -533,7 +543,7 @@ public class StudentViewMarksFragment extends Fragment {
                 testIdArray.add(testArray.get(i).getTestID().toString());
             }
         }
-        if(testNameArray.size()>0) {
+        if (testNameArray.size() > 0) {
             FinalTestIdStr = "";
             for (String s : testIdArray) {
                 FinalTestIdStr = FinalTestIdStr + "|" + s;
@@ -547,8 +557,8 @@ public class StudentViewMarksFragment extends Fragment {
             }
             FinalTestStr = FinalTestStr.substring(1, FinalTestStr.length());
             Log.d("FinalTestStr", FinalTestStr);
-        }else{
-            Utils.ping(mContext,"Please Select Test");
+        } else {
+            Utils.ping(mContext, "Please Select Test");
         }
     }
 }

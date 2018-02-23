@@ -180,6 +180,7 @@ public class EmployeeSmsFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Employee List
     public void fillDataList() {
         fragmentEmployeeSmsBinding.txtNoRecords.setVisibility(View.GONE);
         fragmentEmployeeSmsBinding.employeeSmsDetailList.setVisibility(View.VISIBLE);
@@ -226,6 +227,7 @@ public class EmployeeSmsFragment extends Fragment {
         fragmentEmployeeSmsBinding.employeeSmsDetailList.setAdapter(employeeSMSDeatilListAdapter);
     }
 
+    //Use for send Message to selected Employee
     public void SendMessage() {
         LayoutInflater lInflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);

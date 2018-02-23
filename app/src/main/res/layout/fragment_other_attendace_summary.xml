@@ -51,7 +51,7 @@
                         <TextView
                             android:id="@+id/Attendace_txt"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:layout_marginLeft="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_2sdp"
                             android:layout_marginTop="@dimen/_2sdp"
@@ -277,7 +277,7 @@
                         <TextView
                             android:id="@+id/standardwiseAttendace_txt"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:layout_marginLeft="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_2sdp"
                             android:layout_marginTop="@dimen/_2sdp"
@@ -338,7 +338,7 @@
                         <TextView
                             android:id="@+id/consistent_absent_teacher_txt"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_23sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:layout_marginLeft="@dimen/_2sdp"
                             android:layout_marginRight="@dimen/_2sdp"
                             android:layout_marginTop="@dimen/_2sdp"

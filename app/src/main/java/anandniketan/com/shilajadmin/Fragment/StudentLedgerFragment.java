@@ -20,6 +20,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +71,10 @@ public class StudentLedgerFragment extends Fragment {
     List<String> listDataHeaderreceipt;
     HashMap<String, ArrayList<AccountFeesCollectionModel>> listDataChildreceipt;
     ExpandableListAdapterReceipt expandableListAdapterReceipt;
+    boolean flag = false;
+    Calendar calendar;
+    int Year;
+    String prevYear;
 
     @Override
 
@@ -91,6 +96,10 @@ public class StudentLedgerFragment extends Fragment {
 
 
     public void setListner() {
+        calendar = Calendar.getInstance();
+        Year = calendar.get(Calendar.YEAR) - 1;
+        prevYear = String.valueOf(Year);
+        Log.d("Year", "" + Year);
         fragmentStudentLedgerBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,14 +119,19 @@ public class StudentLedgerFragment extends Fragment {
         fragmentStudentLedgerBinding.termSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                flag = true;
                 String name = fragmentStudentLedgerBinding.termSpinner.getSelectedItem().toString();
                 String getid = spinnerTermMap.get(fragmentStudentLedgerBinding.termSpinner.getSelectedItemPosition());
 
                 Log.d("value", name + " " + getid);
                 FinalTermIdStr = getid.toString();
                 Log.d("FinalTermIdStr", FinalTermIdStr);
-                callPaymentLedgerApi();
-                callAllPaymentLedgerApi();
+                if (flag == true) {
+                    callPaymentLedgerApi();
+                    callAllPaymentLedgerApi();
+
+                }
+
             }
 
             @Override
@@ -274,7 +288,7 @@ public class StudentLedgerFragment extends Fragment {
                 Utils.dismissDialog();
                 error.printStackTrace();
                 error.getMessage();
-                Utils.ping(mContext, getString(R.string.something_wrong));
+//                Utils.ping(mContext, getString(R.string.something_wrong));
             }
         });
 
@@ -331,7 +345,7 @@ public class StudentLedgerFragment extends Fragment {
                 Utils.dismissDialog();
                 error.printStackTrace();
                 error.getMessage();
-                Utils.ping(mContext, getString(R.string.something_wrong));
+//                Utils.ping(mContext, getString(R.string.something_wrong));
             }
         });
 
@@ -344,6 +358,7 @@ public class StudentLedgerFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Academic year
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -376,9 +391,12 @@ public class StudentLedgerFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentLedgerBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr = spinnerTermMap.get(0);
-//        callPaymentLedgerApi();
-//        callAllPaymentLedgerApi();
+
+        for (int i=0;i<spinnertermIdArray.length;i++){
+            if(spinnertermIdArray[i].contains(prevYear)){
+                fragmentStudentLedgerBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     // CALL Student Name API HERE
@@ -527,6 +545,7 @@ public class StudentLedgerFragment extends Fragment {
 
     public void fillExpLV() {
         for (int m = 0; m < finalArrayPaymentLedgerModelList.size(); m++) {
+            fragmentStudentLedgerBinding.studentNoTxt.setText(finalArrayPaymentLedgerModelList.get(m).getgRNO());
             fragmentStudentLedgerBinding.termTxt.setText(finalArrayPaymentLedgerModelList.get(m).getTerm());
             fragmentStudentLedgerBinding.nameTxt.setText(finalArrayPaymentLedgerModelList.get(m).getStudentName());
             fragmentStudentLedgerBinding.gradetxt.setText(finalArrayPaymentLedgerModelList.get(m).getStandard() + "-" + finalArrayPaymentLedgerModelList.get(m).getClassName());

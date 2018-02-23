@@ -41,7 +41,7 @@ import anandniketan.com.shilajadmin.databinding.FragmentDailyFeesCollectionBindi
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class DailyFeesCollectionFragment extends Fragment implements DatePickerDialog.OnDateSetListener{
+public class DailyFeesCollectionFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
 
     private FragmentDailyFeesCollectionBinding fragmentDailyFeesCollectionBinding;
     private View rootView;
@@ -54,8 +54,8 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerTermDetailIdMap;
-    HashMap<Integer,String> spinnerPaymentModeMap;
-    String FinalTermIdStr, FinalstandardIdStr = "",FinalTermDetailIdStr="",FinalPaymentmodeStr="";
+    HashMap<Integer, String> spinnerPaymentModeMap;
+    String FinalTermIdStr, FinalstandardIdStr = "", FinalTermDetailIdStr = "", FinalPaymentmodeStr = "", prevYear;
     List<FinalArrayAccountFeesModel> dailyCollectionsList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
@@ -65,6 +65,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
     Calendar calendar;
     private static String dateFinal;
     private DatePickerDialog datePickerDialog;
+
     public DailyFeesCollectionFragment() {
     }
 
@@ -86,9 +87,10 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
     public void setListners() {
         calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR);
+        Year = calendar.get(Calendar.YEAR) - 1;
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
+        prevYear = String.valueOf(Year);
 
         fragmentDailyFeesCollectionBinding.dateButton.setText(Utils.getTodaysDate());
 
@@ -364,14 +366,14 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
     private Map<String, String> getFeesCollectionDetail() {
         Map<String, String> map = new HashMap<>();
         map.put("TermID", FinalTermIdStr);
-        map.put("TermDetailID",FinalTermDetailIdStr );
+        map.put("TermDetailID", FinalTermDetailIdStr);
         map.put("Standard", FinalstandardIdStr);
         map.put("Mode", FinalPaymentmodeStr);
 
         return map;
     }
 
-    //Use for fill the Term Spinner
+    // //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -404,7 +406,11 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentDailyFeesCollectionBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr=spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentDailyFeesCollectionBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     //Use for fill the Standard Spinner
@@ -440,7 +446,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
         fragmentDailyFeesCollectionBinding.standardSpinner.setAdapter(adapterTerm);
 
-        FinalstandardIdStr =spinnerStandardMap.get(0);
+        FinalstandardIdStr = spinnerStandardMap.get(0);
     }
 
     //Use for fill the TermDetail Spinner
@@ -477,7 +483,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermdetailIdArray);
         fragmentDailyFeesCollectionBinding.termDetailSpinner.setAdapter(adapterTerm);
 
-        FinalTermDetailIdStr=spinnerTermDetailIdMap.get(0);
+        FinalTermDetailIdStr = spinnerTermDetailIdMap.get(0);
     }
 
     //Use for fill the paymentMode Spinner
@@ -517,7 +523,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerpaymentIdArray);
         fragmentDailyFeesCollectionBinding.paymentModeSpinner.setAdapter(adapterTerm);
 
-        FinalPaymentmodeStr=spinnerPaymentModeMap.get(0);
+        FinalPaymentmodeStr = spinnerPaymentModeMap.get(0);
         callDailyCollectionApi();
     }
 
@@ -539,6 +545,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
     }
 
+    //Use for fetch date
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = "Selected Date : " + Day + "/" + Month + "/" + Year;
@@ -561,7 +568,7 @@ public class DailyFeesCollectionFragment extends Fragment implements DatePickerD
 
         dateFinal = d + "/" + m + "/" + y;
 
-            fragmentDailyFeesCollectionBinding.dateButton.setText(dateFinal);
+        fragmentDailyFeesCollectionBinding.dateButton.setText(dateFinal);
 
     }
 }

@@ -19,6 +19,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,8 +54,10 @@ public class GRRegisterFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     HashMap<Integer, String> spinnerStatusMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr="0", FinalSectionStr="0", FinalStatusStr="Current Student", FinalStatusIdStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Current Student", FinalStatusIdStr, prevYear;
     GRRegisterAdapter grRegisterAdapter;
+    Calendar calendar;
+    int Year;
 
     public GRRegisterFragment() {
     }
@@ -76,6 +79,9 @@ public class GRRegisterFragment extends Fragment {
 
 
     public void setListners() {
+        calendar = Calendar.getInstance();
+        Year = calendar.get(Calendar.YEAR) - 1;
+        prevYear = String.valueOf(Year);
         fragmentGrregisterBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +108,7 @@ public class GRRegisterFragment extends Fragment {
                 Log.d("value", name + " " + getid);
                 FinalTermIdStr = getid.toString();
                 Log.d("FinalTermIdStr", FinalTermIdStr);
-                AppConfiguration.TermName=name;
+                AppConfiguration.TermName = name;
             }
 
             @Override
@@ -298,10 +304,10 @@ public class GRRegisterFragment extends Fragment {
                     Utils.ping(mContext, getString(R.string.false_msg));
                     Utils.dismissDialog();
 //                    if (studentFullDetailModel.getFinalArray().size() == 0) {
-                        fragmentGrregisterBinding.studentGrregisterList.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.recyclerLinear.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.listHeader.setVisibility(View.GONE);
-                        fragmentGrregisterBinding.txtNoRecords.setVisibility(View.VISIBLE);
+                    fragmentGrregisterBinding.studentGrregisterList.setVisibility(View.GONE);
+                    fragmentGrregisterBinding.recyclerLinear.setVisibility(View.GONE);
+                    fragmentGrregisterBinding.listHeader.setVisibility(View.GONE);
+                    fragmentGrregisterBinding.txtNoRecords.setVisibility(View.VISIBLE);
 //                    }
                     return;
                 }
@@ -315,8 +321,8 @@ public class GRRegisterFragment extends Fragment {
                             @Override
                             public void getViewClick() {
                                 fragment = new GRNoStudentDetailFragment();
-                                Bundle args=new Bundle();
-                                args.putString("flag","0");
+                                Bundle args = new Bundle();
+                                args.putString("flag", "0");
                                 fragment.setArguments(args);
                                 fragmentManager = getFragmentManager();
                                 fragmentManager.beginTransaction()
@@ -361,6 +367,7 @@ public class GRRegisterFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
 
         ArrayList<Integer> TermId = new ArrayList<Integer>();
@@ -381,7 +388,6 @@ public class GRRegisterFragment extends Fragment {
         }
 
 
-
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);
@@ -396,9 +402,14 @@ public class GRRegisterFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentGrregisterBinding.termSpinner.setAdapter(adapterTerm);
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i=0;i<spinnertermIdArray.length;i++){
+            if(spinnertermIdArray[i].contains(prevYear)){
+                fragmentGrregisterBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
+    //Use for fill Starndard spinner
     public void fillGradeSpinner() {
         ArrayList<String> firstValue = new ArrayList<>();
         firstValue.add("All");
@@ -447,6 +458,7 @@ public class GRRegisterFragment extends Fragment {
         FinalStandardIdStr = spinnerStandardMap.get(0);
     }
 
+    //Use for fill Section spinner
     public void fillSection() {
         ArrayList<String> sectionname = new ArrayList<>();
         ArrayList<Integer> sectionId = new ArrayList<>();
@@ -506,6 +518,7 @@ public class GRRegisterFragment extends Fragment {
 
     }
 
+    //Use for fill Status spinner
     public void fillStatus() {
 
         ArrayList<Integer> statusdetailId = new ArrayList<>();

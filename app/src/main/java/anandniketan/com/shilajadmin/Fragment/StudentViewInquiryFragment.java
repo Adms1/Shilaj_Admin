@@ -61,10 +61,11 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
     HashMap<Integer, String> spinnerTermMap;
     List<FinalArrayStudentModel> finalArrayinquiryCountList;
     private int lastExpandedPosition = -1;
-    String FinalStartDateStr, FinalEndDateStr, FinalStatusStr, FinalStatusIdStr, FinalTermIdStr, FinalTermStr, FinalOnlineStatusStr = "All";
+    String FinalStartDateStr, FinalEndDateStr, FinalStatusStr, FinalStatusIdStr, FinalTermIdStr, FinalTermStr, FinalOnlineStatusStr = "All", prevYear;
     ExpandableListAdapterInquiryData expandableListAdapterInquiryData;
     List<String> listDataHeader;
     HashMap<String, List<StandardWiseAttendanceModel>> listDataChild;
+
 
     public StudentViewInquiryFragment() {
     }
@@ -85,10 +86,11 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     public void setListners() {
         calendar = Calendar.getInstance();
-        Year = calendar.get(Calendar.YEAR);
+        Year = calendar.get(Calendar.YEAR) - 1;
         Month = calendar.get(Calendar.MONTH);
         Day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        prevYear = String.valueOf(Year);
         fragmentStudentViewInquiryBinding.startdateButton.setText(Utils.getTodaysDate());
         fragmentStudentViewInquiryBinding.enddateButton.setText(Utils.getTodaysDate());
 
@@ -440,9 +442,11 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentViewInquiryBinding.termSpinner.setAdapter(adapterTerm);
-
-        FinalTermIdStr = spinnerTermMap.get(0);
-        callInquiryCountApi();
+        for (int i=0;i<spinnertermIdArray.length;i++){
+            if(spinnertermIdArray[i].contains(prevYear)){
+                fragmentStudentViewInquiryBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     public void fillStatusSpinner() {
@@ -517,7 +521,7 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
             listDataHeader.add(finalArrayinquiryCountList.get(i).getName() + "|" +
                     finalArrayinquiryCountList.get(i).getGrade() + "|" +
                     finalArrayinquiryCountList.get(i).getGender() + "|" +
-                    finalArrayinquiryCountList.get(i).getCurrentStatus()+"|"+
+                    finalArrayinquiryCountList.get(i).getCurrentStatus() + "|" +
                     finalArrayinquiryCountList.get(i).getStudentID());
             Log.d("header", "" + listDataHeader);
             ArrayList<StandardWiseAttendanceModel> row = new ArrayList<StandardWiseAttendanceModel>();
@@ -535,17 +539,17 @@ public class StudentViewInquiryFragment extends Fragment implements DatePickerDi
 
     public void ShowDetail() {
         ArrayList<String> selectedId = new ArrayList<String>();
-        String selectedIdStr="";
+        String selectedIdStr = "";
         selectedId = expandableListAdapterInquiryData.getData();
         Log.d("selectedId", "" + selectedId);
         for (int i = 0; i < selectedId.size(); i++) {
             selectedIdStr = selectedId.get(i);
-            Log.d("selectedIdStr",selectedIdStr);
+            Log.d("selectedIdStr", selectedIdStr);
         }
         if (!selectedIdStr.equalsIgnoreCase("")) {
             fragment = new InquiryProfileDetailFragment();
-            Bundle args=new Bundle();
-            args.putString("StuId",selectedIdStr);
+            Bundle args = new Bundle();
+            args.putString("StuId", selectedIdStr);
             fragment.setArguments(args);
             fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()

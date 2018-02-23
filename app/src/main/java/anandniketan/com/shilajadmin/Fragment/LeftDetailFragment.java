@@ -19,6 +19,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,8 +54,10 @@ public class LeftDetailFragment extends Fragment {
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
     HashMap<Integer, String> spinnerStatusMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Left School", FinalStatusIdStr;
+    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalTermIdStr, FinalStandardStr = "0", FinalSectionStr = "0", FinalStatusStr = "Left School", FinalStatusIdStr,prevYear;
     GRRegisterAdapter grRegisterAdapter;
+    Calendar calendar;
+    int Year;
 
     public LeftDetailFragment() {
     }
@@ -76,6 +79,10 @@ public class LeftDetailFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentLeftDetailBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -368,6 +375,7 @@ public class LeftDetailFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -399,9 +407,14 @@ public class LeftDetailFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentLeftDetailBinding.termSpinner.setAdapter(adapterTerm);
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i=0;i<spinnertermIdArray.length;i++){
+            if(spinnertermIdArray[i].contains(prevYear)){
+                fragmentLeftDetailBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
+    //Use for fill Starndard spinner
     public void fillGradeSpinner() {
         ArrayList<String> firstValue = new ArrayList<>();
         firstValue.add("All");
@@ -450,6 +463,7 @@ public class LeftDetailFragment extends Fragment {
         FinalStandardIdStr = spinnerStandardMap.get(0);
     }
 
+    //Use for fill Section spinner
     public void fillSection() {
         ArrayList<String> sectionname = new ArrayList<>();
         ArrayList<Integer> sectionId = new ArrayList<>();
@@ -509,6 +523,7 @@ public class LeftDetailFragment extends Fragment {
 
     }
 
+    //Use for fill Status spinner
     public void fillStatus() {
 
         ArrayList<Integer> statusdetailId = new ArrayList<>();

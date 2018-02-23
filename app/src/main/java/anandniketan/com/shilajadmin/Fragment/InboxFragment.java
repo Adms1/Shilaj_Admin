@@ -74,7 +74,6 @@ public class InboxFragment extends Fragment {
 
     }
 
-
     // CALL GetInboxData API HERE
     private void callGetInboxDataApi() {
 
@@ -177,7 +176,6 @@ public class InboxFragment extends Fragment {
             listDataChild.put(listDataHeader.get(j), rows);
         }
     }
-
 
     // CALL InsertInboxDetail API HERE
     private void callInsertInboxDetailApi() {

@@ -43,8 +43,7 @@ public class PTMMainFragment extends Fragment {
     }
 
     public void init() {
-//Initializing the tablayout
-
+         //Initializing the tablayout
         ptmmainBinding.tabLayoutPtm.addTab(ptmmainBinding.tabLayoutPtm.newTab().setText("Inbox"), true);
         ptmmainBinding.tabLayoutPtm.addTab(ptmmainBinding.tabLayoutPtm.newTab().setText("Sent"));
         ptmmainBinding.tabLayoutPtm.addTab(ptmmainBinding.tabLayoutPtm.newTab().setText("Create"));

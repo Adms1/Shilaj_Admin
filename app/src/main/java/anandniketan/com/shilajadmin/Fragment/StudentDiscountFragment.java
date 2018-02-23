@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,11 +51,13 @@ public class StudentDiscountFragment extends Fragment {
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerdiscountTypeMap;
     HashMap<Integer, String> spinnerStandardMap;
-    String FinalTermIdStr, FinaldiscountypeIdStr = "", FinalstandardIdStr = "";
+    String FinalTermIdStr, FinaldiscountypeIdStr = "", FinalstandardIdStr = "", prevYear;
     List<FinalArrayAccountFeesModel> finalArrayDiscountModelList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandableListAdapterStudentDiscount expandableListAdapterStudentDiscount;
+    Calendar calendar;
+    int Year;
 
     public StudentDiscountFragment() {
     }
@@ -76,6 +79,10 @@ public class StudentDiscountFragment extends Fragment {
 
 
     public void setListners() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
+
         fragmentStudentDiscountBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -373,7 +380,11 @@ public class StudentDiscountFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentStudentDiscountBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr=spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentStudentDiscountBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     public void fillDiscountSpinner() {
@@ -409,7 +420,7 @@ public class StudentDiscountFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerdiscounttypeIdArray);
         fragmentStudentDiscountBinding.discountSpinner.setAdapter(adapterTerm);
 
-        FinaldiscountypeIdStr = spinnerdiscountTypeMap.get(0) ;
+        FinaldiscountypeIdStr = spinnerdiscountTypeMap.get(0);
     }
 
     public void fillStandardSpinner() {
@@ -443,8 +454,6 @@ public class StudentDiscountFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerstandardIdArray);
         fragmentStudentDiscountBinding.standardSpinner.setAdapter(adapterTerm);
-
-
 
 
         FinalstandardIdStr = spinnerStandardMap.get(0);

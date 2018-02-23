@@ -160,9 +160,8 @@ public class RoutePickUpDetailFragment extends Fragment {
         return map;
     }
 
-
+    //Use for fill Route spinner
     public void fillRouteSpinner() {
-
         ArrayList<Integer> RouteId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayRouteDetailModelList.size(); i++) {
             RouteId.add(finalArrayRouteDetailModelList.get(i).getRouteID());
@@ -196,6 +195,7 @@ public class RoutePickUpDetailFragment extends Fragment {
 
     }
 
+    //Use for fill Route Detail List
     public void fillrouteList() {
         array = new ArrayList<>();
         array.clear();
@@ -220,7 +220,7 @@ public class RoutePickUpDetailFragment extends Fragment {
             fragmentRoutePickUpDetailBinding.txtNoRecords.setVisibility(View.VISIBLE);
             fragmentRoutePickUpDetailBinding.listHeader.setVisibility(View.GONE);
             fragmentRoutePickUpDetailBinding.routeDetailList.setVisibility(View.GONE);
-fragmentRoutePickUpDetailBinding.recyclerLinear.setVisibility(View.GONE);
+            fragmentRoutePickUpDetailBinding.recyclerLinear.setVisibility(View.GONE);
         }
     }
 }

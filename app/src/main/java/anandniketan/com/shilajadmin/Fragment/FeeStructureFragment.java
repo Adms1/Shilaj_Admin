@@ -16,6 +16,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,12 +47,14 @@ public class FeeStructureFragment extends Fragment {
     private FragmentManager fragmentManager = null;
     List<FinalArrayGetTermModel> finalArrayGetTermModels;
     HashMap<Integer, String> spinnerTermMap;
-    String FinalTermIdStr;
+    String FinalTermIdStr,prevYear;
     List<FinalArrayAccountFeesModel> finalArrayFeesStructureModelList;
     FeesStructureExpandableListAdapter feesStructureExpandableListAdapter;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     private int lastExpandedPosition = -1;
+    Calendar calendar;
+    int Year;
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +74,9 @@ public class FeeStructureFragment extends Fragment {
 
 
     public void setListner() {
+        calendar=Calendar.getInstance();
+        Year=calendar.get(Calendar.YEAR)-1;
+        prevYear=String.valueOf(Year);
         fragmentFeeStructureBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,7 +125,6 @@ public class FeeStructureFragment extends Fragment {
 
         });
     }
-
 
     // CALL Term API HERE
     private void callTermApi() {
@@ -170,6 +175,7 @@ public class FeeStructureFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -201,7 +207,11 @@ public class FeeStructureFragment extends Fragment {
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentFeeStructureBinding.termSpinner.setAdapter(adapterTerm);
-
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentFeeStructureBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
     // CALL AccountFeesStructure API HERE
@@ -266,7 +276,7 @@ public class FeeStructureFragment extends Fragment {
         return map;
     }
 
-
+    //Use for fill FeesDetail List
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();

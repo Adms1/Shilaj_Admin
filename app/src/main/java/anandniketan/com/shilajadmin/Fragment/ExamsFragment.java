@@ -191,11 +191,13 @@ public class ExamsFragment extends Fragment implements DatePickerDialog.OnDateSe
         return map;
     }
 
+    //Use for fetch date
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         populateSetDate(year, monthOfYear + 1, dayOfMonth);
     }
 
+    //Use for fetch multiple date
     public void populateSetDate(int year, int month, int day) {
         String d, m, y;
         d = Integer.toString(day);

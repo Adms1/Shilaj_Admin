@@ -121,6 +121,7 @@ public class SearchStudentFragment extends Fragment {
         });
     }
 
+    //Use for fill Student Type spinner
     public void fillsearchType() {
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
@@ -199,7 +200,6 @@ public class SearchStudentFragment extends Fragment {
         return map;
     }
 
-
     // CALL Student Name API HERE
     private void callStudentNameApi() {
 
@@ -259,7 +259,6 @@ public class SearchStudentFragment extends Fragment {
         map.put("InputValue", studentNameStr);
         return map;
     }
-
 
     // CALL StudentShowFilteredData API HERE
     private void callStudentShowFilteredDataApi() {

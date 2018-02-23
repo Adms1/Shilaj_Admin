@@ -299,7 +299,7 @@ public class AccountSummaryFragment extends Fragment {
         }
     }
 
-    //Use for Fill Term Spinner
+    // //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -367,8 +367,6 @@ public class AccountSummaryFragment extends Fragment {
             amount6 = Double.toString(Double.parseDouble(collectionModelList.get(i).getTotalDueStudent()));
             fragmentAccountSummaryBinding.perTotalTxt.setText("(" + collectionModelList.get(i).getTotalDuePer() + "%" + ")");
             fragmentAccountSummaryBinding.perStudentCountTxt.setText("(" + collectionModelList.get(i).getDueStudentPer() + "%" + ")");
-
-
         }
 
         longval1 = Double.parseDouble(amount1);
@@ -385,14 +383,6 @@ public class AccountSummaryFragment extends Fragment {
         formattedString4 = formatter.format(longval4);
         formattedString5 = formatter.format(longval5);
         formattedString6 = formatter.format(longval6);
-
-
-//        formattedString1 = String.format("%,.1f", longval1);
-//        formattedString2 = String.format("%,.1f", longval2);
-//        formattedString3 = String.format("%,.1f", longval3);
-//        formattedString4 = String.format("%,.1f", longval4);
-//        formattedString5 = String.format("%,.1f", longval5);
-//        formattedString6 = String.format("%,.1f", longval6);
 
         fragmentAccountSummaryBinding.totalAmountTxt.setText("₹" + " " + formattedString1);
         fragmentAccountSummaryBinding.totalStudentAmountTxt.setText("₹" + " " + formattedString2);

@@ -17,6 +17,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,11 +50,14 @@ public class ImprestFragment extends Fragment {
     List<FinalArrayStandard> finalArrayStandardsList;
     HashMap<Integer, String> spinnerTermMap;
     HashMap<Integer, String> spinnerStandardMap;
-    String FinalTermIdStr, FinalstandardIdStr = "";
+    String FinalTermIdStr, FinalstandardIdStr = "", prevYear;
     List<FinalArrayAccountFeesModel> finalArrayImprestDetailModelList;
     List<String> listDataHeader;
     HashMap<String, ArrayList<FinalArrayAccountFeesModel>> listDataChild;
     ExpandbleListAdapterImprest expandbleListAdapterImprest;
+    Calendar calendar;
+    int Year;
+
 
     public ImprestFragment() {
     }
@@ -75,6 +79,10 @@ public class ImprestFragment extends Fragment {
 
 
     public void setListners() {
+        calendar = Calendar.getInstance();
+        Year = calendar.get(Calendar.YEAR) - 1;
+        prevYear = String.valueOf(Year);
+
         fragmentImprestBinding.btnmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +147,6 @@ public class ImprestFragment extends Fragment {
         });
     }
 
-
     // CALL Term API HERE
     private void callTermApi() {
 
@@ -188,7 +195,6 @@ public class ImprestFragment extends Fragment {
         Map<String, String> map = new HashMap<>();
         return map;
     }
-
 
     // CALL Standard API HERE
     private void callStandardApi() {
@@ -307,6 +313,7 @@ public class ImprestFragment extends Fragment {
         return map;
     }
 
+    //Use for fill Acedemic year spinner
     public void fillTermSpinner() {
         ArrayList<Integer> TermId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayGetTermModels.size(); i++) {
@@ -339,9 +346,14 @@ public class ImprestFragment extends Fragment {
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnertermIdArray);
         fragmentImprestBinding.termSpinner.setAdapter(adapterTerm);
 
-        FinalTermIdStr = spinnerTermMap.get(0);
+        for (int i = 0; i < spinnertermIdArray.length; i++) {
+            if (spinnertermIdArray[i].contains(prevYear)) {
+                fragmentImprestBinding.termSpinner.setSelection(i);
+            }
+        }
     }
 
+    //Use for fill Standard spinner
     public void fillStandardSpinner() {
         ArrayList<Integer> standardId = new ArrayList<Integer>();
         for (int i = 0; i < finalArrayStandardsList.size(); i++) {
@@ -378,6 +390,7 @@ public class ImprestFragment extends Fragment {
         callStudentDiscountDetailApi();
     }
 
+    //Use for fill Imprest List
     public void fillExpLV() {
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<String, ArrayList<FinalArrayAccountFeesModel>>();
