@@ -349,6 +349,7 @@ public class ImprestFragment extends Fragment {
                 fragmentImprestBinding.termSpinner.setSelection(i);
             }
         }
+        FinalTermIdStr=spinnerTermMap.get(0);
     }
 
     //Use for fill Standard spinner

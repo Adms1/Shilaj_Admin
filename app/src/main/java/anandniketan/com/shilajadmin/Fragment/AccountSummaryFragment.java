@@ -202,15 +202,17 @@ public class AccountSummaryFragment extends Fragment {
                 Utils.dismissDialog();
                 if (accountFeesStatusModel == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
+                    Utils.dismissDialog();
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess() == null) {
                     Utils.ping(mContext, getString(R.string.something_wrong));
-
+                    Utils.dismissDialog();
                     return;
                 }
                 if (accountFeesStatusModel.getSuccess().equalsIgnoreCase("False")) {
                     Utils.ping(mContext, getString(R.string.false_msg));
+                    Utils.dismissDialog();
                     fragmentAccountSummaryBinding.txtNoRecords.setVisibility(View.VISIBLE);
                     fragmentAccountSummaryBinding.mainLinear.setVisibility(View.GONE);
                     fragmentAccountSummaryBinding.standardwiseLinear.setVisibility(View.GONE);
@@ -234,6 +236,7 @@ public class AccountSummaryFragment extends Fragment {
                         fragmentAccountSummaryBinding.standardwiseStudentCollection.setItemAnimator(new DefaultItemAnimator());
                         fragmentAccountSummaryBinding.standardwiseStudentCollection.setAdapter(standardwisecollectionAdapter);
                     }
+                    Utils.dismissDialog();
                 }
             }
 

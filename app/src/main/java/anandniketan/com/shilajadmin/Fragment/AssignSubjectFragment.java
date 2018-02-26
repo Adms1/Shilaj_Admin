@@ -456,6 +456,7 @@ public class AssignSubjectFragment extends Fragment {
                 fragmentAssignSubjectBinding.termSpinner.setSelection(i);
             }
         }
+        FinalTermIdStr=spinnerTermMap.get(0);
         callAssignSubjectApi();
     }
 
@@ -483,15 +484,13 @@ public class AssignSubjectFragment extends Fragment {
 
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAssignSubjectBinding.teacherSpinner);
-
             popupWindow.setHeight(spinnerteacherIdArray.length > 4 ? 500 : spinnerteacherIdArray.length * 100);
+
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
-
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnerteacherIdArray);
         fragmentAssignSubjectBinding.teacherSpinner.setAdapter(adapterTerm);
-
     }
 
     //Use for fill the Subject Spinner
@@ -506,7 +505,6 @@ public class AssignSubjectFragment extends Fragment {
         }
 
         String[] spinnersubjectIdArray = new String[SubjectId.size()];
-
         spinnerSubjectMap = new HashMap<Integer, String>();
         for (int i = 0; i < SubjectId.size(); i++) {
             spinnerSubjectMap.put(i, String.valueOf(SubjectId.get(i)));
@@ -518,17 +516,15 @@ public class AssignSubjectFragment extends Fragment {
 
             // Get private mPopup member variable and try cast to ListPopupWindow
             android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(fragmentAssignSubjectBinding.subjectSpinner);
-
             popupWindow.setHeight(spinnersubjectIdArray.length > 4 ? 500 : spinnersubjectIdArray.length * 100);
+
         } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
             // silently fail...
         }
 
         ArrayAdapter<String> adapterTerm = new ArrayAdapter<String>(mContext, R.layout.spinner_layout, spinnersubjectIdArray);
         fragmentAssignSubjectBinding.subjectSpinner.setAdapter(adapterTerm);
-
     }
-
     //Use for fill the Subject with Teacher data
     public void fillDataList() {
         fragmentAssignSubjectBinding.txtNoRecords.setVisibility(View.GONE);
