@@ -39,7 +39,7 @@
     <string name="total">Total</string>
     <string name="onduty">Onduty</string>
     <string name="resultstatus">Result Status</string>
-    <string name="profilestatus">Profile Status</string>
+    <string name="profilestatus">Permission Status</string>
     <string name="standardname">Standarname</string>
     <string name="standardstatus">Status</string>
     <string name="employeename">Employee</string>
@@ -252,7 +252,7 @@
     <string name="to">To</string>
     <string name="to_hint">Write Name Send Email</string>
     <string name="active">Active</string>
-    <string name="deactive">Deactive</string>
+    <string name="deactive">Inactive</string>
     <string name="updated_msg">Record Updeted Sucessfully!</string>
     <string name="inserted_msg">Record Inserted Sucessfully!</string>
     <!-- TODO: Remove or change this placeholder text -->
