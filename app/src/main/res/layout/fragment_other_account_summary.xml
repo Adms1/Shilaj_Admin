@@ -264,7 +264,7 @@
                             android:layout_marginLeft="@dimen/_20sdp"
                             android:text="0"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/black"
+                            android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_12sdp" />
 
                         <TextView
@@ -274,7 +274,7 @@
                             android:layout_marginLeft="@dimen/_30sdp"
                             android:text="0"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/black"
+                            android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
                     <LinearLayout
@@ -302,7 +302,7 @@
                             android:layout_marginLeft="@dimen/_20sdp"
                             android:text="0"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/black"
+                            android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_12sdp"/>
 
                         <TextView
@@ -312,7 +312,7 @@
                             android:layout_marginLeft="@dimen/_30sdp"
                             android:text="0"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/black"
+                            android:textColor="@color/scheduleheadertextcolor"
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
                 </LinearLayout>

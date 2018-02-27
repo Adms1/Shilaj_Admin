@@ -18,6 +18,7 @@ import android.widget.Spinner;
 
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
+import java.text.Format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -332,7 +333,7 @@ public class OtherAccountSummaryFragment extends Fragment {
     public void fillData() {
         String amount1 = "", amount2 = "", amount3 = "", amount4 = "", amount5 = "", amount6 = "";
         Double longval1 = null, longval2 = null, longval3 = null, longval4 = null, longval5 = null, longval6 = null;
-        DecimalFormat formatter = new DecimalFormat("#,##,##,##.#");
+        Format formatter = new DecimalFormat("##,##,###");
         String formattedString1, formattedString2, formattedString3, formattedString4, formattedString5, formattedString6;
 
         for (int i = 0; i < collectionModelList.size(); i++) {
@@ -352,13 +353,14 @@ public class OtherAccountSummaryFragment extends Fragment {
         longval4 = Double.parseDouble(amount4);
         longval5 = Double.parseDouble(amount5);
         longval6 = Double.parseDouble(amount6);
+        Log.d("decimalValue", formatter.format(longval2));
 
-        formattedString1 = String.format("%,.1f", longval1);
-        formattedString2 = String.format("%,.1f", longval2);
-        formattedString3 = String.format("%,.1f", longval3);
-        formattedString4 = String.format("%,.1f", longval4);
-        formattedString5 = String.format("%,.1f", longval5);
-        formattedString6 = String.format("%,.1f", longval6);
+        formattedString1 = formatter.format(longval1);
+        formattedString2 = formatter.format(longval2);
+        formattedString3 = formatter.format(longval3);
+        formattedString4 = formatter.format(longval4);
+        formattedString5 = formatter.format(longval5);
+        formattedString6 = formatter.format(longval6);
 
         fragmentOtherAccountSummaryBinding.totalAmountTxt.setText("₹" + " " + formattedString1);
         fragmentOtherAccountSummaryBinding.totalStudentAmountTxt.setText("₹" + " " + formattedString2);

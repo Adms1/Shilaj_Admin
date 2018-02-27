@@ -63,7 +63,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
     List<FinalArrayStandard> finalArrayStandardsList;
     HashMap<Integer, String> spinnerStandardMap;
     HashMap<Integer, String> spinnerSectionMap;
-    String FinalStandardIdStr, FinalClassIdStr, StandardName, FinalDateStr, FinalStandardStr, FinalSectionStr;
+    String FinalStandardIdStr, FinalClassIdStr="0", StandardName, FinalDateStr, FinalStandardStr, FinalSectionStr;
     List<FinalArraySMSDataModel> finalArrayBulkSMSModelList;
     private boolean temp = false;
     BulkSMSDetailListAdapter bulkSMSDetailListAdapter;
@@ -237,6 +237,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
                     finalArrayStandardsList = standardModel.getFinalArray();
                     if (finalArrayStandardsList != null) {
                         fillGradeSpinner();
+                        callGetAbsentTodayApi();
                     }
                 }
             }
@@ -430,7 +431,7 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
         fragmentStudentAbsentBinding.sectionSpinner.setAdapter(adapterstandard);
 
         FinalClassIdStr = spinnerSectionMap.get(0);
-        callGetAbsentTodayApi();
+
     }
 
     public void fillDataList() {
@@ -521,8 +522,12 @@ public class StudentAbsentFragment extends Fragment implements DatePickerDialog.
                 int j;
                 for (j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {
-                        id.add(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
-                        Log.d("checkid", "" + id.size());
+                        if(!array.get(j).getSmsNo().equalsIgnoreCase("")&&array.get(j).getSmsNo().length()>=10) {
+                            id.add(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
+                            Log.d("checkid", "" + id.size());
+                        }else{
+                            Utils.ping(mContext,getString(R.string.valid_no));
+                        }
                     } else {
                         id.remove(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
                         Log.d("Uncheckid", "" + id.size());

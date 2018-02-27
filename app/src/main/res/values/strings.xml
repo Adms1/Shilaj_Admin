@@ -192,7 +192,7 @@
     <string name="amount"><u>Amount</u></string>
     <string name="Studentcoll"><u>Student</u></string>
     <string name="standardwisecoll">Standard Wise Collection</string>
-    <string name="exam">EXAMS</string>
+    <string name="exam">EXAM</string>
     <string name="academicyear">Academic Year</string>
     <string name="edit">Edit</string>
     <string name="studentstatus">Student Status</string>
@@ -216,7 +216,7 @@
     <string name="motherdesignation">Designation</string>
     <string name="transportkms">Transport KMs</string>
     <string name="test">Test</string>
-    <string name="description">Discription</string>
+    <string name="description">Description</string>
     <string name="order">Order</string>
     <string name="inquirycount">Enquiry Count</string>
     <string name="student_name">Megha Shah</string>
@@ -255,6 +255,7 @@
     <string name="deactive">Inactive</string>
     <string name="updated_msg">Record Updeted Sucessfully!</string>
     <string name="inserted_msg">Record Inserted Sucessfully!</string>
+    <string name="valid_no">Please Add Valid Mobile no.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

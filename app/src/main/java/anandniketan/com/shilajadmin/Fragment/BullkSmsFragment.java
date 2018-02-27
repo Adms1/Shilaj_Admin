@@ -178,7 +178,11 @@ public class BullkSmsFragment extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     for (int i = 0; i < finalArrayBulkSMSModelList.size(); i++) {
-                        finalArrayBulkSMSModelList.get(i).setCheck("1");
+                        if(!finalArrayBulkSMSModelList.get(i).getSmsNo().equalsIgnoreCase("")&&finalArrayBulkSMSModelList.get(i).getSmsNo().length()>=10) {
+                            finalArrayBulkSMSModelList.get(i).setCheck("1");
+                        }else{
+                            Utils.ping(mContext,getString(R.string.valid_no));
+                        }
                     }
                     bulkSMSDetailListAdapter.notifyDataSetChanged();
                     temp=false;
@@ -537,8 +541,12 @@ public class BullkSmsFragment extends Fragment {
 
                 for (int i = 0; i < updatedData.size(); i++) {
                     if (updatedData.get(i).getCheck().equalsIgnoreCase("1")) {
-                        data = true;
-                        count++;
+                        if(!updatedData.get(i).getSmsNo().equalsIgnoreCase("")&&updatedData.get(i).getSmsNo().length()>=10) {
+                            data = true;
+                            count++;
+                        }else{
+                            Utils.ping(mContext,getString(R.string.valid_no));
+                        }
                     } else {
                         count--;
                     }
@@ -607,8 +615,12 @@ public class BullkSmsFragment extends Fragment {
                 int j;
                 for (j = 0; j < array.size(); j++) {
                     if (array.get(j).getCheck().equalsIgnoreCase("1")) {
+                        if(!array.get(j).getSmsNo().equalsIgnoreCase("")&&array.get(j).getSmsNo().length()>=10) {
                         id.add(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
                         Log.d("checkid", "" + id.size());
+                        }else{
+                            Utils.ping(mContext,getString(R.string.valid_no));
+                        }
                     } else {
                         id.remove(array.get(j).getFkStudentID() + "|" + array.get(j).getSmsNo());
                         Log.d("Uncheckid", "" + id.size());

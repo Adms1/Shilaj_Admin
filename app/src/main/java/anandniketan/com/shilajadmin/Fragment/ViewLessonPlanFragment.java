@@ -18,6 +18,9 @@ import android.widget.Spinner;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -546,10 +549,13 @@ public class ViewLessonPlanFragment extends Fragment {
 
     //Use for fill the Subject Spinner
     public void fillSubjectSpinner() {
+
         ArrayList<Integer> SubjectID = new ArrayList<Integer>();
+
         for (int i = 0; i < finalArrayEmployeeList.size(); i++) {
             SubjectID.add(finalArrayEmployeeList.get(i).getSubjectID());
         }
+
         ArrayList<String> Subject = new ArrayList<String>();
         for (int j = 0; j < finalArrayEmployeeList.size(); j++) {
             Subject.add(finalArrayEmployeeList.get(j).getSubject());
@@ -562,6 +568,7 @@ public class ViewLessonPlanFragment extends Fragment {
             spinnerSubjectMap.put(i, String.valueOf(SubjectID.get(i)));
             spinnersubjectIdArray[i] = Subject.get(i).trim();
         }
+
         try {
             Field popup = Spinner.class.getDeclaredField("mPopup");
             popup.setAccessible(true);

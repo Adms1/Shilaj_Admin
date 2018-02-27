@@ -305,6 +305,12 @@ public class HolidayFragment extends Fragment implements DatePickerDialog.OnDate
                     return;
                 }
                 if (insertHoliday.getSuccess().equalsIgnoreCase("True")) {
+                    if(fragmentHolidayBinding.updateBtn.getText().toString().equalsIgnoreCase("ADD")) {
+                        Utils.ping(mContext, getString(R.string.inserted_msg));
+                    }else{
+                        Utils.ping(mContext, getString(R.string.updated_msg));
+                    }
+                    fragmentHolidayBinding.updateBtn.setText("ADD");
                     callHolidayDataApi();
                         Utils.dismissDialog();
                 }

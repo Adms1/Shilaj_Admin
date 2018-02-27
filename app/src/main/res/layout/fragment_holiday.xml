@@ -280,7 +280,7 @@
                         android:layout_marginLeft="@dimen/_3sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/round_button"
-                        android:text="Save"
+                        android:text="ADD"
                         android:textAllCaps="true"
                         android:textColor="@color/app_bg"
                         android:textSize="@dimen/_11sdp" />

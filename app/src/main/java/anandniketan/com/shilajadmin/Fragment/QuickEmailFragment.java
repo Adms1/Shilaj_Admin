@@ -1,9 +1,11 @@
 package anandniketan.com.shilajadmin.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,7 +74,20 @@ public class QuickEmailFragment extends Fragment {
         fragmentQuickEmailBinding.sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              
+//                Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+//                emailIntent.setType("*/*");
+//                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {"email@example.com"});
+//                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject here");
+//                emailIntent.putExtra(Intent.EXTRA_TEXT, "body text");
+//                File root = Environment.getExternalStorageDirectory();
+//                String pathToMyAttachedFile = "temp/attachement.xml";
+//                File file = new File(root, pathToMyAttachedFile);
+//                if (!file.exists() || !file.canRead()) {
+//                    return;
+//                }
+//                Uri uri = Uri.fromFile(file);
+//                emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//                startActivity(Intent.createChooser(emailIntent, "Pick an Email provider"));
             }
         });
         fragmentQuickEmailBinding.clearBtn.setOnClickListener(new View.OnClickListener() {

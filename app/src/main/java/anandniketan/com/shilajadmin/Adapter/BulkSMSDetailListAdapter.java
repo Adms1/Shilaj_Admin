@@ -80,17 +80,17 @@ public class BulkSMSDetailListAdapter extends RecyclerView.Adapter<BulkSMSDetail
                 stduentIdStr = "";
                 if (isChecked) {
                     finalArrayBulkSMSModelList.get(position).setCheck("1");
-                    stduentIdStr = finalArrayBulkSMSModelList.get(position).getFkStudentID().toString();
-                    mobilenoStr = finalArrayBulkSMSModelList.get(position).getSmsNo().toString();
-                    FinalValue = stduentIdStr + "|" + mobilenoStr;
-                    dataCheck.add(FinalValue);
-                    Log.d("dataCheck", dataCheck.toString());
+//                    stduentIdStr = finalArrayBulkSMSModelList.get(position).getFkStudentID().toString();
+//                    mobilenoStr = finalArrayBulkSMSModelList.get(position).getSmsNo().toString();
+//                    FinalValue = stduentIdStr + "|" + mobilenoStr;
+//                    dataCheck.add(FinalValue);
+//                    Log.d("dataCheck", dataCheck.toString());
                     listner.getEmployeeSMSCheck();
                 } else {
                     finalArrayBulkSMSModelList.get(position).setCheck("0");
-                    dataCheck.remove(finalArrayBulkSMSModelList.get(position).getFkStudentID() + "|" +
-                            finalArrayBulkSMSModelList.get(position).getSmsNo());
-                    Log.d("dataUnCheck", dataCheck.toString());
+//                    dataCheck.remove(finalArrayBulkSMSModelList.get(position).getFkStudentID() + "|" +
+//                            finalArrayBulkSMSModelList.get(position).getSmsNo());
+//                    Log.d("dataUnCheck", dataCheck.toString());
                     listner.getEmployeeSMSCheck();
                 }
             }
